@@ -1,16 +1,14 @@
+import styled from 'styled-components';
+
 export const App = () => {
   return (
-    <div
-      style={{
-        height: '100vh',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        fontSize: 40,
-        color: '#010101',
-      }}
-    >
-      LETS DO THIS!!!!!!!!!
-    </div>
+    <Wrapper>
+      <h1> HELLo</h1>
+    </Wrapper>
   );
 };
+
+const Wrapper = styled.div`
+  background: ${prop => prop.theme.colors.gradient};
+  font-family: ${prop => prop.theme.fonts[1]};
+`;
