@@ -1,14 +1,14 @@
 import { Outlet } from 'react-router-dom';
 import { Suspense } from 'react';
 import { Header } from 'components/Header/Header';
-
+import { Container } from './container.styled';
 export const SharedLayout = () => {
   return (
-    <div>
+    <Container>
       <Header></Header>
       <Suspense>
         <Outlet />
       </Suspense>
-    </div>
+    </Container>
   );
 };
