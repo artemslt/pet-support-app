@@ -1,5 +1,5 @@
-import styled from 'styled-components';
-import { up } from 'styled-breakpoints';
+// import styled from 'styled-components';
+// import { up } from 'styled-breakpoints';
 import { Routes, Route } from 'react-router-dom';
 import { SharedLayout } from './SharedLayout/SharedLayout';
 import { lazy } from 'react';
