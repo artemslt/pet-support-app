@@ -1,2 +1,0 @@
-"use strict";(self.webpackChunkpet_support_app=self.webpackChunkpet_support_app||[]).push([[256],{256:function(p,t,u){u.r(t);var e=u(184);t.default=function(){return(0,e.jsx)("div",{children:"NotFound"})}}}]);
-//# sourceMappingURL=256.91f43923.chunk.js.map
