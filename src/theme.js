@@ -1,12 +1,13 @@
-export const theme = {
+import { createTheme } from 'styled-breakpoints';
+
+const themeStyles = {
   space: [0, 4, 8, 16, 32, 64],
   fontSizes: [12, 14, 16, 20, 24, 32, 42],
   fontWeights: [400, 500, 700],
   fonts: ['Inter', 'Manrope', 'Poppins'],
-
   colors: {
     mainBlack: '#111111',
-    secindaryBlack: '#181C27',
+    secondaryBlack: '#181C27',
     additionalBlack: '#000000',
     text: '#111321',
     grayText: 'rgba(17, 17, 17, 0.6)',
@@ -21,3 +22,11 @@ export const theme = {
     gradient: 'linear-gradient(90deg, #FF634E 0%, #FFDF48 105.44%)',
   },
 };
+
+const themeBreakpoints = createTheme({
+  mobile: '320px',
+  tablet: '768px',
+  pc: '1280px',
+});
+
+export const theme = { ...themeStyles, ...themeBreakpoints };

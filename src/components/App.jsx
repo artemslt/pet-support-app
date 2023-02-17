@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { up } from 'styled-breakpoints';
 
 export const App = () => {
   return (
@@ -9,6 +10,15 @@ export const App = () => {
 };
 
 const Wrapper = styled.div`
-  background: ${prop => prop.theme.colors.gradient};
   font-family: ${prop => prop.theme.fonts[1]};
+
+  ${up('mobile')} {
+    background: ${prop => prop.theme.colors.activeAccent};
+  }
+  ${up('tablet')} {
+    background: ${prop => prop.theme.colors.background};
+  }
+  ${up('pc')} {
+    background: ${prop => prop.theme.colors.gradient};
+  }
 `;
