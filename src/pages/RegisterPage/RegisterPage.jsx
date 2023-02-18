@@ -1,10 +1,12 @@
 import { RegisterForm } from 'components/RegisterForm/RegisterForm';
+import { BackgroundWrapper } from '../LoginPage/AuthPage.styled';
 
 const RegisterPage = () => {
   return (
-    <div>
+    <>
+      <BackgroundWrapper></BackgroundWrapper>
       <RegisterForm />
-    </div>
+    </>
   );
 };
 

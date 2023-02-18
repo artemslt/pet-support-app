@@ -37,11 +37,17 @@ export const LoginForm = () => {
       >
         <Form>
           <label>
-            <Field type="email" name="email" placeholder="Email"></Field>
+            <Field
+              autoComplete="on"
+              type="email"
+              name="email"
+              placeholder="Email"
+            ></Field>
             <ErrorMessage name="email" component="span"></ErrorMessage>
           </label>
           <label>
             <Field
+              autoComplete="off"
               type="password"
               name="password"
               placeholder="Password"

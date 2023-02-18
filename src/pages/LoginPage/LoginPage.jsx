@@ -1,10 +1,12 @@
 import { LoginForm } from 'components/LoginForm/LoginForm';
+import { BackgroundWrapper } from './AuthPage.styled';
 
 const LoginPage = () => {
   return (
-    <div>
+    <>
+      <BackgroundWrapper></BackgroundWrapper>
       <LoginForm />
-    </div>
+    </>
   );
 };
 
