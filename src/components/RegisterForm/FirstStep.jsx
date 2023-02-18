@@ -4,7 +4,12 @@ export const FirstStep = () => {
   return (
     <>
       <label>
-        <Field type="text" name="email" placeholder="Email"></Field>
+        <Field
+          autoComplete="on"
+          type="text"
+          name="email"
+          placeholder="Email"
+        ></Field>
         <ErrorMessage name="email" component="span"></ErrorMessage>
       </label>
       <label>

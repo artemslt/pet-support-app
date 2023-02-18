@@ -4,12 +4,17 @@ export const SecondStep = () => {
   return (
     <>
       <label>
-        <Field type="text" name="name" placeholder="Name"></Field>
+        <Field
+          autoComplete="on"
+          type="text"
+          name="name"
+          placeholder="Name"
+        ></Field>
         <ErrorMessage name="name" component="span"></ErrorMessage>
       </label>
       <label>
         <Field
-          autoComplete="off"
+          autoComplete="on"
           type="text"
           name="location"
           placeholder="City, region"
@@ -18,7 +23,7 @@ export const SecondStep = () => {
       </label>
       <label>
         <Field
-          autoComplete="off"
+          autoComplete="on"
           type="text"
           name="phone"
           placeholder="Mobile phone"

@@ -1,6 +1,7 @@
 import * as yup from 'yup';
 
-const emailRegexp = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+
+const emailRegexp = /^([a-zA-Z0-9_.]+){1}([a-zA-Z0-9_\-.]+){1}@([a-zA-Z0-9_\-.]+)\.([a-zA-Z]{2,3})$/ ;
 const passwordRegexp = /^\S*$/;
 const nameRegexp = /^([a-zA-Zа-яА-ЯёЁ\s]+)$/;
 const phoneRegexp = /^\+380\d{3}\d{2}\d{2}\d{2}$/;
@@ -11,6 +12,8 @@ export const registerSchema = yup.object().shape({
   email: yup
     .string()
     .matches(emailRegexp, 'Email must be in format mail@mail.com')
+    .min(10, 'Email should be 10 characters minimum.')
+    .max(63, 'Email should be 63 characters maximum.')
     .required('Email is required'),
   password: yup
     .string()
@@ -35,6 +38,8 @@ export const registerSchema = yup.object().shape({
 export const loginSchema = yup.object().shape({
   email: yup
     .string()
+    .min(10, 'Email should be 10 characters minimum.')
+    .max(63, 'Email should be 63 characters maximum.')
     .matches(emailRegexp, 'Email must be in format mail@mail.com')
     .required('Email is required'),
   password: yup
