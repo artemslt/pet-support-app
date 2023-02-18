@@ -28,7 +28,7 @@ export const PetsList = () => {
               <span>Comments:</span>{' '}
             </p>
           </div>
-          <button tupe="button">Delete</button>
+          <button type="button">Delete</button>
         </div>
       </div>
     </div>

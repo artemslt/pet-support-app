@@ -1,12 +1,21 @@
+import * as yup from 'yup';
 import { useState, useEffect } from 'react';
-import { Label, Input } from './UserDataItem.styled';
+import { Form, Formik } from 'formik';
+import 'react-datepicker/dist/react-datepicker.css';
+import { registerSchema } from '../../../../schemas/authValidationSchemas';
+import {
+  Label,
+  Input,
+  InputDatePicker,
+  WrapperDatePicker,
+} from './UserDataItem.styled';
 
 const initialState = {
-  userName: 'anna',
+  userName: 'Anna',
   userEmail: 'aa@mail.com',
   userBirthday: '00.00.0000',
-  userPhone: '044',
-  userCity: 'Kyiv',
+  userPhone: '+380987667455',
+  userCity: 'Kyiv, Kyiv',
 };
 
 class UserNameChangeAction {
@@ -35,6 +44,7 @@ export const UserDataItem = () => {
   const [isBirthdayDisabled, setIsBirthdayDisabled] = useState(true);
   const [isPhoneDisabled, setIsPhoneDisabled] = useState(true);
   const [isCityDisabled, setIsCityDisabled] = useState(true);
+  const [startDate, setStartDate] = useState(new Date());
 
   const isAnyEditing =
     !isNameDisabled ||
@@ -55,25 +65,27 @@ export const UserDataItem = () => {
   const { userName, userEmail, userBirthday, userPhone, userCity } =
     profileSelector;
 
-  const valueChangeHandler = event => {
-    const { name, value } = event.currentTarget;
-    console.log('name', name);
-    console.log('value', value);
+  const onSubmit = (event, isDisabled, setIsDisabled) => {
+    if (isDisabled) {
+      setIsDisabled(false);
+    } else {
+      const actionName = new UserNameChangeAction();
+      actionName.userName = event.userName;
 
-    if (name === 'userName') {
-      setName(value);
-    }
-    if (name === 'userEmail') {
-      setEmail(value);
-    }
-    if (name === 'userBirthday') {
-      setBirthday(value);
-    }
-    if (name === 'userPhone') {
-      setPhone(value);
-    }
-    if (name === 'userCity') {
-      setCity(value);
+      const actionEmail = new UserEmailChangeAction();
+      actionEmail.userEmail = event.userEmail;
+
+      const actionBirthday = new UserBirthdayChangeAction();
+      actionBirthday.userBirthday = event.userBirthday;
+
+      const actionPhone = new UserPhoneChangeAction();
+      actionPhone.userPhone = event.userPhone;
+
+      const actionCity = new UserCityChangeAction();
+      actionCity.userCity = event.userCity;
+      console.log('dispatch', actionPhone.userPhone);
+      // dispatch(action);
+      setIsDisabled(true);
     }
   };
 
@@ -85,236 +97,170 @@ export const UserDataItem = () => {
     setCity(userCity);
   }, [userName, userEmail, userBirthday, userPhone, userCity]);
 
-  const editDataHandler = (event, userValue, isDisabled, setIsDisabled) => {
-    event.preventDefault();
-    // const { value } = event.currentTarget.attributes.name;
-    if (isDisabled) {
-      setIsDisabled(false);
-    }
-  };
-
-  const saveDataHandler = (event, userValue, isDisabled, setIsDisabled) => {
-    event.preventDefault();
-    if (!isDisabled) {
-      const actionName = new UserNameChangeAction();
-      actionName.userName = userName;
-
-      const actionEmail = new UserEmailChangeAction();
-      actionEmail.userEmail = userEmail;
-
-      const actionBirthday = new UserBirthdayChangeAction();
-      actionBirthday.userBirthday = userBirthday;
-
-      const actionPhone = new UserPhoneChangeAction();
-      actionPhone.userPhone = userPhone;
-
-      const actionCity = new UserCityChangeAction();
-      actionCity.userCity = userCity;
-      console.log('dispatch', userCity);
-      // dispatch(action);
-      setIsDisabled(true);
-    }
-  };
-
   return (
     <div>
-      <form
-        style={{ display: 'flex', flexDirection: 'column', paddingTop: 36 }}
-      >
-        <div>
-          <Label htmlFor="userName">Name:</Label>
-          <Input
-            type="text"
-            name="userName"
-            disabled={isNameDisabled}
-            value={name}
-            onChange={valueChangeHandler}
-          />
-          {isNameDisabled && (
-            <button
-              name="userName"
-              disabled={isAnyEditing}
-              onClick={event =>
-                editDataHandler(event, name, isNameDisabled, setIsNameDisabled)
-              }
-            >
-              Edit
-            </button>
-          )}
-          {!isNameDisabled && (
-            <button
-              type="submit"
-              name="userName"
-              onClick={event =>
-                saveDataHandler(event, name, isNameDisabled, setIsNameDisabled)
-              }
-            >
-              Save
-            </button>
-          )}
-        </div>
-        <div>
-          <Label htmlFor="userEmail">Email:</Label>
-          <Input
-            type="text"
-            name="userEmail"
-            disabled={isEmailDisabled}
-            value={email}
-            onChange={valueChangeHandler}
-          />
-          {isEmailDisabled && (
-            <button
-              name="userEmail"
-              disabled={isAnyEditing}
-              onClick={event =>
-                editDataHandler(
-                  event,
-                  email,
-                  isEmailDisabled,
-                  setIsEmailDisabled
-                )
-              }
-            >
-              Edit
-            </button>
-          )}
-          {!isEmailDisabled && (
-            <button
-              type="submit"
-              name="userEmail"
-              onClick={event =>
-                saveDataHandler(
-                  event,
-                  email,
-                  isEmailDisabled,
-                  setIsEmailDisabled
-                )
-              }
-            >
-              Save
-            </button>
-          )}
-        </div>
+      <div style={{ display: 'flex', flexDirection: 'column', paddingTop: 36 }}>
+        <Formik
+          initialValues={initialState}
+          validationSchema={yup.object().shape({
+            userName: registerSchema.fields.name,
+          })}
+          onSubmit={event => onSubmit(event, isNameDisabled, setIsNameDisabled)}
+        >
+          {({ errors, touched }) => (
+            <Form>
+              <Label htmlFor="userName">Name:</Label>
+              <Input type="text" name="userName" disabled={isNameDisabled} />
+              {isNameDisabled && (
+                <button type="submit" name="userName" disabled={isAnyEditing}>
+                  Edit
+                </button>
+              )}
+              {!isNameDisabled && <button type="submit">Save</button>}
 
-        <div>
-          <Label htmlFor="userBirthday">Birthday:</Label>
-          <Input
-            type="text"
-            name="userBirthday"
-            disabled={isBirthdayDisabled}
-            value={birthday}
-            onChange={valueChangeHandler}
-          />
-          {isBirthdayDisabled && (
-            <button
-              name="userBirthday"
-              disabled={isAnyEditing}
-              onClick={event =>
-                editDataHandler(
-                  event,
-                  birthday,
-                  isBirthdayDisabled,
-                  setIsBirthdayDisabled
-                )
-              }
-            >
-              Edit
-            </button>
+              {touched.userName && errors.userName && (
+                <div style={{ color: 'red', textAlign: 'center' }}>
+                  {errors.userName}
+                </div>
+              )}
+            </Form>
           )}
-          {!isBirthdayDisabled && (
-            <button
-              type="submit"
-              name="userBirthday"
-              onClick={event =>
-                saveDataHandler(
-                  event,
-                  birthday,
-                  isBirthdayDisabled,
-                  setIsBirthdayDisabled
-                )
-              }
-            >
-              Save
-            </button>
-          )}
-        </div>
+        </Formik>
 
-        <div>
-          <Label htmlFor="userPhone"> Phone:</Label>
-          <Input
-            type="text"
-            name="userPhone"
-            disabled={isPhoneDisabled}
-            value={phone}
-            onChange={valueChangeHandler}
-          />
-          {isPhoneDisabled && (
-            <button
-              name="userPhone"
-              disabled={isAnyEditing}
-              onClick={event =>
-                editDataHandler(
-                  event,
-                  phone,
-                  isPhoneDisabled,
-                  setIsPhoneDisabled
-                )
-              }
-            >
-              Edit
-            </button>
+        <Formik
+          initialValues={initialState}
+          validationSchema={yup.object().shape({
+            userEmail: registerSchema.fields.email,
+          })}
+          onSubmit={event =>
+            onSubmit(event, isEmailDisabled, setIsEmailDisabled)
+          }
+        >
+          {({ errors, touched }) => (
+            <Form>
+              <div>
+                <Label htmlFor="userEmail">Email:</Label>
+                <Input
+                  type="text"
+                  name="userEmail"
+                  disabled={isEmailDisabled}
+                />
+                {isEmailDisabled && (
+                  <button
+                    type="submit"
+                    name="userEmail"
+                    disabled={isAnyEditing}
+                  >
+                    Edit
+                  </button>
+                )}
+                {!isEmailDisabled && <button type="submit">Save</button>}
+              </div>
+              {touched.userEmail && errors.userEmail && (
+                <div style={{ color: 'red', textAlign: 'center' }}>
+                  {errors.userEmail}
+                </div>
+              )}
+            </Form>
           )}
-          {!isPhoneDisabled && (
-            <button
-              type="submit"
-              name="userPhone"
-              onClick={event =>
-                saveDataHandler(
-                  event,
-                  phone,
-                  isPhoneDisabled,
-                  setIsPhoneDisabled
-                )
-              }
-            >
-              Save
-            </button>
-          )}
-        </div>
+        </Formik>
 
-        <div>
-          <Label htmlFor="userCity">City:</Label>
-          <Input
-            type="text"
-            name="userCity"
-            disabled={isCityDisabled}
-            value={city}
-            onChange={valueChangeHandler}
-          />
-          {isCityDisabled && (
-            <button
-              name="userCity"
-              disabled={isAnyEditing}
-              onClick={event =>
-                editDataHandler(event, city, isCityDisabled, setIsCityDisabled)
-              }
-            >
-              Edit
-            </button>
+        <Formik
+          initialValues={initialState}
+          onSubmit={event =>
+            onSubmit(event, isBirthdayDisabled, setIsBirthdayDisabled)
+          }
+        >
+          <Form>
+            <WrapperDatePicker>
+              <Label htmlFor="userBirthday">Birthday:</Label>
+              <InputDatePicker
+                dateFormat="dd.MM.yyyy"
+                selected={startDate}
+                name="userBirthday"
+                disabled={isBirthdayDisabled}
+                onChange={date => setStartDate(date)}
+              />
+              {isBirthdayDisabled && (
+                <button
+                  type="submit"
+                  name="userBirthday"
+                  disabled={isAnyEditing}
+                >
+                  Edit
+                </button>
+              )}
+              {!isBirthdayDisabled && <button type="submit">Save</button>}
+            </WrapperDatePicker>
+          </Form>
+        </Formik>
+
+        <Formik
+          initialValues={initialState}
+          validationSchema={yup.object().shape({
+            userPhone: registerSchema.fields.phone,
+          })}
+          onSubmit={event =>
+            onSubmit(event, isPhoneDisabled, setIsPhoneDisabled)
+          }
+        >
+          {({ errors, touched }) => (
+            <Form>
+              <div>
+                <Label htmlFor="userPhone"> Phone:</Label>
+                <Input
+                  type="text"
+                  name="userPhone"
+                  disabled={isPhoneDisabled}
+                />
+                {isPhoneDisabled && (
+                  <button
+                    type="submit"
+                    name="userPhone"
+                    disabled={isAnyEditing}
+                  >
+                    Edit
+                  </button>
+                )}
+                {!isPhoneDisabled && <button type="submit">Save</button>}
+              </div>
+              {touched.userPhone && errors.userPhone && (
+                <div style={{ color: 'red', textAlign: 'center' }}>
+                  {errors.userPhone}
+                </div>
+              )}
+            </Form>
           )}
-          {!isCityDisabled && (
-            <button
-              type="submit"
-              name="userCity"
-              onClick={event =>
-                saveDataHandler(event, city, isCityDisabled, setIsCityDisabled)
-              }
-            >
-              Save
-            </button>
+        </Formik>
+
+        <Formik
+          initialValues={initialState}
+          validationSchema={yup.object().shape({
+            userCity: registerSchema.fields.location,
+          })}
+          onSubmit={event => onSubmit(event, isCityDisabled, setIsCityDisabled)}
+        >
+          {({ errors, touched }) => (
+            <Form>
+              <div>
+                <Label htmlFor="userCity">City:</Label>
+                <Input type="text" name="userCity" disabled={isCityDisabled} />
+                {isCityDisabled && (
+                  <button type="submit" name="userCity" disabled={isAnyEditing}>
+                    Edit
+                  </button>
+                )}
+                {!isCityDisabled && <button type="submit">Save</button>}
+              </div>
+              {touched.userCity && errors.userCity && (
+                <div style={{ color: 'red', textAlign: 'center' }}>
+                  {errors.userCity}
+                </div>
+              )}
+            </Form>
           )}
-        </div>
-      </form>
+        </Formik>
+      </div>
     </div>
   );
 };
