@@ -27,7 +27,9 @@ const themeBreakpoints = createTheme({
   mobile: '320px',
   mobileSizeM: '575px',
   tablet: '768px',
-  pcSizeS: '992px',
+  tabletM: '820px',
+  pcSizeS: '912px',
+  pcSizeM: '1024px',
   pcSizeL: '1200px',
   pc: '1280px',
 });
