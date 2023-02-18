@@ -24,17 +24,19 @@ export const LoginForm = () => {
 
   const dispatch = useDispatch();
 
-  const handleSubmit = (values, { resetForm }) => {
+  const handleSubmit = async (values, { resetForm }) => {
     const user = {
       email: values.email,
       password: values.password,
     };
     console.log(user);
-    const data = dispatch(login(user));
-    if (data.type === 'auth/login/fulfilled') {
-      resetForm();
-    }
-    if (!data.payload) {
+    try {
+      const data = await dispatch(login(user));
+      console.log(data)
+      if (data.type === 'auth/login/fulfilled') {
+        resetForm();
+      }
+    } catch (error) {
       console.log('Something wrong, please try again later');
     }
   };

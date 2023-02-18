@@ -1,14 +1,21 @@
 import { useState } from 'react';
-import { Formik, Form } from 'formik';
-import { Link } from 'react-router-dom';
+import { Formik } from 'formik';
 import { useDispatch } from 'react-redux';
 
 import { StepSwitcher } from './StepSwitcher';
 import { registerSchema } from '../../schemas/authValidationSchemas';
 import { register, login } from 'redux/auth/authOperations';
+import {
+  FormWrapper,
+  Heading,
+  Form,
+  Text,
+  Link,
+  Button,
+} from './RegisterForm.styled';
 
 export const RegisterForm = () => {
-  const [page, setPage] = useState(0);
+  const [page, setPage] = useState('0');
 
   const dispatch = useDispatch();
 
@@ -21,7 +28,7 @@ export const RegisterForm = () => {
     phone: '',
   };
 
-  const handleSubmit = (values, { resetForm }) => {
+  const handleSubmit = async (values, { resetForm }) => {
     const newUser = {
       email: values.email,
       password: values.password,
@@ -30,43 +37,47 @@ export const RegisterForm = () => {
       phone: values.phone,
     };
     console.log(newUser);
-    const data = dispatch(register(newUser));
-    console.log(data.payload);
-    if (data.payload.type === 'auth/register/fulfilled') {
-      dispatch(login({ email: values.email, password: values.password }));
-      resetForm();
-      setPage(0);
+    try {
+      const data = await dispatch(register(newUser));
+      console.log(data);
+      if (data.type === 'auth/register/fulfilled') {
+        await dispatch(
+          login({ email: values.email, password: values.password })
+        );
+        resetForm();
+        setPage('0');
+      }
+    } catch (error) {
+      console.log(`Something wrong - ${error.response.data.message}`);
     }
-    if (!data.arg) {
-      console.log('Something wrong, please try again later');
-    }
-  };
-
-  const handleClick = () => {
-    page === 0 ? setPage(page + 1) : setPage(page - 1);
   };
 
   return (
-    <div>
-      <h2>Registration</h2>
+    <FormWrapper type={page}>
+      <Heading>Registration</Heading>
       <Formik
         initialValues={initialValues}
         validationSchema={registerSchema}
         onSubmit={handleSubmit}
       >
-        <Form>
-          {<StepSwitcher page={page} />}
-          <div>
-            <button type="button" onClick={handleClick}>
-              {page === 0 ? 'Next' : 'Back'}
-            </button>
-            {page === 1 && <button type="submit">Register</button>}
-            <p>
+        {formik => (
+          <Form>
+            {<StepSwitcher page={page} setPage={setPage} />}
+            {page === '0' && (
+              <Button
+                type="button"
+                disabled={!(formik.dirty && formik.isValid)}
+                onClick={() => setPage('1')}
+              >
+                Next
+              </Button>
+            )}
+            <Text>
               Already have an account? <Link to="/login">Login</Link>
-            </p>
-          </div>
-        </Form>
+            </Text>
+          </Form>
+        )}
       </Formik>
-    </div>
+    </FormWrapper>
   );
 };

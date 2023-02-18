@@ -1,35 +1,36 @@
-import { Field, ErrorMessage } from 'formik';
+import { Label, Input, Error } from './RegisterForm.styled';
 
-export const FirstStep = () => {
+export const FirstStep = ({page, setPage}) => {
   return (
     <>
-      <label>
-        <Field
+      <Label>
+        <Input
           autoComplete="on"
           type="text"
           name="email"
           placeholder="Email"
-        ></Field>
-        <ErrorMessage name="email" component="span"></ErrorMessage>
-      </label>
-      <label>
-        <Field
+        ></Input>
+        <Error name="email" component="p"></Error>
+      </Label>
+      <Label>
+        <Input
           autoComplete="off"
           type="password"
           name="password"
           placeholder="Password"
-        ></Field>
-        <ErrorMessage name="password" component="span"></ErrorMessage>
-      </label>
-      <label>
-        <Field
+        ></Input>
+        <Error name="password" component="p"></Error>
+      </Label>
+      <Label>
+        <Input
           autoComplete="off"
           type="password"
           name="confirmPassword"
           placeholder="Confirm Password"
-        ></Field>
-        <ErrorMessage name="confirmPassword" component="span"></ErrorMessage>
-      </label>
+        ></Input>
+        <Error name="confirmPassword" component="p"></Error>
+      </Label>
+
     </>
   );
 };
