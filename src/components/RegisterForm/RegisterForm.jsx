@@ -31,12 +31,13 @@ export const RegisterForm = () => {
     };
     console.log(newUser);
     const data = dispatch(register(newUser));
-    if (data.type === 'auth/register/fulfilled') {
+    console.log(data.payload);
+    if (data.payload.type === 'auth/register/fulfilled') {
       dispatch(login({ email: values.email, password: values.password }));
       resetForm();
       setPage(0);
     }
-    if (!data.payload) {
+    if (!data.arg) {
       console.log('Something wrong, please try again later');
     }
   };
