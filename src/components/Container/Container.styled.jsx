@@ -5,7 +5,7 @@ export const Container = styled.div`
   margin: auto;
   padding: 0 20px;
   max-width: 640px;
-  padding: 0 20px;
+
 
   ${up('tablet')} {
     max-width: 768px;
