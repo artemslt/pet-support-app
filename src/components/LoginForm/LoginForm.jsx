@@ -6,6 +6,7 @@ import { toast } from 'react-toastify';
 import { loginSchema } from '../../schemas/authValidationSchemas';
 import { login } from 'redux/auth/authOperations';
 import {
+  FlexBox,
   FormWrapper,
   Heading,
   Form,
@@ -17,6 +18,7 @@ import {
   Link,
   IconButton,
 } from './LoginForm.styled';
+import { Container } from 'components/Container/Container.styled';
 import { ReactComponent as EyeIcon } from '../../images/eye.svg';
 import { ReactComponent as EyeClosedIcon } from '../../images/eye-slash.svg';
 
@@ -45,6 +47,8 @@ export const LoginForm = () => {
     }
   };
   return (
+   <Container>
+    <FlexBox>
     <FormWrapper>
       <Heading>Login</Heading>
       <Formik
@@ -86,5 +90,7 @@ export const LoginForm = () => {
         </Form>
       </Formik>
     </FormWrapper>
+    </FlexBox>
+   </Container>
   );
 };

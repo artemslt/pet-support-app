@@ -7,6 +7,18 @@ import {
 } from 'formik';
 import { Link as RouterLink } from 'react-router-dom';
 
+export const FlexBox = styled.div`
+  display: flex;
+  justify-content: center;
+  padding-top: 42px;
+  ${up('tablet')} {
+    padding-top: 208px;
+  }
+  ${up('pc')} {
+    padding-top: 91px;
+  }
+`;
+
 export const FormWrapper = styled.div`
   padding-top: 42px;
   ${up('tablet')} {
