@@ -1,5 +1,5 @@
 import * as yup from 'yup';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { Form, Formik } from 'formik';
 import 'react-datepicker/dist/react-datepicker.css';
 import { registerSchema } from '../../../../schemas/authValidationSchemas';
@@ -55,15 +55,15 @@ export const UserDataItem = () => {
 
   //   const [iconColor, setIconColor] = useState('#f59256');
 
-  const [, setName] = useState('');
-  const [, setEmail] = useState('');
-  const [, setBirthday] = useState('');
-  const [, setPhone] = useState('');
-  const [, setCity] = useState('');
+  // const [, setName] = useState('');
+  // const [, setEmail] = useState('');
+  // const [, setBirthday] = useState('');
+  // const [, setPhone] = useState('');
+  // const [, setCity] = useState('');
 
-  const profileSelector = initialState; // replace with useSelector();
-  const { userName, userEmail, userBirthday, userPhone, userCity } =
-    profileSelector;
+  // const profileSelector = initialState; // replace with useSelector();
+  // const { userName, userEmail, userBirthday, userPhone, userCity } =
+  //   profileSelector;
 
   const onSubmit = (event, isDisabled, setIsDisabled) => {
     if (isDisabled) {
@@ -89,13 +89,13 @@ export const UserDataItem = () => {
     }
   };
 
-  useEffect(() => {
-    setName(userName);
-    setEmail(userEmail);
-    setBirthday(userBirthday);
-    setPhone(userPhone);
-    setCity(userCity);
-  }, [userName, userEmail, userBirthday, userPhone, userCity]);
+  // useEffect(() => {
+  //   setName(userName);
+  //   setEmail(userEmail);
+  //   setBirthday(userBirthday);
+  //   setPhone(userPhone);
+  //   setCity(userCity);
+  // }, [userName, userEmail, userBirthday, userPhone, userCity]);
 
   return (
     <div>
