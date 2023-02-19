@@ -66,7 +66,7 @@ export const LoginForm = () => {
           <Label>
             <Input
               autoComplete="off"
-              type={showPassword ? 'password' : 'text'}
+              type={showPassword ? 'text' : 'password'}
               name="password"
               placeholder="Password"
             ></Input>
@@ -77,7 +77,7 @@ export const LoginForm = () => {
                 setShowPassword(prevState => !prevState);
               }}
             >
-              {showPassword ? <EyeIcon /> : <EyeClosedIcon />}
+              {showPassword ? <EyeClosedIcon /> : <EyeIcon />}
             </IconButton>
           </Label>
           <Button type="submit">Login</Button>
