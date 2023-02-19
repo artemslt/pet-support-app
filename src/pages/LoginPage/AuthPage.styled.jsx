@@ -9,8 +9,8 @@ import {
 export const BackgroundWrapper = styled.div`
   display: flex;
   justify-content: center;
-  width: 97vw;
-  height: 87.8vh;
+  width: 100vw;
+  height: 100vh;
   background-color: ${prop => prop.theme.colors.background};
   background-origin: border-box;
   background-size: contain;

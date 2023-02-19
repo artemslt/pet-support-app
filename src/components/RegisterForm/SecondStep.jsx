@@ -1,35 +1,39 @@
-import { Field, ErrorMessage } from 'formik';
+import { Label, Input, Error, Button } from './RegisterForm.styled';
 
-export const SecondStep = () => {
+export const SecondStep = ({ page, setPage }) => {
   return (
     <>
-      <label>
-        <Field
+      <Label>
+        <Input
           autoComplete="on"
           type="text"
           name="name"
           placeholder="Name"
-        ></Field>
-        <ErrorMessage name="name" component="span"></ErrorMessage>
-      </label>
-      <label>
-        <Field
+        ></Input>
+        <Error name="name" component="p"></Error>
+      </Label>
+      <Label>
+        <Input
           autoComplete="on"
           type="text"
           name="location"
           placeholder="City, region"
-        ></Field>
-        <ErrorMessage name="location" component="span"></ErrorMessage>
-      </label>
-      <label>
-        <Field
+        ></Input>
+        <Error name="location" component="p"></Error>
+      </Label>
+      <Label>
+        <Input
           autoComplete="on"
           type="text"
           name="phone"
           placeholder="Mobile phone"
-        ></Field>
-        <ErrorMessage name="phone" component="span"></ErrorMessage>
-      </label>
+        ></Input>
+        <Error name="phone" component="p"></Error>
+      </Label>
+      <Button type="submit">Register</Button>
+      <Button type="button" onClick={() => setPage('0')}>
+        Back
+      </Button>
     </>
   );
 };
