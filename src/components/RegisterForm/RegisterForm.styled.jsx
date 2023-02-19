@@ -15,11 +15,21 @@ export const FormWrapper = styled.div`
     box-shadow: 7px 4px 14px rgba(0, 0, 0, 0.11);
     border-radius: 40px;
     width: 608px;
-    height: 449px;
-  }
+    &[type='0'] {
+        height: 517px;
+      }
+      &[type='1'] {
+        height: 577px;
+      }
   ${up('pc')} {
     width: 618px;
-    height: 473px;
+
+    &[type='0'] {
+      height: 542px;
+    }
+    &[type='1'] {
+      height: 605px;
+    }
   }
 `;
 
@@ -131,7 +141,9 @@ export const Button = styled.button`
   align-items: center;
   width: 280px;
   height: 44px;
-  margin-bottom: 40px;
+  &[type='submit'] {
+    margin-bottom: 16px;
+  }
   cursor: pointer;
   border-radius: 40px;
   border: none;
@@ -144,6 +156,8 @@ export const Button = styled.button`
   color: ${prop => prop.theme.colors.mainWhite};
   &:hover,
   &:focus {
+    box-sizing: border-box;
+
     background-color: ${prop => prop.theme.colors.mainWhite};
     border: 2px solid ${prop => prop.theme.colors.mainAccent};
     color: ${prop => prop.theme.colors.additionalBlack};
@@ -158,7 +172,7 @@ export const Button = styled.button`
 `;
 
 export const Text = styled.p`
-  margin-bottom: 40px;
+  margin: 40px 0;
   font-family: ${prop => prop.theme.fonts[1]};
   font-weight: ${prop => prop.theme.fontWeights[0]};
   font-size: ${prop => prop.theme.fontSizes[0]}px;
