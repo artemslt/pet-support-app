@@ -157,12 +157,16 @@ export const Button = styled.button`
   &:hover,
   &:focus {
     box-sizing: border-box;
-
-    background-color: ${prop => prop.theme.colors.mainWhite};
+    background-color: ${prop => prop.theme.colors.background};
     border: 2px solid ${prop => prop.theme.colors.mainAccent};
     color: ${prop => prop.theme.colors.additionalBlack};
   }
   ${up('tablet')} {
+    {
+      &:hover,
+      &:focus {
+        background-color: ${prop => prop.theme.colors.mainWhite};
+      }
     outline: none;
     width: 458px;
   }
