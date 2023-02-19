@@ -1,9 +1,11 @@
 import { SectionHome, TitleHome, BackgroundImage } from './HomePage.styled';
-
+import { Container } from '../Container/Container.styled';
 export const HomePage = () => {
   return (
     <SectionHome>
-      <TitleHome>Take good care of your small pets</TitleHome>
+      <Container>
+        <TitleHome>Take good care of your small pets</TitleHome>
+      </Container>
       <BackgroundImage />
     </SectionHome>
   );
