@@ -1,5 +1,5 @@
 import { Formik } from 'formik';
-
+import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 
 import { loginSchema } from '../../schemas/authValidationSchemas';
@@ -14,9 +14,14 @@ import {
   Text,
   Error,
   Link,
+  IconButton,
 } from './LoginForm.styled';
+import { ReactComponent as EyeIcon } from '../../images/eye.svg';
+import { ReactComponent as EyeClosedIcon } from '../../images/eye-slash.svg';
 
 export const LoginForm = () => {
+  const [showPassword, setShowPassword] = useState(false);
+
   const initialValues = {
     email: '',
     password: '',
@@ -32,7 +37,7 @@ export const LoginForm = () => {
     console.log(user);
     try {
       const data = await dispatch(login(user));
-      console.log(data)
+      console.log(data);
       if (data.type === 'auth/login/fulfilled') {
         resetForm();
       }
@@ -61,11 +66,19 @@ export const LoginForm = () => {
           <Label>
             <Input
               autoComplete="off"
-              type="password"
+              type={showPassword ? 'password' : 'text'}
               name="password"
               placeholder="Password"
             ></Input>
             <Error name="password" component="p"></Error>
+            <IconButton
+              type="button"
+              onClick={() => {
+                setShowPassword(prevState => !prevState);
+              }}
+            >
+              {showPassword ? <EyeIcon /> : <EyeClosedIcon />}
+            </IconButton>
           </Label>
           <Button type="submit">Login</Button>
           <Text>

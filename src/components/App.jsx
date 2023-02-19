@@ -2,7 +2,9 @@
 // import { up } from 'styled-breakpoints';
 import { Routes, Route } from 'react-router-dom';
 import { SharedLayout } from './SharedLayout/SharedLayout';
-import { lazy } from 'react';
+import { useEffect, lazy } from 'react';
+import { useDispatch } from 'react-redux';
+import { refreshUser } from 'redux/auth/authOperations';
 
 const Home = lazy(() => import('../pages/Home/Home'));
 const NewsPage = lazy(() => import('../pages/NewsPage/NewsPage'));
@@ -16,6 +18,12 @@ const UserPage = lazy(() => import('../pages/UserPage/UserPage'));
 const NotFound = lazy(() => import('../pages/NotFound/NotFound'));
 
 export const App = () => {
+  const dispatch = useDispatch();
+ 
+  useEffect(() => {
+    dispatch(refreshUser());
+  }, [dispatch]);
+
   return (
     <Routes>
       <Route path="/" element={<SharedLayout />}>

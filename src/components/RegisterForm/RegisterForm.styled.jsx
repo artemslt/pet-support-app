@@ -15,12 +15,17 @@ export const FormWrapper = styled.div`
     box-shadow: 7px 4px 14px rgba(0, 0, 0, 0.11);
     border-radius: 40px;
     width: 608px;
-  }
+    &[type='0'] {
+        height: 517px;
+      }
+      &[type='1'] {
+        height: 577px;
+      }
   ${up('pc')} {
     width: 618px;
-    
+
     &[type='0'] {
-        height: 542px;
+      height: 542px;
     }
     &[type='1'] {
       height: 605px;
@@ -108,13 +113,37 @@ export const Error = styled(FormikErrorMessage)`
   color: ${prop => prop.theme.colors.activeAccent};
 `;
 
+export const IconButton = styled.button`
+  position: absolute;
+  right: 3px;
+  bottom: 3px;
+  display: block;
+  cursor: pointer;
+  border: none;
+  width: 30px;
+  height: 30px;
+  padding: 0;
+  background-color: transparent;
+  fill: ${prop => prop.theme.colors.greyText};
+  &:hover,
+  &:focus {
+    stroke: ${prop => prop.theme.colors.mainAccent};
+  }
+  ${up('tablet')} {
+    right: 9px;
+    bottom: 9px;
+  }
+`;
+
 export const Button = styled.button`
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 280px;
   height: 44px;
   &[type='submit'] {
     margin-bottom: 16px;
   }
-  padding: 10px 28px;
   cursor: pointer;
   border-radius: 40px;
   border: none;
@@ -128,7 +157,7 @@ export const Button = styled.button`
   &:hover,
   &:focus {
     box-sizing: border-box;
-    padding: 8px 26px;
+
     background-color: ${prop => prop.theme.colors.mainWhite};
     border: 2px solid ${prop => prop.theme.colors.mainAccent};
     color: ${prop => prop.theme.colors.additionalBlack};
