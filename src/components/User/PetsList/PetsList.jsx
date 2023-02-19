@@ -1,36 +1,58 @@
+import {
+  PetListCardWrapper,
+  Title,
+  Container,
+  ListContainer,
+  PetCard,
+  PetPhotoWrapper,
+  PetPhoto,
+  Text,
+  TextTopic,
+  AddBtnWrapper,
+  BtnName,
+  AddBtn,
+} from './PetsList.styled';
+
+import { ReactComponent as AddPhotoIcon } from './addPhoto.svg';
+
 export const PetsList = () => {
   return (
-    <div>
-      <div>
-        <h3>My pets:</h3>
-        <div>
-          <span>Add pet</span>
-          <button type="button"></button>
-        </div>
-      </div>
-      <div>
-        <div>
-          <img src="" alt="" />
-        </div>
+    <PetListCardWrapper>
+      <Container>
+        <Title>My pets:</Title>
+        <AddBtnWrapper>
+          <BtnName>Add pet</BtnName>
+          <AddBtn type="button">
+            <AddPhotoIcon width={24} height={24} />
+          </AddBtn>
+        </AddBtnWrapper>
+      </Container>
 
-        <div>
+      <ListContainer>
+        <PetCard>
+          <PetPhotoWrapper>
+            <PetPhoto src="" alt="" />
+          </PetPhotoWrapper>
+
           <div>
-            <p>
-              <span>Name:</span>{' '}
-            </p>
-            <p>
-              <span>Date of birth:</span>{' '}
-            </p>
-            <p>
-              <span>Breed:</span>{' '}
-            </p>
-            <p>
-              <span>Comments:</span>{' '}
-            </p>
+            <div>
+              <Text>
+                <TextTopic>Name:</TextTopic>{' '}
+              </Text>
+              <Text>
+                <TextTopic>Date of birth:</TextTopic>{' '}
+              </Text>
+              <Text>
+                <TextTopic>Breed:</TextTopic>{' '}
+              </Text>
+              <Text>
+                <TextTopic>Comments:</TextTopic>{' '}
+              </Text>
+            </div>
+            <button type="button">Delete</button>
           </div>
-          <button type="button">Delete</button>
-        </div>
-      </div>
-    </div>
+        </PetCard>
+      </ListContainer>
+    </PetListCardWrapper>
   );
 };

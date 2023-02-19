@@ -47,7 +47,7 @@ export const Button = styled.button`
   background: none;
   fill: #f58256;
 
-  top: 224px;
+  top: 205px;
   right: 0;
 `;
 
@@ -59,6 +59,7 @@ export const EditWrapp = styled.span`
 
 export const Text = styled.span`
   margin-left: 4px;
+  font-family: 'Manrope';
   font-weight: 400;
   font-size: 12px;
   letter-spacing: 0.04em;
