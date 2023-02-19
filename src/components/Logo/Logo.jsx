@@ -1,9 +1,13 @@
+import { LogoStyled, LogoAccent, LogoContainer } from './logo.styled';
+
 export const Logo = () => {
   return (
-    <div>
-      <p>
-        pe<span>t</span>ly
-      </p>
-    </div>
+    <LogoContainer>
+      <LogoStyled>
+        pe
+        <LogoAccent>t</LogoAccent>
+        ly
+      </LogoStyled>
+    </LogoContainer>
   );
 };

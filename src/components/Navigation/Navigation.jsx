@@ -1,15 +1,19 @@
 import { AuthNav } from 'components/AuthNav/AuthNav';
 import { Nav } from 'components/Nav/Nav';
 import { UserNav } from 'components/UserNav/UserNav';
+import { useMatchMedia } from 'hooks/use-match-media';
+import { NavigationStyled } from './Navigation.styled';
 
 export const Navigation = () => {
-  // const isLoggedIn = false;
+  const { isTablet, isDesktop } = useMatchMedia();
+  const isLoggedIn = false;
+
   return (
-    <div>
-      <Nav />
-      {/* {isLoggedIn ? <UserNav /> : <AuthNav />} */}
-      <AuthNav />
-      <UserNav />
-    </div>
+    <NavigationStyled>
+      {isDesktop && <Nav />}
+
+      {(isDesktop || isTablet) && isLoggedIn && <UserNav />}
+      {(isDesktop || isTablet) && !isLoggedIn && <AuthNav />}
+    </NavigationStyled>
   );
 };
