@@ -15,14 +15,8 @@ export const register = createAsyncThunk(
   'auth/register',
   async (credentials, thunkAPI) => {
     try {
-      await axios.post('auth/register', credentials);
-      const { email, password } = credentials;
-      const response = await axios.post('auth/login', {
-        email,
-        password,
-      });
-      setAuthHeader(response.data.token);
-      return response.data;
+      const response = await axios.post('auth/register', credentials);
+      return response.data.data;
     } catch (error) {
       console.log(`Something wrong - ${error.response.data.message}`);
       return thunkAPI.rejectWithValue(error.response.data.message);
@@ -35,9 +29,8 @@ export const login = createAsyncThunk(
   async (credentials, thunkAPI) => {
     try {
       const response = await axios.post('auth/login', credentials);
-      console.log(response.data.data.token)
       setAuthHeader(response.data.data.token);
-      return response.data;
+      return response.data.data;
     } catch (error) {
       console.log(`Something wrong - ${error.response.data.message}`);
       return thunkAPI.rejectWithValue(error.response.data.message);
@@ -60,15 +53,31 @@ export const refreshUser = createAsyncThunk(
   async (_, thunkAPI) => {
     const state = thunkAPI.getState();
     const persistedToken = state.auth.token;
-
     if (persistedToken === null) {
       return thunkAPI.rejectWithValue('Unable to fetch user');
     }
-
     try {
       setAuthHeader(persistedToken);
       const response = await axios.get('users/current');
-      return response.data;
+      return response.data.data;
+    } catch (error) {
+      console.log(`Something wrong - ${error.response.data.message}`);
+      return thunkAPI.rejectWithValue(error.response.data.message);
+    }
+  }
+);
+
+export const updateUser = createAsyncThunk(
+  'users/edit',
+  async (credentials, thunkAPI) => {
+    const { auth } = thunkAPI.getState();
+    const persistedToken = auth.token;
+    if (persistedToken === null) {
+      return thunkAPI.rejectWithValue('Unable to update user');
+    }
+    try {
+      const response = await axios.put('users/edit', credentials);
+      return response.data.data;
     } catch (error) {
       console.log(`Something wrong - ${error.response.data.message}`);
       return thunkAPI.rejectWithValue(error.response.data.message);

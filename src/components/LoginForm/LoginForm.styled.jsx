@@ -103,11 +103,35 @@ export const Error = styled(FormikErrorMessage)`
   color: ${prop => prop.theme.colors.activeAccent};
 `;
 
+export const IconButton = styled.button`
+  position: absolute;
+  right: 3px;
+  bottom: 3px;
+  display: block;
+  cursor: pointer;
+  border: none;
+  width: 30px;
+  height: 30px;
+  padding: 0;
+  background-color: transparent;
+  fill: ${prop => prop.theme.colors.greyText};
+  &:hover,
+  &:focus {
+    stroke: ${prop => prop.theme.colors.mainAccent};
+  }
+  ${up('tablet')} {
+    right: 9px;
+    bottom: 9px;
+  }
+`;
+
 export const Button = styled.button`
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 280px;
   height: 44px;
   margin-bottom: 40px;
-  padding: 10px 28px;
   cursor: pointer;
   border-radius: 40px;
   border: none;
@@ -120,8 +144,6 @@ export const Button = styled.button`
   color: ${prop => prop.theme.colors.mainWhite};
   &:hover,
   &:focus {
-    box-sizing: border-box;
-    padding: 8px 26px;
     background-color: ${prop => prop.theme.colors.mainWhite};
     border: 2px solid ${prop => prop.theme.colors.mainAccent};
     color: ${prop => prop.theme.colors.additionalBlack};

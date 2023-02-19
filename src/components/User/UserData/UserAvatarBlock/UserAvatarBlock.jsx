@@ -1,8 +1,8 @@
-import { useState, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+// import { useState, useEffect } from 'react';
+// import { useDispatch, useSelector } from 'react-redux';
 import {
   AvatarThumb,
-  Avatar,
+  // Avatar,
   ImgPlaceholder,
   Button,
   EditWrapp,
@@ -14,7 +14,7 @@ import cameraIcon from './cameraIcon.svg';
 
 //move to selector
 
-const selectAvatarURL = state => state.user.avatarURL;
+// const selectAvatarURL = state => state.user.avatarURL;
 
 export const UserAvatarBlock = () => {
   // const userAvatar = useSelector(state => state.user.avatarURL);
