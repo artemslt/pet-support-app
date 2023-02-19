@@ -2,10 +2,10 @@ import { FirstStep } from './FirstStep';
 import { SecondStep } from './SecondStep';
 
 
-export const StepSwitcher = ({page}) => {
-    return page === 0 ? (
-      <FirstStep />
+export const StepSwitcher = ({page, setPage}) => {
+    return page === '0' ? (
+      <FirstStep page={page} setPage={setPage}/>
     ) : (
-      <SecondStep />
+      <SecondStep page={page} setPage={setPage}/>
     );
   };
