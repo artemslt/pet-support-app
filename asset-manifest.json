@@ -1,16 +1,18 @@
 {
   "files": {
     "main.css": "/pet-support-app/static/css/main.3488b9bd.css",
-    "main.js": "/pet-support-app/static/js/main.e8711dd0.js",
+    "main.js": "/pet-support-app/static/js/main.f891374a.js",
     "static/js/704.c11044c5.chunk.js": "/pet-support-app/static/js/704.c11044c5.chunk.js",
     "static/js/199.71d38251.chunk.js": "/pet-support-app/static/js/199.71d38251.chunk.js",
     "static/js/202.40280e06.chunk.js": "/pet-support-app/static/js/202.40280e06.chunk.js",
     "static/js/561.63c0ca9d.chunk.js": "/pet-support-app/static/js/561.63c0ca9d.chunk.js",
-    "static/js/908.6638d876.chunk.js": "/pet-support-app/static/js/908.6638d876.chunk.js",
-    "static/js/601.4257b979.chunk.js": "/pet-support-app/static/js/601.4257b979.chunk.js",
-    "static/js/982.41981861.chunk.js": "/pet-support-app/static/js/982.41981861.chunk.js",
+    "static/js/18.d06f82b1.chunk.js": "/pet-support-app/static/js/18.d06f82b1.chunk.js",
+    "static/js/601.473cc958.chunk.js": "/pet-support-app/static/js/601.473cc958.chunk.js",
+    "static/js/298.fa824017.chunk.js": "/pet-support-app/static/js/298.fa824017.chunk.js",
     "static/js/256.fa916fc0.chunk.js": "/pet-support-app/static/js/256.fa916fc0.chunk.js",
     "static/js/568.5d93690b.chunk.js": "/pet-support-app/static/js/568.5d93690b.chunk.js",
+    "static/css/44.27f3aab6.chunk.css": "/pet-support-app/static/css/44.27f3aab6.chunk.css",
+    "static/js/44.ca469a7b.chunk.js": "/pet-support-app/static/js/44.ca469a7b.chunk.js",
     "static/media/home-photo-bg-tablet2x.png": "/pet-support-app/static/media/home-photo-bg-tablet2x.f377d644ead1f8f8bc26.png",
     "static/media/home-photo-bg-desktop2x.png": "/pet-support-app/static/media/home-photo-bg-desktop2x.92db63717878325f7f5d.png",
     "static/media/wave-bg-tablet2x.png": "/pet-support-app/static/media/wave-bg-tablet2x.2a2c1df2cc0ae38edb3b.png",
@@ -28,20 +30,24 @@
     "static/media/authBG-mobile.png": "/pet-support-app/static/media/authBG-mobile.65f61111075d69ab5219.png",
     "static/media/heart2x.png": "/pet-support-app/static/media/heart2x.cf6dce0345f152a7a066.png",
     "index.html": "/pet-support-app/index.html",
+    "static/media/cameraIcon.svg": "/pet-support-app/static/media/cameraIcon.be7fa4e758df4025f46bf86e5d1b309e.svg",
+    "static/media/addIcon.svg": "/pet-support-app/static/media/addIcon.deec2b9327a6f7e779ae3cbb9fa31798.svg",
     "main.3488b9bd.css.map": "/pet-support-app/static/css/main.3488b9bd.css.map",
-    "main.e8711dd0.js.map": "/pet-support-app/static/js/main.e8711dd0.js.map",
+    "main.f891374a.js.map": "/pet-support-app/static/js/main.f891374a.js.map",
     "704.c11044c5.chunk.js.map": "/pet-support-app/static/js/704.c11044c5.chunk.js.map",
     "199.71d38251.chunk.js.map": "/pet-support-app/static/js/199.71d38251.chunk.js.map",
     "202.40280e06.chunk.js.map": "/pet-support-app/static/js/202.40280e06.chunk.js.map",
     "561.63c0ca9d.chunk.js.map": "/pet-support-app/static/js/561.63c0ca9d.chunk.js.map",
-    "908.6638d876.chunk.js.map": "/pet-support-app/static/js/908.6638d876.chunk.js.map",
-    "601.4257b979.chunk.js.map": "/pet-support-app/static/js/601.4257b979.chunk.js.map",
-    "982.41981861.chunk.js.map": "/pet-support-app/static/js/982.41981861.chunk.js.map",
+    "18.d06f82b1.chunk.js.map": "/pet-support-app/static/js/18.d06f82b1.chunk.js.map",
+    "601.473cc958.chunk.js.map": "/pet-support-app/static/js/601.473cc958.chunk.js.map",
+    "298.fa824017.chunk.js.map": "/pet-support-app/static/js/298.fa824017.chunk.js.map",
     "256.fa916fc0.chunk.js.map": "/pet-support-app/static/js/256.fa916fc0.chunk.js.map",
-    "568.5d93690b.chunk.js.map": "/pet-support-app/static/js/568.5d93690b.chunk.js.map"
+    "568.5d93690b.chunk.js.map": "/pet-support-app/static/js/568.5d93690b.chunk.js.map",
+    "44.27f3aab6.chunk.css.map": "/pet-support-app/static/css/44.27f3aab6.chunk.css.map",
+    "44.ca469a7b.chunk.js.map": "/pet-support-app/static/js/44.ca469a7b.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.3488b9bd.css",
-    "static/js/main.e8711dd0.js"
+    "static/js/main.f891374a.js"
   ]
 }
