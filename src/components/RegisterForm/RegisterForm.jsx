@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Formik } from 'formik';
 import { useDispatch } from 'react-redux';
+import { toast } from 'react-toastify';
 
 import { StepSwitcher } from './StepSwitcher';
 import { registerSchema } from '../../schemas/authValidationSchemas';
@@ -48,7 +49,7 @@ export const RegisterForm = () => {
         setPage('0');
       }
     } catch (error) {
-      console.log(`Something wrong - ${error.response.data.message}`);
+      toast.error(`Something wrong - ${error.response.data.message}`);
     }
   };
 

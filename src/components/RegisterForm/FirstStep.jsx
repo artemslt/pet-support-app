@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-import { Label, Input, Error, IconButton, } from './RegisterForm.styled';
+import { Label, Input, Error, IconButton } from './RegisterForm.styled';
 import { ReactComponent as EyeIcon } from '../../images/eye.svg';
 import { ReactComponent as EyeClosedIcon } from '../../images/eye-slash.svg';
 
@@ -21,38 +21,37 @@ export const FirstStep = () => {
       <Label>
         <Input
           autoComplete="off"
-          type={showPassword ? 'password' : 'text'}
+          type={showPassword ? 'text' : 'password'}
           name="password"
           placeholder="Password"
         ></Input>
         <Error name="password" component="p"></Error>
         <IconButton
-              type="button"
-              onClick={() => {
-                setShowPassword(prevState => !prevState);
-              }}
-            >
-              {showPassword ? <EyeIcon /> : <EyeClosedIcon />}
-            </IconButton>
+          type="button"
+          onClick={() => {
+            setShowPassword(prevState => !prevState);
+          }}
+        >
+          {showPassword ? <EyeClosedIcon /> : <EyeIcon />}
+        </IconButton>
       </Label>
       <Label>
         <Input
           autoComplete="off"
-          type={showConfirmPassword ? 'password' : 'text'}
+          type={showConfirmPassword ? 'text' : 'password'}
           name="confirmPassword"
           placeholder="Confirm Password"
         ></Input>
         <Error name="confirmPassword" component="p"></Error>
         <IconButton
-              type="button"
-              onClick={() => {
-                setShowConfirmPassword(prevState => !prevState);
-              }}
-            >
-              {showConfirmPassword ? <EyeIcon /> : <EyeClosedIcon />}
-            </IconButton>
+          type="button"
+          onClick={() => {
+            setShowConfirmPassword(prevState => !prevState);
+          }}
+        >
+          {showConfirmPassword ? <EyeClosedIcon /> : <EyeIcon />}
+        </IconButton>
       </Label>
-
     </>
   );
 };
