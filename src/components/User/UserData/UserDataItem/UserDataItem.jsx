@@ -55,11 +55,11 @@ export const UserDataItem = () => {
 
   //   const [iconColor, setIconColor] = useState('#f59256');
 
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [birthday, setBirthday] = useState('');
-  const [phone, setPhone] = useState('');
-  const [city, setCity] = useState('');
+  const [, setName] = useState('');
+  const [, setEmail] = useState('');
+  const [, setBirthday] = useState('');
+  const [, setPhone] = useState('');
+  const [, setCity] = useState('');
 
   const profileSelector = initialState; // replace with useSelector();
   const { userName, userEmail, userBirthday, userPhone, userCity } =
@@ -119,7 +119,9 @@ export const UserDataItem = () => {
               {!isNameDisabled && <button type="submit">Save</button>}
 
               {touched.userName && errors.userName && (
-                <div style={{ color: 'red', textAlign: 'center' }}>
+                <div
+                  style={{ color: 'red', textAlign: 'center', fontSize: 10 }}
+                >
                   {errors.userName}
                 </div>
               )}
