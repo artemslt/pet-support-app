@@ -30,6 +30,7 @@ export const UserAvatarBlock = () => {
     }
     //додати завантаження і збереження через asyncThunc
     // dispatch(formData);
+    //axios.post("adress", formData).then(console.log).catch(console.error)
   };
 
   return (
