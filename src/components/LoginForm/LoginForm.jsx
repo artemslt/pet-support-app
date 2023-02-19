@@ -1,6 +1,7 @@
 import { Formik } from 'formik';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
+import { toast } from 'react-toastify';
 
 import { loginSchema } from '../../schemas/authValidationSchemas';
 import { login } from 'redux/auth/authOperations';
@@ -30,19 +31,17 @@ export const LoginForm = () => {
   const dispatch = useDispatch();
 
   const handleSubmit = async (values, { resetForm }) => {
-    const user = {
+    const currentUser = {
       email: values.email,
       password: values.password,
     };
-    console.log(user);
     try {
-      const data = await dispatch(login(user));
-      console.log(data);
+      const data = await dispatch(login(currentUser));
       if (data.type === 'auth/login/fulfilled') {
         resetForm();
       }
     } catch (error) {
-      console.log('Something wrong, please try again later');
+      toast.error('Something wrong, please try again later');
     }
   };
   return (
