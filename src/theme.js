@@ -2,7 +2,7 @@ import { createTheme } from 'styled-breakpoints';
 
 const themeStyles = {
   space: [0, 4, 8, 16, 32, 64],
-  fontSizes: [12, 14, 16, 20, 24, 32, 42],
+  fontSizes: [12, 14, 16, 18, 20, 24, 32, 36, 42],
   fontWeights: [400, 500, 700],
   fonts: ['Inter', 'Manrope', 'Poppins'],
   colors: {
@@ -27,7 +27,9 @@ const themeBreakpoints = createTheme({
   mobile: '320px',
   mobileSizeM: '575px',
   tablet: '768px',
-  pcSizeS: '992px',
+  tabletM: '820px',
+  pcSizeS: '912px',
+  pcSizeM: '1024px',
   pcSizeL: '1200px',
   pc: '1280px',
 });

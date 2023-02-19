@@ -1,9 +1,20 @@
-import { Formik, Form, Field, ErrorMessage } from 'formik';
-import { Link } from 'react-router-dom';
+import { Formik } from 'formik';
+
 import { useDispatch } from 'react-redux';
 
 import { loginSchema } from '../../schemas/authValidationSchemas';
 import { login } from 'redux/auth/authOperations';
+import {
+  FormWrapper,
+  Heading,
+  Form,
+  Input,
+  Label,
+  Button,
+  Text,
+  Error,
+  Link,
+} from './LoginForm.styled';
 
 export const LoginForm = () => {
   const initialValues = {
@@ -13,47 +24,55 @@ export const LoginForm = () => {
 
   const dispatch = useDispatch();
 
-  const handleSubmit = (values, { resetForm }) => {
+  const handleSubmit = async (values, { resetForm }) => {
     const user = {
       email: values.email,
       password: values.password,
     };
     console.log(user);
-    const data = dispatch(login(user));
-    if (data.type === 'auth/login/fulfilled') {
-      resetForm();
-    }
-    if (!data.payload) {
+    try {
+      const data = await dispatch(login(user));
+      console.log(data)
+      if (data.type === 'auth/login/fulfilled') {
+        resetForm();
+      }
+    } catch (error) {
       console.log('Something wrong, please try again later');
     }
   };
   return (
-    <div>
-      <h2>Login</h2>
+    <FormWrapper>
+      <Heading>Login</Heading>
       <Formik
         initialValues={initialValues}
         validationSchema={loginSchema}
         onSubmit={handleSubmit}
       >
         <Form>
-          <label>
-            <Field type="email" name="email" placeholder="Email"></Field>
-            <ErrorMessage name="email" component="span"></ErrorMessage>
-          </label>
-          <label>
-            <Field
+          <Label>
+            <Input
+              autoComplete="on"
+              type="email"
+              name="email"
+              placeholder="Email"
+            ></Input>
+            <Error name="email" component="p"></Error>
+          </Label>
+          <Label>
+            <Input
+              autoComplete="off"
               type="password"
               name="password"
               placeholder="Password"
-            ></Field>
-            <ErrorMessage name="password" component="span"></ErrorMessage>
-          </label>
-          <button type="submit">Login</button>
-          <p>
+            ></Input>
+            <Error name="password" component="p"></Error>
+          </Label>
+          <Button type="submit">Login</Button>
+          <Text>
             Don't have an account? <Link to="/register">Register</Link>
-          </p>
+          </Text>
         </Form>
       </Formik>
-    </div>
+    </FormWrapper>
   );
 };
