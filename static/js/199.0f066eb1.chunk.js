@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunkpet_support_app=self.webpackChunkpet_support_app||[]).push([[199],{6780:function(p,e,t){t.r(e);var u=t(184);e.default=function(){return(0,u.jsx)("div",{children:"NewsPage"})}}}]);
+//# sourceMappingURL=199.0f066eb1.chunk.js.map
