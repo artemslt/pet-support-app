@@ -77,7 +77,7 @@ export const updateUser = createAsyncThunk(
       return thunkAPI.rejectWithValue('Unable to update user');
     }
     try {
-      const response = await axios.put('users/edit', credentials);
+      const response = await axios.patch('users/edit', credentials);
       return response.data.data;
     } catch (error) {
       toast.error(`Something wrong - ${error.response.data.message}`);

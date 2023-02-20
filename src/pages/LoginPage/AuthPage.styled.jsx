@@ -7,10 +7,7 @@ import {
 } from '../../images';
 
 export const BackgroundWrapper = styled.div`
-  display: flex;
-  justify-content: center;
-  width: 100vw;
-  height: 100vh;
+height: 100vh;
   background-color: ${prop => prop.theme.colors.background};
   background-origin: border-box;
   background-size: contain;
