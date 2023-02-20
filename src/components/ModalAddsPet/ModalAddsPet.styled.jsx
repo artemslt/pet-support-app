@@ -3,7 +3,8 @@ import { up } from 'styled-breakpoints';
 import { ReactComponent as Closes } from '../../images/ButtonCloses.svg';
 import { ReactComponent as iconAddPhoto } from '../../images/addPhoto.svg';
 import { ReactComponent as closeImageIcon } from '../../images/close-image-icon.svg';
-import { Form, Field } from 'formik';
+
+import { Form, Field, ErrorMessage } from 'formik';
 
 export const Wrapper = styled.div`
   position: relative;
@@ -82,6 +83,7 @@ export const FormStyled = styled(Form)`
 `;
 
 export const Label = styled.label`
+  position: relative;
   display: flex;
   flex-direction: column;
 
@@ -102,6 +104,17 @@ export const Label = styled.label`
     margin-bottom: 40;
   }
 `;
+
+export const Error = styled(ErrorMessage)`
+  position: absolute;
+  bottom: -20px;
+  left: 4%;
+  font-family: ${prop => prop.theme.fonts[1]};
+  padding: ${prop => prop.theme.space[1]}px ${prop => prop.theme.space[3]}px;
+  font-size: 10px;
+  color: ${prop => prop.theme.colors.activeAccent};
+`;
+
 export const Input = styled(Field)`
   font-family: ${({ theme }) => theme.fonts[1]};
   font-weight: ${({ theme }) => theme.fontWeights[0]};
@@ -141,9 +154,18 @@ export const Button = styled.button`
       margin-right: 0px;
     }
   }
+  &:hover {
+    background: ${({ theme }) => theme.colors.mainAccent};
+    color: ${({ theme }) => theme.colors.mainWhite};
+  }
   &.active {
     background: ${({ theme }) => theme.colors.mainAccent};
     color: ${({ theme }) => theme.colors.mainWhite};
+
+    &:hover {
+      color: ${({ theme }) => theme.colors.mainBlack};
+      background: ${({ theme }) => theme.colors.mainWhite};
+    }
   }
 `;
 
@@ -151,6 +173,11 @@ export const TitleAddPhoto = styled.span`
   font-size: 16px;
   line-height: 22px;
   margin-bottom: 20px;
+  ${up('tablet')} {
+    font-size: 20px;
+    line-height: calc(27 / 20);
+    margin-bottom: 12px;
+  }
 `;
 
 export const InputHidden = styled(Field)`
@@ -169,7 +196,10 @@ export const AddImage = styled.label`
   left: 36px;
   top: 135px;
 
-  /* Фоновый */
+  ${up('tablet')} {
+    width: 182px;
+    height: 182px;
+  }
 
   background: #fdf7f2;
   border-radius: 20px;
@@ -188,6 +218,11 @@ export const ImgBox = styled.div`
   &.show_img {
     display: block;
   }
+
+  ${up('tablet')} {
+    width: 182px;
+    height: 182px;
+  }
 `;
 
 export const Image = styled.img`
@@ -196,6 +231,11 @@ export const Image = styled.img`
   width: 208px;
   height: 208px;
   border-radius: 20px;
+
+  ${up('tablet')} {
+    width: 182px;
+    height: 182px;
+  }
 `;
 
 export const CancelIcon = styled(closeImageIcon)`
@@ -233,9 +273,25 @@ export const Comment = styled(Field)`
   font-weight: ${({ theme }) => theme.fontWeights[0]};
   font-size: 14px;
   line-height: calc(26 / 14);
-  /* Фоновый */
 
   background: ${({ theme }) => theme.colors.background};
   border: 1px solid ${({ theme }) => theme.colors.formInputAccnt};
   border-radius: 20px;
+  overflow: auto;
+  resize: none;
+  ${up('tablet')} {
+    width: 394px;
+    height: 116px;
+  }
+`;
+
+export const CommentTitle = styled.span`
+  font-size: 18px;
+  line-height: calc(26 / 18);
+  margin-bottom: 8px;
+  ${up('tablet')} {
+    font-size: 18px;
+    line-height: calc(26 / 18);
+  }
+  margin-bottom: 12px;
 `;

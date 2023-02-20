@@ -1,5 +1,5 @@
 import { Formik } from 'formik';
-import { FormEvent } from 'react';
+
 import { useState } from 'react';
 import {
   Wrapper,
@@ -7,27 +7,21 @@ import {
   ClosesIcon,
   Title,
   WrapperBtn,
-  Input,
   FormStyled,
-  Label,
   Button,
-  AddImage,
-  InputHidden,
-  AddPhoto,
-  FileBox,
-  TitleAddPhoto,
-  ImgBox,
-  Image,
-  Comment,
-  ButtonClose,
-  CancelIcon,
 } from './ModalAddsPet.styled';
+
+// import { AddPetSchema } from 'schemas/addPetSchema';
+import { FormePageFist } from './FormPageFirst';
+import { FormePageSecond } from './FormPageSecond';
+
+import { AddPetSchemaPageOne, AddPetSchemaPageTwo } from 'schemas/addPetSchema';
 
 const initialValues = {
   name: '',
-  date: '',
+  birthday: '',
   breed: '',
-  img: '',
+  photo: '',
   comment: '',
 };
 
@@ -42,18 +36,27 @@ export const ModalAddsPet = ({ onToggleModal }) => {
   };
 
   const handleSubmit = (values, actions) => {
-    const { name, date, breed, img, comment } = values;
-    if (name === '' || date === '' || breed === '') {
-      return setPageToggle(true);
-    }
-    if (img === '' || comment === '') {
+    const { name, birthday, breed, photo, comment } = values;
+
+    if (!name || !birthday || !breed || !photo || !comment) {
       return;
     }
-    console.log(values);
-    // console.log(actions);
+    const data = {
+      name,
+      birthday,
+      breed,
+      photo,
+      comment,
+    };
+
+    actions.resetForm();
+    setImgValue(null);
+    setImgUrl(null);
+    onToggleModal();
   };
   const handleOnChange = event => {
     event.preventDefault();
+
     if (event.target.files && event.target.files.length > 0) {
       setImgValue(event.target.value);
       const file = event.target.files[0];
@@ -61,7 +64,7 @@ export const ModalAddsPet = ({ onToggleModal }) => {
     }
     return;
   };
-  console.log(pageToggle);
+
   return (
     <Wrapper>
       <ButtonCloses onClick={e => onToggleModal(e)}>
@@ -69,147 +72,80 @@ export const ModalAddsPet = ({ onToggleModal }) => {
       </ButtonCloses>
       <div>
         <Title>Add pet</Title>
-        <Formik initialValues={initialValues} onSubmit={handleSubmit}>
-          <FormStyled onChange={handleOnChange}>
-            {pageToggle ? (
-              <>
-                <Label htmlFor="">
-                  Name pet
-                  <Input type="text" name="name" placeholder="Type name pet" />
-                </Label>
-                <Label htmlFor="">
-                  Date of birth
-                  <Input
-                    type="text"
-                    name="date"
-                    placeholder="Type date of birth"
-                  />
-                </Label>
-                <Label htmlFor="">
-                  Breed
-                  <Input type="text" name="breed" placeholder="Type breed" />
-                </Label>
-              </>
-            ) : (
-              <>
-                <TitleAddPhoto> Add photo and some comments</TitleAddPhoto>
-                <Label>
-                  <AddImage>
-                    {!imgValue && (
-                      <InputHidden
-                        type="file"
-                        name="img"
-                        disabled={imgUrl ? 'disabled' : ''}
-                        value={imgValue ? imgValue : ''}
-                      />
-                    )}
-
-                    <ImgBox className={imgUrl ? 'show_img' : ''}>
-                      <Image src={imgUrl} alt="" />
-                      <ButtonClose
-                        onClick={() => {
-                          setImgUrl(null);
-                          setImgValue(null);
-                        }}
-                      >
-                        <CancelIcon />
-                      </ButtonClose>
-                    </ImgBox>
-
-                    <AddPhoto />
-                  </AddImage>
-                </Label>
-                <Label htmlFor="">
-                  <span> Comments</span>
-                  <Comment
-                    component="textarea"
-                    name="comment"
-                    placeholder="Type comments"
-                  />
-                </Label>
-              </>
-            )}
-
-            <WrapperBtn>
-              <Button
-                className="active"
-                type={pageToggle ? 'button' : 'button'}
-                onClick={() => {
-                  if (pageToggle) {
-                    setPageToggle(false);
-                  }
-                  if (!pageToggle) {
-                    setPageToggle(true);
-                  }
-                }}
-              >
-                {pageToggle ? 'Next' : 'back'}
-              </Button>
-
-              {
-                <Button
-                  onClick={e => {
-                    if (pageToggle) {
-                      onToggleModal(e);
-                    }
-                  }}
-                  type={pageToggle ? 'button' : 'submit'}
-                >
-                  {pageToggle ? 'Cancel' : 'Done'}
-                </Button>
+        <Formik
+          initialValues={initialValues}
+          onSubmit={handleSubmit}
+          validationSchema={
+            pageToggle ? AddPetSchemaPageOne : AddPetSchemaPageTwo
+          }
+        >
+          {Formik => {
+            const ValidNextPage = () => {
+              const { name, birthday, breed } = Formik.values;
+              if (!name || !birthday || !breed) {
+                return true;
               }
-            </WrapperBtn>
-          </FormStyled>
+
+              if (Formik.isValid) {
+                if (Formik.dirty) {
+                  return false;
+                }
+                return false;
+              }
+              return true;
+            };
+            const isValid = ValidNextPage();
+
+            return (
+              <FormStyled onChange={handleOnChange}>
+                {pageToggle ? (
+                  <FormePageFist />
+                ) : (
+                  <FormePageSecond
+                    setImgUrl={setImgUrl}
+                    setImgValue={setImgValue}
+                    imgValue={imgValue}
+                    imgUrl={imgUrl}
+                  />
+                )}
+                <WrapperBtn>
+                  <Button
+                    className="active"
+                    type={Formik.isValid ? 'submit' : 'button'}
+                    disabled={isValid}
+                    onClick={() => {
+                      if (pageToggle) {
+                        setPageToggle(false);
+                      }
+                      if (!pageToggle) {
+                        return;
+                      }
+                    }}
+                  >
+                    {pageToggle ? 'Next' : 'Done'}
+                  </Button>
+
+                  {
+                    <Button
+                      onClick={e => {
+                        if (pageToggle) {
+                          onToggleModal(e);
+                        }
+                        if (!pageToggle) {
+                          setPageToggle(true);
+                        }
+                      }}
+                      type={pageToggle ? 'button' : 'submit'}
+                    >
+                      {pageToggle ? 'Cancel' : 'back'}
+                    </Button>
+                  }
+                </WrapperBtn>
+              </FormStyled>
+            );
+          }}
         </Formik>
       </div>
     </Wrapper>
   );
 };
-
-// {!PageToggle ? (
-//     <Formik>
-//       <FormStyled>
-//         <Label htmlFor="">
-//           Name pet
-//           <Input type="text" name="name" placeholder="Type name pet" />
-//         </Label>
-//         <Label htmlFor="">
-//           Date of birth
-//           <Input
-//             type="text"
-//             name="date"
-//             placeholder="Type date of birth"
-//           />
-//         </Label>
-//         <Label htmlFor="">
-//           Breed
-//           <Input type="text" name="breed" placeholder="Type breed" />
-//         </Label>
-//         <button onClick={onPageToggle} type="button">
-//           Next
-//         </button>
-//         <button onClick={e => onToggle(e)} type="button">
-//           Cancel
-//         </button>
-//       </FormStyled>
-//     </Formik>
-//   ) : (
-//     <Formik>
-//       <Formik>
-//         <Label htmlFor="">
-//           Add photo and some comments
-//           <Input type="file" name="name" accept="image/*, .png,.jpg" />
-//         </Label>
-//         <Label htmlFor="">
-//           Comments
-//           <Input type="text" name="date" placeholder="Type comments" />
-//         </Label>
-//         <button onClick={onPageToggle} type="button">
-//           Next
-//         </button>
-//         <button onClick={e => onToggle(e)} type="button">
-//           Cancel
-//         </button>
-//       </Formik>
-//     </Formik>
-//   )}
