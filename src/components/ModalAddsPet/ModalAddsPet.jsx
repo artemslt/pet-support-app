@@ -18,7 +18,7 @@ import {
   TitleAddPhoto,
   ImgBox,
   Image,
-  Comments,
+  Comment,
   ButtonClose,
   CancelIcon,
 } from './ModalAddsPet.styled';
@@ -28,12 +28,12 @@ const initialValues = {
   date: '',
   breed: '',
   img: '',
-  comments: '',
+  comment: '',
 };
 
-export const ModalAddsPet = ({ onToggle }) => {
+export const ModalAddsPet = ({ onToggleModal }) => {
   const [pageToggle, setPageToggle] = useState(true);
-  const [img, setImg] = useState(null);
+  const [imgValue, setImgValue] = useState(null);
   const [imgUrl, setImgUrl] = useState(null);
 
   const fileReader = new FileReader();
@@ -42,25 +42,29 @@ export const ModalAddsPet = ({ onToggle }) => {
   };
 
   const handleSubmit = (values, actions) => {
+    const { name, date, breed, img, comment } = values;
+    if (name === '' || date === '' || breed === '') {
+      return setPageToggle(true);
+    }
+    if (img === '' || comment === '') {
+      return;
+    }
     console.log(values);
-    console.log(actions);
+    // console.log(actions);
   };
-
   const handleOnChange = event => {
     event.preventDefault();
-    const { img } = event.currentTarget;
-
-    if (img) {
-      const file = img.files[0];
-      setImg(file);
-      fileReader.readAsDataURL(file);
+    if (event.target.files && event.target.files.length > 0) {
+      setImgValue(event.target.value);
+      const file = event.target.files[0];
+      return fileReader.readAsDataURL(file);
     }
     return;
   };
-  console.log(imgUrl);
+  console.log(pageToggle);
   return (
     <Wrapper>
-      <ButtonCloses onClick={e => onToggle(e)}>
+      <ButtonCloses onClick={e => onToggleModal(e)}>
         <ClosesIcon />
       </ButtonCloses>
       <div>
@@ -91,18 +95,21 @@ export const ModalAddsPet = ({ onToggle }) => {
                 <TitleAddPhoto> Add photo and some comments</TitleAddPhoto>
                 <Label>
                   <AddImage>
-                    <InputHidden
-                      type="file"
-                      name="img"
-                      disabled={imgUrl ? 'disabled' : ''}
-                    />
+                    {!imgValue && (
+                      <InputHidden
+                        type="file"
+                        name="img"
+                        disabled={imgUrl ? 'disabled' : ''}
+                        value={imgValue ? imgValue : ''}
+                      />
+                    )}
 
                     <ImgBox className={imgUrl ? 'show_img' : ''}>
                       <Image src={imgUrl} alt="" />
                       <ButtonClose
                         onClick={() => {
                           setImgUrl(null);
-                          setImgUrl(null);
+                          setImgValue(null);
                         }}
                       >
                         <CancelIcon />
@@ -112,11 +119,10 @@ export const ModalAddsPet = ({ onToggle }) => {
                     <AddPhoto />
                   </AddImage>
                 </Label>
-
                 <Label htmlFor="">
                   <span> Comments</span>
-                  <Comments
-                    type="text"
+                  <Comment
+                    component="textarea"
                     name="comment"
                     placeholder="Type comments"
                   />
@@ -125,28 +131,33 @@ export const ModalAddsPet = ({ onToggle }) => {
             )}
 
             <WrapperBtn>
-              {!pageToggle ? (
-                <Button type="submit" className="active">
-                  Done
-                </Button>
-              ) : (
+              <Button
+                className="active"
+                type={pageToggle ? 'button' : 'button'}
+                onClick={() => {
+                  if (pageToggle) {
+                    setPageToggle(false);
+                  }
+                  if (!pageToggle) {
+                    setPageToggle(true);
+                  }
+                }}
+              >
+                {pageToggle ? 'Next' : 'back'}
+              </Button>
+
+              {
                 <Button
-                  onClick={() => setPageToggle(false)}
-                  type="button"
-                  className="active"
+                  onClick={e => {
+                    if (pageToggle) {
+                      onToggleModal(e);
+                    }
+                  }}
+                  type={pageToggle ? 'button' : 'submit'}
                 >
-                  Next
+                  {pageToggle ? 'Cancel' : 'Done'}
                 </Button>
-              )}
-              {pageToggle ? (
-                <Button onClick={e => onToggle(e)} type="button">
-                  Cancel
-                </Button>
-              ) : (
-                <Button onClick={() => setPageToggle(true)} type="button">
-                  back
-                </Button>
-              )}
+              }
             </WrapperBtn>
           </FormStyled>
         </Formik>

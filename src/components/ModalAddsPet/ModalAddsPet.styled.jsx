@@ -101,10 +101,6 @@ export const Label = styled.label`
   &:nth-child(3) {
     margin-bottom: 40;
   }
-  &.comments {
-    width: 240px;
-    height: 100px;
-  }
 `;
 export const Input = styled(Field)`
   font-family: ${({ theme }) => theme.fonts[1]};
@@ -229,13 +225,17 @@ export const ButtonClose = styled.button`
   }
 `;
 
-export const Comments = styled.input`
+export const Comment = styled(Field)`
   width: 240px;
   height: 100px;
+  padding: 12px 14px;
 
+  font-weight: ${({ theme }) => theme.fontWeights[0]};
+  font-size: 14px;
+  line-height: calc(26 / 14);
   /* Фоновый */
 
-  background: #fdf7f2;
-  border: 1px solid rgba(245, 146, 86, 0.5);
+  background: ${({ theme }) => theme.colors.background};
+  border: 1px solid ${({ theme }) => theme.colors.formInputAccnt};
   border-radius: 20px;
 `;
