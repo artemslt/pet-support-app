@@ -17,7 +17,6 @@ export const Title = styled.h3`
   font-family: 'Manrope';
   padding-left: 17px;
   margin-bottom: 24px;
-  margin: 0;
   font-weight: 500;
   line-height: 1, 37;
   color: #111111;
