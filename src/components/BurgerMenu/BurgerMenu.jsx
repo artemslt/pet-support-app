@@ -7,7 +7,7 @@ import { useAuth } from 'hooks';
 import { useMatchMedia } from 'hooks/use-match-media';
 import { StyledMenu } from './BurgerMenu.styled';
 
-export const Menu = ({ open, ...props }) => {
+export const Menu = ({ open, setOpen, ...props }) => {
   const { isMobile } = useMatchMedia();
   const { isLoggedIn } = useAuth();
   const isHidden = open ? true : false;

@@ -5,14 +5,14 @@ import { useAuth } from 'hooks';
 import { useMatchMedia } from 'hooks/use-match-media';
 import { NavigationStyled } from './Navigation.styled';
 
-export const Navigation = onClick => {
+export const Navigation = () => {
   const { isTablet, isDesktop } = useMatchMedia();
 
   const { isLoggedIn } = useAuth();
 
   return (
     <NavigationStyled>
-      {isDesktop && <Nav onClick={onClick} />}
+      {isDesktop && <Nav />}
 
       {(isDesktop || isTablet) && isLoggedIn && <UserNav />}
       {(isDesktop || isTablet) && !isLoggedIn && <AuthNav />}

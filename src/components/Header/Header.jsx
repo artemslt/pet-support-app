@@ -12,16 +12,11 @@ export const Header = () => {
   const { isDesktop } = useMatchMedia();
   const menuId = 'main-menu';
 
-  const menuCloseHandler = e => {
-    e.preventDefault();
-    setOpen(false);
-  };
-
   return (
     <Container>
       <HeaderStyled>
         <Logo />
-        <Navigation onClick={menuCloseHandler} />
+        <Navigation />
 
         {!isDesktop && (
           <Burger open={open} setOpen={setOpen} aria-controls={menuId} />
