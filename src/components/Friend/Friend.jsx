@@ -8,10 +8,12 @@ import {
 } from './Friend.styled';
 
 
-export const Friend = ({ _id, title, imageUrl, addressUrl, address, email, phone, }) => {
+export const Friend = ({ _id, title,url , imageUrl, addressUrl, address, email, phone, }) => {
     return (
             <Card key={_id}>
-                <CardTitle>{title}</CardTitle>
+            <CardTitle>
+            <a href={url} target="_blank" rel="noreferrer">{title}</a>
+            </CardTitle>
                 <CardInfo>
                 <CardPhoto>
                     {/* поки що спрвжню заглушку не поставив,а обрав з логотипів  */}

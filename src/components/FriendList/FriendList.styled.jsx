@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { up } from 'styled-breakpoints';
 
 export const PartnerTitle = styled.h1`
   font-weight: bold;

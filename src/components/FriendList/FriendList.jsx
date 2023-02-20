@@ -22,7 +22,7 @@
         <PartnerTitle>Our friends</PartnerTitle>
         {friends && (
             <CardList>
-            {friends.map(({ _id, title, imageUrl, addressUrl, address, email, phone }) => (
+            {friends.map(({ _id, title, imageUrl, addressUrl, address, email, phone, url }) => (
                 <Friend
                 key={_id}
                 title={title}
@@ -30,7 +30,8 @@
                 address={address}
                 addressUrl={addressUrl}
                 email={email}
-                phone={phone}
+                    phone={phone}
+                    url ={url}
                 />
             ))}
             </CardList>
