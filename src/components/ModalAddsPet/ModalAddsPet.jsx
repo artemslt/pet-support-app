@@ -1,4 +1,5 @@
 import { Formik } from 'formik';
+import axios from 'axios';
 
 import { useState } from 'react';
 import {
@@ -11,7 +12,6 @@ import {
   Button,
 } from './ModalAddsPet.styled';
 
-// import { AddPetSchema } from 'schemas/addPetSchema';
 import { FormePageFist } from './FormPageFirst';
 import { FormePageSecond } from './FormPageSecond';
 
