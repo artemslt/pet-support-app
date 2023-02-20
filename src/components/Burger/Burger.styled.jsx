@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { up } from 'styled-breakpoints';
+// import { up } from 'styled-breakpoints';
 
 export const StyledBurger = styled.button`
   display: flex;
@@ -31,7 +31,4 @@ export const StyledBurger = styled.button`
       transform: ${({ open }) => (open ? 'rotate(-45deg)' : 'rotate(0)')};
     }
   }
-  /* ${up('pcSizeS')} {
-    display: none;
-  } */
 `;

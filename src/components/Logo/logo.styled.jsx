@@ -3,8 +3,8 @@ import { up, down } from 'styled-breakpoints';
 
 export const LogoContainer = styled.div`
   ${down('pcSizeS')} {
-    width: 100%;
-    text-align: left;
+    /* width: 100%; */
+    /* text-align: left; */
   }
 `;
 

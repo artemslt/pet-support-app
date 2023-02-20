@@ -5,7 +5,7 @@ export const StyledMenu = styled.nav`
   display: flex;
   flex-direction: column;
   align-items: center;
-  /* z-index: 5; */
+  z-index: 5;
 
   background: ${({ theme }) => theme.colors.background};
   transform: ${({ open }) => (open ? 'translateX(0%)' : 'translateX(-100%)')};

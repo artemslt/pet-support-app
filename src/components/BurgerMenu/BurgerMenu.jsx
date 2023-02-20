@@ -1,4 +1,5 @@
 import { AuthNav } from 'components/AuthNav/AuthNav';
+// import { Container } from 'components/Container/Container.styled';
 import { Logo } from 'components/Logo/Logo';
 import { Nav } from 'components/Nav/Nav';
 import { UserNav } from 'components/UserNav/UserNav';
@@ -11,11 +12,13 @@ export const Menu = ({ open, ...props }) => {
   const isHidden = open ? true : false;
 
   return (
+    // <Container>
     <StyledMenu open={open} aria-hidden={!isHidden} {...props}>
       <Logo />
       {isMobile && isLoggedIn && <UserNav />}
       {isMobile && !isLoggedIn && <AuthNav />}
       <Nav />
     </StyledMenu>
+    // </Container>
   );
 };

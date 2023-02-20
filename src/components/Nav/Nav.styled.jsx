@@ -21,7 +21,7 @@ export const NavContainer = styled.nav`
 
 export const Link = styled(NavLink)`
   text-decoration: none;
-  margin-right: 80px;
+  margin-right: 65px;
   padding: 10px 0;
 
   font-family: ${({ theme }) => theme.fonts[1]};
