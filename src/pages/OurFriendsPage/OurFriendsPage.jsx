@@ -1,5 +1,7 @@
+import { FriendList } from "components/FriendList/FriendList";
+
 const OurFriendsPage = () => {
-  return <div>OurFriendsPage</div>;
+  return <FriendList/>;
 };
 
 export default OurFriendsPage;
