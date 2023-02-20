@@ -1,6 +1,6 @@
 import * as yup from 'yup';
-import { useState } from 'react';
-// import { useDispatch } from 'react-redux';
+import React, { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { Form, Formik } from 'formik';
 import 'react-datepicker/dist/react-datepicker.css';
 import { registerSchema } from '../../../../schemas/authValidationSchemas';
@@ -13,38 +13,11 @@ import {
   EditBtn,
   ErrorMessage,
 } from './UserDataItem.styled';
-// import { updateUserName } from 'redux/auth/authOperations';
+import { updateUser } from 'redux/auth/authOperations';
+import { selectUser } from 'redux/auth/authSelectors';
 
 import { ReactComponent as EditPenIcon } from './editPenIcon.svg';
 import { ReactComponent as EditSaveIcon } from './editSaveIcon.svg';
-
-const initialState = {
-  userName: 'Anna',
-  userEmail: 'aa@mail.com',
-  userBirthday: '00.00.0000',
-  userPhone: '+380987667455',
-  userCity: 'Kyiv, Kyiv',
-};
-
-class UserNameChangeAction {
-  userName = '';
-}
-
-class UserEmailChangeAction {
-  userEmail = '';
-}
-
-class UserBirthdayChangeAction {
-  userBirthday = '';
-}
-
-class UserPhoneChangeAction {
-  userPhone = '';
-}
-
-class UserCityChangeAction {
-  userCity = '';
-}
 
 export const UserDataItem = () => {
   const [isNameDisabled, setIsNameDisabled] = useState(true);
@@ -52,11 +25,23 @@ export const UserDataItem = () => {
   const [isBirthdayDisabled, setIsBirthdayDisabled] = useState(true);
   const [isPhoneDisabled, setIsPhoneDisabled] = useState(true);
   const [isCityDisabled, setIsCityDisabled] = useState(true);
-  const [, setStartDate] = useState(new Date());
+  const [startDate, setStartDate] = useState(new Date());
+
   const iconColor = '#f59256';
   const iconColorDisabled = 'rgba(0,0,0,0.6)';
 
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
+  const currentUser = useSelector(selectUser);
+
+  useEffect(() => {
+    if (currentUser.birthday) {
+      const parts = currentUser.birthday.split('.');
+      if (parts.length === 3)
+        setStartDate(new Date(parts[2], parts[1] - 1, parts[0]));
+    }
+  }, [currentUser.birthday]);
+
+  console.log('user', currentUser);
 
   const isAnyEditing =
     !isNameDisabled ||
@@ -65,66 +50,47 @@ export const UserDataItem = () => {
     !isPhoneDisabled ||
     !isCityDisabled;
 
-  // const [, setName] = useState('');
-  // const [, setEmail] = useState('');
-  // const [, setBirthday] = useState('');
-  // const [, setPhone] = useState('');
-  // const [, setCity] = useState('');
-
-  // const profileSelector = initialState; // replace with useSelector();
-  // const { userName, userEmail, userBirthday, userPhone, userCity } =
-  //   profileSelector;
-
   const onSubmit = (event, isDisabled, setIsDisabled) => {
+    console.log('event', event);
     if (isDisabled) {
       setIsDisabled(false);
     } else {
-      const actionName = new UserNameChangeAction();
-      actionName.userName = event.userName;
+      dispatch(
+        updateUser({
+          name: event.name,
+          email: event.email,
+          birthday: startDate.toLocaleString().slice(0, 10),
+          phone: event.phone,
+          location: event.location,
+        })
+      );
 
-      const actionEmail = new UserEmailChangeAction();
-      actionEmail.userEmail = event.userEmail;
-
-      const actionBirthday = new UserBirthdayChangeAction();
-      actionBirthday.userBirthday = event.userBirthday;
-
-      const actionPhone = new UserPhoneChangeAction();
-      actionPhone.userPhone = event.userPhone;
-
-      const actionCity = new UserCityChangeAction();
-      actionCity.userCity = event.userCity;
-      console.log('event', event);
-      // dispatch(updateUserName(event.userName));
+      console.log('currentUser', currentUser.birthday);
+      console.log('event.userEmail', event.userEmail);
       setIsDisabled(true);
     }
   };
 
-  // useEffect(() => {
-  //   setName(userName);
-  //   setEmail(userEmail);
-  //   setBirthday(userBirthday);
-  //   setPhone(userPhone);
-  //   setCity(userCity);
-  // }, [userName, userEmail, userBirthday, userPhone, userCity]);
+  if (!currentUser.email) return <div>Loading</div>;
 
   return (
     <div>
       <DataInputWrapp>
         <Formik
-          initialValues={initialState}
+          initialValues={currentUser}
           validationSchema={yup.object().shape({
-            userName: registerSchema.fields.name,
+            name: registerSchema.fields.name,
           })}
           onSubmit={event => onSubmit(event, isNameDisabled, setIsNameDisabled)}
         >
           {({ errors, touched }) => (
             <Form>
               <InputWrapper>
-                <Label htmlFor="userName">Name:</Label>
+                <Label htmlFor="name">Name:</Label>
                 {isNameDisabled ? (
                   <Input
                     type="text"
-                    name="userName"
+                    name="name"
                     disabled={isNameDisabled}
                     style={{
                       border: '1px solid transparent',
@@ -134,7 +100,7 @@ export const UserDataItem = () => {
                 ) : (
                   <Input
                     type="text"
-                    name="userName"
+                    name="name"
                     disabled={isNameDisabled}
                     style={{
                       border: '1px solid #F5925680',
@@ -144,11 +110,7 @@ export const UserDataItem = () => {
                   />
                 )}
                 {isNameDisabled && (
-                  <EditBtn
-                    type="submit"
-                    name="userName"
-                    disabled={isAnyEditing}
-                  >
+                  <EditBtn type="submit" disabled={isAnyEditing}>
                     <EditPenIcon
                       fill={isAnyEditing ? iconColorDisabled : iconColor}
                       width="20"
@@ -162,17 +124,17 @@ export const UserDataItem = () => {
                   </EditBtn>
                 )}
               </InputWrapper>
-              {touched.userName && errors.userName && (
-                <ErrorMessage>{errors.userName}</ErrorMessage>
+              {touched.name && errors.name && (
+                <ErrorMessage>{errors.name}</ErrorMessage>
               )}
             </Form>
           )}
         </Formik>
 
         <Formik
-          initialValues={initialState}
+          initialValues={currentUser}
           validationSchema={yup.object().shape({
-            userEmail: registerSchema.fields.email,
+            email: registerSchema.fields.email,
           })}
           onSubmit={event =>
             onSubmit(event, isEmailDisabled, setIsEmailDisabled)
@@ -181,11 +143,11 @@ export const UserDataItem = () => {
           {({ errors, touched }) => (
             <Form>
               <InputWrapper>
-                <Label htmlFor="userEmail">Email:</Label>
+                <Label htmlFor="email">Email:</Label>
                 {isEmailDisabled ? (
                   <Input
                     type="text"
-                    name="userEmail"
+                    name="email"
                     disabled={isEmailDisabled}
                     style={{
                       border: '1px solid transparent',
@@ -195,7 +157,7 @@ export const UserDataItem = () => {
                 ) : (
                   <Input
                     type="text"
-                    name="userEmail"
+                    name="email"
                     disabled={isEmailDisabled}
                     style={{
                       border: '1px solid #F5925680',
@@ -205,11 +167,7 @@ export const UserDataItem = () => {
                   />
                 )}
                 {isEmailDisabled && (
-                  <EditBtn
-                    type="submit"
-                    name="userEmail"
-                    disabled={isAnyEditing}
-                  >
+                  <EditBtn type="submit" disabled={isAnyEditing}>
                     <EditPenIcon
                       fill={isAnyEditing ? iconColorDisabled : iconColor}
                       width="20"
@@ -223,38 +181,37 @@ export const UserDataItem = () => {
                   </EditBtn>
                 )}
               </InputWrapper>
-              {touched.userEmail && errors.userEmail && (
-                <ErrorMessage>{errors.userEmail}</ErrorMessage>
+              {touched.email && errors.email && (
+                <ErrorMessage>{errors.email}</ErrorMessage>
               )}
             </Form>
           )}
         </Formik>
 
         <Formik
-          initialValues={initialState}
+          initialValues={currentUser}
           onSubmit={event =>
             onSubmit(event, isBirthdayDisabled, setIsBirthdayDisabled)
           }
         >
           <Form>
             <InputWrapper>
-              <Label htmlFor="userBirthday">Birthday:</Label>
+              <Label htmlFor="birthday">Birthday:</Label>
               <div style={{ width: 245 }}>
                 <InputDatePicker
                   active={!isBirthdayDisabled}
                   dateFormat="dd.MM.yyyy"
-                  value="00.00.0000"
-                  name="userBirthday"
+                  name="birthday"
                   disabled={isBirthdayDisabled}
                   onChange={date => setStartDate(date)}
+                  selected={startDate}
+                  maxDate={new Date()}
+                  showDisabledMonthNavigation
+                  shouldCloseOnSelect={true}
                 />
               </div>
               {isBirthdayDisabled && (
-                <EditBtn
-                  type="submit"
-                  name="userBirthday"
-                  disabled={isAnyEditing}
-                >
+                <EditBtn type="submit" name="birthday" disabled={isAnyEditing}>
                   <EditPenIcon
                     fill={isAnyEditing ? iconColorDisabled : iconColor}
                     width="20"
@@ -272,9 +229,9 @@ export const UserDataItem = () => {
         </Formik>
 
         <Formik
-          initialValues={initialState}
+          initialValues={currentUser}
           validationSchema={yup.object().shape({
-            userPhone: registerSchema.fields.phone,
+            phone: registerSchema.fields.phone,
           })}
           onSubmit={event =>
             onSubmit(event, isPhoneDisabled, setIsPhoneDisabled)
@@ -283,11 +240,11 @@ export const UserDataItem = () => {
           {({ errors, touched }) => (
             <Form>
               <InputWrapper>
-                <Label htmlFor="userPhone"> Phone:</Label>
+                <Label htmlFor="phone"> Phone:</Label>
                 {isPhoneDisabled ? (
                   <Input
                     type="text"
-                    name="userPhone"
+                    name="phone"
                     disabled={isPhoneDisabled}
                     style={{
                       border: '1px solid transparent',
@@ -297,7 +254,7 @@ export const UserDataItem = () => {
                 ) : (
                   <Input
                     type="text"
-                    name="userPhone"
+                    name="phone"
                     disabled={isPhoneDisabled}
                     style={{
                       border: '1px solid #F5925680',
@@ -307,11 +264,7 @@ export const UserDataItem = () => {
                   />
                 )}
                 {isPhoneDisabled && (
-                  <EditBtn
-                    type="submit"
-                    name="userPhone"
-                    disabled={isAnyEditing}
-                  >
+                  <EditBtn type="submit" disabled={isAnyEditing}>
                     <EditPenIcon
                       fill={isAnyEditing ? iconColorDisabled : iconColor}
                       width="20"
@@ -325,28 +278,28 @@ export const UserDataItem = () => {
                   </EditBtn>
                 )}
               </InputWrapper>
-              {touched.userPhone && errors.userPhone && (
-                <ErrorMessage>{errors.userPhone}</ErrorMessage>
+              {touched.phone && errors.phone && (
+                <ErrorMessage>{errors.phone}</ErrorMessage>
               )}
             </Form>
           )}
         </Formik>
 
         <Formik
-          initialValues={initialState}
+          initialValues={currentUser}
           validationSchema={yup.object().shape({
-            userCity: registerSchema.fields.location,
+            location: registerSchema.fields.location,
           })}
           onSubmit={event => onSubmit(event, isCityDisabled, setIsCityDisabled)}
         >
           {({ errors, touched }) => (
             <Form>
               <InputWrapper>
-                <Label htmlFor="userCity">City:</Label>
+                <Label htmlFor="location">City:</Label>
                 {isCityDisabled ? (
                   <Input
                     type="text"
-                    name="userCity"
+                    name="location"
                     disabled={isCityDisabled}
                     style={{
                       border: '1px solid transparent',
@@ -366,11 +319,7 @@ export const UserDataItem = () => {
                   />
                 )}
                 {isCityDisabled && (
-                  <EditBtn
-                    type="submit"
-                    name="userCity"
-                    disabled={isAnyEditing}
-                  >
+                  <EditBtn type="submit" disabled={isAnyEditing}>
                     <EditPenIcon
                       fill={isAnyEditing ? iconColorDisabled : iconColor}
                       width="20"
@@ -384,8 +333,8 @@ export const UserDataItem = () => {
                   </EditBtn>
                 )}
               </InputWrapper>
-              {touched.userCity && errors.userCity && (
-                <ErrorMessage>{errors.userCity}</ErrorMessage>
+              {touched.location && errors.location && (
+                <ErrorMessage>{errors.location}</ErrorMessage>
               )}
             </Form>
           )}

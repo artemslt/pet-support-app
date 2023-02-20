@@ -8,7 +8,13 @@ import {
 } from './authOperations';
 
 const initialState = {
-  user: { name: null, email: null, location: null, phone: null },
+  user: {
+    name: null,
+    email: null,
+    location: null,
+    phone: null,
+    birthday: null,
+  },
   token: null,
   isLoggedIn: false,
   isRefreshing: false,
@@ -37,7 +43,8 @@ const authSlice = createSlice({
         state.isRefreshing = true;
       })
       .addCase(refreshUser.fulfilled, (state, action) => {
-        state.user = action.payload;
+        // console.log(action.payload);
+        state.user = action.payload.user;
         state.isLoggedIn = true;
         state.isRefreshing = false;
       })
