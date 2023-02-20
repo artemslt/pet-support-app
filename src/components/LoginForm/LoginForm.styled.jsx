@@ -15,7 +15,7 @@ export const FlexBox = styled.div`
     padding-top: 208px;
   }
   ${up('pc')} {
-    padding-top: 91px;
+    padding-top: 51px;
   }
 `;
 
@@ -31,7 +31,7 @@ export const FormWrapper = styled.div`
   }
   ${up('pc')} {
     width: 618px;
-    height: 473px;
+    height: 523px;
   }
 `;
 
@@ -143,7 +143,7 @@ export const Button = styled.button`
   align-items: center;
   width: 280px;
   height: 44px;
-  margin-bottom: 40px;
+  margin-bottom: 16px;
   cursor: pointer;
   border-radius: 40px;
   border: none;
@@ -173,8 +173,12 @@ export const Button = styled.button`
   }
 `;
 
+export const ButtonText = styled.span`
+margin-left: 6px;
+`;
+
 export const Text = styled.p`
-  margin-bottom: 40px;
+  margin: 30px 0;
   font-family: ${prop => prop.theme.fonts[1]};
   font-weight: ${prop => prop.theme.fontWeights[0]};
   font-size: ${prop => prop.theme.fontSizes[0]}px;
