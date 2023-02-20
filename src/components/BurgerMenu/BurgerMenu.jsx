@@ -9,9 +9,7 @@ import { StyledMenu } from './BurgerMenu.styled';
 
 export const Menu = ({ open, ...props }) => {
   const { isMobile } = useMatchMedia();
-
   const { isLoggedIn } = useAuth();
-  // const isLoggedIn = false;
   const isHidden = open ? true : false;
 
   return (

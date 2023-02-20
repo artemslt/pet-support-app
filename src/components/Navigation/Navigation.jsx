@@ -9,7 +9,6 @@ export const Navigation = () => {
   const { isTablet, isDesktop } = useMatchMedia();
 
   const { isLoggedIn } = useAuth();
-  // const isLoggedIn = false;
 
   return (
     <NavigationStyled>
