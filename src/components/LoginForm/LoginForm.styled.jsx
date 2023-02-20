@@ -7,6 +7,18 @@ import {
 } from 'formik';
 import { Link as RouterLink } from 'react-router-dom';
 
+export const FlexBox = styled.div`
+  display: flex;
+  justify-content: center;
+  padding-top: 42px;
+  ${up('tablet')} {
+    padding-top: 208px;
+  }
+  ${up('pc')} {
+    padding-top: 91px;
+  }
+`;
+
 export const FormWrapper = styled.div`
   padding-top: 42px;
   ${up('tablet')} {
@@ -144,11 +156,15 @@ export const Button = styled.button`
   color: ${prop => prop.theme.colors.mainWhite};
   &:hover,
   &:focus {
-    background-color: ${prop => prop.theme.colors.mainWhite};
+    background-color: ${prop => prop.theme.colors.background};
     border: 2px solid ${prop => prop.theme.colors.mainAccent};
     color: ${prop => prop.theme.colors.additionalBlack};
   }
   ${up('tablet')} {
+    &:hover,
+    &:focus {
+      background-color: ${prop => prop.theme.colors.mainWhite};
+    }
     outline: none;
     width: 458px;
   }

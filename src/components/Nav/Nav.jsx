@@ -1,11 +1,15 @@
-import { NavLink } from 'react-router-dom';
+// import { useMatchMedia } from 'hooks/use-match-media';
+import { Link, NavContainer } from './Nav.styled';
 
 export const Nav = () => {
+  // const { isDesktop } = useMatchMedia();
   return (
-    <nav>
-      <NavLink to="/news">News</NavLink>
-      <NavLink to="/notices">Find pet</NavLink>
-      <NavLink to="/friends">Our friends</NavLink>
-    </nav>
+    <NavContainer>
+      <Link to="/news">News</Link>
+
+      <Link to="/notices">Find pet</Link>
+
+      <Link to="/friends">Our friends</Link>
+    </NavContainer>
   );
 };
