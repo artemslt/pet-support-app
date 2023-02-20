@@ -4,10 +4,10 @@ import { ToastContainer } from 'react-toastify';
 import { Zoom } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { Header } from 'components/Header/Header';
-import { Container } from './container.styled';
+import { WrapperSharedLayout } from './SharedLayout.styled';
 export const SharedLayout = () => {
   return (
-    <Container>
+    <WrapperSharedLayout>
       <Header></Header>
       <Suspense>
         <Outlet />
@@ -18,6 +18,6 @@ export const SharedLayout = () => {
         autoClose={5000}
         hideProgressBar={true}
       />
-    </Container>
+    </WrapperSharedLayout>
   );
 };

@@ -1,14 +1,22 @@
 import * as yup from 'yup';
 import { useState } from 'react';
+// import { useDispatch } from 'react-redux';
 import { Form, Formik } from 'formik';
 import 'react-datepicker/dist/react-datepicker.css';
 import { registerSchema } from '../../../../schemas/authValidationSchemas';
 import {
+  DataInputWrapp,
   Label,
   Input,
   InputDatePicker,
-  WrapperDatePicker,
+  InputWrapper,
+  EditBtn,
+  ErrorMessage,
 } from './UserDataItem.styled';
+// import { updateUserName } from 'redux/auth/authOperations';
+
+import { ReactComponent as EditPenIcon } from './editPenIcon.svg';
+import { ReactComponent as EditSaveIcon } from './editSaveIcon.svg';
 
 const initialState = {
   userName: 'Anna',
@@ -44,7 +52,11 @@ export const UserDataItem = () => {
   const [isBirthdayDisabled, setIsBirthdayDisabled] = useState(true);
   const [isPhoneDisabled, setIsPhoneDisabled] = useState(true);
   const [isCityDisabled, setIsCityDisabled] = useState(true);
-  const [startDate, setStartDate] = useState(new Date());
+  const [, setStartDate] = useState(new Date());
+  const iconColor = '#f59256';
+  const iconColorDisabled = 'rgba(0,0,0,0.6)';
+
+  // const dispatch = useDispatch();
 
   const isAnyEditing =
     !isNameDisabled ||
@@ -52,8 +64,6 @@ export const UserDataItem = () => {
     !isBirthdayDisabled ||
     !isPhoneDisabled ||
     !isCityDisabled;
-
-  //   const [iconColor, setIconColor] = useState('#f59256');
 
   // const [, setName] = useState('');
   // const [, setEmail] = useState('');
@@ -83,8 +93,8 @@ export const UserDataItem = () => {
 
       const actionCity = new UserCityChangeAction();
       actionCity.userCity = event.userCity;
-      console.log('dispatch', actionPhone.userPhone);
-      // dispatch(action);
+      console.log('event', event);
+      // dispatch(updateUserName(event.userName));
       setIsDisabled(true);
     }
   };
@@ -99,7 +109,7 @@ export const UserDataItem = () => {
 
   return (
     <div>
-      <div style={{ display: 'flex', flexDirection: 'column', paddingTop: 36 }}>
+      <DataInputWrapp>
         <Formik
           initialValues={initialState}
           validationSchema={yup.object().shape({
@@ -109,21 +119,51 @@ export const UserDataItem = () => {
         >
           {({ errors, touched }) => (
             <Form>
-              <Label htmlFor="userName">Name:</Label>
-              <Input type="text" name="userName" disabled={isNameDisabled} />
-              {isNameDisabled && (
-                <button type="submit" name="userName" disabled={isAnyEditing}>
-                  Edit
-                </button>
-              )}
-              {!isNameDisabled && <button type="submit">Save</button>}
-
+              <InputWrapper>
+                <Label htmlFor="userName">Name:</Label>
+                {isNameDisabled ? (
+                  <Input
+                    type="text"
+                    name="userName"
+                    disabled={isNameDisabled}
+                    style={{
+                      border: '1px solid transparent',
+                      backgroundColor: 'transparent',
+                    }}
+                  />
+                ) : (
+                  <Input
+                    type="text"
+                    name="userName"
+                    disabled={isNameDisabled}
+                    style={{
+                      border: '1px solid #F5925680',
+                      borderRadius: 40,
+                      backgroundColor: '#FDF7F2',
+                    }}
+                  />
+                )}
+                {isNameDisabled && (
+                  <EditBtn
+                    type="submit"
+                    name="userName"
+                    disabled={isAnyEditing}
+                  >
+                    <EditPenIcon
+                      fill={isAnyEditing ? iconColorDisabled : iconColor}
+                      width="20"
+                      height="20"
+                    />
+                  </EditBtn>
+                )}
+                {!isNameDisabled && (
+                  <EditBtn type="submit">
+                    <EditSaveIcon width="20" height="20" />
+                  </EditBtn>
+                )}
+              </InputWrapper>
               {touched.userName && errors.userName && (
-                <div
-                  style={{ color: 'red', textAlign: 'center', fontSize: 10 }}
-                >
-                  {errors.userName}
-                </div>
+                <ErrorMessage>{errors.userName}</ErrorMessage>
               )}
             </Form>
           )}
@@ -140,28 +180,51 @@ export const UserDataItem = () => {
         >
           {({ errors, touched }) => (
             <Form>
-              <div>
+              <InputWrapper>
                 <Label htmlFor="userEmail">Email:</Label>
-                <Input
-                  type="text"
-                  name="userEmail"
-                  disabled={isEmailDisabled}
-                />
+                {isEmailDisabled ? (
+                  <Input
+                    type="text"
+                    name="userEmail"
+                    disabled={isEmailDisabled}
+                    style={{
+                      border: '1px solid transparent',
+                      backgroundColor: 'transparent',
+                    }}
+                  />
+                ) : (
+                  <Input
+                    type="text"
+                    name="userEmail"
+                    disabled={isEmailDisabled}
+                    style={{
+                      border: '1px solid #F5925680',
+                      borderRadius: 40,
+                      backgroundColor: '#FDF7F2',
+                    }}
+                  />
+                )}
                 {isEmailDisabled && (
-                  <button
+                  <EditBtn
                     type="submit"
                     name="userEmail"
                     disabled={isAnyEditing}
                   >
-                    Edit
-                  </button>
+                    <EditPenIcon
+                      fill={isAnyEditing ? iconColorDisabled : iconColor}
+                      width="20"
+                      height="20"
+                    />
+                  </EditBtn>
                 )}
-                {!isEmailDisabled && <button type="submit">Save</button>}
-              </div>
+                {!isEmailDisabled && (
+                  <EditBtn type="submit">
+                    <EditSaveIcon width="20" height="20" />
+                  </EditBtn>
+                )}
+              </InputWrapper>
               {touched.userEmail && errors.userEmail && (
-                <div style={{ color: 'red', textAlign: 'center' }}>
-                  {errors.userEmail}
-                </div>
+                <ErrorMessage>{errors.userEmail}</ErrorMessage>
               )}
             </Form>
           )}
@@ -174,26 +237,37 @@ export const UserDataItem = () => {
           }
         >
           <Form>
-            <WrapperDatePicker>
+            <InputWrapper>
               <Label htmlFor="userBirthday">Birthday:</Label>
-              <InputDatePicker
-                dateFormat="dd.MM.yyyy"
-                selected={startDate}
-                name="userBirthday"
-                disabled={isBirthdayDisabled}
-                onChange={date => setStartDate(date)}
-              />
+              <div style={{ width: 245 }}>
+                <InputDatePicker
+                  active={!isBirthdayDisabled}
+                  dateFormat="dd.MM.yyyy"
+                  value="00.00.0000"
+                  name="userBirthday"
+                  disabled={isBirthdayDisabled}
+                  onChange={date => setStartDate(date)}
+                />
+              </div>
               {isBirthdayDisabled && (
-                <button
+                <EditBtn
                   type="submit"
                   name="userBirthday"
                   disabled={isAnyEditing}
                 >
-                  Edit
-                </button>
+                  <EditPenIcon
+                    fill={isAnyEditing ? iconColorDisabled : iconColor}
+                    width="20"
+                    height="20"
+                  />
+                </EditBtn>
               )}
-              {!isBirthdayDisabled && <button type="submit">Save</button>}
-            </WrapperDatePicker>
+              {!isBirthdayDisabled && (
+                <EditBtn type="submit">
+                  <EditSaveIcon width="20" height="20" />
+                </EditBtn>
+              )}
+            </InputWrapper>
           </Form>
         </Formik>
 
@@ -208,28 +282,51 @@ export const UserDataItem = () => {
         >
           {({ errors, touched }) => (
             <Form>
-              <div>
+              <InputWrapper>
                 <Label htmlFor="userPhone"> Phone:</Label>
-                <Input
-                  type="text"
-                  name="userPhone"
-                  disabled={isPhoneDisabled}
-                />
+                {isPhoneDisabled ? (
+                  <Input
+                    type="text"
+                    name="userPhone"
+                    disabled={isPhoneDisabled}
+                    style={{
+                      border: '1px solid transparent',
+                      backgroundColor: 'transparent',
+                    }}
+                  />
+                ) : (
+                  <Input
+                    type="text"
+                    name="userPhone"
+                    disabled={isPhoneDisabled}
+                    style={{
+                      border: '1px solid #F5925680',
+                      borderRadius: 40,
+                      backgroundColor: '#FDF7F2',
+                    }}
+                  />
+                )}
                 {isPhoneDisabled && (
-                  <button
+                  <EditBtn
                     type="submit"
                     name="userPhone"
                     disabled={isAnyEditing}
                   >
-                    Edit
-                  </button>
+                    <EditPenIcon
+                      fill={isAnyEditing ? iconColorDisabled : iconColor}
+                      width="20"
+                      height="20"
+                    />
+                  </EditBtn>
                 )}
-                {!isPhoneDisabled && <button type="submit">Save</button>}
-              </div>
+                {!isPhoneDisabled && (
+                  <EditBtn type="submit">
+                    <EditSaveIcon width="20" height="20" />
+                  </EditBtn>
+                )}
+              </InputWrapper>
               {touched.userPhone && errors.userPhone && (
-                <div style={{ color: 'red', textAlign: 'center' }}>
-                  {errors.userPhone}
-                </div>
+                <ErrorMessage>{errors.userPhone}</ErrorMessage>
               )}
             </Form>
           )}
@@ -244,25 +341,56 @@ export const UserDataItem = () => {
         >
           {({ errors, touched }) => (
             <Form>
-              <div>
+              <InputWrapper>
                 <Label htmlFor="userCity">City:</Label>
-                <Input type="text" name="userCity" disabled={isCityDisabled} />
-                {isCityDisabled && (
-                  <button type="submit" name="userCity" disabled={isAnyEditing}>
-                    Edit
-                  </button>
+                {isCityDisabled ? (
+                  <Input
+                    type="text"
+                    name="userCity"
+                    disabled={isCityDisabled}
+                    style={{
+                      border: '1px solid transparent',
+                      backgroundColor: 'transparent',
+                    }}
+                  />
+                ) : (
+                  <Input
+                    type="text"
+                    name="userCity"
+                    disabled={isCityDisabled}
+                    style={{
+                      border: '1px solid #F5925680',
+                      borderRadius: 40,
+                      backgroundColor: '#FDF7F2',
+                    }}
+                  />
                 )}
-                {!isCityDisabled && <button type="submit">Save</button>}
-              </div>
+                {isCityDisabled && (
+                  <EditBtn
+                    type="submit"
+                    name="userCity"
+                    disabled={isAnyEditing}
+                  >
+                    <EditPenIcon
+                      fill={isAnyEditing ? iconColorDisabled : iconColor}
+                      width="20"
+                      height="20"
+                    />
+                  </EditBtn>
+                )}
+                {!isCityDisabled && (
+                  <EditBtn type="submit">
+                    <EditSaveIcon width="20" height="20" />
+                  </EditBtn>
+                )}
+              </InputWrapper>
               {touched.userCity && errors.userCity && (
-                <div style={{ color: 'red', textAlign: 'center' }}>
-                  {errors.userCity}
-                </div>
+                <ErrorMessage>{errors.userCity}</ErrorMessage>
               )}
             </Form>
           )}
         </Formik>
-      </div>
+      </DataInputWrapp>
     </div>
   );
 };

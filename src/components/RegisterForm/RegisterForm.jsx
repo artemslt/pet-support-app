@@ -7,6 +7,7 @@ import { StepSwitcher } from './StepSwitcher';
 import { registerSchema } from '../../schemas/authValidationSchemas';
 import { register, login } from 'redux/auth/authOperations';
 import {
+  FlexBox,
   FormWrapper,
   Heading,
   Form,
@@ -54,31 +55,33 @@ export const RegisterForm = () => {
   };
 
   return (
-    <FormWrapper type={page}>
-      <Heading>Registration</Heading>
-      <Formik
-        initialValues={initialValues}
-        validationSchema={registerSchema}
-        onSubmit={handleSubmit}
-      >
-        {formik => (
-          <Form>
-            {<StepSwitcher page={page} setPage={setPage} />}
-            {page === '0' && (
-              <Button
-                type="button"
-                disabled={!(formik.dirty && formik.isValid)}
-                onClick={() => setPage('1')}
-              >
-                Next
-              </Button>
-            )}
-            <Text>
-              Already have an account? <Link to="/login">Login</Link>
-            </Text>
-          </Form>
-        )}
-      </Formik>
-    </FormWrapper>
+    <FlexBox type={page}>
+      <FormWrapper type={page}>
+        <Heading>Registration</Heading>
+        <Formik
+          initialValues={initialValues}
+          validationSchema={registerSchema}
+          onSubmit={handleSubmit}
+        >
+          {formik => (
+            <Form>
+              {<StepSwitcher page={page} setPage={setPage} />}
+              {page === '0' && (
+                <Button
+                  type="button"
+                  disabled={!(formik.dirty && formik.isValid)}
+                  onClick={() => setPage('1')}
+                >
+                  Next
+                </Button>
+              )}
+              <Text>
+                Already have an account? <Link to="/login">Login</Link>
+              </Text>
+            </Form>
+          )}
+        </Formik>
+      </FormWrapper>
+    </FlexBox>
   );
 };
