@@ -75,6 +75,15 @@ export const RegisterForm = () => {
                   Next
                 </Button>
               )}
+              {page === '1' && (
+                <Button
+                  type="button"
+                  disabled={!(formik.dirty && formik.isValid)}
+                  onClick={() => setPage('0')}
+                >
+                  Back
+                </Button>
+              )}
               <Text>
                 Already have an account? <Link to="/login">Login</Link>
               </Text>

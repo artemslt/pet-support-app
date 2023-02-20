@@ -31,9 +31,6 @@ export const SecondStep = ({ page, setPage }) => {
         <Error name="phone" component="p"></Error>
       </Label>
       <Button type="submit">Register</Button>
-      <Button type="button" onClick={() => setPage('0')}>
-        Back
-      </Button>
     </>
   );
 };
