@@ -1,8 +1,11 @@
-import React from 'react';
+// import React, { useState } from 'react';
 import { StyledBurger } from './Burger.styled';
+// import { useState } from 'react';
 
 export const Burger = ({ open, setOpen, ...props }) => {
   const isExpanded = open ? true : false;
+
+  // const [modalIsOpen, setModalIsOpen] = useState();
 
   return (
     <StyledBurger
