@@ -2,7 +2,7 @@ import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { toast } from 'react-toastify';
 
-axios.defaults.baseURL = 'https://pet-support-backend-v8vc.onrender.com/api/';
+axios.defaults.baseURL = 'http://localhost:4000/api/';
 
 const setAuthHeader = token => {
   axios.defaults.headers.common.Authorization = `Bearer ${token}`;
@@ -30,6 +30,20 @@ export const login = createAsyncThunk(
   async (credentials, thunkAPI) => {
     try {
       const response = await axios.post('auth/login', credentials);
+      setAuthHeader(response.data.data.token);
+      return response.data.data;
+    } catch (error) {
+      toast.error(`Something wrong - ${error.response.data.message}`);
+      return thunkAPI.rejectWithValue(error.response.data.message);
+    }
+  }
+);
+
+export const gLogin = createAsyncThunk(
+  'auth/googlelogin',
+  async (credentials, thunkAPI) => {
+    try {
+      const response = await axios.post('auth/googlelogin', credentials);
       setAuthHeader(response.data.data.token);
       return response.data.data;
     } catch (error) {

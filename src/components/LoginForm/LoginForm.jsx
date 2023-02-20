@@ -7,7 +7,7 @@ import axios from 'axios';
 import { nanoid } from 'nanoid';
 
 import { loginSchema } from '../../schemas/authValidationSchemas';
-import { login } from 'redux/auth/authOperations';
+import { login, gLogin } from 'redux/auth/authOperations';
 import {
   FlexBox,
   FormWrapper,
@@ -57,9 +57,12 @@ export const LoginForm = () => {
         `https://www.googleapis.com/oauth2/v1/userinfo?access_token=${response.access_token}`
       );
 
-      console.log(googleUser.data);
-      const { email } = googleUser.data;
-      await dispatch(login({ email, password: nanoid() }));
+      
+      const { email, name } = googleUser.data;
+      console.log(email, name, nanoid());
+      const u = {email, name }
+      console.log(u)
+      await dispatch(gLogin({ email: email, name: name}));
     } catch (error) {
       toast.error(`Google login Failed - ${error}`);
     }

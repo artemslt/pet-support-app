@@ -27,7 +27,7 @@ export const FormWrapper = styled.div`
     box-shadow: 7px 4px 14px rgba(0, 0, 0, 0.11);
     border-radius: 40px;
     width: 608px;
-    height: 449px;
+    height: 519px;
   }
   ${up('pc')} {
     width: 618px;
