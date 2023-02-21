@@ -13,7 +13,7 @@ jobs:
 
       - name: Install, lint, build 🔧
         env: 
-          REACT_APP_GOOGLE_CLIENT_ID: ${{ secrets.REACT_APP_SECRET }}
+          REACT_APP_GOOGLE_CLIENT_ID: ${{ secrets.REACT_APP_GOOGLE_CLIENT_ID }}
         run: |
           npm install
           npm run lint:js
@@ -21,7 +21,7 @@ jobs:
 
       - name: Deploy 🚀
         env: 
-          REACT_APP_GOOGLE_CLIENT_ID: ${{ secrets.REACT_APP_SECRET }}
+          REACT_APP_GOOGLE_CLIENT_ID: ${{ secrets.REACT_APP_GOOGLE_CLIENT_ID }}
         uses: JamesIves/github-pages-deploy-action@4.1.0
         with:
           branch: gh-pages
