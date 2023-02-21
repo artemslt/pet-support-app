@@ -1,13 +1,19 @@
 import { Link, NavContainer } from './Nav.styled';
 
-export const Nav = () => {
+export const Nav = ({ setOpen }) => {
   return (
     <NavContainer>
-      <Link to="/news">News</Link>
+      <Link to="/news" onClick={() => setOpen(false)}>
+        News
+      </Link>
 
-      <Link to="/notices">Find pet</Link>
+      <Link to="/notices" onClick={() => setOpen(false)}>
+        Find pet
+      </Link>
 
-      <Link to="/friends">Our friends</Link>
+      <Link to="/friends" onClick={() => setOpen(false)}>
+        Our friends
+      </Link>
     </NavContainer>
   );
 };
