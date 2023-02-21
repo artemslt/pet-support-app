@@ -6,6 +6,7 @@
     import {
     PartnerTitle,
     CardList,
+    FriendsContainer
 } from './FriendList.styled';
     import { Container } from "components/Container/Container.styled";
 
@@ -19,6 +20,7 @@
 
     return (
         <Container>
+            <FriendsContainer>
         <PartnerTitle>Our friends</PartnerTitle>
         {friends && (
             <CardList>
@@ -35,7 +37,8 @@
                 />
             ))}
             </CardList>
-        )}
+                )}
+                </FriendsContainer>
         </Container>
     );
     }
