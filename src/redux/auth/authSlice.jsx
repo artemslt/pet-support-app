@@ -2,6 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 import {
   register,
   login,
+  gLogin,
   logout,
   refreshUser,
   updateUser,
@@ -30,6 +31,11 @@ const authSlice = createSlice({
         state.isLoggedIn = false;
       })
       .addCase(login.fulfilled, (state, action) => {
+        state.user = action.payload.user;
+        state.token = action.payload.token;
+        state.isLoggedIn = true;
+      })
+      .addCase(gLogin.fulfilled, (state, action) => {
         state.user = action.payload.user;
         state.token = action.payload.token;
         state.isLoggedIn = true;
