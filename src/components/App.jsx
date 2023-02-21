@@ -5,6 +5,7 @@ import { SharedLayout } from './SharedLayout/SharedLayout';
 import { useEffect, lazy } from 'react';
 import { useDispatch } from 'react-redux';
 import { refreshUser } from 'redux/auth/authOperations';
+import { NoticesCategoriesList } from './NoticesCategoriesList/NoticesCategoriesList';
 
 const Home = lazy(() => import('../pages/Home/Home'));
 const NewsPage = lazy(() => import('../pages/NewsPage/NewsPage'));
@@ -19,7 +20,7 @@ const NotFound = lazy(() => import('../pages/NotFound/NotFound'));
 
 export const App = () => {
   const dispatch = useDispatch();
- 
+
   useEffect(() => {
     dispatch(refreshUser());
   }, [dispatch]);
@@ -29,7 +30,11 @@ export const App = () => {
       <Route path="/" element={<SharedLayout />}>
         <Route index element={<Home />} />
         <Route path="news" element={<NewsPage />} />
-        <Route path="notices" element={<NoticesPage />} />
+        <Route path="notices" element={<NoticesPage />}>
+          <Route path="sell" element={<NoticesCategoriesList />} />
+          <Route path="lost-found" element={<NoticesCategoriesList />} />
+          <Route path="for-free" element={<NoticesCategoriesList />} />
+        </Route>
         <Route path="friends" element={<OurFriendsPage />} />
         <Route path="register" element={<RegisterPage />} />
         <Route path="login" element={<LoginPage />} />
