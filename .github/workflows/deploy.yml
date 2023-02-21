@@ -20,12 +20,12 @@ jobs:
           npm install
           npm run lint:js
           npm run build
+       
+      - name: Deploy 🚀
+        uses: JamesIves/github-pages-deploy-action@4.1.0
         env:
            REACT_APP_GOOGLE_CLIENT_ID: ${{ secrets.REACT_APP_GOOGLE_CLIENT_ID }}
 
-
-      - name: Deploy 🚀
-        uses: JamesIves/github-pages-deploy-action@4.1.0
         with:
           branch: gh-pages
           folder: build
