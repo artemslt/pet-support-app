@@ -1,5 +1,4 @@
 import { Formik } from 'formik';
-import axios from 'axios';
 
 import { useState } from 'react';
 import {
@@ -41,14 +40,7 @@ export const ModalAddsPet = ({ onToggleModal }) => {
     if (!name || !birthday || !breed || !photo || !comment) {
       return;
     }
-    const data = {
-      name,
-      birthday,
-      breed,
-      photo,
-      comment,
-    };
-
+  
     actions.resetForm();
     setImgValue(null);
     setImgUrl(null);
