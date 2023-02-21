@@ -5,6 +5,8 @@ import { SharedLayout } from './SharedLayout/SharedLayout';
 import { useEffect, lazy } from 'react';
 import { useDispatch } from 'react-redux';
 import { refreshUser } from 'redux/auth/authOperations';
+import { RestrictedRoute } from './RestrictedRoute/RestrictedRoute';
+import { PrivateRoute } from './PrivateRoute/PrivateRoute';
 
 const Home = lazy(() => import('../pages/Home/Home'));
 const NewsPage = lazy(() => import('../pages/NewsPage/NewsPage'));
@@ -19,7 +21,7 @@ const NotFound = lazy(() => import('../pages/NotFound/NotFound'));
 
 export const App = () => {
   const dispatch = useDispatch();
- 
+
   useEffect(() => {
     dispatch(refreshUser());
   }, [dispatch]);
@@ -31,9 +33,20 @@ export const App = () => {
         <Route path="news" element={<NewsPage />} />
         <Route path="notices" element={<NoticesPage />} />
         <Route path="friends" element={<OurFriendsPage />} />
-        <Route path="register" element={<RegisterPage />} />
-        <Route path="login" element={<LoginPage />} />
-        <Route path="user" element={<UserPage />} />
+        <Route
+          path="register"
+          element={
+            <RestrictedRoute component={RegisterPage} redirectTo="/user" />
+          }
+        />
+        <Route
+          path="login"
+          element={<RestrictedRoute component={LoginPage} redirectTo="/user" />}
+        />
+        <Route
+          path="user"
+          element={<PrivateRoute component={UserPage} redirectTo="/login" />}
+        />
         <Route path="*" element={<NotFound />} />
       </Route>
     </Routes>
