@@ -1,9 +1,9 @@
 {
   "files": {
     "main.css": "/pet-support-app/static/css/main.7d4fca34.css",
-    "main.js": "/pet-support-app/static/js/main.0f9ff976.js",
+    "main.js": "/pet-support-app/static/js/main.2fa50c01.js",
     "static/js/24.2241fb1f.chunk.js": "/pet-support-app/static/js/24.2241fb1f.chunk.js",
-    "static/js/199.71d38251.chunk.js": "/pet-support-app/static/js/199.71d38251.chunk.js",
+    "static/js/972.79bb3e8c.chunk.js": "/pet-support-app/static/js/972.79bb3e8c.chunk.js",
     "static/js/649.8228937b.chunk.js": "/pet-support-app/static/js/649.8228937b.chunk.js",
     "static/js/90.c123291b.chunk.js": "/pet-support-app/static/js/90.c123291b.chunk.js",
     "static/js/18.7f8d6fa2.chunk.js": "/pet-support-app/static/js/18.7f8d6fa2.chunk.js",
@@ -36,17 +36,19 @@
     "static/media/cameraIcon.svg": "/pet-support-app/static/media/cameraIcon.be7fa4e758df4025f46bf86e5d1b309e.svg",
     "static/media/logout.svg": "/pet-support-app/static/media/logout.503bd9025c9451feb4ebdf03e3264910.svg",
     "static/media/google-icon.svg": "/pet-support-app/static/media/google-icon.7b4831c0bc428f8ef649c8f6a5e00a66.svg",
+    "static/media/search.svg": "/pet-support-app/static/media/search.38802c1fe262a11329b7a7f2e33f15fc.svg",
     "static/media/search-24px 1.svg": "/pet-support-app/static/media/search-24px 1.b93608a17af3cfabc43a2713583ac19e.svg",
     "static/media/eye.svg": "/pet-support-app/static/media/eye.a1a24875b4c903d33d4d55cf0e2ef2ae.svg",
     "static/media/editSaveIcon.svg": "/pet-support-app/static/media/editSaveIcon.52bb15026eb775c708da0f319c7b7567.svg",
+    "static/media/x-circle.svg": "/pet-support-app/static/media/x-circle.8e44172cf3df32c550767c93f355945a.svg",
     "static/media/close-image-icon.svg": "/pet-support-app/static/media/close-image-icon.6cc40dbdfac356824f605fde6447cdac.svg",
     "static/media/addIcon.svg": "/pet-support-app/static/media/addIcon.deec2b9327a6f7e779ae3cbb9fa31798.svg",
     "static/media/addPhoto.svg": "/pet-support-app/static/media/addPhoto.74842807e3433f5616a0d5cf5d556d2b.svg",
     "static/media/akar-icons_plus.svg": "/pet-support-app/static/media/akar-icons_plus.40b2205dc2516cb92de4e8f4f8627464.svg",
     "main.7d4fca34.css.map": "/pet-support-app/static/css/main.7d4fca34.css.map",
-    "main.0f9ff976.js.map": "/pet-support-app/static/js/main.0f9ff976.js.map",
+    "main.2fa50c01.js.map": "/pet-support-app/static/js/main.2fa50c01.js.map",
     "24.2241fb1f.chunk.js.map": "/pet-support-app/static/js/24.2241fb1f.chunk.js.map",
-    "199.71d38251.chunk.js.map": "/pet-support-app/static/js/199.71d38251.chunk.js.map",
+    "972.79bb3e8c.chunk.js.map": "/pet-support-app/static/js/972.79bb3e8c.chunk.js.map",
     "649.8228937b.chunk.js.map": "/pet-support-app/static/js/649.8228937b.chunk.js.map",
     "90.c123291b.chunk.js.map": "/pet-support-app/static/js/90.c123291b.chunk.js.map",
     "18.7f8d6fa2.chunk.js.map": "/pet-support-app/static/js/18.7f8d6fa2.chunk.js.map",
@@ -59,6 +61,6 @@
   },
   "entrypoints": [
     "static/css/main.7d4fca34.css",
-    "static/js/main.0f9ff976.js"
+    "static/js/main.2fa50c01.js"
   ]
 }
