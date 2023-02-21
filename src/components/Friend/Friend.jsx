@@ -11,8 +11,7 @@ import {
 export const Friend = ({ _id, title,url , imageUrl, addressUrl, address, email, phone, }) => {
     return (
             <Card key={_id}>
-            <CardTitle>
-            <a href={url} target="_blank" rel="noreferrer">{title}</a>
+            <CardTitle href={url} target="_blank" rel="noreferrer">{title}
             </CardTitle>
                 <CardInfo>
                 <CardPhoto>
