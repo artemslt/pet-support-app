@@ -1,42 +1,79 @@
-import { Field,ErrorMessage  } from 'formik';
+import { Field, ErrorMessage } from 'formik';
 
-export const SecondPart =({setStep, values})=>{
-    return(
-        <div>
-            <div role="group">
-            <label>
-              <Field type="radio" name="sex" value="Male" />
-              Male
-            </label>
-            <label>
-              <Field type="radio" name="sex" value="Female" />
-              Female
-            </label>
+export const SecondPart = ({
+  setStep,
+  values,
+  isValid,
+  dirty,
+  setFieldValue,
+}) => {
+  return (
+    <div>
+      <label htmlFor="">
+        <p>
+          The sex<span>*</span>:
+        </p>
+        <div role="group">
+          <label>
+            <Field type="radio" name="sex" value="Male" />
+            Male
+          </label>
+          <label>
+            <Field type="radio" name="sex" value="Female" />
+            Female
+          </label>
+        </div>
 
-            </div>
-        {/* <Field type="checkbox" name="male" value="Male" checked/>
-        <Field type="checkbox" name="female" value="Female"/> */}
+        <ErrorMessage name="sex" component="div" />
+      </label>
 
-        <ErrorMessage  name="sex" component="div" />
+      <label>
+        <p>
+          Location<span>*</span>:
+        </p>
 
-        <Field name="location" placeholder="Type location"/>
-        <ErrorMessage  name="location" component="div" />
+        <Field name="location" placeholder="Type location" />
+        <ErrorMessage name="location" component="div" />
+      </label>
 
-        
-        <Field name="price" placeholder="Type price"/>
-        <ErrorMessage  name="price" component="div" />
+      {values.typeOfNotice === 'sell' && (
+        <>
+          <label>
+            <p>
+              Price<span>*</span>:
+            </p>
+            <Field name="price" placeholder="Type price" />
+            <ErrorMessage name="price" component="div" />
+          </label>
+        </>
+      )}
+      <label>
+        <p>Load the pet’s image:</p>
+        <Field name="img" type="file" accept="image/*" />
+        <ErrorMessage name="img" component="div" />
+      </label>
 
-        <Field name="img" />
-        <ErrorMessage  name="img" component="div" />
+      <label>
+        <p>Comments</p>
+        <Field
+          as="textarea"
+          name="comment"
+          placeholder="Type comment"
+          onChange={e => setFieldValue('img', e.currentTarget.files[0])}
+        />
+        <ErrorMessage name="comment" component="div" />
+      </label>
 
-
-        <Field name="comment" placeholder="Type comment"/>
-        <ErrorMessage  name="comment" component="div" />
-
-        <button type="button" onClick={()=>setStep(true)}>
-                Back
-              </button>
-              <button type="submit">Done</button>
-      </div>
-    )
-}
+      <button
+        type="button"
+        onClick={() => setStep(true)}
+        disabled={!isValid || !dirty}
+      >
+        Back
+      </button>
+      <button type="submit" disabled={!(isValid && dirty)}>
+        Done
+      </button>
+    </div>
+  );
+};
