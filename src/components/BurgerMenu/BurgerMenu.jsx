@@ -3,12 +3,13 @@ import { AuthNav } from 'components/AuthNav/AuthNav';
 import { Logo } from 'components/Logo/Logo';
 import { Nav } from 'components/Nav/Nav';
 import { UserNav } from 'components/UserNav/UserNav';
+import { useAuth } from 'hooks';
 import { useMatchMedia } from 'hooks/use-match-media';
 import { StyledMenu } from './BurgerMenu.styled';
 
-export const Menu = ({ open, ...props }) => {
+export const Menu = ({ open, setOpen, ...props }) => {
   const { isMobile } = useMatchMedia();
-  const isLoggedIn = false;
+  const { isLoggedIn } = useAuth();
   const isHidden = open ? true : false;
 
   return (
