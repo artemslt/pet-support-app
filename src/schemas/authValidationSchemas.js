@@ -46,5 +46,5 @@ export const loginSchema = yup.object().shape({
     .required('Password is required')
     .min(7, 'Password should be 7 characters minimum.')
     .max(32, 'Password should be 32 characters maximum.')
-    .matches(passwordRegexp, 'Whitespace is not allowed'),
+    .matches(passwordRegexp, 'At least one upper and lowercase letter, number, special character, space is not allowed'),
 });
