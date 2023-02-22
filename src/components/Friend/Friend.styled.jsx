@@ -1,90 +1,55 @@
 import styled from 'styled-components';
 import { theme } from '../../theme';
-const { space, fontSizes, fontWeights, colors } = theme;
-
-export const PartnerTitle = styled.h1`
-  font-weight: ${fontWeights[2]};
-  text-align: center;
-  color: ${colors.additionalBlack};
-  font-size: ${fontSizes[6]}px;
-  line-height: ${space[5]}px;
-
-  @media (max-width: ${theme.mobile}) {
-    font-size: ${fontSizes[1]}px;
-    line-height: ${space[2]}px;
-    margin: ${space[5]}px 0 ${space[4]}px;
-  }
-
-  @media (min-width: ${theme.mobileSizeM}) {
-    margin: ${space[4]}px 0 ${space[2]}px;
-  }
-
-  @media (min-width: ${theme.pc}) {
-    margin: ${space[3]}px 0;
-  }
-`;
-
-export const CardList = styled.ul`
-  display: grid;
-  margin: 0 auto;
-
-  @media screen and (min-width: ${theme.mobile}) {
-    grid-template-columns: repeat(1, 1fr);
-    max-width: 280px;
-    gap: ${space[1]}px;
-  }
-
-  @media screen and (min-width: ${theme.tablet}) {
-    grid-template-columns: repeat(2, 1fr);
-    max-width: ${theme.tabletM};
-  }
-
-  @media screen and (min-width: ${theme.pc}) {
-    grid-template-columns: repeat(3, 1fr);
-    gap: ${space[4]}px;
-    max-width: ${theme.pcSizeL};
-  }
-`;
+const { space, fonts, fontSizes, fontWeights, colors } = theme;
 
 export const Card = styled.li`
+position: relative;
+font-family: ${fonts[1]};
   display: flex;
   background-color: ${colors.mainWhite};
-  box-shadow: ${space[2]}px ${space[1]}px ${space[4]}px rgba(49, 21, 4, 0.07);
-  border-radius: ${space[5]}px;
+  box-shadow: 7px 4px 14px rgba(49, 21, 4, 0.07);
+  border-radius: 40px;
   padding: ${space[3]}px 0;
   flex-direction: column;
+
+  @media (max-width: 320px) {
+    border-radius: 20px;
+  }
 `;
 
 export const CardTitle = styled.a`
-  font-weight: ${fontWeights[1]};
+  font-weight: ${fontWeights[2]};
   text-decoration-line: underline;
   color: ${colors.mainAccent};
   text-align: center;
-  margin-bottom: ${space[3]}px;
+  max-width: 130px;
+  margin-right: auto;
+  margin-left: auto;
 
-  @media (max-width: ${theme.mobile}) {
-    margin-bottom: ${space[1]}px;
-    font-size: ${fontSizes[0]}px;
-    line-height: ${space[1]}px;
-  }
+  margin-bottom: ${fontSizes[1]}px;
+  font-size: ${fontSizes[0]}px;
+  line-height: 16px;
 
-  @media (min-width: ${theme.mobile}) {
+
+  @media (min-width: 320px) {
+    margin-bottom: ${space[3]}px;
     font-size: ${fontSizes[2]}px;
-    line-height: ${space[3]}px;
+    line-height: 22px;
+    max-width: 250px;
   }
 
-  @media (min-width: ${theme.pc}) {
+  @media (min-width: 1280px) {
     margin-bottom: ${space[3]}px;
     font-size: ${fontSizes[4]}px;
-    line-height: ${space[4]}px;
+    line-height: 27px;
   }
 `;
 
 export const CardInfo = styled.div`
   display: flex;
   flex-direction: row;
-  @media (max-width: ${theme.mobile}) {
-    flex-direction: row;
+  @media (min-width: 1280px) {
+    justify-content: space-evenly;
   }
 `;
 
@@ -106,8 +71,9 @@ export const CardPhoto = styled.div`
 `;
 
 export const CardData = styled.div`
+  margin-right: 5%;
   font-weight: 500;
-  max-width: 206px;
+  max-width: 200px;
   color: #000000;
   ul {
     list-style: none;
@@ -118,11 +84,14 @@ export const CardData = styled.div`
   @media (max-width: 319px) {
     font-size: 12px;
     line-height: 16px;
+    max-width: 140px;
   }
 
   @media (min-width: 320px) {
     font-size: 14px;
     line-height: 19px;
+    justify-content:space-between;
+
   }
 
   @media (min-width: 1280px) {
@@ -146,6 +115,11 @@ export const CardDataItem = styled.li`
   }
   li:last-child {
     margin-bottom: 0px;
+  }
+
+  a {
+    text-decoration: underline;
+    color: #000000;
   }
 `;
 
@@ -171,3 +145,22 @@ export const CardText = styled.span`
     max-width: 198px;
   }
 `;
+
+export const CardWorkDays = styled.div`
+position: absolute;
+  top: 30%;
+  left: 70%;
+  transform: translate(-50%, 0);
+  z-index: 1;
+  background: #FFFFFF;
+border: 1px solid #F59256;
+box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.25);
+border-radius: 8px;
+padding:12px;
+min-width: 170px;
+text-align:center;
+`;
+
+export const CardTime = styled.span `
+cursor: pointer;
+`

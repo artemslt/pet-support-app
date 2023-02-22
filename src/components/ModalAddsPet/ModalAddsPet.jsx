@@ -1,5 +1,4 @@
 import { Formik } from 'formik';
-
 import { useState } from 'react';
 import {
   Wrapper,
@@ -10,12 +9,11 @@ import {
   FormStyled,
   Button,
 } from './ModalAddsPet.styled';
-
 import { FormePageFist } from './FormPageFirst';
 import { FormePageSecond } from './FormPageSecond';
-
 import { AddPetSchemaPageOne, AddPetSchemaPageTwo } from 'schemas/addPetSchema';
-
+import { useDispatch } from 'react-redux';
+import { onSelector } from 'redux/InputPets/inputPetsSlice';
 const initialValues = {
   name: '',
   birthday: '',
@@ -26,8 +24,8 @@ const initialValues = {
 
 export const ModalAddsPet = ({ onToggleModal }) => {
   const [pageToggle, setPageToggle] = useState(true);
-  const [imgValue, setImgValue] = useState(null);
   const [imgUrl, setImgUrl] = useState(null);
+  const dispatch = useDispatch();
 
   const fileReader = new FileReader();
   fileReader.onloadend = () => {
@@ -40,17 +38,15 @@ export const ModalAddsPet = ({ onToggleModal }) => {
     if (!name || !birthday || !breed || !photo || !comment) {
       return;
     }
-  
     actions.resetForm();
-    setImgValue(null);
     setImgUrl(null);
+    dispatch(onSelector());
     onToggleModal();
   };
   const handleOnChange = event => {
     event.preventDefault();
 
     if (event.target.files && event.target.files.length > 0) {
-      setImgValue(event.target.value);
       const file = event.target.files[0];
       return fileReader.readAsDataURL(file);
     }
@@ -59,7 +55,12 @@ export const ModalAddsPet = ({ onToggleModal }) => {
 
   return (
     <Wrapper>
-      <ButtonCloses onClick={e => onToggleModal(e)}>
+      <ButtonCloses
+        onClick={e => {
+          onToggleModal(e);
+          dispatch(onSelector());
+        }}
+      >
         <ClosesIcon />
       </ButtonCloses>
       <div>
@@ -91,14 +92,9 @@ export const ModalAddsPet = ({ onToggleModal }) => {
             return (
               <FormStyled onChange={handleOnChange}>
                 {pageToggle ? (
-                  <FormePageFist />
+                  <FormePageFist formik={Formik} />
                 ) : (
-                  <FormePageSecond
-                    setImgUrl={setImgUrl}
-                    setImgValue={setImgValue}
-                    imgValue={imgValue}
-                    imgUrl={imgUrl}
-                  />
+                  <FormePageSecond setImgUrl={setImgUrl} imgUrl={imgUrl} />
                 )}
                 <WrapperBtn>
                   <Button

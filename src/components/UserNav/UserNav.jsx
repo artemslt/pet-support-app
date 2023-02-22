@@ -1,9 +1,9 @@
 import { LinkFull, UserNavContainer } from './UserNav.styled';
 
-export const UserNav = () => {
+export const UserNav = ({ setOpen }) => {
   return (
     <UserNavContainer>
-      <LinkFull to="/user">
+      <LinkFull to="/user" onClick={() => setOpen(false)}>
         <svg
           width="28"
           height="28"

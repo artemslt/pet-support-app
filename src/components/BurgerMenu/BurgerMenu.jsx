@@ -1,24 +1,23 @@
 import { AuthNav } from 'components/AuthNav/AuthNav';
-// import { Container } from 'components/Container/Container.styled';
 import { Logo } from 'components/Logo/Logo';
 import { Nav } from 'components/Nav/Nav';
 import { UserNav } from 'components/UserNav/UserNav';
+import { useAuth } from 'hooks';
 import { useMatchMedia } from 'hooks/use-match-media';
-import { StyledMenu } from './BurgerMenu.styled';
+import { StyledMenu, StyledNav } from './BurgerMenu.styled';
 
-export const Menu = ({ open, ...props }) => {
+export const Menu = ({ setOpen, open }) => {
   const { isMobile } = useMatchMedia();
-  const isLoggedIn = false;
-  const isHidden = open ? true : false;
+  const { isLoggedIn } = useAuth();
 
   return (
-    // <Container>
-    <StyledMenu open={open} aria-hidden={!isHidden} {...props}>
-      <Logo />
-      {isMobile && isLoggedIn && <UserNav />}
-      {isMobile && !isLoggedIn && <AuthNav />}
-      <Nav />
+    <StyledMenu open={open}>
+      <Logo setOpen={setOpen} />
+      <StyledNav>
+        {isMobile && isLoggedIn && <UserNav setOpen={setOpen} />}
+        {isMobile && !isLoggedIn && <AuthNav setOpen={setOpen} />}
+        <Nav setOpen={setOpen} />
+      </StyledNav>
     </StyledMenu>
-    // </Container>
   );
 };
