@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/pet-support-app/static/css/main.d6ec9267.css",
-    "main.js": "/pet-support-app/static/js/main.f4745444.js",
+    "main.js": "/pet-support-app/static/js/main.7bef2f69.js",
     "static/js/456.19d12624.chunk.js": "/pet-support-app/static/js/456.19d12624.chunk.js",
     "static/js/972.6ecb606d.chunk.js": "/pet-support-app/static/js/972.6ecb606d.chunk.js",
     "static/js/90.8b7fb004.chunk.js": "/pet-support-app/static/js/90.8b7fb004.chunk.js",
@@ -50,7 +50,7 @@
     "static/media/addPhoto.svg": "/pet-support-app/static/media/addPhoto.74842807e3433f5616a0d5cf5d556d2b.svg",
     "static/media/akar-icons_plus.svg": "/pet-support-app/static/media/akar-icons_plus.40b2205dc2516cb92de4e8f4f8627464.svg",
     "main.d6ec9267.css.map": "/pet-support-app/static/css/main.d6ec9267.css.map",
-    "main.f4745444.js.map": "/pet-support-app/static/js/main.f4745444.js.map",
+    "main.7bef2f69.js.map": "/pet-support-app/static/js/main.7bef2f69.js.map",
     "456.19d12624.chunk.js.map": "/pet-support-app/static/js/456.19d12624.chunk.js.map",
     "972.6ecb606d.chunk.js.map": "/pet-support-app/static/js/972.6ecb606d.chunk.js.map",
     "90.8b7fb004.chunk.js.map": "/pet-support-app/static/js/90.8b7fb004.chunk.js.map",
@@ -67,6 +67,6 @@
   },
   "entrypoints": [
     "static/css/main.d6ec9267.css",
-    "static/js/main.f4745444.js"
+    "static/js/main.7bef2f69.js"
   ]
 }
