@@ -8,11 +8,30 @@ export const CategoriesNav = styled.nav`
   flex-wrap: wrap-reverse;
   flex-direction: row-reverse;
   justify-content: flex-end;
-  margin-bottom: 60px;
+  margin-bottom: 16px;
+  ${up('tablet')} {
+    justify-content: flex-end;
+    flex-direction: row;
+  }
+
   ${up('pc')} {
     flex-wrap: nowrap;
+    align-items: center;
     flex-direction: row;
     justify-content: flex-start;
+    margin-bottom: 60px;
+  }
+`;
+
+export const LinkWrapper = styled.div`
+  display: flex;
+  flex-wrap: wrap-reverse;
+  flex-direction: row-reverse;
+  max-width: 500px;
+  justify-content: flex-end;
+
+  ${up('pc')} {
+    max-width: 100%;
   }
 `;
 
@@ -29,11 +48,14 @@ export const StyledLink = styled(NavLink)`
   font-size: ${({ theme }) => theme.fontSizes[1]};
   line-height: 17px;
   margin-bottom: 12px;
-  margin-right: 12px;
+  margin-right: 9px;
   cursor: pointer;
 
   &.active {
     color: ${({ theme }) => theme.colors.mainWhite};
     background-color: ${({ theme }) => theme.colors.mainAccent};
+  }
+  ${up('pc')} {
+    margin-bottom: 0;
   }
 `;
