@@ -6,12 +6,12 @@ import { useAuth } from 'hooks';
 import { useMatchMedia } from 'hooks/use-match-media';
 import { StyledMenu, StyledNav } from './BurgerMenu.styled';
 
-export const Menu = ({ setOpen }) => {
+export const Menu = ({ setOpen, open }) => {
   const { isMobile } = useMatchMedia();
   const { isLoggedIn } = useAuth();
 
   return (
-    <StyledMenu>
+    <StyledMenu open={open}>
       <Logo />
       <StyledNav>
         {isMobile && isLoggedIn && <UserNav setOpen={setOpen} />}

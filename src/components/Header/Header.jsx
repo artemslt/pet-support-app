@@ -6,7 +6,7 @@ import { Burger } from 'components/Burger/Burger';
 import { Menu } from 'components/BurgerMenu/BurgerMenu';
 import { useMatchMedia } from 'hooks/use-match-media';
 import { Container } from 'components/Container/Container.styled';
-import { CSSTransition } from 'react-transition-group';
+// import { CSSTransition } from 'react-transition-group';
 
 export const Header = () => {
   const [open, setOpen] = useState(false);
@@ -20,9 +20,9 @@ export const Header = () => {
 
         {!isDesktop && <Burger open={open} setOpen={setOpen} />}
 
-        <CSSTransition in={open} timeout={300} classNames="alert" unmountOnExit>
-          <Menu setOpen={setOpen} />
-        </CSSTransition>
+        {/* <CSSTransition in={open} timeout={300} classNames="alert" unmountOnExit> */}
+        <Menu setOpen={setOpen} open={open} />
+        {/* </CSSTransition> */}
       </HeaderStyled>
     </Container>
   );
