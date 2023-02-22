@@ -15,7 +15,7 @@ export const Header = () => {
   return (
     <Container>
       <HeaderStyled>
-        <Logo />
+        <Logo setOpen={setOpen} />
         <Navigation setOpen={setOpen} />
 
         {!isDesktop && <Burger open={open} setOpen={setOpen} />}
