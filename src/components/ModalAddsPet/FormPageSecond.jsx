@@ -13,34 +13,36 @@ import {
   CommentTitle,
 } from './ModalAddsPet.styled';
 
-export const FormePageSecond = ({ setImgUrl, imgValue, imgUrl }) => {
+export const FormePageSecond = ({ setImgUrl, imgUrl }) => {
   return (
     <>
       <TitleAddPhoto> Add photo and some comments</TitleAddPhoto>
       <Label>
-        <AddImage>
-          {!imgValue && (
+        <AddImage className={!imgUrl ? 'Add_Image_show' : ''}>
+          {!imgUrl && (
             <InputHidden
               type="file"
               name="photo"
-              value={imgValue ? imgValue : ''}
+              value={imgUrl ? imgUrl : ''}
             />
           )}
-          <Error name="photo" component="p"></Error>
           <ImgBox className={imgUrl ? 'show_img' : ''}>
             <Image src={imgUrl} alt="" />
-            <ButtonClose
-              onClick={() => {
-                setImgUrl(null);
-              }}
-            >
-              <CancelIcon />
-            </ButtonClose>
           </ImgBox>
-
           <AddPhoto />
         </AddImage>
+        <Error name="photo" component="p"></Error>
+
+        <ButtonClose
+          onClick={() => {
+            setImgUrl(null);
+          }}
+          className={imgUrl ? 'button_closse__show' : ''}
+        >
+          <CancelIcon />
+        </ButtonClose>
       </Label>
+
       <Label htmlFor="">
         <CommentTitle> Comments</CommentTitle>
         <Comment
