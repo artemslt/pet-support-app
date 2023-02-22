@@ -1,7 +1,9 @@
 import styled from 'styled-components';
 
-export const MobBtn = styled.div`
+export const MobBtn = styled.button`
   position: fixed;
+  z-index: 1;
+  opacity: 0.9;
   right: 20px;
   top: 455px;
   display: flex;
@@ -11,7 +13,9 @@ export const MobBtn = styled.div`
   width: 80px;
   height: 80px;
   border-radius: 50%;
+  border: transparent;
   background-color: ${({ theme }) => theme.colors.mainAccent};
+  cursor: pointer;
 `;
 
 export const BtnText = styled.p`

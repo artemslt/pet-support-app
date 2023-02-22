@@ -59,14 +59,25 @@ export const InputWrapper = styled.div`
 
 export const EditBtn = styled.button`
   width: 32px;
+  padding: 5px;
   background-color: #fdf7f2;
   border: none;
   border-radius: 50%;
-  padding: 5px;
+  cursor: pointer;
 `;
 
 export const ErrorMessage = styled.div`
+  position: absolute;
+  transform: translate(110px, 0px);
   font-size: 10px;
   color: red;
-  position: absolute;
+`;
+
+export const NotAuthorized = styled.div`
+  font-family: 'Manrope';
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 40%;
 `;

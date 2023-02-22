@@ -19,7 +19,7 @@ import {
   Error,
   Link,
   IconButton,
-  ButtonText
+  ButtonText,
 } from './LoginForm.styled';
 import { Container } from 'components/Container/Container.styled';
 import { ReactComponent as EyeIcon } from '../../images/eye.svg';
@@ -56,10 +56,11 @@ export const LoginForm = () => {
         `https://www.googleapis.com/oauth2/v1/userinfo?access_token=${response.access_token}`
       );
 
-      
       const { email, name } = googleUser.data;
+
       console.log({ email, name});
       await dispatch(gLogin({ email, name}));
+
     } catch (error) {
       toast.error(`Google login Failed - ${error}`);
     }
@@ -109,7 +110,8 @@ export const LoginForm = () => {
               </Label>
               <Button type="submit">Login</Button>
               <Button type="button" onClick={googleLogin}>
-              <GoogleIcon /><ButtonText>Login with Google</ButtonText>
+                <GoogleIcon />
+                <ButtonText>Login with Google</ButtonText>
               </Button>
               <Text>
                 Don't have an account? <Link to="/register">Register</Link>

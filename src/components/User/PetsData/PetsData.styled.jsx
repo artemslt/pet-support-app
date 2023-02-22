@@ -6,14 +6,14 @@ export const PetListCardWrapper = styled.div`
 
 export const Title = styled.h3`
   font-family: 'Manrope';
-  padding-left: 17px;
+  padding-left: 40px;
   font-weight: 500;
   line-height: 1.37;
   color: #111111;
   font-size: 28px;
 `;
 
-export const Container = styled.div`
+export const NavContainer = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -42,21 +42,31 @@ export const AddBtnWrapper = styled.div`
   align-items: center;
 `;
 
-export const ListContainer = styled.div`
-  margin-bottom: 22px;
+export const ListContainer = styled.ul`
+  margin: 0;
 `;
 
-export const PetCard = styled.div`
+export const PetCard = styled.li`
+  position: relative;
   display: flex;
   width: 100%;
   padding: 20px;
+  margin-bottom: 22px;
   background: #ffffff;
   box-shadow: 7px 4px 14px rgba(0, 0, 0, 0.11);
   border-radius: 40px;
+  &:last-child {
+    margin-bottom: 0;
+  }
 `;
 
 export const PetPhotoWrapper = styled.div`
   margin-right: 32px;
+`;
+
+export const PetInfoItem = styled.div`
+  position: relative;
+  width: 100%;
 `;
 
 export const Text = styled.p`
@@ -65,6 +75,9 @@ export const Text = styled.p`
   line-height: 1.375;
   letter-spacing: 0.04em;
   margin-bottom: 12px;
+  &:last-child {
+    margin-bottom: 0;
+  }
 `;
 
 export const TextTopic = styled.span`
@@ -72,7 +85,27 @@ export const TextTopic = styled.span`
 `;
 
 export const PetPhoto = styled.img`
+  margin: 0px auto;
   width: 161px;
   height: 161px;
   border-radius: 40px;
+  object-fit: cover;
+`;
+
+export const PetDeleteBtn = styled.button`
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: 0;
+  right: 0;
+  height: 44px;
+  width: 44px;
+  background-size: 20px;
+  background-repeat: no-repeat;
+  background-position: center;
+  border: none;
+  border-radius: 50%;
+  background-color: #fdf7f2;
+  cursor: pointer;
 `;

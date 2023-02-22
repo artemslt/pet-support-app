@@ -3,7 +3,9 @@ name: Build and deploy to GitHub Pages
 on:
   push:
     branches: [main]
-
+env: 
+  REACT_APP_GOOGLE_CLIENT_ID: ${{ secrets.REACT_APP_GOOGLE_CLIENT_ID }}
+  
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
