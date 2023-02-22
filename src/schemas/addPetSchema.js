@@ -1,5 +1,5 @@
 import * as yup from 'yup';
-const nameRegexp = /^([a-zA-Zа-яА-ЯёЁ\s]+)$/;
+const nameRegexp = /^([a-zA-Zа-яА-ЯёЁ-А-Яа-яёЁЇїІіЄєҐґ\s]+)$/;
 const birthdayRegexp = /^(\d{1,2})\.(\d{1,2})(?:\.(\d{4}))?$/;
 
 export const AddPetSchemaPageOne = yup.object().shape({

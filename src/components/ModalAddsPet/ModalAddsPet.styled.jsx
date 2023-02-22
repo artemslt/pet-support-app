@@ -207,10 +207,13 @@ export const AddImage = styled.label`
 
   background: #fdf7f2;
   border-radius: 20px;
-  cursor: pointer;
   display: flex;
   justify-content: center;
   align-items: center;
+
+  &.Add_Image_show {
+    cursor: pointer;
+  }
 `;
 
 export const ImgBox = styled.div`
@@ -266,6 +269,12 @@ export const ButtonClose = styled.button`
   &:hover ${CancelIcon} {
     transition: cubic-bezier(0.075, 0.82, 0.165, 1);
     fill: ${({ theme }) => theme.colors.mainWhite};
+  }
+
+  display: none;
+
+  &.button_closse__show {
+    display: block;
   }
 `;
 
