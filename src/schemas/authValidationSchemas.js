@@ -12,7 +12,7 @@ export const registerSchema = yup.object().shape({
   email: yup
     .string()
     .matches(emailRegexp, 'Email must be in format mail@mail.com')
-    .min(10, 'Email should be 10 characters minimum.')
+    .min(6, 'Email should be 6 characters minimum.')
     .max(63, 'Email should be 63 characters maximum.')
     .required('Email is required'),
   password: yup
