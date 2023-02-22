@@ -12,6 +12,7 @@ import {
   GlobalStyle,
   SearchNewsButton,
   DeleteButton,
+  ErrorText,
 } from './NewsPage.styled';
 import { Spinner } from 'components/Spinner/Spinner.styled';
 import {
@@ -32,9 +33,11 @@ const NewsPage = () => {
 
   const newsTitle = searchParams.get('query') || '';
 
-  const visibleNews = news.filter(item =>
-    item.title.toLowerCase().includes(newsTitle.toLowerCase())
-  );
+  const visibleNews =
+    news.length &&
+    news.filter(item =>
+      item.title.toLowerCase().includes(newsTitle.toLowerCase())
+    );
 
   useEffect(() => {
     dispatch(fetchNews());
@@ -73,7 +76,13 @@ const NewsPage = () => {
           )}
         </Label>
         {isLoading && !error && <Spinner />}
-        {!isLoading && <NewsList news={visibleNews} />}
+        {!isLoading && visibleNews ? (
+          <NewsList news={visibleNews} />
+        ) : (
+          <ErrorText>
+            Sorry, there is no news at this moment. Try again later.
+          </ErrorText>
+        )}
       </NewsContainer>
     </Container>
   );
