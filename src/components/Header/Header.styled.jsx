@@ -8,7 +8,7 @@ export const HeaderStyled = styled.div`
   align-items: center;
   justify-content: space-between;
   padding-top: 20px;
-  /* position: absolute; */
+  position: relative;
 
   ${up('mobileSizeM')} {
   }

@@ -1,13 +1,16 @@
-import { LogoStyled, LogoAccent, LogoContainer } from './logo.styled';
+// import { NavLink } from 'react-router-dom';
+import { LogoStyled, LogoAccent, LogoContainer, LogoLink } from './logo.styled';
 
-export const Logo = () => {
+export const Logo = ({ setOpen }) => {
   return (
-    <LogoContainer>
-      <LogoStyled>
-        pe
-        <LogoAccent>t</LogoAccent>
-        ly
-      </LogoStyled>
-    </LogoContainer>
+    <LogoLink to="/" onClick={() => setOpen(false)}>
+      <LogoContainer>
+        <LogoStyled>
+          pe
+          <LogoAccent>t</LogoAccent>
+          ly
+        </LogoStyled>
+      </LogoContainer>
+    </LogoLink>
   );
 };
