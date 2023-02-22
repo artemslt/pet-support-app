@@ -17,19 +17,16 @@ import { PetsList } from '../PetsList/PetsList';
 import { ReactComponent as AddPhotoIcon } from './addPhoto.svg';
 
 export const PetsData = () => {
-  const [showModal, setShowModal] = useState(false);
-  const [petsVisible, setPetsVisible] = useState(false);
+  const [petsVisible] = useState(false);
   const dispatch = useDispatch();
 
   const list = useSelector(selectPets) ?? [];
-  const error = useSelector(selectPets);
-  const isLoading = useSelector(selectPets);
 
-  const AddPet = () => {
-    // setShowModal(prevState => !prevState);
-    console.log('clicked');
-    setPetsVisible(true);
-  };
+  // const AddPet = () => {
+  //   // setShowModal(prevState => !prevState);
+  //   console.log('clicked');
+  //   setPetsVisible(true);
+  // };
 
   useEffect(() => {
     dispatch(fetchAllPets());
@@ -46,7 +43,7 @@ export const PetsData = () => {
         <Title>My pets:</Title>
         <AddBtnWrapper>
           <BtnName>Add pet</BtnName>
-          <AddBtn type="button" onClick={AddPet}>
+          <AddBtn type="button">
             <AddPhotoIcon width={24} height={24} />
           </AddBtn>
         </AddBtnWrapper>

@@ -16,10 +16,6 @@ import { selectAvatarURL } from 'redux/auth/authSelectors';
 import addIcon from './addIcon.svg';
 import cameraIcon from './cameraIcon.svg';
 
-//move to selector
-
-// const selectAvatarURL = state => state.user.avatarURL;
-
 export const UserAvatarBlock = () => {
   const userAvatar = useSelector(selectAvatarURL);
   const dispatch = useDispatch();

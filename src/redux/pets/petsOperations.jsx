@@ -46,13 +46,11 @@ export const deletePet = createAsyncThunk(
   'pets/deletePet',
   async (petId, thunkAPI) => {
     const state = thunkAPI.getState();
-    const persistedToken =
-      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZjIxMWRhMzIyM2MyZDYyNjcyYmIzNyIsImlhdCI6MTY3NzA3Mzc5OH0.kXB8YH4EIagiBLN0DT0LqLdZANhTY26QUWuYt3iEaBc'; //state.auth.token;
+    const persistedToken = state.auth.token;
     if (persistedToken === null) {
       console.log('1');
       return thunkAPI.rejectWithValue('Unable to fetch user');
     }
-    setAuthHeader(persistedToken); //TODO видалити
     console.log('2');
     try {
       console.log('3');
