@@ -1,6 +1,6 @@
 import { Container, ProfileWrapper } from './UserPage.styled';
 import { UserData } from '../../components/User/UserData/UserData';
-import { PetsList } from '../../components/User/PetsList/PetsList';
+import { PetsData } from '../../components/User/PetsData/PetsData';
 
 const UserPage = () => {
   return (
@@ -8,7 +8,7 @@ const UserPage = () => {
       <div>
         <ProfileWrapper>
           <UserData />
-          <PetsList />
+          <PetsData />
         </ProfileWrapper>
       </div>
     </Container>

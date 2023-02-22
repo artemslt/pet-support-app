@@ -1,58 +1,61 @@
+// import { useState } from 'react';
+// import { useDispatch } from 'react-redux';
 import {
-  PetListCardWrapper,
-  Title,
-  Container,
-  ListContainer,
   PetCard,
   PetPhotoWrapper,
   PetPhoto,
+  PetInfoItem,
   Text,
   TextTopic,
-  AddBtnWrapper,
-  BtnName,
-  AddBtn,
-} from './PetsList.styled';
+  PetDeleteBtn,
+} from '../PetsData/PetsData.styled';
 
-import { ReactComponent as AddPhotoIcon } from './addPhoto.svg';
+import { ReactComponent as DeleteIcon } from './deleteIcon.svg';
 
-export const PetsList = () => {
+export const PetsList = ({
+  _id,
+  name,
+  comments,
+  breed,
+  birthday,
+  handleDeleteCard,
+}) => {
+  // const [, setPetDeleteId] = useState(null);
+
   return (
-    <PetListCardWrapper>
-      <Container>
-        <Title>My pets:</Title>
-        <AddBtnWrapper>
-          <BtnName>Add pet</BtnName>
-          <AddBtn type="button">
-            <AddPhotoIcon width={24} height={24} />
-          </AddBtn>
-        </AddBtnWrapper>
-      </Container>
+    <PetCard>
+      <PetPhotoWrapper>
+        <PetPhoto src="" alt="" />
+      </PetPhotoWrapper>
 
-      <ListContainer>
-        <PetCard>
-          <PetPhotoWrapper>
-            <PetPhoto src="" alt="" />
-          </PetPhotoWrapper>
-
-          <div>
-            <div>
-              <Text>
-                <TextTopic>Name:</TextTopic>{' '}
-              </Text>
-              <Text>
-                <TextTopic>Date of birth:</TextTopic>{' '}
-              </Text>
-              <Text>
-                <TextTopic>Breed:</TextTopic>{' '}
-              </Text>
-              <Text>
-                <TextTopic>Comments:</TextTopic>{' '}
-              </Text>
-            </div>
-            <button type="button">Delete</button>
-          </div>
-        </PetCard>
-      </ListContainer>
-    </PetListCardWrapper>
+      <PetInfoItem>
+        <div>
+          <Text>
+            <TextTopic>Name: </TextTopic>
+            {name}
+          </Text>
+          <Text>
+            <TextTopic>Date of birth: </TextTopic>
+            {birthday}
+          </Text>
+          <Text>
+            <TextTopic>Breed: </TextTopic>
+            {breed}
+          </Text>
+          <Text>
+            <TextTopic>Comments: </TextTopic>
+            {comments}
+          </Text>
+        </div>
+        <PetDeleteBtn
+          type="button"
+          onClick={() => {
+            handleDeleteCard(_id);
+          }}
+        >
+          <DeleteIcon width={24} height={24} />
+        </PetDeleteBtn>
+      </PetInfoItem>
+    </PetCard>
   );
 };

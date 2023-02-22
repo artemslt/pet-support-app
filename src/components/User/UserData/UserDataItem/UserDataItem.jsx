@@ -12,6 +12,7 @@ import {
   InputWrapper,
   EditBtn,
   ErrorMessage,
+  // NotAuthorized,
 } from './UserDataItem.styled';
 import { updateUser } from 'redux/auth/authOperations';
 import { selectUser } from 'redux/auth/authSelectors';
@@ -71,7 +72,8 @@ export const UserDataItem = () => {
     }
   };
 
-  if (!currentUser.email) return <div>Loading</div>;
+  // if (!currentUser.email)
+  //   return <NotAuthorized>Please sign in to see the data</NotAuthorized>;
 
   return (
     <div>

@@ -1,13 +1,8 @@
 import styled from 'styled-components';
 
-// export const Container = styled.section`
-//   width: 100%;
-//   max-width: 1280px;
-//   min-width: 320px;
-//   margin: 0 auto;
-//   /* margin: 0 auto; */
-//   /* padding: 0 0 100px; */
-// `;
+export const Form = styled.form`
+  position: relative;
+`;
 
 export const AvatarThumb = styled.div`
   display: flex;
