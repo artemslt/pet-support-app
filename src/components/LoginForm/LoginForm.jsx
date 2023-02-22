@@ -4,7 +4,6 @@ import { useDispatch } from 'react-redux';
 import { toast } from 'react-toastify';
 import { useGoogleLogin } from '@react-oauth/google';
 import axios from 'axios';
-import { nanoid } from 'nanoid';
 
 import { loginSchema } from '../../schemas/authValidationSchemas';
 import { login, gLogin } from 'redux/auth/authOperations';
@@ -59,10 +58,8 @@ export const LoginForm = () => {
 
       
       const { email, name } = googleUser.data;
-      console.log(email, name, nanoid());
-      const u = {email, name }
-      console.log(u)
-      await dispatch(gLogin({ email: email, name: name}));
+      console.log({ email, name});
+      await dispatch(gLogin({ email, name}));
     } catch (error) {
       toast.error(`Google login Failed - ${error}`);
     }
