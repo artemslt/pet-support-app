@@ -3,6 +3,7 @@ import { theme } from '../../theme';
 const { space, fonts, fontSizes, fontWeights, colors } = theme;
 
 export const Card = styled.li`
+position: relative;
 font-family: ${fonts[1]};
   display: flex;
   background-color: ${colors.mainWhite};
@@ -145,3 +146,21 @@ export const CardText = styled.span`
   }
 `;
 
+export const CardWorkDays = styled.div`
+position: absolute;
+  top: 30%;
+  left: 70%;
+  transform: translate(-50%, 0);
+  z-index: 1;
+  background: #FFFFFF;
+border: 1px solid #F59256;
+box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.25);
+border-radius: 8px;
+padding:12px;
+min-width: 170px;
+text-align:center;
+`;
+
+export const CardTime = styled.span `
+cursor: pointer;
+`
