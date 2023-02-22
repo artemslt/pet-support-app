@@ -23,9 +23,9 @@ const authPersistConfig = {
 
 export const store = configureStore({
   reducer: {
+    isInput: isInputSlice,
     friends: friendsSlice,
     auth: persistReducer(authPersistConfig, authReducer),
-    isInput: isInputSlice,
   },
   middleware(getDefaultMiddleware) {
     return getDefaultMiddleware({
