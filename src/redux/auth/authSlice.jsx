@@ -2,13 +2,20 @@ import { createSlice } from '@reduxjs/toolkit';
 import {
   register,
   login,
+  gLogin,
   logout,
   refreshUser,
   updateUser,
 } from './authOperations';
 
 const initialState = {
-  user: { name: null, email: null, location: null, phone: null },
+  user: {
+    name: null,
+    email: null,
+    location: null,
+    phone: null,
+    birthday: null,
+  },
   token: null,
   isLoggedIn: false,
   isRefreshing: false,
@@ -28,6 +35,11 @@ const authSlice = createSlice({
         state.token = action.payload.token;
         state.isLoggedIn = true;
       })
+      .addCase(gLogin.fulfilled, (state, action) => {
+        state.user = action.payload.user;
+        state.token = action.payload.token;
+        state.isLoggedIn = true;
+      })
       .addCase(logout.fulfilled, (state, _) => {
         state.user = { name: null, email: null, location: null, phone: null };
         state.token = null;
@@ -37,7 +49,8 @@ const authSlice = createSlice({
         state.isRefreshing = true;
       })
       .addCase(refreshUser.fulfilled, (state, action) => {
-        state.user = action.payload;
+        // console.log(action.payload);
+        state.user = action.payload.user;
         state.isLoggedIn = true;
         state.isRefreshing = false;
       })

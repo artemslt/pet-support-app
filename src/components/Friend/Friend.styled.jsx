@@ -55,7 +55,7 @@ export const Card = styled.li`
   flex-direction: column;
 `;
 
-export const CardTitle = styled.h2`
+export const CardTitle = styled.a`
   font-weight: ${fontWeights[1]};
   text-decoration-line: underline;
   color: ${colors.mainAccent};

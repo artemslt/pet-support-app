@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { up } from 'styled-breakpoints';
 
 export const PartnerTitle = styled.h1`
   font-weight: bold;
@@ -15,17 +14,18 @@ export const PartnerTitle = styled.h1`
   }
 
   @media (min-width: 320px) {
-    margin: 90px 0 40px;
+    margin-bottom:40px;
   }
 
   @media (min-width: 1280px) {
-    margin: 60px 0;
+    margin-bottom: 60px;
   }
 `;
 
 export const CardList = styled.ul`
   display: grid;
   margin: 0 auto;
+  padding-left: 0;
 
   @media screen and (min-width: 320px) {
     grid-template-columns: repeat(1, 1fr);
@@ -44,4 +44,14 @@ export const CardList = styled.ul`
     max-width: 1280px;
   }
 `;
+
+export const FriendsContainer = styled.div`
+padding: 40px 0 100px;
+@media screen and (min-width: 768px) {
+    padding: 90px 0 100px;
+  }
+@media screen and (min-width: 1280px) {
+    padding: 60px 0 100px;
+  }
+`
 

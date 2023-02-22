@@ -6,6 +6,7 @@
     import {
     PartnerTitle,
     CardList,
+    FriendsContainer
 } from './FriendList.styled';
     import { Container } from "components/Container/Container.styled";
 
@@ -19,10 +20,11 @@
 
     return (
         <Container>
+            <FriendsContainer>
         <PartnerTitle>Our friends</PartnerTitle>
         {friends && (
             <CardList>
-            {friends.map(({ _id, title, imageUrl, addressUrl, address, email, phone }) => (
+            {friends.map(({ _id, title, imageUrl, addressUrl, address, email, phone, url }) => (
                 <Friend
                 key={_id}
                 title={title}
@@ -30,11 +32,13 @@
                 address={address}
                 addressUrl={addressUrl}
                 email={email}
-                phone={phone}
+                    phone={phone}
+                    url ={url}
                 />
             ))}
             </CardList>
-        )}
+                )}
+                </FriendsContainer>
         </Container>
     );
     }
