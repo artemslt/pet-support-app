@@ -1,12 +1,16 @@
 import React, { useEffect } from 'react';
-
+import { useDispatch } from 'react-redux';
+import { onSelector } from 'redux/InputPets/inputPetsSlice';
 import { Overlay, Modal } from './Modal.styled';
 
 export const ModalMenu = ({ children, open, onClose }) => {
+  const dispatch = useDispatch();
+
   useEffect(() => {
     window.addEventListener('keydown', handlerKeyDown);
     function handlerKeyDown(e) {
       if (e.code === 'Escape') {
+        dispatch(onSelector());
         onClose();
       }
     }
@@ -14,11 +18,12 @@ export const ModalMenu = ({ children, open, onClose }) => {
     return () => {
       window.removeEventListener('keydown', handlerKeyDown);
     };
-  }, [onClose]);
+  }, [onClose, dispatch]);
 
   function onCloseOverlay(e) {
     if (e.target === e.currentTarget) {
       onClose();
+      dispatch(onSelector());
     }
   }
 
