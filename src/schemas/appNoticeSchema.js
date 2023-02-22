@@ -10,33 +10,36 @@ function parseDateString(value, originalValue) {
 
   return parsedDate;
 }
+// for exemple Brovary, Kyiv or Akhtyrka, Sumy
+const locationRegexp =
+  /^(?:(?:\w+-\w+)+|(?:\w+)+),\s(?:(?:\w+-\w+)+|(?:\w+)+)$/;
 
 export const appPetSchemaStep1 = yup.object().shape({
   typeOfNotice: yup.string().required(),
   title: yup
     .string()
-    .min(3, 'Title should be 3 characters minimum.')
-    .max(30, 'Title should be 30 characters maximum.')
+    .min(2, 'Title should be 2 characters minimum.')
+    .max(48, 'Title should be 48 characters maximum.')
     .required('Title is required field'),
   name: yup
     .string()
-    .min(3, 'Name should be 3 characters minimum.')
-    .max(15, 'Name should be 15 characters maximum.'),
+    .min(2, 'Name should be 2 characters minimum.')
+    .max(16, 'Name should be 16 characters maximum.'),
   date: yup
     .date('Date must be in format dd.MM.yyyy')
     .transform(parseDateString)
     .max(today),
-  breed: yup.string(),
+  breed: yup
+    .string()
+    .min(2, 'Breed should be 2 characters minimum.')
+    .max(24, 'Name should be 24 characters maximum.'),
 });
 
 export const appPetSchemaStep2 = yup.object().shape({
   sex: yup.string(),
   location: yup
     .string()
-    .matches(
-      /^([A-Za-z\u00C0-\u00D6\u00D8-\u00f6\u00f8-\u00ff\s]*)$/g,
-      'Location can only contain Latin letters.'
-    )
+    .matches(locationRegexp, 'Location must be in format City, Region.')
     .required('Location is required field'),
   price: yup
     .string()

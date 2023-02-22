@@ -1,13 +1,14 @@
 import { Field, ErrorMessage } from 'formik';
+import {Text, LabelTitle, Input} from './ModalAddNotice.styled'
 
 export const FirstPart = ({ setStep, isValid, dirty, handleReset }) => {
   //   console.log(`dirty`, dirty);
   return (
     <>
-      <p>
+      <Text>
         Lorem ipsum dolor sit amet, consectetur Lorem ipsum dolor sit amet,
         consectetur{' '}
-      </p>
+      </Text>
       <div role="group">
         <label>
           <Field type="radio" name="typeOfNotice" value="lost/found" />
@@ -24,28 +25,28 @@ export const FirstPart = ({ setStep, isValid, dirty, handleReset }) => {
       </div>
 
       <label>
-        <p>
+        <LabelTitle>
           Tittle of ad <span>*</span>
-        </p>
-        <Field name="title" placeholder="Type name" />
+        </LabelTitle>
+        <Input name="title" placeholder="Type name" />
         <ErrorMessage name="title" component="div" />
       </label>
 
       <label>
-        <p>Name pet</p>
-        <Field name="name" placeholder="Type name pet" />
+        <LabelTitle>Name pet</LabelTitle>
+        <Input name="name" placeholder="Type name pet" />
         <ErrorMessage name="name" component="div" />
       </label>
 
       <label>
-        <p>Date of birth</p>
-        <Field name="date" placeholder="Type date of birth" />
+        <LabelTitle>Date of birth</LabelTitle>
+        <Input name="date" placeholder="Type date of birth" />
         <ErrorMessage name="date" component="div" />
       </label>
 
       <label>
-        <p>Breed</p>
-        <Field name="breed" placeholder="Type breed" />
+        <LabelTitle>Breed</LabelTitle>
+        <Input name="breed" placeholder="Type breed" />
         <ErrorMessage name="breed" component="div" />
       </label>
 

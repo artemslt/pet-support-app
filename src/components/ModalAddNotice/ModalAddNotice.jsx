@@ -8,6 +8,9 @@ import {
 import { FirstPart } from './AddPet1Sterp';
 import { SecondPart } from './AddPert2Step';
 
+import { Wrapper,  Title, ButtonCloses,ClosesIcon} from './ModalAddNotice.styled';
+
+
 export const AddPet = () => {
   const values = {
     typeOfNotice: '',
@@ -30,8 +33,12 @@ export const AddPet = () => {
   };
 
   return (
-    <>
-      <h2>Add pet</h2>
+    <Wrapper>
+      <ButtonCloses onClick={e => console.log(e)}>
+        <ClosesIcon />
+      </ButtonCloses>
+
+      <Title>Add pet</Title>
       <Formik
         initialValues={values}
         validationSchema={step ? appPetSchemaStep1 : appPetSchemaStep2}
@@ -58,6 +65,6 @@ export const AddPet = () => {
           </Form>
         )}
       </Formik>
-    </>
+    </Wrapper>
   );
 };
