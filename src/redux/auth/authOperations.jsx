@@ -99,3 +99,25 @@ export const updateUser = createAsyncThunk(
     }
   }
 );
+
+export const updateAvatar = createAsyncThunk(
+  'user/avatar',
+  async (avatar, thunkAPI) => {
+    const state = thunkAPI.getState();
+    const persistedToken = state.auth.token;
+    if (persistedToken === null) {
+      return thunkAPI.rejectWithValue('Unable to fetch user');
+    }
+
+    try {
+      setAuthHeader(persistedToken);
+      const result = await axios.patch('users/avatar', avatar);
+      // return result.data;
+      return {
+        avatarURL: 'https://cdn-icons-png.flaticon.com/512/25/25231.png',
+      };
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);

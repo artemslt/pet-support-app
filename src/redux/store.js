@@ -14,6 +14,7 @@ import storage from 'redux-persist/lib/storage';
 import { authReducer } from './auth/authSlice';
 
 import friendsSlice from './friends/friendsSlice';
+import petsSlice from './pets/petsSlice';
 
 const authPersistConfig = {
   key: 'auth',
@@ -25,6 +26,7 @@ export const store = configureStore({
   reducer: {
     friends: friendsSlice,
     auth: persistReducer(authPersistConfig, authReducer),
+    pets: petsSlice,
   },
   middleware(getDefaultMiddleware) {
     return getDefaultMiddleware({

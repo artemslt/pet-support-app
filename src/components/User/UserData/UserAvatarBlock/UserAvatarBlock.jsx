@@ -1,13 +1,17 @@
 // import { useState, useEffect } from 'react';
-// import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import {
+  Form,
   AvatarThumb,
-  // Avatar,
+  Avatar,
   ImgPlaceholder,
   Button,
   EditWrapp,
   Text,
 } from './userAvatarBlock.styled';
+
+import { updateAvatar } from 'redux/auth/authOperations';
+import { selectAvatarURL } from 'redux/auth/authSelectors';
 
 import addIcon from './addIcon.svg';
 import cameraIcon from './cameraIcon.svg';
@@ -17,30 +21,31 @@ import cameraIcon from './cameraIcon.svg';
 // const selectAvatarURL = state => state.user.avatarURL;
 
 export const UserAvatarBlock = () => {
-  // const userAvatar = useSelector(state => state.user.avatarURL);
-  // const dispatch = useDispatch();
+  const userAvatar = useSelector(selectAvatarURL);
+  const dispatch = useDispatch();
 
   const onChangeAvatar = event => {
     event.preventDefault();
+
     const formData = new FormData();
-    formData.append('avatar', event.target.files[0]);
-    console.log('formData', formData);
     if (event.target.files) {
+      const avatar = event.target.files[0];
+      formData.append('avatar', avatar);
+      console.log('formData', formData);
+
       console.log(event.target.files[0]);
+      dispatch(updateAvatar(formData));
     }
-    //додати завантаження і збереження через asyncThunc
-    // dispatch(formData);
-    //axios.post("adress", formData).then(console.log).catch(console.error)
   };
 
   return (
-    <form encType="multipart/form-data" style={{ position: 'relative' }}>
+    <Form encType="multipart/form-data">
       <AvatarThumb>
-        {/* {userAvatar ? (
+        {userAvatar ? (
           <Avatar src={userAvatar} alt="user avatar" />
-        ) : ( */}
-        <ImgPlaceholder src={addIcon} />
-        {/* )} */}
+        ) : (
+          <ImgPlaceholder src={addIcon} />
+        )}
       </AvatarThumb>
       <Button type="button">
         <label htmlFor="uploadAvatar">
@@ -58,6 +63,6 @@ export const UserAvatarBlock = () => {
           </EditWrapp>
         </label>
       </Button>
-    </form>
+    </Form>
   );
 };

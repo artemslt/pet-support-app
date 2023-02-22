@@ -6,6 +6,7 @@ import {
   logout,
   refreshUser,
   updateUser,
+  updateAvatar,
 } from './authOperations';
 
 const initialState = {
@@ -15,6 +16,7 @@ const initialState = {
     location: null,
     phone: null,
     birthday: null,
+    avatarURL: null,
   },
   token: null,
   isLoggedIn: false,
@@ -41,7 +43,13 @@ const authSlice = createSlice({
         state.isLoggedIn = true;
       })
       .addCase(logout.fulfilled, (state, _) => {
-        state.user = { name: null, email: null, location: null, phone: null };
+        state.user = {
+          name: null,
+          email: null,
+          location: null,
+          phone: null,
+          avatarURL: null,
+        };
         state.token = null;
         state.isLoggedIn = false;
       })
@@ -49,7 +57,6 @@ const authSlice = createSlice({
         state.isRefreshing = true;
       })
       .addCase(refreshUser.fulfilled, (state, action) => {
-        // console.log(action.payload);
         state.user = action.payload.user;
         state.isLoggedIn = true;
         state.isRefreshing = false;
@@ -60,6 +67,16 @@ const authSlice = createSlice({
       .addCase(updateUser.fulfilled, (state, action) => {
         state.isRefreshing = false;
         state.user = { ...state.user, ...action.payload };
+      })
+      .addCase(updateAvatar.fulfilled, (state, action) => {
+        state.user = {
+          ...state.user,
+          avatarURL: action.payload.avatarURL,
+        };
+        state.isLoggedIn = true;
+      })
+      .addCase(updateAvatar.rejected, (state, action) => {
+        state.error = action.payload;
       });
   },
 });
