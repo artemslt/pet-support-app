@@ -31,10 +31,10 @@ export const StyledBurger = styled.div`
     }
   } */
 
-  position: fixed;
+  position: relative;
 
-  top: 32px;
-  right: 25px;
+  top: 0;
+  right: 0;
   height: 20px;
   width: 30px;
   z-index: 10;
