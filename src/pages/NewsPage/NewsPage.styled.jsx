@@ -93,3 +93,9 @@ export const DeleteButton = styled.button`
   //   fill: orange;
   // }
 `;
+
+export const ErrorText = styled.b`
+margin-top: 40px;
+@media screen and (min-width: 768px) {
+  80px;
+}`
