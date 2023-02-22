@@ -130,8 +130,11 @@ export const Error = styled(FormikErrorMessage)`
   left: 0;
   font-family: ${prop => prop.theme.fonts[1]};
   padding: ${prop => prop.theme.space[1]}px ${prop => prop.theme.space[3]}px;
-  font-size: 10px;
+  font-size: 6px;
   color: ${prop => prop.theme.colors.activeAccent};
+  ${up('tablet')} {
+    font-size: 10px;
+    Ї
 `;
 
 export const IconButton = styled.button`

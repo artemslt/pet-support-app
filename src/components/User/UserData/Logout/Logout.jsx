@@ -1,5 +1,6 @@
 import { LogoutWrapper, Button, Text } from './Logout.styled';
 import { useDispatch } from 'react-redux';
+import { googleLogout } from '@react-oauth/google';
 import { logout } from 'redux/auth/authOperations';
 import LogoutIcon from './logout.svg';
 
@@ -7,6 +8,7 @@ export const Logout = () => {
   const dispatch = useDispatch();
 
   const logoutHandler = () => {
+    googleLogout();
     dispatch(logout());
   };
   return (
