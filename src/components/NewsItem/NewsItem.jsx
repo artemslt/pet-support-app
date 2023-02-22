@@ -18,7 +18,7 @@ export const NewsItem = ({ title, url, description, date }) => {
       <ItemText>{description}</ItemText>
       <ItemContainer>
         <ItemDate>{date}</ItemDate>
-        <ItemLink href={url}>Read more</ItemLink>
+        <ItemLink href={url} target="_blank">Read more</ItemLink>
       </ItemContainer>
     </Item>
   );
