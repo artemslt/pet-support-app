@@ -8,9 +8,10 @@ export const SelectComponent = ({ onChange, value, onFocus }) => {
     .map(el => el.breed)
     .filter(el => {
       const result = el.match(/^([a-zA-Zа-яА-ЯёЁ\s]+)$/);
-      if (result !== null) {
-        return result;
+      if (result === null) {
+        return null;
       }
+      return result;
     });
 
   const options = audit.map(el => {
