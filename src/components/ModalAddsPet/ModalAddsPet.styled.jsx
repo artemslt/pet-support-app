@@ -4,12 +4,12 @@ import { ReactComponent as Closes } from '../../images/ButtonCloses.svg';
 import { ReactComponent as iconAddPhoto } from '../../images/addPhoto.svg';
 import { ReactComponent as closeImageIcon } from '../../images/close-image-icon.svg';
 
+import Select from 'react-select';
 import { Form, Field, ErrorMessage } from 'formik';
 
 export const Wrapper = styled.div`
   position: relative;
   display: flex;
-  /* width: 280px; */
 
   padding: 40px 20px;
   ${up('tablet')} {
@@ -128,12 +128,17 @@ export const Input = styled(Field)`
   background: ${({ theme }) => theme.colors.background};
   border: 1px solid ${({ theme }) => theme.colors.formInputAccnt};
   border-radius: 40px;
-
+  cursor: pointer;
   ${up('tablet')} {
     font-size: 16px;
     line-height: calc(26 / 16);
     padding: 14px 16px;
     width: 448px;
+  }
+  outline: none;
+  &:hover,
+  &:focus {
+    border-color: ${({ theme }) => theme.colors.activeAccent};
   }
 `;
 
@@ -154,6 +159,7 @@ export const Button = styled.button`
       margin-right: 0px;
     }
   }
+  cursor: pointer;
   &:hover {
     background: ${({ theme }) => theme.colors.mainAccent};
     color: ${({ theme }) => theme.colors.mainWhite};
@@ -182,11 +188,9 @@ export const TitleAddPhoto = styled.span`
 
 export const InputHidden = styled(Field)`
   display: none;
-  /* visibility: hidden; */
 `;
 
 export const AddPhoto = styled(iconAddPhoto)`
-  /* opacity: 0; */
   position: absolute;
 `;
 
@@ -203,7 +207,7 @@ export const AddImage = styled.label`
 
   background: #fdf7f2;
   border-radius: 20px;
-
+  cursor: pointer;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -273,12 +277,13 @@ export const Comment = styled(Field)`
   font-weight: ${({ theme }) => theme.fontWeights[0]};
   font-size: 14px;
   line-height: calc(26 / 14);
-
+  outline: none;
   background: ${({ theme }) => theme.colors.background};
   border: 1px solid ${({ theme }) => theme.colors.formInputAccnt};
   border-radius: 20px;
   overflow: auto;
   resize: none;
+  cursor: pointer;
   ${up('tablet')} {
     width: 394px;
     height: 116px;
@@ -294,4 +299,107 @@ export const CommentTitle = styled.span`
     line-height: calc(26 / 18);
   }
   margin-bottom: 12px;
+`;
+
+export const Option = styled.option`
+  font-family: ${({ theme }) => theme.fonts[1]};
+  font-weight: ${({ theme }) => theme.fontWeights[0]};
+  font-size: 14px;
+  line-height: calc(19 / 14);
+  width: 240px;
+  height: 20px;
+  padding: 0px 20px;
+  color: ${({ theme }) => theme.colors.grayText};
+  margin-top: 8px;
+  background: ${({ theme }) => theme.colors.background};
+  border: 1px solid ${({ theme }) => theme.colors.formInputAccnt};
+  border-radius: 40px;
+  width: 50px;
+  ${up('tablet')} {
+    font-size: 16px;
+    line-height: calc(26 / 16);
+    padding: 14px 16px;
+    width: 448px;
+  }
+`;
+
+export const CustomSelect = styled(Select)`
+  .Select__control {
+    font-family: ${({ theme }) => theme.fonts[1]};
+    font-weight: ${({ theme }) => theme.fontWeights[0]};
+    font-size: 14px;
+    line-height: calc(19 / 14);
+    width: 240px;
+    padding: 0;
+    color: ${({ theme }) => theme.colors.grayText};
+    margin-top: 8px;
+    background: ${({ theme }) => theme.colors.background};
+    border: 1px solid ${({ theme }) => theme.colors.formInputAccnt};
+    border-radius: 40px;
+    cursor: pointer;
+    ${up('tablet')} {
+      font-size: 16px;
+      line-height: calc(26 / 16);
+      padding: 2px 8px;
+      width: 448px;
+    }
+
+    .Select__control {
+      height: 10px;
+      width: 100%;
+      border: 1px solid #a1a1a1;
+      border-radius: 0;
+      cursor: pointer;
+    }
+  }
+
+  .Select__control--is-focused {
+    border-color: transparent;
+    box-shadow: 0 0 0 1px ${({ theme }) => theme.colors.mainAccent};
+    outline: none;
+  }
+
+  .Select__menu {
+    font-family: ${({ theme }) => theme.fonts[1]};
+    font-weight: ${({ theme }) => theme.fontWeights[0]};
+    color: ${({ theme }) => theme.colors.text};
+    background: ${({ theme }) => theme.colors.background};
+    cursor: pointer;
+  }
+
+  .Select__control:hover {
+    border-color: ${({ theme }) => theme.colors.mainAccent};
+    cursor: pointer;
+  }
+  .Select__control:focus {
+    border-color: ${({ theme }) => theme.colors.activeAccent};
+  }
+`;
+
+export const ButtonRemoveSelect = styled.button`
+  position: absolute;
+  right: 20px;
+  top: 13px;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  color: ${({ theme }) => theme.colors.activeAccent};
+  background-color: transparent;
+`;
+export const NoOptionsMessageSpan = styled.span`
+  font-family: ${({ theme }) => theme.fonts[1]};
+  font-weight: ${({ theme }) => theme.fontWeights[0]};
+  font-size: 14px;
+  line-height: calc(19 / 14);
+  color: ${({ theme }) => theme.colors.grayText};
+`;
+
+export const ErrorSelect = styled.p`
+  position: absolute;
+  bottom: -20px;
+  left: 4%;
+  font-family: ${prop => prop.theme.fonts[1]};
+  padding: ${prop => prop.theme.space[1]}px ${prop => prop.theme.space[3]}px;
+  font-size: 10px;
+  color: ${prop => prop.theme.colors.activeAccent};
 `;

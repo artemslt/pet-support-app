@@ -13,12 +13,7 @@ import {
   CommentTitle,
 } from './ModalAddsPet.styled';
 
-export const FormePageSecond = ({
-  setImgUrl,
-  setImgValue,
-  imgValue,
-  imgUrl,
-}) => {
+export const FormePageSecond = ({ setImgUrl, imgValue, imgUrl }) => {
   return (
     <>
       <TitleAddPhoto> Add photo and some comments</TitleAddPhoto>
@@ -28,7 +23,6 @@ export const FormePageSecond = ({
             <InputHidden
               type="file"
               name="photo"
-              // disabled={imgUrl ? 'disabled' : ''}
               value={imgValue ? imgValue : ''}
             />
           )}
@@ -38,7 +32,6 @@ export const FormePageSecond = ({
             <ButtonClose
               onClick={() => {
                 setImgUrl(null);
-                setImgValue(null);
               }}
             >
               <CancelIcon />

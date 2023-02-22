@@ -14,7 +14,7 @@ import storage from 'redux-persist/lib/storage';
 import { authReducer } from './auth/authSlice';
 import { newsReducer } from './news/newsSlice';
 import friendsSlice from './friends/friendsSlice';
-
+import isInputSlice from './InputPets/inputPetsSlice';
 const authPersistConfig = {
   key: 'auth',
   storage,
@@ -23,6 +23,7 @@ const authPersistConfig = {
 
 export const store = configureStore({
   reducer: {
+    isInput: isInputSlice,
     friends: friendsSlice,
     auth: persistReducer(authPersistConfig, authReducer),
     news: newsReducer

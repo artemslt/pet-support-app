@@ -15,17 +15,16 @@ export const AddPetSchemaPageOne = yup.object().shape({
     .required('Birthday required'),
   breed: yup
     .string()
-    .matches(nameRegexp, 'Name must contain only letters')
-    .min(3, 'Name should be 3 characters minimum.')
-    .max(16, 'Name should be 16 characters maximum.')
-    .required('Comment is required'),
+    .matches(nameRegexp, 'Breed must contain only letters')
+    .min(3, 'Breed should be 3 characters minimum.')
+    .max(40, 'Breed should be 40 characters maximum.')
+    .required('Breed is required'),
 });
 
 export const AddPetSchemaPageTwo = yup.object().shape({
   photo: yup.string().required('Photo required'),
   comment: yup
     .string()
-    .matches(nameRegexp, 'Comment has the format "Barsik"')
     .min(8, 'Comment should be 8 characters minimum.')
     .max(120, 'Comment should be 120 characters maximum.')
     .required('Comment is required'),

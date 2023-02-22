@@ -1,6 +1,11 @@
-import { Error, Input, Label } from './ModalAddsPet.styled';
+import { useState } from 'react';
+import { SelectComponent } from './SelectComponent';
+import { Error, Input, Label, ErrorSelect } from './ModalAddsPet.styled';
+import { useSelector } from 'react-redux';
+export const FormePageFist = ({ formik }) => {
+  const [focus, setFocus] = useState(false);
+  const isInput = useSelector(state => state.isInput.toggle);
 
-export const FormePageFist = () => {
   return (
     <>
       <Label htmlFor="">
@@ -20,7 +25,18 @@ export const FormePageFist = () => {
       </Label>
       <Label htmlFor="">
         Breed
-        <Input type="text" name="breed" placeholder="Type breed" />
+        {!isInput ? (
+          <Input type="text" name="breed" placeholder="Type breed" />
+        ) : (
+          <SelectComponent
+            onChange={value => formik.setFieldValue('breed', value.value)}
+            value={formik.values.breed}
+            onFocus={setFocus}
+          />
+        )}
+        {focus ? (
+          <ErrorSelect className="error">{formik.errors.breed}</ErrorSelect>
+        ) : null}
         <Error name="breed" component="p"></Error>
       </Label>
     </>
