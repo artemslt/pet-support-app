@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { addPet, deletePet } from './petsOperations';
+import { fetchAllPets, addPet, deletePet } from './petsOperations';
 
 const initialState = {
   list: [],
@@ -13,13 +13,27 @@ const petsSlice = createSlice({
   name: 'pets',
   initialState,
   extraReducers: {
+    [fetchAllPets.pending](state, _) {
+      state.isRefreshing = true;
+    },
+    [fetchAllPets.fulfilled](state, action) {
+      state.list = action.payload;
+      state.isLoggedIn = true;
+      state.isRefreshing = false;
+    },
+    [fetchAllPets.rejected](state, _) {
+      console.log('2');
+      state.isRefreshing = false;
+    },
+
     [addPet.pending](state) {
+      console.log('state.list1', state.list);
       state.isAdding = true;
     },
     [addPet.fulfilled](state, action) {
       state.isAdding = false;
       state.error = null;
-      state.list.pets.unshift(action.payload);
+      state.list.push(action.payload.result);
     },
     [addPet.rejected](state) {
       state.isAdding = false;
@@ -31,8 +45,9 @@ const petsSlice = createSlice({
     [deletePet.fulfilled](state, action) {
       state.isDeleting = false;
       state.error = null;
-      console.log('action', action);
-      state.list = [...state.list].filter(pet => pet._id !== action.payload);
+      state.list = [...state.list].filter(
+        pet => pet._id !== action.payload.result._id
+      );
     },
     [deletePet.rejected](state) {
       state.isDeleting = false;

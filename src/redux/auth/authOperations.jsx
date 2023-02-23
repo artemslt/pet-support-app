@@ -74,8 +74,6 @@ export const refreshUser = createAsyncThunk(
     try {
       setAuthHeader(persistedToken);
       const response = await axios.get('users/current');
-      // response.data.data =
-      //   'https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png';
       return response.data.data;
     } catch (error) {
       console.log(`Something wrong - ${error.response.data.message}`);
@@ -113,10 +111,6 @@ export const updateAvatar = createAsyncThunk(
     try {
       const result = await axios.patch('users/avatar', avatar);
       return result.data.data.user.avatarURL;
-      // return {
-      //   avatarURL:
-      //     'https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png',
-      // };
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }

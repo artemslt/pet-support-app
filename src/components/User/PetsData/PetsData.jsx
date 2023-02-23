@@ -35,7 +35,6 @@ export const PetsData = () => {
   }, [dispatch]);
 
   const handleDeleteCard = _id => {
-    console.log('_id', _id);
     dispatch(deletePet(_id));
   };
 
@@ -64,14 +63,12 @@ export const PetsData = () => {
       )}
       <ListContainer>
         {list.length !== 0 &&
-          isLoading === false &&
-          list.map(({ _id, ...rest }) => (
+          list.map(item => (
             <PetsList
-              key={_id}
-              id={_id}
-              {...rest}
+              key={item._id}
+              item={item}
               handleDeleteCard={handleDeleteCard}
-            />
+            ></PetsList>
           ))}
       </ListContainer>
     </PetListCardWrapper>

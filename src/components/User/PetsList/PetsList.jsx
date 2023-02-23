@@ -12,46 +12,36 @@ import {
 
 import { ReactComponent as DeleteIcon } from './deleteIcon.svg';
 
-export const PetsList = ({
-  _id,
-  name,
-  comment,
-  breed,
-  birthday,
-  photo,
-  handleDeleteCard,
-}) => {
-  // const [, setPetDeleteId] = useState(null);
-
+export const PetsList = ({ item, handleDeleteCard }) => {
   return (
     <PetCard>
       <PetPhotoWrapper>
-        <PetPhoto src={photo} alt="" />
+        <PetPhoto src={item.photo} alt="" />
       </PetPhotoWrapper>
 
       <PetInfoItem>
         <div>
           <Text>
             <TextTopic>Name: </TextTopic>
-            {name}
+            {item.name}
           </Text>
           <Text>
             <TextTopic>Date of birth: </TextTopic>
-            {birthday}
+            {item.birthday}
           </Text>
           <Text>
             <TextTopic>Breed: </TextTopic>
-            {breed}
+            {item.breed}
           </Text>
           <Text>
             <TextTopic>Comments: </TextTopic>
-            {comment}
+            {item.comment}
           </Text>
         </div>
         <PetDeleteBtn
           type="button"
           onClick={() => {
-            handleDeleteCard(_id);
+            handleDeleteCard(item._id);
           }}
         >
           <DeleteIcon width={24} height={24} />

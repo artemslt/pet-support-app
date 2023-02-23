@@ -12,6 +12,8 @@ import { FormePageSecond } from './FormPageSecond';
 import { AddPetSchemaPageOne, AddPetSchemaPageTwo } from 'schemas/addPetSchema';
 import { useDispatch } from 'react-redux';
 import { onSelector } from 'redux/InputPets/inputPetsSlice';
+import { addPet } from 'redux/pets/petsOperations';
+
 const initialValues = {
   name: '',
   birthday: '',
@@ -23,6 +25,7 @@ const initialValues = {
 export const ModalAddsPet = ({ onToggleModal }) => {
   const [pageToggle, setPageToggle] = useState(true);
   const [imgUrl, setImgUrl] = useState(null);
+  const [file, setFile] = useState(null);
   const dispatch = useDispatch();
 
   const fileReader = new FileReader();
@@ -31,9 +34,9 @@ export const ModalAddsPet = ({ onToggleModal }) => {
   };
 
   const handleSubmit = (values, actions) => {
-    const { name, birthday, breed, photo, comment } = values;
+    const { name, birthday, breed, comment } = values;
 
-    if (!name || !birthday || !breed || !photo || !comment) {
+    if (!name || !birthday || !breed || !comment) {
       return;
     }
 
@@ -41,12 +44,13 @@ export const ModalAddsPet = ({ onToggleModal }) => {
       name,
       birthday,
       breed,
-      photo,
+      photo: file,
       comment,
     };
 
-    console.log(userPet);
+    dispatch(addPet(userPet));
     actions.resetForm();
+
     setImgUrl(null);
     dispatch(onSelector());
     onToggleModal();
@@ -56,6 +60,7 @@ export const ModalAddsPet = ({ onToggleModal }) => {
 
     if (event.target.files && event.target.files.length > 0) {
       const file = event.target.files[0];
+      setFile(file);
       return fileReader.readAsDataURL(file);
     }
     return;

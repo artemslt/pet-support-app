@@ -18,8 +18,8 @@ export const fetchAllPets = createAsyncThunk(
     }
     try {
       setAuthHeader(persistedToken);
-      const response = await axios.get('users/current');
-      return response.data.data;
+      const response = await axios.get('users');
+      return response.data.data.pets;
     } catch (error) {
       console.log(`Something wrong - ${error.response.data.message}`);
       return thunkAPI.rejectWithValue(error.response.data.message);
@@ -28,15 +28,17 @@ export const fetchAllPets = createAsyncThunk(
 );
 
 export const addPet = createAsyncThunk(
-  'pets/addPet',
+  'users/addPet',
   async (newPet, thunkAPI) => {
+    console.log('newPet', newPet);
     try {
       const response = await axios.post('users/addpet', newPet, {
         headers: { 'Content-Type': 'multipart/form-data' },
       });
-      console.log('addPet: res.data.data', response.data.data);
+      console.log('2');
       return response.data.data;
     } catch (error) {
+      console.log('3');
       console.log(error);
       return thunkAPI.rejectWithValue(error.message);
     }
