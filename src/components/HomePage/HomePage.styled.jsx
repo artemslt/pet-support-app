@@ -54,8 +54,8 @@ export const BackgroundImage = styled.div`
   bottom: 0;
 
   background-repeat: no-repeat, no-repeat;
-  background-size: 320px, 100%;
-  background-position-y: 100%, 102%;
+  background-size: 100%, 100%;
+  background-position-y: 100%, 100%;
   background-position-x: 50%;
   background-image: url(${PhotoMobile}), url(${waveBgMobile});
 
@@ -89,7 +89,7 @@ export const BackgroundImage = styled.div`
 
   ${up('tablet')} {
     height: 90%;
-    background-size: 67%, 100%;
+    background-size: 77%, 100%;
     background-position-y: 100%, 10%;
     background-position-x: 50%, 20%;
     background-image: url(${PhotoTablet}), url(${waveBgTablet});
@@ -101,7 +101,7 @@ export const BackgroundImage = styled.div`
   }
   ${up('tabletM')} {
     height: 85%;
-    background-size: 77%, 100%;
+    background-size: 85%, 100%;
     background-position-y: 100%, 60%;
     background-position-x: 50%, 50%;
     background-image: url(${PhotoTablet}), url(${waveBgTablet});
@@ -114,8 +114,8 @@ export const BackgroundImage = styled.div`
 
   ${up('pcSizeS')} {
     height: 100%;
-    background-size: 78%, 100%;
-    background-position-y: 100%, 60%;
+    background-size: 100%, 100%;
+    background-position-y: 100%, 100%;
     background-position-x: 50%, 50%;
     background-image: url(${PhotoTablet}), url(${waveBgTablet});
     @media (min-device-pixel-ratio: 2),
@@ -128,7 +128,7 @@ export const BackgroundImage = styled.div`
   ${up('pcSizeM')} {
     width: 100%;
     background-size: 43%, 6%, 27%, 72%;
-    background-position-y: 100%, 33%, 100%, 101%;
+    background-position-y: 100%, 28%, 100%, 101%;
     background-position-x: 100%, 65%, 100%, 42%;
 
     background-image: url(${PhotoDesktop}), url(${waveBgDesktopHeart}),
@@ -158,12 +158,26 @@ export const BackgroundImage = styled.div`
     }
   }
 
-  @media (min-width: 1343px) {
+  @media (min-width: 1920px) {
     width: 100%;
-    background-position-y: 100%, 100%, 22%, 100%;
-    background-position-x: 100%, 100%, 56%, 79%;
-    background-size: 32%, 25%, 5%, 75%;
+    background-position-y: 100%, 100%, 21%, 100%;
+    background-position-x: 100%, 100%, 59%, 0%;
+    background-size: 46%, 36%, 5%, 91%;
+    background-image: url(${PhotoDesktop}), url(${waveBgDesktopLayer}),
+      url(${waveBgDesktopHeart}), url(${waveBgDesktop});
+    @media (min-device-pixel-ratio: 2),
+      (min-resolution: 192dpi),
+      (min-resolution: 2dppx) {
+      background-image: url(${PhotoDesktopX}), url(${waveBgDesktopLayerX}),
+        url(${waveBgDesktopHeartX}), url(${waveBgDesktopX});
+    }
+  }
 
+  @media (min-width: 2040px) {
+    width: 100%;
+    background-position-y: 100%, 100%, 20%, 100%;
+    background-position-x: 100%, 100%, 60%, 9%;
+    background-size: 40%, 30%, 5%, 83%;
     background-image: url(${PhotoDesktop}), url(${waveBgDesktopLayer}),
       url(${waveBgDesktopHeart}), url(${waveBgDesktop});
     @media (min-device-pixel-ratio: 2),
