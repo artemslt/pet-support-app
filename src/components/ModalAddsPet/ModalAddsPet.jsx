@@ -5,9 +5,7 @@ import {
   ButtonCloses,
   ClosesIcon,
   Title,
-  WrapperBtn,
   FormStyled,
-  Button,
 } from './ModalAddsPet.styled';
 import { FormePageFist } from './FormPageFirst';
 import { FormePageSecond } from './FormPageSecond';
@@ -38,6 +36,16 @@ export const ModalAddsPet = ({ onToggleModal }) => {
     if (!name || !birthday || !breed || !photo || !comment) {
       return;
     }
+
+    const userPet = {
+      name,
+      birthday,
+      breed,
+      photo,
+      comment,
+    };
+
+    console.log(userPet);
     actions.resetForm();
     setImgUrl(null);
     dispatch(onSelector());
@@ -73,62 +81,21 @@ export const ModalAddsPet = ({ onToggleModal }) => {
           }
         >
           {Formik => {
-            const ValidNextPage = () => {
-              const { name, birthday, breed } = Formik.values;
-              if (!name || !birthday || !breed) {
-                return true;
-              }
-
-              if (Formik.isValid) {
-                if (Formik.dirty) {
-                  return false;
-                }
-                return false;
-              }
-              return true;
-            };
-            const isValid = ValidNextPage();
-
             return (
               <FormStyled onChange={handleOnChange}>
                 {pageToggle ? (
-                  <FormePageFist formik={Formik} />
+                  <FormePageFist
+                    formik={Formik}
+                    onClickToggle={setPageToggle}
+                    onToggleModal={onToggleModal}
+                  />
                 ) : (
-                  <FormePageSecond setImgUrl={setImgUrl} imgUrl={imgUrl} />
+                  <FormePageSecond
+                    setImgUrl={setImgUrl}
+                    imgUrl={imgUrl}
+                    onClickToggle={setPageToggle}
+                  />
                 )}
-                <WrapperBtn>
-                  <Button
-                    className="active"
-                    type={Formik.isValid ? 'submit' : 'button'}
-                    disabled={isValid}
-                    onClick={() => {
-                      if (pageToggle) {
-                        setPageToggle(false);
-                      }
-                      if (!pageToggle) {
-                        return;
-                      }
-                    }}
-                  >
-                    {pageToggle ? 'Next' : 'Done'}
-                  </Button>
-
-                  {
-                    <Button
-                      onClick={e => {
-                        if (pageToggle) {
-                          onToggleModal(e);
-                        }
-                        if (!pageToggle) {
-                          setPageToggle(true);
-                        }
-                      }}
-                      type={pageToggle ? 'button' : 'submit'}
-                    >
-                      {pageToggle ? 'Cancel' : 'back'}
-                    </Button>
-                  }
-                </WrapperBtn>
               </FormStyled>
             );
           }}
