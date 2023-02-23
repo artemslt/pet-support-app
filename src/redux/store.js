@@ -29,7 +29,7 @@ export const store = configureStore({
     friends: friendsSlice,
     auth: persistReducer(authPersistConfig, authReducer),
     news: newsReducer,
-    pets: petsSlice
+    pets: petsSlice,
   },
   middleware(getDefaultMiddleware) {
     return getDefaultMiddleware({
