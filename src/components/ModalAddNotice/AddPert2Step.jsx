@@ -49,6 +49,7 @@ export const SecondPart = ({
       )}
       <label>
         <p>Load the pet’s image:</p>
+
         <Field name="img" type="file" accept="image/*" />
         <ErrorMessage name="img" component="div" />
       </label>
@@ -59,7 +60,7 @@ export const SecondPart = ({
           as="textarea"
           name="comment"
           placeholder="Type comment"
-          onChange={e => setFieldValue('img', e.currentTarget.files[0])}
+        //   onChange={e => setFieldValue('img', e.currentTarget.files[0])}
         />
         <ErrorMessage name="comment" component="div" />
       </label>

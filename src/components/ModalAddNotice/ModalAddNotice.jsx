@@ -13,7 +13,7 @@ import { Wrapper,  Title, ButtonCloses,ClosesIcon} from './ModalAddNotice.styled
 
 export const AddPet = () => {
   const values = {
-    typeOfNotice: '',
+    typeOfNotice: 'sell',
     title: '',
     name: '',
     date: '',
@@ -44,7 +44,7 @@ export const AddPet = () => {
         validationSchema={step ? appPetSchemaStep1 : appPetSchemaStep2}
         onSubmit={handleSubmit}
       >
-        {({ values, isValid, dirty, handleReset, setFieldValue }) => (
+        {({ values, isValid, dirty, handleReset, setFieldValue, errors }) => (
           <Form>
             {step ? (
               <FirstPart
@@ -52,6 +52,11 @@ export const AddPet = () => {
                 isValid={isValid}
                 dirty={dirty}
                 handleReset={handleReset}
+
+                setFieldValue={setFieldValue}
+                values={values}
+                errors={errors}
+
               />
             ) : (
               <SecondPart

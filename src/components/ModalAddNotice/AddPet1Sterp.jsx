@@ -1,28 +1,64 @@
-import { Field, ErrorMessage } from 'formik';
-import {Text, LabelTitle, Input} from './ModalAddNotice.styled'
+import { ErrorMessage } from 'formik';
+import {
+  Text,
+  LabelTitle,
+  Input,
+  ButtonsSection,
+  Button,
+  RadioBtn,
+  RadioBtnLabel,
+  RadioBtnGroup,
+} from './ModalAddNotice.styled';
 
-export const FirstPart = ({ setStep, isValid, dirty, handleReset }) => {
+// Oleksii
+import { SelectComponentNotice } from './SelectComponentNotice';
+import { useState } from 'react';
+import { useSelector } from 'react-redux';
+
+export const FirstPart = ({
+  setStep,
+  isValid,
+  dirty,
+  handleReset,
+  setFieldValue,
+  values,
+  errors,
+}) => {
   //   console.log(`dirty`, dirty);
+
+  const [focus, setFocus] = useState(false);
+  const isInput = useSelector(state => state.isInput.toggle);
   return (
     <>
       <Text>
         Lorem ipsum dolor sit amet, consectetur Lorem ipsum dolor sit amet,
         consectetur{' '}
       </Text>
-      <div role="group">
-        <label>
-          <Field type="radio" name="typeOfNotice" value="lost/found" />
-          lost/found
-        </label>
-        <label>
-          <Field type="radio" name="typeOfNotice" value="in good hands" />
-          in good hands
-        </label>
-        <label>
-          <Field type="radio" name="typeOfNotice" value="sell" />
-          sell
-        </label>
-      </div>
+      <RadioBtnGroup role="group">
+        <RadioBtn
+          type="radio"
+          name="typeOfNotice"
+          value="lost/found"
+          id="lost_found"
+        />
+        <RadioBtnLabel for="lost_found">
+          <span>lost/found</span>
+        </RadioBtnLabel>
+
+        <RadioBtn
+          type="radio"
+          name="typeOfNotice"
+          value="in good hands"
+          id="in_good_hands"
+        />
+        <RadioBtnLabel for="in_good_hands">
+          <span>in good hands</span>
+        </RadioBtnLabel>
+        <RadioBtn type="radio" name="typeOfNotice" value="sell" id="sell" />
+        <RadioBtnLabel for="sell">
+          <span>sell</span>
+        </RadioBtnLabel>
+      </RadioBtnGroup>
 
       <label>
         <LabelTitle>
@@ -46,21 +82,41 @@ export const FirstPart = ({ setStep, isValid, dirty, handleReset }) => {
 
       <label>
         <LabelTitle>Breed</LabelTitle>
-        <Input name="breed" placeholder="Type breed" />
-        <ErrorMessage name="breed" component="div" />
+        {/* <Input name="breed" placeholder="Type breed" />
+        <ErrorMessage name="breed" component="div" /> */}
+
+        {/* Oleksii */}
+        {!isInput ? (
+          <>
+            <Input name="breed" placeholder="Type breed" />
+            <ErrorMessage name="breed" component="div" />
+          </>
+        ) : (
+          <>
+            {' '}
+            <SelectComponentNotice
+              onChange={value => setFieldValue('breed', value.value)}
+              value={values.breed}
+              onFocus={setFocus}
+            />
+            {focus ? <div className="error">{errors.breed}</div> : null}
+          </>
+        )}
       </label>
 
-      <button type="button" onClick={handleReset}>
-        Cancel
-      </button>
-      <button
-        name="next"
-        disabled={!isValid || !dirty}
-        onClick={() => setStep(false)}
-        type="button"
-      >
-        Next
-      </button>
+      <ButtonsSection>
+        <Button
+          name="next"
+          disabled={!isValid || !dirty}
+          onClick={() => setStep(false)}
+          type="button"
+        >
+          Next
+        </Button>
+        <Button type="button" onClick={handleReset}>
+          Cancel
+        </Button>
+      </ButtonsSection>
     </>
   );
 };
