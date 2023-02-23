@@ -32,7 +32,7 @@ export const appPetSchemaStep1 = yup.object().shape({
   breed: yup
     .string()
     .min(2, 'Breed should be 2 characters minimum.')
-    .max(24, 'Name should be 24 characters maximum.'),
+    .max(40, 'Name should be 40 characters maximum.'),
 });
 
 export const appPetSchemaStep2 = yup.object().shape({

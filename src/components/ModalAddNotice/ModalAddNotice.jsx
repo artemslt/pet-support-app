@@ -8,7 +8,7 @@ import {
 import { FirstPart } from './AddPet1Sterp';
 import { SecondPart } from './AddPert2Step';
 
-import { Wrapper,  Title, ButtonCloses,ClosesIcon} from './ModalAddNotice.styled';
+import { Wrapper,  Title, ButtonCloses,ClosesIcon, NoticeForm} from './ModalAddNotice.styled';
 
 
 export const AddPet = () => {
@@ -18,7 +18,7 @@ export const AddPet = () => {
     name: '',
     date: '',
     breed: '',
-    sex: '',
+    sex: 'Male',
     location: '',
     price: '0',
     img: '',
@@ -45,7 +45,7 @@ export const AddPet = () => {
         onSubmit={handleSubmit}
       >
         {({ values, isValid, dirty, handleReset, setFieldValue, errors }) => (
-          <Form>
+          <NoticeForm>
             {step ? (
               <FirstPart
                 setStep={setStep}
@@ -67,7 +67,7 @@ export const AddPet = () => {
                 setFieldValue={setFieldValue}
               />
             )}
-          </Form>
+          </NoticeForm>
         )}
       </Formik>
     </Wrapper>

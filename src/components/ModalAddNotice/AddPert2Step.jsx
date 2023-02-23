@@ -1,5 +1,23 @@
 import { Field, ErrorMessage } from 'formik';
 
+
+import {
+  Text,
+  LabelTitle,
+  Input,
+  ButtonsSection,
+  Button,
+  SexSection,
+  RadioBtnSex,
+  LabelSex,
+  Sex,
+  RadioBtnLabel,
+  RadioBtnGroup,
+  FemaleIcon,
+  MaleIcon,
+  CommentInput
+} from './ModalAddNotice.styled';
+
 export const SecondPart = ({
   setStep,
   values,
@@ -9,72 +27,81 @@ export const SecondPart = ({
 }) => {
   return (
     <div>
-      <label htmlFor="">
-        <p>
+      <>
+        <LabelTitle>
           The sex<span>*</span>:
-        </p>
-        <div role="group">
-          <label>
-            <Field type="radio" name="sex" value="Male" />
-            Male
-          </label>
-          <label>
-            <Field type="radio" name="sex" value="Female" />
-            Female
-          </label>
-        </div>
+        </LabelTitle>
+        <>
+        
+        <SexSection role="group">
+          <RadioBtnSex type="radio" name="sex" value="Male" id="male" />
+          <LabelSex htmlFor="male">
+          <MaleIcon/>
+            <Sex>Male</Sex>
+          </LabelSex>
+
+          <RadioBtnSex type="radio" name="sex" value="Female" id="female" />
+          <LabelSex htmlFor="female">
+            <FemaleIcon/>
+            <Sex>Female</Sex>
+          </LabelSex>
+        </SexSection>
+        </>
 
         <ErrorMessage name="sex" component="div" />
-      </label>
+      </>
 
       <label>
-        <p>
+        <LabelTitle>
           Location<span>*</span>:
-        </p>
+        </LabelTitle>
 
-        <Field name="location" placeholder="Type location" />
+        <Input name="location" placeholder="Type location" />
         <ErrorMessage name="location" component="div" />
       </label>
 
       {values.typeOfNotice === 'sell' && (
         <>
           <label>
-            <p>
+            <LabelTitle>
               Price<span>*</span>:
-            </p>
-            <Field name="price" placeholder="Type price" />
+            </LabelTitle>
+            <Input name="price" placeholder="Type price" />
             <ErrorMessage name="price" component="div" />
           </label>
         </>
       )}
       <label>
-        <p>Load the pet’s image:</p>
+        <LabelTitle>Load the pet’s image:</LabelTitle>
 
-        <Field name="img" type="file" accept="image/*" />
+        <Input name="img" type="file" accept="image/*" />
         <ErrorMessage name="img" component="div" />
       </label>
 
       <label>
-        <p>Comments</p>
-        <Field
+        <LabelTitle>Comments</LabelTitle>
+        <CommentInput
           as="textarea"
           name="comment"
           placeholder="Type comment"
-        //   onChange={e => setFieldValue('img', e.currentTarget.files[0])}
+               
+        //   style={{ height: '189px', paddingTop: '31px', resize: 'none' }}
         />
         <ErrorMessage name="comment" component="div" />
       </label>
 
-      <button
-        type="button"
-        onClick={() => setStep(true)}
-        disabled={!isValid || !dirty}
-      >
-        Back
-      </button>
-      <button type="submit" disabled={!(isValid && dirty)}>
-        Done
-      </button>
+      <ButtonsSection>
+        <Button type="submit" disabled={!(isValid && dirty)}>
+          Done
+        </Button>
+        <Button
+          type="button"
+          onClick={() => setStep(true)}
+          disabled={!isValid || !dirty}
+        >
+          Back
+        </Button>
+      </ButtonsSection>
     </div>
   );
 };

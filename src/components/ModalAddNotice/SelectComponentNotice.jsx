@@ -31,7 +31,7 @@ export const SelectComponentNotice = ({ onChange, value, onFocus }) => {
         onChange(value);
       }}
       onFocus={() => onFocus(true)}
-      placeholder="Select breed"
+      placeholder="Type breed"
       components={{ NoOptionsMessage }}
     ></CustomSelect>
   );

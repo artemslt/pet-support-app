@@ -1,10 +1,12 @@
 import styled from 'styled-components';
 import { up } from 'styled-breakpoints';
-import { Field } from 'formik';
+import { Field, Form } from 'formik';
 
 import Select from 'react-select';
 
 import { ReactComponent as Closes } from '../../images/ButtonCloses.svg';
+import { ReactComponent as Male } from '../../images/addNotice/Male.svg';
+import { ReactComponent as Female } from '../../images/addNotice/Female.svg';
 
 export const Wrapper = styled.div`
   border: 1px solid red;
@@ -72,6 +74,8 @@ export const ButtonCloses = styled.button`
   }
 `;
 
+// Styles for Step 1
+
 export const Text = styled.p`
   font-size: 16px;
   line-height: 22px;
@@ -100,6 +104,14 @@ export const LabelTitle = styled.p`
   &:nth-last-child() {
     margin-bottom: 8;
   }
+
+  & > span {
+    color: ${({ theme }) => theme.colors.mainAccent};
+  }
+`;
+
+export const NoticeForm = styled(Form)`
+  text-align: left;
 `;
 
 export const Input = styled(Field)`
@@ -109,21 +121,36 @@ export const Input = styled(Field)`
   line-height: calc(19 / 14);
   width: 240px;
   height: 40px;
-  padding: 0px 20px;
+  padding: 0px 14px;
   color: ${({ theme }) => theme.colors.grayText};
   background: ${({ theme }) => theme.colors.background};
   border: 1px solid ${({ theme }) => theme.colors.formInputAccnt};
   border-radius: 40px;
+
+  outline: none;
 
   &:nth-last-child(1) {
     margin-bottom: 8px;
   }
 
   ${up('tablet')} {
+    padding: 0 16px;
     font-size: 16px;
     line-height: calc(26 / 16);
     padding: 14px 16px;
     width: 448px;
+  }
+
+  &:hover {
+    border-color: ${({ theme }) => theme.colors.mainAccent};
+    cursor: pointer;
+  }
+  &:focus {
+    border-color: ${({ theme }) => theme.colors.activeAccent};
+  }
+
+  &::placeholder {
+    color: ${({ theme }) => theme.colors.mainBlack};
   }
 `;
 
@@ -135,7 +162,7 @@ export const ButtonsSection = styled.div`
   gap: 12px;
 
   ${up('tablet')} {
-    flex-direction: row;
+    flex-direction: row-reverse;
   }
 `;
 
@@ -146,11 +173,15 @@ export const Button = styled.button`
   border-radius: 40px;
   border: 2px solid #f59256;
 
+  font-size: ${({ theme }) => theme.fontSizes[2]}px;
+
   ${up('tablet')} {
     width: 180px;
     height: 44px;
     margin-bottom: 0px;
     margin-right: 24px;
+
+    font-size: ${({ theme }) => theme.fontSizes[4]}px;
     &:first-child {
       margin-right: 0px;
     }
@@ -181,16 +212,17 @@ export const Button = styled.button`
     color: ${({ theme }) => theme.colors.mainBlack};
   }
 
-  /* &[name='next']:disabled {
-    background-color: grey;
+  &[name='next']:disabled {
+    background-color: lightgrey;
     color: ${({ theme }) => theme.colors.mainBlack};
-  } */
+  }
 `;
 
 export const RadioBtnGroup = styled.div`
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
+  margin-bottom: 32px;
 `;
 
 export const RadioBtnLabel = styled.label`
@@ -202,7 +234,7 @@ export const RadioBtnLabel = styled.label`
   /* color: black; */
 
   font-weight: ${({ theme }) => theme.fontWeights[1]};
-  font-size: ${({ theme }) => theme.fontWeights[1]};
+  font-size: ${({ theme }) => theme.fontSizes[1]}px;
   font-family: ${({ theme }) => theme.fonts[1]};
   line-height: calc(19 / 14);
 
@@ -228,26 +260,30 @@ export const RadioBtn = styled(Field)`
   &:checked + label {
     background-color: #f59256;
     color: #fff;
- 
   }
 `;
 
 // стилі react-select вино тут перебиваються складно в них норм розібратися, починаються із Select_Notice '__control' та тд те що треба перебити
 export const CustomSelect = styled(Select)`
   .Select_Notice__control {
+    width: 240px;
+    margin-top: 8px;
+    padding: 0 14px;
+
     font-family: ${({ theme }) => theme.fonts[1]};
     font-weight: ${({ theme }) => theme.fontWeights[0]};
     font-size: 14px;
     line-height: calc(19 / 14);
-    width: 240px;
-    padding: 0;
+
     color: ${({ theme }) => theme.colors.grayText};
-    margin-top: 8px;
     background: ${({ theme }) => theme.colors.background};
     border: 1px solid ${({ theme }) => theme.colors.formInputAccnt};
     border-radius: 40px;
+
     cursor: pointer;
+
     ${up('tablet')} {
+      padding-top: 0 16px;
       font-size: 16px;
       line-height: calc(26 / 16);
       padding: 2px 8px;
@@ -280,4 +316,88 @@ export const CustomSelect = styled(Select)`
   .Select_Notice__control:focus {
     border-color: ${({ theme }) => theme.colors.activeAccent};
   }
+`;
+
+// Styles for Step 2
+
+export const RadioBtnSex = styled(Field)`
+  /* Приховати чекбокс!! */
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  position: absolute;
+
+  &:checked + label {
+    color: #f59256;
+  }
+`;
+
+export const SexSection = styled.div`
+  display: flex;
+  gap: 39px;
+`;
+export const Sex = styled.p`
+  font-size: ${({ theme }) => theme.fontSizes[3]}px;
+`;
+export const FemaleIcon = styled(Female)`
+  width: 26px;
+  height: 46px;
+`;
+
+export const MaleIcon = styled(Male)`
+  width: 36px;
+  height: 36px;
+`;
+
+export const LabelSex = styled.label`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+
+  margin-bottom: 32px;
+`;
+
+export const CommentInput = styled(Field)`
+  resize: none;
+
+  font-family: ${({ theme }) => theme.fonts[1]};
+  font-weight: ${({ theme }) => theme.fontWeights[0]};
+  font-size: 14px;
+  line-height: calc(19 / 14);
+  
+  width: 240px;
+  height: 40px;
+  padding: 11px 14px;
+
+  color: ${({ theme }) => theme.colors.grayText};
+  background: ${({ theme }) => theme.colors.background};
+  border: 1px solid ${({ theme }) => theme.colors.formInputAccnt};
+  border-radius: 40px;
+
+  outline: none;
+
+  
+
+  ${up('tablet')} {
+    padding: 0 16px;
+    font-size: 16px;
+    line-height: calc(26 / 16);
+    padding: 14px 16px;
+    width: 448px;
+  }
+
+  &:hover {
+    border-color: ${({ theme }) => theme.colors.mainAccent};
+    cursor: pointer;
+  }
+  &:focus {
+    border-color: ${({ theme }) => theme.colors.activeAccent};
+  }
+
+  &::placeholder {
+    
+    color: ${({ theme }) => theme.colors.mainBlack};
+    height:100%;
+    }
 `;

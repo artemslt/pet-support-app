@@ -41,7 +41,7 @@ export const FirstPart = ({
           value="lost/found"
           id="lost_found"
         />
-        <RadioBtnLabel for="lost_found">
+        <RadioBtnLabel htmlFor="lost_found">
           <span>lost/found</span>
         </RadioBtnLabel>
 
@@ -51,11 +51,11 @@ export const FirstPart = ({
           value="in good hands"
           id="in_good_hands"
         />
-        <RadioBtnLabel for="in_good_hands">
+        <RadioBtnLabel htmlFor="in_good_hands">
           <span>in good hands</span>
         </RadioBtnLabel>
         <RadioBtn type="radio" name="typeOfNotice" value="sell" id="sell" />
-        <RadioBtnLabel for="sell">
+        <RadioBtnLabel htmlFor="sell">
           <span>sell</span>
         </RadioBtnLabel>
       </RadioBtnGroup>
