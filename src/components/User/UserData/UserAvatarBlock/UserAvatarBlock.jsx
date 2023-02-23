@@ -10,8 +10,8 @@ import {
   Text,
 } from './userAvatarBlock.styled';
 
-import { updateAvatar } from 'redux/auth/authOperations';
-import { selectAvatarURL } from 'redux/auth/authSelectors';
+import { updateAvatar, refreshUser } from 'redux/auth/authOperations';
+import { selectAvatarURL, selectUser } from 'redux/auth/authSelectors';
 
 import addIcon from './addIcon.svg';
 import cameraIcon from './cameraIcon.svg';
@@ -20,17 +20,16 @@ export const UserAvatarBlock = () => {
   const userAvatar = useSelector(selectAvatarURL);
   const dispatch = useDispatch();
 
-  const onChangeAvatar = event => {
+  const onChangeAvatar = async event => {
     event.preventDefault();
 
     const formData = new FormData();
     if (event.target.files) {
       const avatar = event.target.files[0];
       formData.append('avatar', avatar);
-      console.log('formData', formData);
 
-      console.log(event.target.files[0]);
       dispatch(updateAvatar(formData));
+      dispatch(refreshUser(selectUser));
     }
   };
 
