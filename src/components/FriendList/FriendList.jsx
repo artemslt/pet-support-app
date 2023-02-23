@@ -1,29 +1,36 @@
 import { Friend } from "components/Friend/Friend";
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import sadDog from './sadDog.jpg';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchFriends } from "redux/friends/friendsOperations";
 import { selectFriends } from "redux/friends/friendsSelectors";
+import { Spinner } from 'components/Spinner/Spinner.styled';
 import {
   PartnerTitle,
   CardList,
-  FriendsContainer
+  FriendsContainer,
+  SpinnerContainer,
 } from './FriendList.styled';
 import { Container } from "components/Container/Container.styled";
 
 export const FriendList = () => {
   const dispatch = useDispatch();
   const friends = useSelector(selectFriends);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    dispatch(fetchFriends());
+    dispatch(fetchFriends()).then(() => setIsLoading(false));
   }, [dispatch]);
 
   return (
     <Container>
       <FriendsContainer>
         <PartnerTitle>Our friends</PartnerTitle>
-        {friends && friends.length > 0 ? (
+        {isLoading ? (
+          <SpinnerContainer>
+          <Spinner />
+          </SpinnerContainer>
+        ) : friends && friends.length > 0 ? (
           <CardList>
             {friends.map(({ _id, title, imageUrl, addressUrl, address, email, phone, url , workDays}) => (
               <Friend
