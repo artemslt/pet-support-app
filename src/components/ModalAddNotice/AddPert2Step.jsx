@@ -1,8 +1,7 @@
-import { Field, ErrorMessage } from 'formik';
-
+import { ErrorMessage } from 'formik';
+import { useEffect } from 'react';
 
 import {
-  Text,
   LabelTitle,
   Input,
   ButtonsSection,
@@ -11,11 +10,17 @@ import {
   RadioBtnSex,
   LabelSex,
   Sex,
-  RadioBtnLabel,
-  RadioBtnGroup,
   FemaleIcon,
   MaleIcon,
-  CommentInput
+  CommentInput,
+  ImgBox,
+  AddImagelabel,
+  InputFile,
+  AddPhoto,
+  Image,
+  ButtonClose,
+  CancelIcon
+
 } from './ModalAddNotice.styled';
 
 export const SecondPart = ({
@@ -24,7 +29,18 @@ export const SecondPart = ({
   isValid,
   dirty,
   setFieldValue,
+  imgUrl,
+  setImgUrl,
 }) => {
+  const { typeOfNotice } = values;
+
+  useEffect(() => {
+    // set the value of price, based on typeOfNotice value
+    if (typeOfNotice !== 'sell') {
+      setFieldValue('price', 1);
+    }
+  }, [typeOfNotice]);
+
   return (
     <div>
       <>
@@ -32,20 +48,19 @@ export const SecondPart = ({
           The sex<span>*</span>:
         </LabelTitle>
         <>
-        
-        <SexSection role="group">
-          <RadioBtnSex type="radio" name="sex" value="Male" id="male" />
-          <LabelSex htmlFor="male">
-          <MaleIcon/>
-            <Sex>Male</Sex>
-          </LabelSex>
+          <SexSection role="group">
+            <RadioBtnSex type="radio" name="sex" value="Male" id="male" />
+            <LabelSex htmlFor="male">
+              <MaleIcon />
+              <Sex>Male</Sex>
+            </LabelSex>
 
-          <RadioBtnSex type="radio" name="sex" value="Female" id="female" />
-          <LabelSex htmlFor="female">
-            <FemaleIcon/>
-            <Sex>Female</Sex>
-          </LabelSex>
-        </SexSection>
+            <RadioBtnSex type="radio" name="sex" value="Female" id="female" />
+            <LabelSex htmlFor="female">
+              <FemaleIcon />
+              <Sex>Female</Sex>
+            </LabelSex>
+          </SexSection>
         </>
 
         <ErrorMessage name="sex" component="div" />
@@ -71,22 +86,36 @@ export const SecondPart = ({
           </label>
         </>
       )}
+    
+    
       <label>
         <LabelTitle>Load the pet’s image:</LabelTitle>
+        <div>
+        <ImgBox className={imgUrl ? 'show_img' : ''}>
+          <AddImagelabel>
+            <InputFile name="img" type="file" accept="image/*" />
+            <AddPhoto />
+            <ErrorMessage name="img" component="div" />
+          </AddImagelabel>
 
-        <Input name="img" type="file" accept="image/*" />
-        <ErrorMessage name="img" component="div" />
+          {imgUrl && (
+            <>
+              <Image src={imgUrl} alt="" width="60" />
+              <ButtonClose onClick={() => setImgUrl(null)}>
+                <CancelIcon />
+              </ButtonClose>
+            </>
+          )}
+        </ImgBox>
+      </div>
+
+        {/* <Input name="img" type="file" accept="image/*" />
+        <ErrorMessage name="img" component="div" /> */}
       </label>
 
       <label>
         <LabelTitle>Comments</LabelTitle>
-        <CommentInput
-          as="textarea"
-          name="comment"
-          placeholder="Type comment"
-               
-        //   style={{ height: '189px', paddingTop: '31px', resize: 'none' }}
-        />
+        <CommentInput as="textarea" name="comment" placeholder="Type comment" />
         <ErrorMessage name="comment" component="div" />
       </label>
 

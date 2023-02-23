@@ -24,7 +24,6 @@ export const FirstPart = ({
   values,
   errors,
 }) => {
-  //   console.log(`dirty`, dirty);
 
   const [focus, setFocus] = useState(false);
   const isInput = useSelector(state => state.isInput.toggle);

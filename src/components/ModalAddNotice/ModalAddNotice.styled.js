@@ -7,14 +7,13 @@ import Select from 'react-select';
 import { ReactComponent as Closes } from '../../images/ButtonCloses.svg';
 import { ReactComponent as Male } from '../../images/addNotice/Male.svg';
 import { ReactComponent as Female } from '../../images/addNotice/Female.svg';
+import { ReactComponent as iconAddPhoto } from '../../images/addPhoto.svg';
+import { ReactComponent as closeImageIcon } from '../../images/close-image-icon.svg';
 
 export const Wrapper = styled.div`
-  border: 1px solid red;
-
   position: relative;
   width: 280px;
 
-  /* padding: 40px 18px; */
   padding-top: 40px;
   padding-bottom: 40px;
   padding-left: 18px;
@@ -45,7 +44,7 @@ export const Title = styled.h2`
 
 export const ClosesIcon = styled(Closes)``;
 
-export const ButtonCloses = styled.button`
+export const ButtonClose = styled.button`
   position: absolute;
 
   width: 34px;
@@ -365,7 +364,7 @@ export const CommentInput = styled(Field)`
   font-weight: ${({ theme }) => theme.fontWeights[0]};
   font-size: 14px;
   line-height: calc(19 / 14);
-  
+
   width: 240px;
   height: 40px;
   padding: 11px 14px;
@@ -376,8 +375,6 @@ export const CommentInput = styled(Field)`
   border-radius: 40px;
 
   outline: none;
-
-  
 
   ${up('tablet')} {
     padding: 0 16px;
@@ -396,8 +393,61 @@ export const CommentInput = styled(Field)`
   }
 
   &::placeholder {
-    
     color: ${({ theme }) => theme.colors.mainBlack};
-    height:100%;
-    }
+    height: 100%;
+  }
 `;
+
+
+export const ImgBox = styled.div`
+position: relative;
+width: 208px;
+height: 208px;
+border-radius: 20px;
+width: 116px;
+height: 116px;
+${up('tablet')} {
+  width: 140px;
+  height: 140px;
+}
+`;
+
+export const AddImagelabel = styled.label`
+  width: 116px;
+  height: 116px;
+  ${up('tablet')} {
+    width: 140px;
+    height: 140px;
+  }
+  background: #fdf7f2;
+  border-radius: 20px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+export const InputFile = styled(Field)`
+  display: none; ;
+`;
+export const AddPhoto = styled(iconAddPhoto)`
+  position: absolute;
+`;
+
+export const Image = styled.img`
+  position: absolute;
+  z-index: 999;
+  top: 0;
+  border-radius: 20px;
+  width: 116px;
+  height: 116px;
+  ${up('tablet')} {
+    width: 140px;
+    height: 140px;
+  }
+`;
+export const CancelIcon = styled(closeImageIcon)`
+  fill: ${({ theme }) => theme.colors.mainAccent};
+  width: 8px;
+`;
+
