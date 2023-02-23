@@ -9,7 +9,7 @@ import { AddPet } from '../../components/ModalAddNotice/ModalAddNotice';
 const NoticesPage = () => {
   return (
     <Container style={{ textAlign: 'center', paddingBottom: 100 }}>
-      {<AddPet />}
+      <AddPet />
       <CommonTitle text={'Find your favorite pet'} />
       <NoticesSearch />
       <NoticesCategoriesNav />
