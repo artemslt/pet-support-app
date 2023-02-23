@@ -10,10 +10,10 @@ const NoticesPage = () => {
   return (
     <Container style={{ textAlign: 'center', paddingBottom: 100 }}>
       <AddPet />
-      {/* <CommonTitle text={'Find your favorite pet'} />
+      <CommonTitle text={'Find your favorite pet'} />
       <NoticesSearch />
       <NoticesCategoriesNav />
-      <Outlet /> */}
+      <Outlet />
     </Container>
   );
 };
