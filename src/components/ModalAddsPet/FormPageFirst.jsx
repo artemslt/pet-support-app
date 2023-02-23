@@ -1,10 +1,20 @@
 import { useState } from 'react';
 import { SelectComponent } from './SelectComponent';
-import { Error, Input, Label, ErrorSelect } from './ModalAddsPet.styled';
+import {
+  Error,
+  Input,
+  Label,
+  ErrorSelect,
+  WrapperBtn,
+  Button,
+} from './ModalAddsPet.styled';
+import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
-export const FormePageFist = ({ formik }) => {
+import { onSelector } from 'redux/InputPets/inputPetsSlice';
+export const FormePageFist = ({ formik, onClickToggle, onToggleModal }) => {
   const [focus, setFocus] = useState(false);
   const isInput = useSelector(state => state.isInput.toggle);
+  const dispatch = useDispatch();
 
   return (
     <>
@@ -39,6 +49,17 @@ export const FormePageFist = ({ formik }) => {
         ) : null}
         <Error name="breed" component="p"></Error>
       </Label>
+      <WrapperBtn>
+        <Button onClick={() => onClickToggle(false)}>next</Button>
+        <Button
+          onClick={e => {
+            dispatch(onSelector());
+            onToggleModal(e);
+          }}
+        >
+          cancel
+        </Button>
+      </WrapperBtn>
     </>
   );
 };

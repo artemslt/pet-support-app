@@ -76,13 +76,12 @@ const NewsPage = () => {
           )}
         </Label>
         {isLoading && !error && <Spinner />}
-        {!isLoading && visibleNews ? (
-          <NewsList news={visibleNews} />
-        ) : (
+        {!visibleNews && !isLoading && (
           <ErrorText>
             Sorry, there is no news at this moment. Try again later.
           </ErrorText>
         )}
+        {!isLoading && visibleNews && <NewsList news={visibleNews} />}
       </NewsContainer>
     </Container>
   );
