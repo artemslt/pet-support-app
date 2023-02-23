@@ -201,13 +201,14 @@ export const UserDataItem = () => {
               <Label htmlFor="birthday">Birthday:</Label>
               <div style={{ width: 245 }}>
                 <InputDatePicker
+                  selected={startDate}
                   active={!isBirthdayDisabled}
                   dateFormat="dd.MM.yyyy"
                   name="birthday"
                   disabled={isBirthdayDisabled}
                   onChange={date => setStartDate(date)}
-                  selected={startDate}
                   maxDate={new Date()}
+                  placeholderText="00.00.0000"
                   showDisabledMonthNavigation
                   shouldCloseOnSelect={true}
                 />

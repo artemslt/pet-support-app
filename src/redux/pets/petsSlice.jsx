@@ -19,7 +19,7 @@ const petsSlice = createSlice({
     [addPet.fulfilled](state, action) {
       state.isAdding = false;
       state.error = null;
-      state.pets.unshift(action.payload);
+      state.list.pets.unshift(action.payload);
     },
     [addPet.rejected](state) {
       state.isAdding = false;

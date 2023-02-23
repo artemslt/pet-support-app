@@ -15,9 +15,10 @@ import { ReactComponent as DeleteIcon } from './deleteIcon.svg';
 export const PetsList = ({
   _id,
   name,
-  comments,
+  comment,
   breed,
   birthday,
+  photo,
   handleDeleteCard,
 }) => {
   // const [, setPetDeleteId] = useState(null);
@@ -25,7 +26,7 @@ export const PetsList = ({
   return (
     <PetCard>
       <PetPhotoWrapper>
-        <PetPhoto src="" alt="" />
+        <PetPhoto src={photo} alt="" />
       </PetPhotoWrapper>
 
       <PetInfoItem>
@@ -44,7 +45,7 @@ export const PetsList = ({
           </Text>
           <Text>
             <TextTopic>Comments: </TextTopic>
-            {comments}
+            {comment}
           </Text>
         </div>
         <PetDeleteBtn
