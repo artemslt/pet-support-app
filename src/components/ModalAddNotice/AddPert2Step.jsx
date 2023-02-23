@@ -1,3 +1,13 @@
+import {
+  AddImagelabel,
+  Image,
+  ImgBox,
+  InputFile,
+  AddPhoto,
+  ButtonClose,
+  CancelIcon,
+} from './ModalAddNotice.styled';
+
 import { Field, ErrorMessage } from 'formik';
 
 export const SecondPart = ({
@@ -5,7 +15,8 @@ export const SecondPart = ({
   values,
   isValid,
   dirty,
-  setFieldValue,
+  imgUrl,
+  setImgUrl,
 }) => {
   return (
     <div>
@@ -47,19 +58,33 @@ export const SecondPart = ({
           </label>
         </>
       )}
-      <label>
+      <div>
         <p>Load the pet’s image:</p>
-        <Field name="img" type="file" accept="image/*" />
-        <ErrorMessage name="img" component="div" />
-      </label>
+        <ImgBox className={imgUrl ? 'show_img' : ''}>
+          <AddImagelabel>
+            <InputFile name="img" type="file" accept="image/*" />
+            <AddPhoto />
+            <ErrorMessage name="img" component="div" />
+          </AddImagelabel>
 
+          {imgUrl && (
+            <>
+              <Image src={imgUrl} alt="" width="60" />
+              <ButtonClose onClick={() => setImgUrl(null)}>
+                <CancelIcon />
+              </ButtonClose>
+            </>
+          )}
+        </ImgBox>
+      </div>
       <label>
         <p>Comments</p>
         <Field
           as="textarea"
           name="comment"
           placeholder="Type comment"
-          onChange={e => setFieldValue('img', e.currentTarget.files[0])}
+
+          // onChange={e => setFieldValue('img', e.currentTarget.files[0])}
         />
         <ErrorMessage name="comment" component="div" />
       </label>

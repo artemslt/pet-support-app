@@ -1,8 +1,22 @@
+import { SelectComponentNotice } from './SelectComponentNotice';
 import { Field, ErrorMessage } from 'formik';
-import {Text, LabelTitle, Input} from './ModalAddNotice.styled'
+import { Text, LabelTitle, Input } from './ModalAddNotice.styled';
+import { useState } from 'react';
+import { useSelector } from 'react-redux';
 
-export const FirstPart = ({ setStep, isValid, dirty, handleReset }) => {
+export const FirstPart = ({
+  setStep,
+  isValid,
+  dirty,
+  handleReset,
+  values,
+  setFieldValue,
+  errors,
+}) => {
+  const [focus, setFocus] = useState(false);
+  const isInput = useSelector(state => state.isInput.toggle);
   //   console.log(`dirty`, dirty);
+
   return (
     <>
       <Text>
@@ -46,8 +60,23 @@ export const FirstPart = ({ setStep, isValid, dirty, handleReset }) => {
 
       <label>
         <LabelTitle>Breed</LabelTitle>
-        <Input name="breed" placeholder="Type breed" />
-        <ErrorMessage name="breed" component="div" />
+
+        {!isInput ? (
+          <>
+            <Input name="breed" placeholder="Type breed" />
+            <ErrorMessage name="breed" component="div" />
+          </>
+        ) : (
+          <>
+            {' '}
+            <SelectComponentNotice
+              onChange={value => setFieldValue('breed', value.value)}
+              value={values.breed}
+              onFocus={setFocus}
+            />
+            {focus ? <div className="error">{errors.breed}</div> : null}
+          </>
+        )}
       </label>
 
       <button type="button" onClick={handleReset}>

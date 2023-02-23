@@ -7,11 +7,16 @@ import {
 } from '../../schemas/appNoticeSchema';
 import { FirstPart } from './AddPet1Sterp';
 import { SecondPart } from './AddPert2Step';
+import { useDispatch } from 'react-redux';
+import { onSelector } from 'redux/InputPets/inputPetsSlice';
+import {
+  Wrapper,
+  Title,
+  ButtonCloses,
+  ClosesIcon,
+} from './ModalAddNotice.styled';
 
-import { Wrapper,  Title, ButtonCloses,ClosesIcon} from './ModalAddNotice.styled';
-
-
-export const AddPet = () => {
+export const AddPet = ({ onToggleModal }) => {
   const values = {
     typeOfNotice: '',
     title: '',
@@ -25,16 +30,44 @@ export const AddPet = () => {
     comment: '',
   };
 
+  // стейт для збереження юрл
+  const [imgUrl, setImgUrl] = useState(null);
   const [step, setStep] = useState(true);
+
+  // діспатч перемикає перемикач який в редаксі,
+  //він потрібен для того щоб в нас вмикалася кнопка на перемикання інпута, після закриття
+  //модалки потрібно ставити перемикач на місце  dispatch(onSelector()), бо селектора не буде до перезавантаження сторінки
+  const dispatch = useDispatch();
+
+  // файл рідер
+  const fileReader = new FileReader();
+  fileReader.onloadend = () => {
+    setImgUrl(fileReader.result);
+  };
 
   const handleSubmit = (values, { resetForm }) => {
     console.log(`AddPet`, values);
     resetForm();
   };
 
+  const handleOnChange = event => {
+    event.preventDefault();
+
+    if (event.target.files && event.target.files.length > 0) {
+      const file = event.target.files[0];
+      return fileReader.readAsDataURL(file);
+    }
+    return;
+  };
+
   return (
     <Wrapper>
-      <ButtonCloses onClick={e => console.log(e)}>
+      <ButtonCloses
+        onClick={e => {
+          onToggleModal(e);
+          dispatch(onSelector());
+        }}
+      >
         <ClosesIcon />
       </ButtonCloses>
 
@@ -44,14 +77,17 @@ export const AddPet = () => {
         validationSchema={step ? appPetSchemaStep1 : appPetSchemaStep2}
         onSubmit={handleSubmit}
       >
-        {({ values, isValid, dirty, handleReset, setFieldValue }) => (
-          <Form>
+        {({ values, isValid, dirty, errors, handleReset, setFieldValue }) => (
+          <Form onChange={handleOnChange}>
             {step ? (
               <FirstPart
                 setStep={setStep}
                 isValid={isValid}
                 dirty={dirty}
                 handleReset={handleReset}
+                values={values}
+                setFieldValue={setFieldValue}
+                errors={errors}
               />
             ) : (
               <SecondPart
@@ -60,6 +96,8 @@ export const AddPet = () => {
                 isValid={isValid}
                 dirty={dirty}
                 setFieldValue={setFieldValue}
+                imgUrl={imgUrl}
+                setImgUrl={setImgUrl}
               />
             )}
           </Form>
