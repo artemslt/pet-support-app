@@ -1,8 +1,8 @@
-import { ErrorMessage } from 'formik';
 import {
   Text,
   LabelTitle,
   Input,
+  Error,
   ButtonsSection,
   Button,
   RadioBtn,
@@ -33,14 +33,6 @@ export const FirstPart = ({
     setImgUrl('');
   }
 
-  function Step() {
-    if (!isValid || !dirty) {
-      setStep(true);
-    }
-    // ТОСТ
-    console.log('Tost');
-    return setStep(false);
-  }
   return (
     <>
       <Text>
@@ -78,31 +70,34 @@ export const FirstPart = ({
           Tittle of ad <span>*</span>
         </LabelTitle>
         <Input name="title" placeholder="Type name" />
-        <ErrorMessage name="title" component="div" />
+        <Error name="title" component="div" />
       </label>
 
       <label>
-        <LabelTitle>Name pet</LabelTitle>
+        <LabelTitle>
+          Name pet <span>*</span>
+        </LabelTitle>
         <Input name="name" placeholder="Type name pet" />
-        <ErrorMessage name="name" component="div" />
+        <Error name="name" component="div"  />
       </label>
 
       <label>
-        <LabelTitle>Date of birth</LabelTitle>
+        <LabelTitle>
+          Date of birth <span>*</span>
+        </LabelTitle>
         <Input name="date" placeholder="Type date of birth" />
-        <ErrorMessage name="date" component="div" />
+        <Error name="date" component="div" />
       </label>
 
       <label>
-        <LabelTitle>Breed</LabelTitle>
-        {/* <Input name="breed" placeholder="Type breed" />
-        <ErrorMessage name="breed" component="div" /> */}
-
-        {/* Oleksii */}
+        <LabelTitle>
+          Breed <span>*</span>
+        </LabelTitle>
+        
         {!isInput ? (
           <>
             <Input name="breed" placeholder="Type breed" />
-            <ErrorMessage name="breed" component="div" />
+            <Error name="breed" component="div" />
           </>
         ) : (
           <>
@@ -120,8 +115,9 @@ export const FirstPart = ({
       <ButtonsSection>
         <Button
           name="next"
-          //   disabled={!isValid || !dirty}
-          onClick={Step}
+          disabled={!isValid || !dirty}
+          onClick={() => setStep(false)}
+          //   onClick={Step}
           type="button"
         >
           Next
