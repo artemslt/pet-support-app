@@ -37,7 +37,7 @@ export const ModalAddsPet = ({ onToggleModal }) => {
   const handleSubmit = (values, actions) => {
     const { name, birthday, breed, comment } = values;
 
-    if (!name || !birthday || breed === '' || !comment || file === null) {
+    if (!name || !birthday || !breed || !comment || !file) {
       return toast.error(`All fields must be filled`);
     }
 
