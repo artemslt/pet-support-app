@@ -65,6 +65,8 @@ export const AddPet = ({ onToggleModal }) => {
     resetForm();
   };
 
+
+
   return (
     <Wrapper>
       <ButtonClose
@@ -83,7 +85,7 @@ export const AddPet = ({ onToggleModal }) => {
         onSubmit={handleSubmit}
       
       >
-        {({ values, isValid, dirty, handleReset,setFieldValue, errors }) => (
+        {({ values, isValid, dirty, handleReset,setFieldValue, errors, isSubmitting }) => (
           <NoticeForm onChange={handleOnChange}>
             {step ? (
               <FirstPart
@@ -94,6 +96,7 @@ export const AddPet = ({ onToggleModal }) => {
                 values={values}
                 errors={errors}
                 setImgUrl={setImgUrl}
+                isSubmitting={isSubmitting}
 
               />
             ) : (

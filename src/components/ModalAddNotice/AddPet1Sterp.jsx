@@ -32,6 +32,16 @@ export const FirstPart = ({
     handleReset();
     setImgUrl('');
   }
+
+//   function Step (){
+//     if(!isValid || !dirty){
+//         setStep(true);
+//     }
+//     // ТОСТ
+//     console.log("Tost")
+//     return setStep(false);
+    
+//   }
   return (
     <>
       <Text>
