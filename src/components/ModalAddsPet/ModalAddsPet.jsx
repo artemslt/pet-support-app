@@ -15,6 +15,14 @@ import { useDispatch } from 'react-redux';
 import { onSelector } from 'redux/InputPets/inputPetsSlice';
 import { addPet } from 'redux/pets/petsOperations';
 
+const initialValues = {
+  name: '',
+  birthday: '',
+  breed: '',
+  photo: '',
+  comment: '',
+};
+
 export const ModalAddsPet = ({ onToggleModal }) => {
   const [pageToggle, setPageToggle] = useState(true);
   const [imgUrl, setImgUrl] = useState(null);
@@ -26,18 +34,10 @@ export const ModalAddsPet = ({ onToggleModal }) => {
     setImgUrl(fileReader.result);
   };
 
-  const initialValues = {
-    name: '',
-    birthday: '',
-    breed: '',
-    photo: '',
-    comment: '',
-  };
-
   const handleSubmit = (values, actions) => {
     const { name, birthday, breed, comment } = values;
 
-    if (!name || !birthday || !breed || !comment || !file) {
+    if (!name || !birthday || breed === '' || !comment || file === null) {
       return toast.error(`All fields must be filled`);
     }
 
@@ -48,12 +48,14 @@ export const ModalAddsPet = ({ onToggleModal }) => {
       photo: file,
       comment,
     };
+
     dispatch(addPet(userPet));
     actions.resetForm();
     setImgUrl(null);
     dispatch(onSelector());
     onToggleModal();
   };
+
   const handleOnChange = event => {
     event.preventDefault();
 
