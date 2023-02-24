@@ -31,7 +31,7 @@ export const FormePageSecond = ({
               type="file"
               name="photo"
               value={imgUrl ? imgUrl : ''}
-              accept="image/*"
+              accept="image/png, image/jpeg"
             />
           )}
           <ImgBox className={imgUrl ? 'show_img' : ''}>
