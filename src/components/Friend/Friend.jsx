@@ -8,6 +8,7 @@ import {
   CardDataItem,
   CardWorkDays,
   CardTime,
+  CardAddress
 } from './Friend.styled';
 
 import notfound from './notfound.jpg';
@@ -68,13 +69,13 @@ export const Friend = ({ _id, title, url, imageUrl, addressUrl, address, email, 
             <CardDataItem>
               <span>Address:</span>
               {address ? (
-                <span>
+                <CardAddress>
                   <a href={addressUrl ?? '#'} target="_blank" rel="noreferrer">
                     {address}
                   </a>
-                </span>
+                </CardAddress>
               ) : (
-                <span>-----------------------------</span>
+                <CardAddress>-----------------------------</CardAddress>
               )}
             </CardDataItem>
             <CardDataItem>
