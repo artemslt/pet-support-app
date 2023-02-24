@@ -19,11 +19,20 @@ export const Wrapper = styled.div`
   }
 `;
 
-export const ClosesIcon = styled(Closes)``;
+export const ClosesIcon = styled(Closes)`
+  width: 16px;
+  height: 15.06px;
+  ${up('tablet')} {
+    width: 20px;
+    height: 20.05px;
+  }
+`;
 
 export const ButtonCloses = styled.button`
   position: absolute;
-
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 34px;
   height: 34px;
   right: 20px;
@@ -71,7 +80,7 @@ export const WrapperBtn = styled.div`
     display: flex;
     flex-direction: row-reverse;
   }
-
+  margin-top: 40px;
   display: flex;
   flex-direction: column;
 `;
@@ -121,19 +130,19 @@ export const Input = styled(Field)`
   font-size: 14px;
   line-height: calc(19 / 14);
   width: 240px;
-  height: 40px;
-  padding: 0px 20px;
+  padding: 8.7px 8px;
   color: ${({ theme }) => theme.colors.grayText};
-  margin-top: 8px;
   background: ${({ theme }) => theme.colors.background};
   border: 1px solid ${({ theme }) => theme.colors.formInputAccnt};
   border-radius: 40px;
   cursor: pointer;
+  margin-top: 8px;
   ${up('tablet')} {
     font-size: 16px;
     line-height: calc(26 / 16);
-    padding: 14px 16px;
+    padding: 7.9px 16px;
     width: 448px;
+    margin-top: 12px;
   }
   outline: none;
   &:hover,
@@ -192,6 +201,7 @@ export const InputHidden = styled(Field)`
 
 export const AddPhoto = styled(iconAddPhoto)`
   position: absolute;
+  stroke: ${({ theme }) => theme.colors.grayText};
 `;
 
 export const AddImage = styled.label`
@@ -213,6 +223,11 @@ export const AddImage = styled.label`
 
   &.Add_Image_show {
     cursor: pointer;
+
+    &:hover ${AddPhoto} {
+      transition: cubic-bezier(0.075, 0.82, 0.165, 1);
+      stroke: ${({ theme }) => theme.colors.mainAccent};
+    }
   }
 `;
 
@@ -310,27 +325,27 @@ export const CommentTitle = styled.span`
   margin-bottom: 12px;
 `;
 
-export const Option = styled.option`
-  font-family: ${({ theme }) => theme.fonts[1]};
-  font-weight: ${({ theme }) => theme.fontWeights[0]};
-  font-size: 14px;
-  line-height: calc(19 / 14);
-  width: 240px;
-  height: 20px;
-  padding: 0px 20px;
-  color: ${({ theme }) => theme.colors.grayText};
-  margin-top: 8px;
-  background: ${({ theme }) => theme.colors.background};
-  border: 1px solid ${({ theme }) => theme.colors.formInputAccnt};
-  border-radius: 40px;
-  width: 50px;
-  ${up('tablet')} {
-    font-size: 16px;
-    line-height: calc(26 / 16);
-    padding: 14px 16px;
-    width: 448px;
-  }
-`;
+// export const Option = styled.option`
+//   font-family: ${({ theme }) => theme.fonts[1]};
+//   font-weight: ${({ theme }) => theme.fontWeights[0]};
+//   font-size: 14px;
+//   line-height: calc(19 / 14);
+//   width: 240px;
+//   height: 20px;
+//   padding: 0px 20px;
+//   color: ${({ theme }) => theme.colors.grayText};
+
+//   background: ${({ theme }) => theme.colors.background};
+//   border: 1px solid ${({ theme }) => theme.colors.formInputAccnt};
+//   border-radius: 40px;
+//   width: 50px;
+//   ${up('tablet')} {
+//     font-size: 16px;
+//     line-height: calc(26 / 16);
+//     padding: 14px 16px;
+//     width: 448px;
+//   }
+// `;
 
 export const CustomSelect = styled(Select)`
   .Select__control {
