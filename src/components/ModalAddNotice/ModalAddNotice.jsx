@@ -9,6 +9,14 @@ import {
 } from '../../schemas/appNoticeSchema';
 import { FirstPart } from './AddPet1Sterp';
 import { SecondPart } from './AddPert2Step';
+import { useDispatch } from 'react-redux';
+import { onSelector } from 'redux/InputPets/inputPetsSlice';
+import {
+  Wrapper,
+  Title,
+  ButtonCloses,
+  ClosesIcon,
+} from './ModalAddNotice.styled';
 
 import {
   Wrapper,
@@ -32,13 +40,12 @@ export const AddPet = ({ onToggleModal }) => {
     comment: '',
   };
 
- 
   const [step, setStep] = useState(true);
 
-   // стейт для збереження юрл
- const [imgUrl, setImgUrl] = useState(null);
- 
- // діспатч перемикає перемикач який в редаксі,
+  // стейт для збереження юрл
+  const [imgUrl, setImgUrl] = useState(null);
+
+  // діспатч перемикає перемикач який в редаксі,
   //він потрібен для того щоб в нас вмикалася кнопка на перемикання інпута, після закриття
   //модалки потрібно ставити перемикач на місце  dispatch(onSelector()), бо селектора не буде до перезавантаження сторінки
   const dispatch = useDispatch();
@@ -65,8 +72,6 @@ export const AddPet = ({ onToggleModal }) => {
     resetForm();
   };
 
-
-
   return (
     <Wrapper>
       <ButtonClose
@@ -83,9 +88,16 @@ export const AddPet = ({ onToggleModal }) => {
         initialValues={values}
         validationSchema={step ? appPetSchemaStep1 : appPetSchemaStep2}
         onSubmit={handleSubmit}
-      
       >
-        {({ values, isValid, dirty, handleReset,setFieldValue, errors, isSubmitting }) => (
+        {({
+          values,
+          isValid,
+          dirty,
+          handleReset,
+          setFieldValue,
+          errors,
+          isSubmitting,
+        }) => (
           <NoticeForm onChange={handleOnChange}>
             {step ? (
               <FirstPart
@@ -97,7 +109,6 @@ export const AddPet = ({ onToggleModal }) => {
                 errors={errors}
                 setImgUrl={setImgUrl}
                 isSubmitting={isSubmitting}
-
               />
             ) : (
               <SecondPart

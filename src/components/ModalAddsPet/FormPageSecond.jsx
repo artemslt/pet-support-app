@@ -10,10 +10,12 @@ import {
   Comment,
   ButtonClose,
   CancelIcon,
+  WrapperBtn,
   CommentTitle,
+  Button,
 } from './ModalAddsPet.styled';
 
-export const FormePageSecond = ({ setImgUrl, imgUrl }) => {
+export const FormePageSecond = ({ setImgUrl, imgUrl, onClickToggle }) => {
   return (
     <>
       <TitleAddPhoto> Add photo and some comments</TitleAddPhoto>
@@ -52,6 +54,10 @@ export const FormePageSecond = ({ setImgUrl, imgUrl }) => {
         />
         <Error name="comment" component="p"></Error>
       </Label>
+      <WrapperBtn>
+        <Button>submit</Button>
+        <Button onClick={() => onClickToggle(true)}>back</Button>
+      </WrapperBtn>
     </>
   );
 };

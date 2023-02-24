@@ -147,19 +147,45 @@ export const CardText = styled.span`
 `;
 
 export const CardWorkDays = styled.div`
-position: absolute;
-  top: 30%;
-  left: 70%;
-  transform: translate(-50%, 0);
-  z-index: 1;
+  position: absolute;
+  top: 35%;
+  left: 50%;
+  padding: 12px;
   background: #FFFFFF;
-border: 1px solid #F59256;
-box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.25);
-border-radius: 8px;
-padding:12px;
-min-width: 170px;
-text-align:center;
+  border: 1px solid #F59256;
+  box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.25);
+  border-radius: 8px;
+  z-index: 1;
+
+  ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  li {
+    font-family: ${fonts[1]};
+    display: flex;
+    margin-bottom:4px;
+    justify-content: space-evenly;
+    align-items: center;
+    font-size: 12px;
+    line-height: 1.33;
+  }
+
+  li:last-child {
+    margin-bottom:0px;
+  }
+
+  li+span {
+    margin-left: 12px;
+  }
+
+  span:first-child {
+    margin-right:12px;
+  }
 `;
+
 
 export const CardTime = styled.span `
 cursor: pointer;

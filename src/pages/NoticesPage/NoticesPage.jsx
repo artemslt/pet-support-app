@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { Container } from 'components/Container/Container.styled';
 import { NoticesCategoriesNav } from 'components/NoticesCategoriesNav/NoticesCategoriesNav';
 import { NoticesSearch } from 'components/NoticesSearch/NoticesSearch';
@@ -5,6 +6,7 @@ import { CommonTitle } from 'components/Title/Title';
 import { Outlet } from 'react-router-dom';
 
 import { AddPet } from '../../components/ModalAddNotice/ModalAddNotice';
+import { ModalMenu } from 'components/Modal/Modal';
 import { ModalMenu } from 'components/Modal/Modal';
 import { useState } from 'react';
 
@@ -19,7 +21,7 @@ const NoticesPage = () => {
       <ModalMenu onClose={() => setModalToggle(false)} open={modalToggle}>
         <AddPet onToggleModal={onToggleModal}></AddPet>
       </ModalMenu>
-     
+
       <CommonTitle text={'Find your favorite pet'} />
       <NoticesSearch />
       <NoticesCategoriesNav />

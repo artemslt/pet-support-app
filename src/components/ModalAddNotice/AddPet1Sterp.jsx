@@ -1,47 +1,8 @@
-import { ErrorMessage } from 'formik';
-import {
-  Text,
-  LabelTitle,
-  Input,
-  ButtonsSection,
-  Button,
-  RadioBtn,
-  RadioBtnLabel,
-  RadioBtnGroup,
-} from './ModalAddNotice.styled';
+import { Field, ErrorMessage } from 'formik';
+import { Text, LabelTitle, Input } from './ModalAddNotice.styled';
 
-// Oleksii
-import { SelectComponentNotice } from './SelectComponentNotice';
-import { useState } from 'react';
-import { useSelector } from 'react-redux';
-
-export const FirstPart = ({
-  setStep,
-  isValid,
-  dirty,
-  handleReset,
-  setFieldValue,
-  values,
-  errors,
-  setImgUrl,
-}) => {
-  const [focus, setFocus] = useState(false);
-  const isInput = useSelector(state => state.isInput.toggle);
-
-  function ResetValues() {
-    handleReset();
-    setImgUrl('');
-  }
-
-//   function Step (){
-//     if(!isValid || !dirty){
-//         setStep(true);
-//     }
-//     // ТОСТ
-//     console.log("Tost")
-//     return setStep(false);
-    
-//   }
+export const FirstPart = ({ setStep, isValid, dirty, handleReset }) => {
+  //   console.log(`dirty`, dirty);
   return (
     <>
       <Text>
