@@ -61,6 +61,7 @@ export const AddPet = ({ onToggleModal }) => {
 
   const handleSubmit = (values, { resetForm }) => {
     console.log(`AddPet`, values);
+    setImgUrl('');
     resetForm();
   };
 
@@ -92,6 +93,7 @@ export const AddPet = ({ onToggleModal }) => {
                 handleReset={handleReset}
                 values={values}
                 errors={errors}
+                setImgUrl={setImgUrl}
 
               />
             ) : (

@@ -23,10 +23,15 @@ export const FirstPart = ({
   setFieldValue,
   values,
   errors,
+  setImgUrl,
 }) => {
-
   const [focus, setFocus] = useState(false);
   const isInput = useSelector(state => state.isInput.toggle);
+
+  function ResetValues() {
+    handleReset();
+    setImgUrl('');
+  }
   return (
     <>
       <Text>
@@ -112,7 +117,7 @@ export const FirstPart = ({
         >
           Next
         </Button>
-        <Button type="button" onClick={handleReset}>
+        <Button type="button" onClick={ResetValues}>
           Cancel
         </Button>
       </ButtonsSection>

@@ -13,14 +13,14 @@ import {
   FemaleIcon,
   MaleIcon,
   CommentInput,
-  ImgBox,
   AddImagelabel,
   InputFile,
   AddPhoto,
+  ImageThumb,
   Image,
-  ButtonClose,
-  CancelIcon
-
+  ImageDel,
+  CancelIcon,
+  ImgBox,
 } from './ModalAddNotice.styled';
 
 export const SecondPart = ({
@@ -40,6 +40,7 @@ export const SecondPart = ({
       setFieldValue('price', 1);
     }
   }, [typeOfNotice]);
+
 
   return (
     <div>
@@ -86,31 +87,27 @@ export const SecondPart = ({
           </label>
         </>
       )}
-    
-    
+
       <label>
         <LabelTitle>Load the pet’s image:</LabelTitle>
         <div>
-        <ImgBox className={imgUrl ? 'show_img' : ''}>
-          <AddImagelabel>
-            <InputFile name="img" type="file" accept="image/*" />
-            <AddPhoto />
-            <ErrorMessage name="img" component="div" />
-          </AddImagelabel>
+          <ImgBox>
+            <AddImagelabel className={imgUrl ? 'show_img' : ''}>
+              <InputFile name="img" type="file" accept="image/*" />
+              <AddPhoto />
+              <ErrorMessage name="img" component="div" />
+            </AddImagelabel>
 
-          {imgUrl && (
-            <>
-              <Image src={imgUrl} alt="" width="60" />
-              <ButtonClose onClick={() => setImgUrl(null)}>
-                <CancelIcon />
-              </ButtonClose>
-            </>
-          )}
-        </ImgBox>
-      </div>
-
-        {/* <Input name="img" type="file" accept="image/*" />
-        <ErrorMessage name="img" component="div" /> */}
+            {imgUrl && (
+              <ImageThumb>
+                <Image src={imgUrl} alt="" width="60" />
+                <ImageDel onClick={() => setImgUrl(null)}>
+                  <CancelIcon />
+                </ImageDel>
+              </ImageThumb>
+            )}
+          </ImgBox>
+        </div>
       </label>
 
       <label>

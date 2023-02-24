@@ -46,7 +46,6 @@ export const ClosesIcon = styled(Closes)``;
 
 export const ButtonClose = styled.button`
   position: absolute;
-
   width: 34px;
   height: 34px;
   right: 20px;
@@ -60,7 +59,6 @@ export const ButtonClose = styled.button`
     transition: cubic-bezier(0.075, 0.82, 0.165, 1);
     background-color: ${({ theme }) => theme.colors.mainAccent};
   }
-
   &:hover ${ClosesIcon} {
     transition: cubic-bezier(0.075, 0.82, 0.165, 1);
     fill: ${({ theme }) => theme.colors.mainWhite};
@@ -398,33 +396,26 @@ export const CommentInput = styled(Field)`
   }
 `;
 
-
-export const ImgBox = styled.div`
-position: relative;
-width: 208px;
-height: 208px;
-border-radius: 20px;
-width: 116px;
-height: 116px;
-${up('tablet')} {
-  width: 140px;
-  height: 140px;
-}
-`;
-
 export const AddImagelabel = styled.label`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
   width: 116px;
   height: 116px;
+
+  background: #fdf7f2;
+  border-radius: 20px;
+  cursor: pointer;
+
   ${up('tablet')} {
     width: 140px;
     height: 140px;
   }
-  background: #fdf7f2;
-  border-radius: 20px;
-  cursor: pointer;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+
+  &.show_img {
+    display: none;
+  }
 `;
 
 export const InputFile = styled(Field)`
@@ -434,10 +425,83 @@ export const AddPhoto = styled(iconAddPhoto)`
   position: absolute;
 `;
 
+export const ImageThumb = styled.div`
+  margin-top: 20px;
+  position: relative;
+
+  width: 116px;
+  height: 116px;
+
+  ${up('tablet')} {
+    width: 140px;
+    height: 140px;
+  }
+`;
 export const Image = styled.img`
+  width: 116px;
+  height: 116px;
+
+  background: #fdf7f2;
+  border-radius: 20px;
+
+  ${up('tablet')} {
+    width: 140px;
+    height: 140px;
+  }
+`;
+
+export const CancelIcon = styled(closeImageIcon)`
+  fill: ${({ theme }) => theme.colors.mainAccent};
+  width: 18px;
+  height: 18px;
+
+  &:hover,
+  &:focus {
+    fill: ${({ theme }) => theme.colors.mainWhite};
+  }
+`;
+
+export const ImageDel = styled.button`
   position: absolute;
-  z-index: 999;
-  top: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-color: ${({ theme }) => theme.colors.mainAccent};
+  top: -17px;
+  right: -17px;
+
+  width: 34px;
+  height: 34px;
+
+  background-color: ${({ theme }) => theme.colors.background};
+
+  border-radius: 80%;
+  border: none;
+  cursor: pointer;
+
+  ${up('tablet')} {
+    width: 44px;
+    height: 44px;
+    top: -22px;
+    right: -22px;
+  }
+
+  &:hover {
+    transition: cubic-bezier(0.075, 0.82, 0.165, 1);
+    background-color: ${({ theme }) => theme.colors.mainAccent};
+  }
+
+  &:hover ${ClosesIcon} {
+    transition: cubic-bezier(0.075, 0.82, 0.165, 1);
+    fill: ${({ theme }) => theme.colors.mainWhite};
+  }
+`;
+
+export const ImgBox = styled.div`
+  position: relative;
+  width: 208px;
+  height: 208px;
   border-radius: 20px;
   width: 116px;
   height: 116px;
@@ -446,8 +510,3 @@ export const Image = styled.img`
     height: 140px;
   }
 `;
-export const CancelIcon = styled(closeImageIcon)`
-  fill: ${({ theme }) => theme.colors.mainAccent};
-  width: 8px;
-`;
-
