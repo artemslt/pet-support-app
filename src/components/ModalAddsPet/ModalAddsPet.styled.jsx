@@ -325,28 +325,6 @@ export const CommentTitle = styled.span`
   margin-bottom: 12px;
 `;
 
-// export const Option = styled.option`
-//   font-family: ${({ theme }) => theme.fonts[1]};
-//   font-weight: ${({ theme }) => theme.fontWeights[0]};
-//   font-size: 14px;
-//   line-height: calc(19 / 14);
-//   width: 240px;
-//   height: 20px;
-//   padding: 0px 20px;
-//   color: ${({ theme }) => theme.colors.grayText};
-
-//   background: ${({ theme }) => theme.colors.background};
-//   border: 1px solid ${({ theme }) => theme.colors.formInputAccnt};
-//   border-radius: 40px;
-//   width: 50px;
-//   ${up('tablet')} {
-//     font-size: 16px;
-//     line-height: calc(26 / 16);
-//     padding: 14px 16px;
-//     width: 448px;
-//   }
-// `;
-
 export const CustomSelect = styled(Select)`
   .Select__control {
     font-family: ${({ theme }) => theme.fonts[1]};
