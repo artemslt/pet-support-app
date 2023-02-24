@@ -33,15 +33,14 @@ export const FirstPart = ({
     setImgUrl('');
   }
 
-  //   function Step (){
-  //     if(!isValid || !dirty){
-  //         setStep(true);
-  //     }
-  //     // ТОСТ
-  //     console.log("Tost")
-  //     return setStep(false);
-
-  //   }
+  function Step() {
+    if (!isValid || !dirty) {
+      setStep(true);
+    }
+    // ТОСТ
+    console.log('Tost');
+    return setStep(false);
+  }
   return (
     <>
       <Text>

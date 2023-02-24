@@ -117,16 +117,6 @@ export const SecondPart = ({
         </div>
       </label>
 
-          {imgUrl && (
-            <>
-              <Image src={imgUrl} alt="" width="60" />
-              <ButtonClose onClick={() => setImgUrl(null)}>
-                <CancelIcon />
-              </ButtonClose>
-            </>
-          )}
-        </ImgBox>
-      </div>
       <label>
         <LabelTitle>Comments</LabelTitle>
         <CommentInput as="textarea" name="comment" placeholder="Type comment" />
@@ -140,7 +130,7 @@ export const SecondPart = ({
         <Button
           type="button"
           onClick={Step}
-        //   disabled={!isValid || !dirty}
+          //   disabled={!isValid || !dirty}
         >
           Back
         </Button>

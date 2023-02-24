@@ -9,14 +9,6 @@ import {
 } from '../../schemas/appNoticeSchema';
 import { FirstPart } from './AddPet1Sterp';
 import { SecondPart } from './AddPert2Step';
-import { useDispatch } from 'react-redux';
-import { onSelector } from 'redux/InputPets/inputPetsSlice';
-import {
-  Wrapper,
-  Title,
-  ButtonCloses,
-  ClosesIcon,
-} from './ModalAddNotice.styled';
 
 import {
   Wrapper,
@@ -41,9 +33,9 @@ export const AddPet = ({ onToggleModal }) => {
   };
 
   const [step, setStep] = useState(true);
-
-  // стейт для збереження юрл
   const [imgUrl, setImgUrl] = useState(null);
+  const [file, setFile] = useState(null);
+  console.log(file)
 
   // діспатч перемикає перемикач який в редаксі,
   //він потрібен для того щоб в нас вмикалася кнопка на перемикання інпута, після закриття
@@ -61,6 +53,17 @@ export const AddPet = ({ onToggleModal }) => {
 
     if (event.target.files && event.target.files.length > 0) {
       const file = event.target.files[0];
+      const size = file.size;
+      console.log(file)
+      console.log(size)
+      
+      if (Number(size) > 3000000) {
+        console.log(`ERROR`);
+        return;
+        // return toast.error(`Photo must be no larger than 2.8 megabytes`);
+      }
+
+      setFile(file);
       return fileReader.readAsDataURL(file);
     }
     return;
