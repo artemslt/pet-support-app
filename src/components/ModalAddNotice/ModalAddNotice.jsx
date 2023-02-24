@@ -9,14 +9,6 @@ import {
 } from '../../schemas/appNoticeSchema';
 import { FirstPart } from './AddPet1Sterp';
 import { SecondPart } from './AddPert2Step';
-import { useDispatch } from 'react-redux';
-import { onSelector } from 'redux/InputPets/inputPetsSlice';
-import {
-  Wrapper,
-  Title,
-  ButtonCloses,
-  ClosesIcon,
-} from './ModalAddNotice.styled';
 
 import {
   Wrapper,
