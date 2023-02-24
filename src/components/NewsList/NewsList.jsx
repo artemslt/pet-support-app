@@ -9,15 +9,17 @@ export const NewsList = ({ news }) => {
       {!news.length ? (
         <b>There is no news with this title</b>
       ) : (
-        news.map(({ _id, title, url, description, date }) => (
-          <NewsItem
-            key={_id}
-            title={title}
-            url={url}
-            description={description}
-            date={date}
-          />
-        ))
+        news
+          .sort(({date: a}, {date: b}) => a > b ? -1 : 0)
+          .map(({ _id, title, url, description, date }) => (
+            <NewsItem
+              key={_id}
+              title={title}
+              url={url}
+              description={description}
+              date={new Date(date).toLocaleDateString().split('.').join('/')}
+            />
+          ))
       )}
     </List>
   );

@@ -42,8 +42,6 @@ export const UserDataItem = () => {
     }
   }, [currentUser.birthday]);
 
-  console.log('user', currentUser);
-
   const isAnyEditing =
     !isNameDisabled ||
     !isEmailDisabled ||
@@ -52,7 +50,6 @@ export const UserDataItem = () => {
     !isCityDisabled;
 
   const onSubmit = (event, isDisabled, setIsDisabled) => {
-    console.log('event', event);
     if (isDisabled) {
       setIsDisabled(false);
     } else {
@@ -66,8 +63,6 @@ export const UserDataItem = () => {
         })
       );
 
-      console.log('currentUser', currentUser.birthday);
-      console.log('event.userEmail', event.userEmail);
       setIsDisabled(true);
     }
   };
@@ -201,13 +196,14 @@ export const UserDataItem = () => {
               <Label htmlFor="birthday">Birthday:</Label>
               <div style={{ width: 245 }}>
                 <InputDatePicker
+                  selected={startDate}
                   active={!isBirthdayDisabled}
                   dateFormat="dd.MM.yyyy"
                   name="birthday"
                   disabled={isBirthdayDisabled}
                   onChange={date => setStartDate(date)}
-                  selected={startDate}
                   maxDate={new Date()}
+                  placeholderText="00.00.0000"
                   showDisabledMonthNavigation
                   shouldCloseOnSelect={true}
                 />
