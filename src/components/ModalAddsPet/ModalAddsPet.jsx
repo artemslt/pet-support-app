@@ -1,3 +1,4 @@
+import { toast } from 'react-toastify';
 import { Formik } from 'formik';
 import { useState } from 'react';
 import {
@@ -14,14 +15,6 @@ import { useDispatch } from 'react-redux';
 import { onSelector } from 'redux/InputPets/inputPetsSlice';
 import { addPet } from 'redux/pets/petsOperations';
 
-const initialValues = {
-  name: '',
-  birthday: '',
-  breed: '',
-  photo: '',
-  comment: '',
-};
-
 export const ModalAddsPet = ({ onToggleModal }) => {
   const [pageToggle, setPageToggle] = useState(true);
   const [imgUrl, setImgUrl] = useState(null);
@@ -33,11 +26,19 @@ export const ModalAddsPet = ({ onToggleModal }) => {
     setImgUrl(fileReader.result);
   };
 
+  const initialValues = {
+    name: '',
+    birthday: '',
+    breed: '',
+    photo: '',
+    comment: '',
+  };
+
   const handleSubmit = (values, actions) => {
     const { name, birthday, breed, comment } = values;
 
-    if (!name || !birthday || !breed || !comment) {
-      return;
+    if (!name || !birthday || !breed || !comment || !file) {
+      return toast.error(`All fields must be filled`);
     }
 
     const userPet = {
@@ -47,10 +48,8 @@ export const ModalAddsPet = ({ onToggleModal }) => {
       photo: file,
       comment,
     };
-
     dispatch(addPet(userPet));
     actions.resetForm();
-
     setImgUrl(null);
     dispatch(onSelector());
     onToggleModal();
@@ -60,6 +59,11 @@ export const ModalAddsPet = ({ onToggleModal }) => {
 
     if (event.target.files && event.target.files.length > 0) {
       const file = event.target.files[0];
+      const size = file.size;
+      if (Number(size) > 3000000) {
+        return toast.error(`Photo must be no larger than 2.8 megabytes`);
+      }
+
       setFile(file);
       return fileReader.readAsDataURL(file);
     }
@@ -99,6 +103,7 @@ export const ModalAddsPet = ({ onToggleModal }) => {
                     setImgUrl={setImgUrl}
                     imgUrl={imgUrl}
                     onClickToggle={setPageToggle}
+                    setFile={setFile}
                   />
                 )}
               </FormStyled>

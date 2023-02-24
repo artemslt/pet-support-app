@@ -15,7 +15,12 @@ import {
   Button,
 } from './ModalAddsPet.styled';
 
-export const FormePageSecond = ({ setImgUrl, imgUrl, onClickToggle }) => {
+export const FormePageSecond = ({
+  setImgUrl,
+  imgUrl,
+  onClickToggle,
+  setFile,
+}) => {
   return (
     <>
       <TitleAddPhoto> Add photo and some comments</TitleAddPhoto>
@@ -26,18 +31,20 @@ export const FormePageSecond = ({ setImgUrl, imgUrl, onClickToggle }) => {
               type="file"
               name="photo"
               value={imgUrl ? imgUrl : ''}
+              accept="image/*"
             />
           )}
           <ImgBox className={imgUrl ? 'show_img' : ''}>
             <Image src={imgUrl} alt="" />
           </ImgBox>
           <AddPhoto />
+          <Error name="photo" component="p"></Error>
         </AddImage>
-        <Error name="photo" component="p"></Error>
 
         <ButtonClose
           onClick={() => {
             setImgUrl(null);
+            setFile(null);
           }}
           className={imgUrl ? 'button_closse__show' : ''}
         >
