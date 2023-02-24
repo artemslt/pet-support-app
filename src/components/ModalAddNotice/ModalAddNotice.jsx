@@ -1,5 +1,7 @@
-import { Formik, Form } from 'formik';
+import { Formik } from 'formik';
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { onSelector } from 'redux/InputPets/inputPetsSlice';
 
 import {
   appPetSchemaStep1,
@@ -16,23 +18,32 @@ import {
   ClosesIcon,
 } from './ModalAddNotice.styled';
 
+import {
+  Wrapper,
+  Title,
+  ButtonClose,
+  ClosesIcon,
+  NoticeForm,
+} from './ModalAddNotice.styled';
+
 export const AddPet = ({ onToggleModal }) => {
   const values = {
-    typeOfNotice: '',
+    typeOfNotice: 'sell',
     title: '',
     name: '',
     date: '',
     breed: '',
-    sex: '',
+    sex: 'Male',
     location: '',
-    price: '0',
+    price: '',
     img: '',
     comment: '',
   };
 
+  const [step, setStep] = useState(true);
+
   // стейт для збереження юрл
   const [imgUrl, setImgUrl] = useState(null);
-  const [step, setStep] = useState(true);
 
   // діспатч перемикає перемикач який в редаксі,
   //він потрібен для того щоб в нас вмикалася кнопка на перемикання інпута, після закриття
@@ -45,11 +56,6 @@ export const AddPet = ({ onToggleModal }) => {
     setImgUrl(fileReader.result);
   };
 
-  const handleSubmit = (values, { resetForm }) => {
-    console.log(`AddPet`, values);
-    resetForm();
-  };
-
   const handleOnChange = event => {
     event.preventDefault();
 
@@ -60,16 +66,22 @@ export const AddPet = ({ onToggleModal }) => {
     return;
   };
 
+  const handleSubmit = (values, { resetForm }) => {
+    console.log(`AddPet`, values);
+    setImgUrl('');
+    resetForm();
+  };
+
   return (
     <Wrapper>
-      <ButtonCloses
+      <ButtonClose
         onClick={e => {
           onToggleModal(e);
           dispatch(onSelector());
         }}
       >
         <ClosesIcon />
-      </ButtonCloses>
+      </ButtonClose>
 
       <Title>Add pet</Title>
       <Formik
@@ -77,8 +89,16 @@ export const AddPet = ({ onToggleModal }) => {
         validationSchema={step ? appPetSchemaStep1 : appPetSchemaStep2}
         onSubmit={handleSubmit}
       >
-        {({ values, isValid, dirty, errors, handleReset, setFieldValue }) => (
-          <Form onChange={handleOnChange}>
+        {({
+          values,
+          isValid,
+          dirty,
+          handleReset,
+          setFieldValue,
+          errors,
+          isSubmitting,
+        }) => (
+          <NoticeForm onChange={handleOnChange}>
             {step ? (
               <FirstPart
                 setStep={setStep}
@@ -86,8 +106,9 @@ export const AddPet = ({ onToggleModal }) => {
                 dirty={dirty}
                 handleReset={handleReset}
                 values={values}
-                setFieldValue={setFieldValue}
                 errors={errors}
+                setImgUrl={setImgUrl}
+                isSubmitting={isSubmitting}
               />
             ) : (
               <SecondPart
@@ -95,12 +116,12 @@ export const AddPet = ({ onToggleModal }) => {
                 values={values}
                 isValid={isValid}
                 dirty={dirty}
-                setFieldValue={setFieldValue}
+                // setFieldValue={setFieldValue}
                 imgUrl={imgUrl}
                 setImgUrl={setImgUrl}
               />
             )}
-          </Form>
+          </NoticeForm>
         )}
       </Formik>
     </Wrapper>
