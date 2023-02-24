@@ -41,6 +41,13 @@ export const SecondPart = ({
     }
   }, [typeOfNotice]);
 
+  function Step() {
+    if (!isValid && dirty === false) {
+      console.log('Tost');
+    } else {
+      setStep(true);
+    }
+  }
 
   return (
     <div>
@@ -122,8 +129,8 @@ export const SecondPart = ({
         </Button>
         <Button
           type="button"
-          onClick={() => setStep(true)}
-          disabled={!isValid || !dirty}
+          onClick={Step}
+        //   disabled={!isValid || !dirty}
         >
           Back
         </Button>

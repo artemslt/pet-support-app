@@ -33,15 +33,14 @@ export const FirstPart = ({
     setImgUrl('');
   }
 
-//   function Step (){
-//     if(!isValid || !dirty){
-//         setStep(true);
-//     }
-//     // ТОСТ
-//     console.log("Tost")
-//     return setStep(false);
-    
-//   }
+  function Step() {
+    if (!isValid && dirty === false) {
+      console.log('Tost');
+    } else {
+      setStep(false);
+    }
+  }
+
   return (
     <>
       <Text>
@@ -121,8 +120,8 @@ export const FirstPart = ({
       <ButtonsSection>
         <Button
           name="next"
-          disabled={!isValid || !dirty}
-          onClick={() => setStep(false)}
+          //   disabled={!isValid || !dirty}
+          onClick={Step}
           type="button"
         >
           Next
