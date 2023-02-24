@@ -50,7 +50,14 @@ export const FormePageFist = ({ formik, onClickToggle, onToggleModal }) => {
         <Error name="breed" component="p"></Error>
       </Label>
       <WrapperBtn>
-        <Button onClick={() => onClickToggle(false)}>next</Button>
+        <Button
+          onClick={() => {
+            onClickToggle(false);
+          }}
+          disabled={!formik.isValid ? true : false}
+        >
+          next
+        </Button>
         <Button
           onClick={e => {
             dispatch(onSelector());
