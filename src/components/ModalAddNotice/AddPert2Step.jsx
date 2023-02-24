@@ -39,7 +39,7 @@ export const SecondPart = ({
     if (typeOfNotice !== 'sell') {
       setFieldValue('price', 1);
     }
-  }, [typeOfNotice]);
+  }, [typeOfNotice, setFieldValue]);
 
   function Step() {
     if (!isValid && dirty === false) {
