@@ -116,7 +116,7 @@ export const AddPet = ({ onToggleModal }) => {
                 values={values}
                 isValid={isValid}
                 dirty={dirty}
-                setFieldValue={setFieldValue}
+                // setFieldValue={setFieldValue}
                 imgUrl={imgUrl}
                 setImgUrl={setImgUrl}
               />
