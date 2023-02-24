@@ -78,18 +78,23 @@ export const Thumb = styled.div`
 
 export const NoticeTitle = styled.h2`
   text-align: start;
-  margin-bottom: 20px;
   font-family: ${({ theme }) => theme.fonts[1]};
   font-size: 28px;
   line-height: 38px;
   letter-spacing: -0.01em;
 `;
-
-export const Info = styled.p`
-  &:not(:last-of-type) {
-    margin-bottom: 8px;
-  }
+export const Table = styled.table`
+  table-layout: fixed;
 `;
+
+export const TableData = styled.td`
+  text-align: start;
+  font-family: ${({ theme }) => theme.fonts[1]};
+  font-weight: 500;
+  padding-right: 40px;
+  padding-bottom: 8px;
+`;
+
 export const BlockBtns = styled.div`
   display: flex;
   flex-direction: column;
