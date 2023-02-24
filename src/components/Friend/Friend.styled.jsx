@@ -25,6 +25,7 @@ export const CardTitle = styled.a`
   max-width: 130px;
   margin-right: auto;
   margin-left: auto;
+  min-height: 54px;
 
   margin-bottom: ${fontSizes[1]}px;
   font-size: ${fontSizes[0]}px;
@@ -48,7 +49,8 @@ export const CardTitle = styled.a`
 export const CardInfo = styled.div`
   display: flex;
   flex-direction: row;
-  @media (min-width: 1280px) {
+
+  @media (min-width: 770px) {
     justify-content: space-evenly;
   }
 `;
@@ -118,10 +120,18 @@ export const CardDataItem = styled.li`
   }
 
   a {
-    text-decoration: underline;
     color: #000000;
+    text-decoration: none;
   }
 `;
+
+export const CardAddress = styled.span`
+ min-height: 66px;
+  max-width:180px;
+  a {
+    text-decoration: underline;
+  }
+`
 
 export const CardText = styled.span`
   font-weight: 500;
@@ -149,13 +159,25 @@ export const CardText = styled.span`
 export const CardWorkDays = styled.div`
   position: absolute;
   top: 35%;
-  left: 50%;
+  left: 40%;
   padding: 12px;
   background: #FFFFFF;
   border: 1px solid #F59256;
   box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.25);
   border-radius: 8px;
   z-index: 1;
+
+  @media (min-width: 320px) {
+    left: 30%;
+  }
+
+  @media (min-width: 800px) {
+    left: 35%;
+  }
+
+  @media (min-width: 1280px) {
+    left: 44%;
+  }
 
   ul {
     margin: 0;
