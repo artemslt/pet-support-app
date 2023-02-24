@@ -42,6 +42,7 @@ export const FormePageSecond = ({
         </AddImage>
 
         <ButtonClose
+          type="button"
           onClick={() => {
             setImgUrl(null);
             setFile(null);
@@ -62,8 +63,10 @@ export const FormePageSecond = ({
         <Error name="comment" component="p"></Error>
       </Label>
       <WrapperBtn>
-        <Button>submit</Button>
-        <Button onClick={() => onClickToggle(true)}>back</Button>
+        <Button type="submit">Submit</Button>
+        <Button type="button" onClick={() => onClickToggle(true)}>
+          Back
+        </Button>
       </WrapperBtn>
     </>
   );

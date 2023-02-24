@@ -51,20 +51,22 @@ export const FormePageFist = ({ formik, onClickToggle, onToggleModal }) => {
       </Label>
       <WrapperBtn>
         <Button
+          type="button"
           onClick={() => {
             onClickToggle(false);
           }}
           disabled={!formik.isValid ? true : false}
         >
-          next
+          Next
         </Button>
         <Button
+          type="button"
           onClick={e => {
             dispatch(onSelector());
             onToggleModal(e);
           }}
         >
-          cancel
+          Cancel
         </Button>
       </WrapperBtn>
     </>
