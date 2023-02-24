@@ -8,7 +8,7 @@ import { Outlet } from 'react-router-dom';
 import { AddPet } from '../../components/ModalAddNotice/ModalAddNotice';
 import { ModalMenu } from 'components/Modal/Modal';
 import { ModalMenu } from 'components/Modal/Modal';
-import { useState } from 'react';
+// import { useState } from 'react';
 
 const NoticesPage = () => {
   const [modalToggle, setModalToggle] = useState(false);
