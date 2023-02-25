@@ -1,9 +1,9 @@
-import { ErrorMessage } from 'formik';
 import { useEffect } from 'react';
 
 import {
   LabelTitle,
   Input,
+  Error,
   ButtonsSection,
   Button,
   SexSection,
@@ -41,14 +41,6 @@ export const SecondPart = ({
     }
   }, [typeOfNotice, setFieldValue]);
 
-  function Step() {
-    if (!isValid && dirty === false) {
-      console.log('Tost');
-    } else {
-      setStep(true);
-    }
-  }
-
   return (
     <div>
       <>
@@ -57,13 +49,13 @@ export const SecondPart = ({
         </LabelTitle>
         <>
           <SexSection role="group">
-            <RadioBtnSex type="radio" name="sex" value="Male" id="male" />
+            <RadioBtnSex type="radio" name="sex" value="male" id="male" />
             <LabelSex htmlFor="male">
               <MaleIcon />
               <Sex>Male</Sex>
             </LabelSex>
 
-            <RadioBtnSex type="radio" name="sex" value="Female" id="female" />
+            <RadioBtnSex type="radio" name="sex" value="female" id="female" />
             <LabelSex htmlFor="female">
               <FemaleIcon />
               <Sex>Female</Sex>
@@ -71,7 +63,7 @@ export const SecondPart = ({
           </SexSection>
         </>
 
-        <ErrorMessage name="sex" component="div" />
+        <Error name="sex" component="div" />
       </>
 
       <label>
@@ -80,7 +72,7 @@ export const SecondPart = ({
         </LabelTitle>
 
         <Input name="location" placeholder="Type location" />
-        <ErrorMessage name="location" component="div" />
+        <Error name="location" component="div" />
       </label>
 
       {values.typeOfNotice === 'sell' && (
@@ -90,19 +82,28 @@ export const SecondPart = ({
               Price<span>*</span>:
             </LabelTitle>
             <Input name="price" placeholder="Type price" />
-            <ErrorMessage name="price" component="div" />
+            <Error name="price" component="div" />
           </label>
         </>
       )}
 
       <label>
-        <LabelTitle>Load the pet’s image:</LabelTitle>
+        <LabelTitle>
+          Load the pet’s image:<span>*</span>
+        </LabelTitle>
         <div>
           <ImgBox>
             <AddImagelabel className={imgUrl ? 'show_img' : ''}>
-              <InputFile name="img" type="file" accept="image/*" />
+              {!imgUrl && (
+                <InputFile
+                  name="img"
+                  type="file"
+                  value={imgUrl ? imgUrl : ''}
+                  accept="image/png, image/jpeg"
+                />
+              )}
               <AddPhoto />
-              <ErrorMessage name="img" component="div" />
+              <Error name="img" component="div" />
             </AddImagelabel>
 
             {imgUrl && (
@@ -118,19 +119,33 @@ export const SecondPart = ({
       </label>
 
       <label>
-        <LabelTitle>Comments</LabelTitle>
-        <CommentInput as="textarea" name="comment" placeholder="Type comment" />
-        <ErrorMessage name="comment" component="div" />
+        <LabelTitle>
+          <p>
+            Comments <span>*</span>
+          </p>
+        </LabelTitle>
+        <CommentInput
+          component="textarea"
+          name="comment"
+          placeholder="Type comment"
+        />
+        <Error name="comment" component="div" />
       </label>
 
       <ButtonsSection>
-        <Button type="submit" disabled={!(isValid && dirty)}>
+        <Button
+          type="submit"
+          // name="done"
+          disabled={!(isValid && dirty)}
+        >
           Done
         </Button>
         <Button
           type="button"
-          onClick={Step}
-          //   disabled={!isValid || !dirty}
+          name="back"
+          disabled={!isValid || !dirty}
+          onClick={() => setStep(true)}
+          //   onClick={Step}
         >
           Back
         </Button>

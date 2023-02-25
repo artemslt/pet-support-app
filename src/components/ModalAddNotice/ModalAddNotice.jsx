@@ -1,7 +1,9 @@
 import { Formik } from 'formik';
+import { toast } from 'react-toastify';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { onSelector } from 'redux/InputPets/inputPetsSlice';
+import axios from 'axios';
 
 import {
   appPetSchemaStep1,
@@ -25,7 +27,7 @@ export const AddPet = ({ onToggleModal }) => {
     name: '',
     date: '',
     breed: '',
-    sex: 'Male',
+    sex: 'male',
     location: '',
     price: '',
     img: '',
@@ -35,7 +37,6 @@ export const AddPet = ({ onToggleModal }) => {
   const [step, setStep] = useState(true);
   const [imgUrl, setImgUrl] = useState(null);
   const [file, setFile] = useState(null);
-  console.log(file)
 
   // діспатч перемикає перемикач який в редаксі,
   //він потрібен для того щоб в нас вмикалася кнопка на перемикання інпута, після закриття
@@ -54,13 +55,10 @@ export const AddPet = ({ onToggleModal }) => {
     if (event.target.files && event.target.files.length > 0) {
       const file = event.target.files[0];
       const size = file.size;
-      console.log(file)
-      console.log(size)
-      
+
       if (Number(size) > 3000000) {
         console.log(`ERROR`);
-        return;
-        // return toast.error(`Photo must be no larger than 2.8 megabytes`);
+        return toast.error(`Photo must be no larger than 2.8 megabytes`);
       }
 
       setFile(file);
@@ -68,11 +66,44 @@ export const AddPet = ({ onToggleModal }) => {
     }
     return;
   };
+  //   setAuthHeader(response.data.data.token);
+
+  async function createNotice(newNotice) {
+    try {
+      const responce = await axios.post(
+        'https://pet-support-backend-v8vc.onrender.com/api/notices/notice',
+        newNotice,
+        {
+          headers: { 'Content-Type': 'multipart/form-data' },
+        }
+      );
+
+      toast.success('New Notice created successfully');
+      console.log(`responce`, responce);
+    } catch (error) {
+      console.log(error);
+    }
+  }
 
   const handleSubmit = (values, { resetForm }) => {
+    const newNotice = {
+      category: values.typeOfNotice,
+      title: values.title,
+      name: values.name,
+      date: values.date,
+      breed: values.breed,
+      sex: values.sex,
+      location: values.location,
+      price: values.price,
+      image: file,
+      comments: values.comment,
+    };
+
+    createNotice(newNotice);
     console.log(`AddPet`, values);
     setImgUrl('');
     resetForm();
+    onToggleModal();
   };
 
   return (
@@ -112,6 +143,7 @@ export const AddPet = ({ onToggleModal }) => {
                 errors={errors}
                 setImgUrl={setImgUrl}
                 isSubmitting={isSubmitting}
+                setFieldValue={setFieldValue}
               />
             ) : (
               <SecondPart
@@ -119,7 +151,7 @@ export const AddPet = ({ onToggleModal }) => {
                 values={values}
                 isValid={isValid}
                 dirty={dirty}
-                // setFieldValue={setFieldValue}
+                setFieldValue={setFieldValue}
                 imgUrl={imgUrl}
                 setImgUrl={setImgUrl}
               />

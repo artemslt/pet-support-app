@@ -30,5 +30,10 @@ export const Modal = styled.div`
 
   &.show {
     opacity: 1;
+    max-height: 95%;
+    overflow: auto;
+  }
+  &.show::-webkit-scrollbar {
+    display: none;
   }
 `;

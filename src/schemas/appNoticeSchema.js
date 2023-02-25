@@ -24,30 +24,34 @@ export const appPetSchemaStep1 = yup.object().shape({
   name: yup
     .string()
     .min(2, 'Name should be 2 characters minimum.')
-    .max(16, 'Name should be 16 characters maximum.'),
+    .max(16, 'Name should be 16 characters maximum.')
+    .required('Name is required field'),
   date: yup
     .date('Date must be in format dd.MM.yyyy')
     .transform(parseDateString)
-    .max(today),
+    .max(today)
+    .required('Date is required field'),
   breed: yup
     .string()
     .min(2, 'Breed should be 2 characters minimum.')
-    .max(40, 'Name should be 40 characters maximum.'),
+    .max(40, 'Name should be 40 characters maximum.')
+    .required('Breed is required field'),
 });
 
 export const appPetSchemaStep2 = yup.object().shape({
-  sex: yup.string(),
+  sex: yup.string().required(),
   location: yup
     .string()
-    .matches(locationRegexp, 'Location must be in format City, Region.')
+    .matches(locationRegexp, 'Location must be in format: City, Region')
     .required('Location is required field'),
   price: yup
     .string()
-    .matches(/^(?!0\d)(\d+|\d*\.\d*[1-9]\d*)$/g)
+    .matches(/^(?!0\d)(\d+|\d*\.\d*[1-9]\d*)$/g, "Must contain only numbers")
     .required(),
-  img: yup.string(),
+  img: yup.string().required(),
   comment: yup
     .string()
     .min(10, 'Comment should be 10 characters minimum.')
-    .max(100, 'Comment should be 30 characters maximum.'),
+    .max(100, 'Comment should be 30 characters maximum.')
+    .required('Comment is required field'),
 });
