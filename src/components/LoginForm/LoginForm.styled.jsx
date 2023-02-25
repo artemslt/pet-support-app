@@ -126,10 +126,10 @@ export const IconButton = styled.button`
   height: 30px;
   padding: 0;
   background-color: transparent;
-  fill: ${prop => prop.theme.colors.greyText};
+  transition: ${({ theme }) => theme.btnAnimationTransition};
   &:hover,
   &:focus {
-    stroke: ${prop => prop.theme.colors.mainAccent};
+    fill: ${prop => prop.theme.colors.mainAccent};
   }
   ${up('tablet')} {
     right: 9px;
@@ -157,10 +157,14 @@ export const Button = styled.button`
   transition: ${({ theme }) => theme.btnAnimationTransition};
   &:hover,
   &:focus {
-    border: none;
     background-color: ${prop => prop.theme.colors.mainAccent};
     color: ${prop => prop.theme.colors.mainWhite};
   }
+  &[type='submit']:disabled {
+    background-color: ${({ theme }) => theme.colors.mainAccent};
+    color: ${({ theme }) => theme.colors.mainWhite};
+    opacity: 0.5;
+    }
   ${up('tablet')} {
     background-color: ${prop => prop.theme.colors.mainWhite};
     &:hover,
@@ -192,6 +196,7 @@ export const Text = styled.p`
 export const Link = styled(RouterLink)`
   text-decoration: none;
   color: ${prop => prop.theme.colors.blue};
+  transition: ${({ theme }) => theme.btnAnimationTransition};
   &:hover,
   &:focus {
     color: ${prop => prop.theme.colors.activeAccent};
