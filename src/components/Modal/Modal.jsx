@@ -6,6 +6,11 @@ import { Overlay, Modal } from './Modal.styled';
 export const ModalMenu = ({ children, open, onClose }) => {
   const dispatch = useDispatch();
 
+  if (open) {
+    document.body.style.overflow = 'hidden';
+  } else {
+    document.body.style.overflow = '';
+  }
   useEffect(() => {
     window.addEventListener('keydown', handlerKeyDown);
     function handlerKeyDown(e) {

@@ -7,11 +7,14 @@ export const Card = styled.li`
   background-color: ${({ theme }) => theme.colors.mainWhite};
   width: 280px;
   margin-bottom: 32px;
+  &:last-child {
+    margin-bottom: 0;
+  }
   margin-left: auto;
   margin-right: auto;
   ${up('tablet')} {
     width: 336px;
-    margin-bottom: 0;
+    margin: 0;
   }
   ${up('pc')} {
     width: 288px;
@@ -91,7 +94,7 @@ export const TableData = styled.td`
   text-align: start;
   font-family: ${({ theme }) => theme.fonts[1]};
   font-weight: 500;
-  padding-right: 40px;
+  /* padding-right: 40px; */
   padding-bottom: 8px;
 `;
 
