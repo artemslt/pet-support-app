@@ -81,6 +81,7 @@ export const LoginForm = () => {
             validationSchema={loginSchema}
             onSubmit={handleSubmit}
           >
+            {formik => (
             <Form>
               <Label>
                 <Input
@@ -108,7 +109,7 @@ export const LoginForm = () => {
                   {showPassword ? <EyeClosedIcon /> : <EyeIcon />}
                 </IconButton>
               </Label>
-              <Button type="submit">Login</Button>
+              <Button type="submit" disabled={!(formik.dirty && formik.isValid)}>Login</Button>
               <Button type="button" onClick={googleLogin}>
                 <GoogleIcon />
                 <ButtonText>Login with Google</ButtonText>
@@ -116,7 +117,7 @@ export const LoginForm = () => {
               <Text>
                 Don't have an account? <Link to="/register">Register</Link>
               </Text>
-            </Form>
+            </Form>)}
           </Formik>
         </FormWrapper>
       </FlexBox>
