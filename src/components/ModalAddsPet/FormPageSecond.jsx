@@ -20,11 +20,7 @@ export const FormePageSecond = ({
   imgUrl,
   onClickToggle,
   setFile,
-  formik,
 }) => {
-  console.log('====================================');
-  console.log(Formik);
-  console.log('====================================');
   return (
     <>
       <TitleAddPhoto> Add photo and some comments</TitleAddPhoto>

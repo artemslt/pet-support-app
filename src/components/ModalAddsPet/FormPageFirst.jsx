@@ -15,7 +15,6 @@ import { onSelector } from 'redux/InputPets/inputPetsSlice';
 export const FormePageFist = ({ formik, onClickToggle, onToggleModal }) => {
   const [focus, setFocus] = useState(false);
   const isInput = useSelector(state => state.isInput.toggle);
-
   const [startDate, setStartDate] = useState();
 
   const dispatch = useDispatch();
