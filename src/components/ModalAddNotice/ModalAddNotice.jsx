@@ -37,6 +37,7 @@ export const AddPet = ({ onToggleModal }) => {
   const [step, setStep] = useState(true);
   const [imgUrl, setImgUrl] = useState(null);
   const [file, setFile] = useState(null);
+  const [startDate, setStartDate] = useState('');
   const dispatch = useDispatch();
 
   const fileReader = new FileReader();
@@ -138,6 +139,8 @@ export const AddPet = ({ onToggleModal }) => {
                 setFieldValue={setFieldValue}
                 setFile={setFile}
                 onToggleModal={onToggleModal}
+                startDate={startDate}
+                setStartDate={setStartDate}
               />
             ) : (
               <SecondPart

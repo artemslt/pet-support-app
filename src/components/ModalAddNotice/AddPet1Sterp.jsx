@@ -25,11 +25,10 @@ export const FirstPart = ({
   errors,
   setImgUrl,
   setFile,
-  onToggleModal,
+  onToggleModal
 }) => {
   const [focus, setFocus] = useState(false);
   const isInput = useSelector(state => state.isInput.toggle);
-  const [startDate, setStartDate] = useState(null);
 
   function ResetValues() {
     handleReset();

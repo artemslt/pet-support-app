@@ -27,6 +27,7 @@ export const ModalAddsPet = ({ onToggleModal }) => {
   const [pageToggle, setPageToggle] = useState(true);
   const [imgUrl, setImgUrl] = useState('');
   const [file, setFile] = useState(null);
+  const [startDate, setStartDate] = useState('');
   const dispatch = useDispatch();
 
   const fileReader = new FileReader();
@@ -98,6 +99,8 @@ export const ModalAddsPet = ({ onToggleModal }) => {
                     formik={Formik}
                     onClickToggle={setPageToggle}
                     onToggleModal={onToggleModal}
+                    setStartDate={setStartDate}
+                    startDate={startDate}
                   />
                 ) : (
                   <FormePageSecond
