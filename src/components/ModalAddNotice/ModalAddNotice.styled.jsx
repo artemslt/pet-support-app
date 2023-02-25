@@ -4,6 +4,9 @@ import { Field, Form, ErrorMessage } from 'formik';
 
 import Select from 'react-select';
 
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
+
 import { ReactComponent as Closes } from '../../images/ButtonCloses.svg';
 import { ReactComponent as Male } from '../../images/addNotice/Male.svg';
 import { ReactComponent as Female } from '../../images/addNotice/Female.svg';
@@ -160,6 +163,34 @@ export const Input = styled(Field)`
 
 export const Error = styled(ErrorMessage)`
   color: ${({ theme }) => theme.colors.activeAccent};
+`;
+
+
+export const InputDatePicker = styled(DatePicker)`
+  font-family: ${({ theme }) => theme.fonts[1]};
+  font-weight: ${({ theme }) => theme.fontWeights[0]};
+  font-size: 14px;
+  line-height: calc(19 / 14);
+  width: 240px;
+  padding: 8.7px 8px;
+  color: ${({ theme }) => theme.colors.grayText};
+  background: ${({ theme }) => theme.colors.background};
+  border: 1px solid ${({ theme }) => theme.colors.formInputAccnt};
+  border-radius: 40px;
+  cursor: pointer;
+  margin-top: 8px;
+  ${up('tablet')} {
+    font-size: 16px;
+    line-height: calc(26 / 16);
+    padding: 7.9px 16px;
+    width: 448px;
+    margin-top: 12px;
+  }
+  outline: none;
+  &:hover,
+  &:focus {
+    border-color: ${({ theme }) => theme.colors.activeAccent};
+  }
 `;
 
 export const ButtonsSection = styled.div`
