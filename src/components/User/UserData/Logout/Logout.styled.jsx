@@ -3,9 +3,12 @@ import { up } from 'styled-breakpoints';
 
 export const LogoutWrapper = styled.div`
   display: flex;
-  justify-content: start;
+  justify-content: end;
   font-size: 16px;
   margin-top: 15px;
+  ${up('tablet')} {
+    justify-content: start;
+  }
 `;
 
 export const Button = styled.div`
