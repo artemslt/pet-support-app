@@ -16,6 +16,7 @@ import { newsReducer } from './news/newsSlice';
 import friendsSlice from './friends/friendsSlice';
 import isInputSlice from './InputPets/inputPetsSlice';
 import petsSlice from './pets/petsSlice';
+import noticesSlice from './notices/noticesSlice';
 
 const authPersistConfig = {
   key: 'auth',
@@ -30,6 +31,7 @@ export const store = configureStore({
     auth: persistReducer(authPersistConfig, authReducer),
     news: newsReducer,
     pets: petsSlice,
+    filter: noticesSlice,
   },
   middleware(getDefaultMiddleware) {
     return getDefaultMiddleware({

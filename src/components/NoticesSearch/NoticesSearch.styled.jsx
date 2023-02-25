@@ -1,7 +1,7 @@
 import { up } from 'styled-breakpoints';
 import styled from 'styled-components';
 
-export const Form = styled.form`
+export const Form = styled.div`
   position: relative;
   display: inline-flex;
   text-align: center;
