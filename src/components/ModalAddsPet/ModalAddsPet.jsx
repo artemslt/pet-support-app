@@ -63,7 +63,7 @@ export const ModalAddsPet = ({ onToggleModal }) => {
       const file = event.target.files[0];
       const size = file.size;
       if (Number(size) > 3000000) {
-        return toast.error(`Photo must be no larger than 2.8 megabytes`);
+        return toast.error(`Photo must be no larger than 5 megabytes`);
       }
 
       setFile(file);
