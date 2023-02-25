@@ -16,6 +16,11 @@ export const Card = styled.li`
     width: 336px;
     margin: 0;
   }
+  ${up('pcSizeS')} {
+    width: calc(100% / 3 - 30px);
+    margin: 0;
+  }
+
   ${up('pc')} {
     width: 288px;
   }

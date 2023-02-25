@@ -10,6 +10,21 @@ export const CategoriesList = styled.ul`
     flex-wrap: wrap;
     gap: 32px 32px;
   }
+  list-style: none;
+  /* padding-left: 0px;
+  display: grid;
+  margin: 0px auto;
+  list-style: none;
+  ${up('tablet')} {
+    grid-template-columns: repeat(auto-fill, minmax(336px, 1fr));
+    max-width: calc(100vw - 32px);
+    grid-gap: 32px;
+  }
+
+  ${up('pc')} {
+    grid-template-columns: repeat(4, 1fr);
+  } */
+
   /* ${up('pc')} {
     grid-template-columns: repeat(4, 1fr);
   } */
