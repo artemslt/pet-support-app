@@ -213,6 +213,8 @@ export const Button = styled.button`
 
   font-size: ${({ theme }) => theme.fontSizes[2]}px;
 
+  transition: ${({ theme }) => theme.btnAnimationTransition};
+
   ${up('tablet')} {
     width: 180px;
     height: 44px;
@@ -284,6 +286,7 @@ export const RadioBtnLabel = styled.label`
   line-height: calc(19 / 14);
 
   cursor: pointer;
+  transition: ${({ theme }) => theme.btnAnimationTransition};
 
   &:hover,
   &:focus {
@@ -542,6 +545,7 @@ export const ImageDel = styled.button`
   border-radius: 80%;
   border: none;
   cursor: pointer;
+  transition: ${({ theme }) => theme.btnAnimationTransition};
 
   ${up('tablet')} {
     width: 44px;
@@ -551,12 +555,10 @@ export const ImageDel = styled.button`
   }
 
   &:hover {
-    transition: cubic-bezier(0.075, 0.82, 0.165, 1);
     background-color: ${({ theme }) => theme.colors.mainAccent};
   }
 
   &:hover ${ClosesIcon} {
-    transition: cubic-bezier(0.075, 0.82, 0.165, 1);
     fill: ${({ theme }) => theme.colors.mainWhite};
   }
 `;
