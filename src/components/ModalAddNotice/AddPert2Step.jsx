@@ -94,7 +94,14 @@ export const SecondPart = ({
         <div>
           <ImgBox>
             <AddImagelabel className={imgUrl ? 'show_img' : ''}>
-              <InputFile name="img" type="file" accept="image/*" />
+              {!imgUrl && (
+                <InputFile
+                  name="img"
+                  type="file"
+                  value={imgUrl ? imgUrl : ''}
+                  accept="image/png, image/jpeg"
+                />
+              )}
               <AddPhoto />
               <Error name="img" component="div" />
             </AddImagelabel>
