@@ -5,6 +5,8 @@ const themeStyles = {
   fontSizes: [12, 14, 16, 18, 20, 24, 32, 36, 42, 48],
   fontWeights: [400, 500, 700],
   fonts: ['Inter', 'Manrope', 'Poppins'],
+  btnAnimationTransition: 'all 0.3s ease',
+  btnHoverFocusScale: '1.05',
   colors: {
     mainBlack: '#111111',
     secondaryBlack: '#181C27',

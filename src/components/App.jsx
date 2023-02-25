@@ -34,7 +34,7 @@ export const App = () => {
       <Route path="/" element={<SharedLayout />}>
         <Route
           index
-          element={<PrivateRoute component={Home} redirectTo="/notices/sell" />}
+          element={<PrivateRoute component={Home} redirectTo="/notices" />}
         />
         <Route path="news" element={<NewsPage />} />
         <Route path="notices" element={<NoticesPage />}>

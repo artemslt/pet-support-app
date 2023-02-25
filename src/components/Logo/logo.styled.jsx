@@ -11,6 +11,7 @@ export const LogoContainer = styled.div`
 
 export const LogoLink = styled(NavLink)`
   text-decoration: none;
+  z-index: 6;
 `;
 
 export const LogoStyled = styled.p`
