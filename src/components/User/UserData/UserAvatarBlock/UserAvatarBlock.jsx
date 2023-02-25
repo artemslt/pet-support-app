@@ -28,8 +28,9 @@ export const UserAvatarBlock = () => {
       const avatar = event.target.files[0];
       formData.append('avatar', avatar);
 
-      dispatch(updateAvatar(formData));
-      dispatch(refreshUser(selectUser));
+      dispatch(updateAvatar(formData)).then(() =>
+        dispatch(refreshUser(selectUser))
+      );
     }
   };
 
