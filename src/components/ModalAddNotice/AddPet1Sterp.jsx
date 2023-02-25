@@ -48,26 +48,23 @@ export const FirstPart = ({
       <RadioBtnGroup role="group">
         <RadioBtn
           type="radio"
-          //   name="typeOfNotice"
-          value="lost/found"
-          id="lost_found"
-          onClick={e => console.log(e)}
-          checked={values.typeOfNotice === 'lost/found'}
-          onChange={() => setFieldValue('typeOfNotice', 'lost/found')}
+            name="typeOfNotice"
+          value="lost-found"
+          id="llost-found"
+         
         />
-        <RadioBtnLabel htmlFor="lost_found">
+        <RadioBtnLabel htmlFor="lost-found">
           <span>lost/found</span>
         </RadioBtnLabel>
 
         <RadioBtn
           type="radio"
           name="typeOfNotice"
-          value="in good hands"
-          id="in_good_hands"
-          checked={values.typeOfNotice === 'in good hands'}
-          onChange={() => setFieldValue('typeOfNotice', 'in good hands')}
+          value="for-free"
+          id="for-free"
+         
         />
-        <RadioBtnLabel htmlFor="in_good_hands">
+        <RadioBtnLabel htmlFor="for-free">
           <span>in good hands</span>
         </RadioBtnLabel>
         <RadioBtn
