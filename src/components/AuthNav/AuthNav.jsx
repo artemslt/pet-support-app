@@ -1,4 +1,4 @@
-import { Link, AuthNavContainer, LinkFull } from './AuthNav.styled';
+import { Link, AuthNavContainer } from './AuthNav.styled';
 
 export const AuthNav = ({ setOpen }) => {
   return (
