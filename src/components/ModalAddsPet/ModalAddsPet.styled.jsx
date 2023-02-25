@@ -210,6 +210,29 @@ export const Button = styled.button`
       background: ${({ theme }) => theme.colors.mainWhite};
     }
   }
+
+  &[name='next'],
+  &[name='back'] {
+    background-color: ${({ theme }) => theme.colors.mainAccent};
+    color: ${({ theme }) => theme.colors.mainWhite};
+  }
+
+  &[name='next']:hover,
+  &[name='next']:focus {
+    background-color: ${({ theme }) => theme.colors.mainWhite};
+    color: ${({ theme }) => theme.colors.mainBlack};
+  }
+
+  &[name='next']:disabled,
+  &[name='back']:disabled {
+    opacity: 0.5;
+
+    &:hover {
+      background-color: ${({ theme }) => theme.colors.mainAccent};
+      color: ${({ theme }) => theme.colors.mainWhite};
+      opacity: 0.5;
+    }
+  }
 `;
 
 export const TitleAddPhoto = styled.span`
@@ -237,6 +260,7 @@ export const AddImage = styled.label`
   height: 208px;
   left: 36px;
   top: 135px;
+  object-fit: cover;
 
   ${up('tablet')} {
     width: 182px;
