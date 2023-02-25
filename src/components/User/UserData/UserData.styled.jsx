@@ -12,9 +12,9 @@ export const UserCardWrapp = styled.div`
 `;
 
 export const UserCard = styled.div`
-  max-width: 350px;
+  width: 280px;
   height: 537px;
-  padding: 20px 24px 10px 23px;
+  padding: 20px 15px 10px;
   margin: 0 auto;
   background: ${prop => prop.theme.colors.mainWhite};
   border-radius: 40px;

@@ -16,7 +16,7 @@ export const Label = styled.label`
   font-size: 12px;
   line-height: 1.39;
   color: ${prop => prop.theme.colors.mainBlack};
-  width: 82px;
+  min-width: 60px;
   ${up('tablet')} {
     width: 119px;
     font-size: 18px;
@@ -34,6 +34,7 @@ export const LabelDatePicker = styled.label`
   color: ${prop => prop.theme.colors.mainBlack};
   line-height: 1.39;
   width: 90px;
+  min-width: 60px;
   ${up('tablet')} {
     width: 119px;
     font-size: 18px;
@@ -45,12 +46,12 @@ export const LabelDatePicker = styled.label`
 
 export const Input = styled(Field)`
   font-family: 'Manrope';
-  width: 159px;
+  width: 150px;
   font-size: 12px;
   color: ${prop => prop.theme.colors.mainBlack};
   padding: 4px 12px 3px;
   line-height: 1.39;
-  margin-right: 30px;
+  margin-right: 15px;
   ${up('tablet')} {
     font-size: 18px;
     width: 216px;
@@ -65,7 +66,7 @@ export const Input = styled(Field)`
 export const InputDatePickerWrapp = styled.div`
   width: 205px;
   ${up('tablet')} {
-    margin-right: 40px;
+    margin-right: 28px;
   }
   ${up('pc')} {
     margin-right: 15px;
@@ -75,13 +76,13 @@ export const InputDatePickerWrapp = styled.div`
 export const InputDatePicker = styled(DatePicker)`
   font-family: 'Manrope';
   font-size: 12px;
-  width: 159px;
+  width: 140px;
   line-height: 1.39;
   padding: 4px 12px 3px;
   background-color: transparent;
   border: 1px solid transparent;
   color: ${prop => prop.theme.colors.mainBlack};
-  margin-right: 13px;
+  margin-right: 24px;
   ${({ active }) =>
     active &&
     `
@@ -93,7 +94,7 @@ background: #FDF7F2;
   ${up('tablet')} {
     width: 215px;
     font-size: 18px;
-    margin-right: 30px;
+    margin-right: 28px;
     ${({ active }) =>
       active &&
       `
@@ -118,8 +119,8 @@ background: #FDF7F2;
 export const InputWrapper = styled.div`
   display: flex;
   position: relative;
-  align-items: center;
   margin-top: 3px;
+  align-items: center;
   ${up('tablet')} {
     margin-top: 7px;
   }
@@ -128,13 +129,17 @@ export const InputWrapper = styled.div`
 `;
 
 export const EditBtn = styled.button`
-  width: 32px;
+  width: 30px;
+  height: 30px;
   padding: 5px;
   background-color: ${prop => prop.theme.colors.background};
   border: none;
   border-radius: 50%;
   cursor: pointer;
-
+  ${up('tablet')} {
+    width: 32px;
+    height: 32px;
+  }
   ${up('pc')} {
     margin-left: ${prop => (prop.isDateEdit ? '10px' : 0)};
   }
@@ -142,9 +147,16 @@ export const EditBtn = styled.button`
 
 export const ErrorMessage = styled.div`
   position: absolute;
-  transform: translate(110px, 0px);
+  transform: translate(0px, 0px);
   font-size: 10px;
   color: red;
+  ${up('tablet')} {
+    transform: translate(132px, 0px);
+  }
+  ${up('pc')} {
+    transform: translate(90px, 0px);
+    margin-left: ${prop => (prop.isDateEdit ? '10px' : 0)};
+  }
 `;
 
 export const NotAuthorized = styled.div`
