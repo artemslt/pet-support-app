@@ -12,7 +12,7 @@ export const Menu = ({ setOpen, open }) => {
 
   return (
     <StyledMenu open={open}>
-      <Logo setOpen={setOpen} />
+      {/* <Logo setOpen={setOpen} /> */}
       <StyledNav>
         {isMobile && isLoggedIn && <UserNav setOpen={setOpen} />}
         {isMobile && !isLoggedIn && <AuthNav setOpen={setOpen} />}

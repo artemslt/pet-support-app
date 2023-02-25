@@ -6,9 +6,9 @@ export const AuthNav = ({ setOpen }) => {
       <Link to="/login" onClick={() => setOpen(false)}>
         Login
       </Link>
-      <LinkFull to="/register" onClick={() => setOpen(false)}>
+      <Link to="/register" onClick={() => setOpen(false)}>
         Registration
-      </LinkFull>
+      </Link>
     </AuthNavContainer>
   );
 };
