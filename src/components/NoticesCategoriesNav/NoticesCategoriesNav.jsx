@@ -35,8 +35,8 @@ export const NoticesCategoriesNav = () => {
         <StyledLink to="for-free">in good hands</StyledLink>
         {isLoggin ? (
           <>
-            <StyledLink to="for-free">favorite ads</StyledLink>
-            <StyledLink to="for-free">my ads</StyledLink>
+            <StyledLink to="favorite">favorite ads</StyledLink>
+            <StyledLink to="own">my ads</StyledLink>
           </>
         ) : null}
       </LinkWrapper>
