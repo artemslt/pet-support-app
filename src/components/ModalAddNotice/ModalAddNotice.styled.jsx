@@ -165,7 +165,6 @@ export const Error = styled(ErrorMessage)`
   color: ${({ theme }) => theme.colors.activeAccent};
 `;
 
-
 export const InputDatePicker = styled(DatePicker)`
   font-family: ${({ theme }) => theme.fonts[1]};
   font-weight: ${({ theme }) => theme.fontWeights[0]};

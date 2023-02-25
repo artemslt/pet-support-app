@@ -25,7 +25,7 @@ export const FirstPart = ({
   errors,
   setImgUrl,
   setFile,
-  onToggleModal
+  onToggleModal,
 }) => {
   const [focus, setFocus] = useState(false);
   const isInput = useSelector(state => state.isInput.toggle);
@@ -35,22 +35,25 @@ export const FirstPart = ({
     handleReset();
     setImgUrl('');
     setFile(null);
-    
-    onToggleModal()
 
+    onToggleModal();
   }
 
   return (
     <>
       <Text>
-      You can sell or give your pets, or inform others about lost pets{' '}
+        You can sell or give your pets, or inform others about lost pets{' '}
       </Text>
+
       <RadioBtnGroup role="group">
         <RadioBtn
           type="radio"
-          name="typeOfNotice"
+          //   name="typeOfNotice"
           value="lost/found"
           id="lost_found"
+          onClick={e => console.log(e)}
+          checked={values.typeOfNotice === 'lost/found'}
+          onChange={() => setFieldValue('typeOfNotice', 'lost/found')}
         />
         <RadioBtnLabel htmlFor="lost_found">
           <span>lost/found</span>
@@ -61,11 +64,20 @@ export const FirstPart = ({
           name="typeOfNotice"
           value="in good hands"
           id="in_good_hands"
+          checked={values.typeOfNotice === 'in good hands'}
+          onChange={() => setFieldValue('typeOfNotice', 'in good hands')}
         />
         <RadioBtnLabel htmlFor="in_good_hands">
           <span>in good hands</span>
         </RadioBtnLabel>
-        <RadioBtn type="radio" name="typeOfNotice" value="sell" id="sell" />
+        <RadioBtn
+          type="radio"
+          name="typeOfNotice"
+          value="sell"
+          id="sell"
+          checked={values.typeOfNotice === 'sell'}
+          onChange={() => setFieldValue('typeOfNotice', 'sell')}
+        />
         <RadioBtnLabel htmlFor="sell">
           <span>sell</span>
         </RadioBtnLabel>
@@ -84,7 +96,7 @@ export const FirstPart = ({
           Name pet <span>*</span>
         </LabelTitle>
         <Input name="name" placeholder="Type name pet" />
-        <Error name="name" component="div"  />
+        <Error name="name" component="div" />
       </label>
 
       <label>
@@ -98,10 +110,7 @@ export const FirstPart = ({
           placeholderText={'00.00.0000'}
           onChange={date => {
             setStartDate(date);
-            setFieldValue(
-              'date',
-              date.toLocaleString().slice(0, 10)
-            );
+            setFieldValue('date', date.toLocaleString().slice(0, 10));
           }}
           minDate={new Date('December 17, 1900 03:24:00')}
           maxDate={new Date()}
@@ -116,7 +125,7 @@ export const FirstPart = ({
         <LabelTitle>
           Breed <span>*</span>
         </LabelTitle>
-        
+
         {!isInput ? (
           <>
             <Input name="breed" placeholder="Type breed" />

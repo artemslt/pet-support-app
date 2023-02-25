@@ -45,8 +45,6 @@ export const AddPet = ({ onToggleModal }) => {
   };
 
   const handleOnChange = event => {
-    event.preventDefault();
-
     if (event.target.files && event.target.files.length > 0) {
       const file = event.target.files[0];
       const size = file.size;
