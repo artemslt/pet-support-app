@@ -16,7 +16,6 @@ import {
   ErrorMessage,
   // NotAuthorized,
 } from './UserDataItem.styled';
-import { up } from 'styled-breakpoints';
 import { updateUser } from 'redux/auth/authOperations';
 import { selectUser } from 'redux/auth/authSelectors';
 
@@ -315,7 +314,7 @@ export const UserDataItem = () => {
                 ) : (
                   <Input
                     type="text"
-                    name="userCity"
+                    name="location"
                     disabled={isCityDisabled}
                     style={{
                       border: '1px solid #F5925680',

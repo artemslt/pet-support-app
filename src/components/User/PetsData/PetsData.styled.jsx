@@ -8,19 +8,15 @@ export const PetListCardWrapper = styled.div`
   margin: 0 auto;
   ${up('tablet')} {
     width: 704px;
-    /* padding-right: 32px;
-    padding-left: 32px; */
   }
   ${up('pc')} {
-    width: 100%;
-    max-width: 890px;
-    padding-right: 5px;
+    width: 890px;
+    margin: 0;
   }
 `;
 
 export const Title = styled.h3`
   font-family: 'Manrope';
-  /* padding-left: 40px; */
   font-size: 28px;
   font-weight: ${prop => prop.theme.fontWeights[1]};
   line-height: 1.37;
@@ -31,17 +27,9 @@ export const NavContainer = styled.div`
   display: flex;
   width: 100%;
   justify-content: space-between;
-  /* justify-content: space-between; */
-  /* align-items: center; */
   margin: 0 20px 25px;
-  /* margin-bottom: 24px; */
-  /* margin-right: 20px;
-  margin-left: 20px; */
   ${up('tablet')} {
-    /* padding: 40px 0 24px 32px; */
     margin: 0 0 32px 0;
-    /* margin-right: 32px;
-    margin-left: 32px; */
   }
   ${up('pc')} {
     justify-content: space-between;
@@ -85,8 +73,6 @@ export const PetCard = styled.li`
   width: 100%;
   padding: 16px 20px 40px;
   margin-bottom: 22px;
-  /* margin-right: 20px;
-  margin-left: 20px; */
   &:last-child {
     margin-bottom: 0;
   }
@@ -98,12 +84,9 @@ export const PetCard = styled.li`
     width: 704px;
     flex-direction: row;
     padding: 20px;
-    /* margin-right: 32px;
-    margin-left: 32px; */
   }
   ${up('pc')} {
     width: 100%;
-    /* max-width: 821px; */
     padding: 20px;
     margin-right: 0;
     margin-left: 0;
@@ -142,9 +125,9 @@ export const TextTopic = styled.span`
 `;
 
 export const PetPhoto = styled.img`
-  margin: 0px auto;
   width: 240px;
   height: 240px;
+  margin: 0px auto;
   border-radius: 40px;
   object-fit: cover;
   ${up('tablet')} {

@@ -7,11 +7,6 @@ import 'react-datepicker/dist/react-datepicker.css';
 export const DataInputWrapp = styled.div`
   display: flex;
   flex-direction: column;
-  ${up('tablet')} {
-  }
-  ${up('pc')} {
-    /* padding-top: 50px; */
-  }
 `;
 
 export const Label = styled.label`

@@ -13,7 +13,7 @@ export const AvatarThumb = styled.div`
   margin-left: auto;
   margin-right: auto;
   margin-bottom: 50px;
-  background: #fdf7f2;
+  background: ${prop => prop.theme.colors.background};
   object-fit: cover;
   border-radius: 50%;
   box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.11);
@@ -38,7 +38,7 @@ export const Avatar = styled.img`
   margin: 0px auto;
   width: 233px;
   height: 233px;
-  background: #fdf7f2;
+  background: ${prop => prop.theme.colors.background};
   object-fit: cover;
   border-radius: 50%;
   box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.11);
@@ -53,7 +53,7 @@ export const Button = styled.button`
   border: none;
 
   background: none;
-  fill: #f58256;
+  fill: ${prop => prop.theme.colors.mainAccent};
 
   ${up('tablet')} {
     margin-bottom: 20px;
@@ -76,9 +76,9 @@ export const EditWrapp = styled.span`
 export const Text = styled.span`
   margin-left: 4px;
   font-family: 'Manrope';
-  font-weight: 400;
+  font-weight: ${prop => prop.theme.fontWeights[0]};
   font-size: 12px;
   letter-spacing: 0.04em;
   line-height: 22px;
-  color: #111111;
+  color: ${prop => prop.theme.colors.mainBlack};
 `;
