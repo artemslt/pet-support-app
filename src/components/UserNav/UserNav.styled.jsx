@@ -8,7 +8,7 @@ export const UserNavContainer = styled.div`
     margin-right: 20px;
   }
   ${down('tablet')} {
-    margin-top: 46px;
+    margin-top: 92px;
   }
 `;
 
