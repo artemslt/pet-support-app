@@ -1,5 +1,5 @@
 import { AuthNav } from 'components/AuthNav/AuthNav';
-import { Logo } from 'components/Logo/Logo';
+// import { Logo } from 'components/Logo/Logo';
 import { Nav } from 'components/Nav/Nav';
 import { UserNav } from 'components/UserNav/UserNav';
 import { useAuth } from 'hooks';
