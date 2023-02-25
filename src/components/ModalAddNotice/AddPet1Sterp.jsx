@@ -51,7 +51,7 @@ export const FirstPart = ({
           type="radio"
           name="typeOfNotice"
           value="lost-found"
-          id="llost-found"
+          id="lost-found"
         />
         <RadioBtnLabel htmlFor="lost-found">
           <span>lost/found</span>
