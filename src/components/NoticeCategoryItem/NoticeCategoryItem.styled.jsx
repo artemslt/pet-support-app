@@ -6,6 +6,7 @@ export const Card = styled.li`
   border-radius: 0px 0px 40px 40px;
   background-color: ${({ theme }) => theme.colors.mainWhite};
   width: 280px;
+
   margin-bottom: 32px;
   &:last-child {
     margin-bottom: 0;
@@ -17,7 +18,7 @@ export const Card = styled.li`
     margin: 0;
   }
   ${up('pcSizeS')} {
-    width: calc(100% / 3 - 30px);
+    width: calc(100% / 3 - 22px);
     margin: 0;
   }
 
