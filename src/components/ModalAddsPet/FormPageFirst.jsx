@@ -12,10 +12,15 @@ import {
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 import { onSelector } from 'redux/InputPets/inputPetsSlice';
-export const FormePageFist = ({ formik, onClickToggle, onToggleModal }) => {
+export const FormePageFist = ({
+  formik,
+  onClickToggle,
+  onToggleModal,
+  setStartDate,
+  startDate,
+}) => {
   const [focus, setFocus] = useState(false);
   const isInput = useSelector(state => state.isInput.toggle);
-  const [startDate, setStartDate] = useState();
 
   const dispatch = useDispatch();
 
@@ -37,7 +42,7 @@ export const FormePageFist = ({ formik, onClickToggle, onToggleModal }) => {
           selected={startDate}
           dateFormat="dd.MM.yyyy"
           name="birthday"
-          placeholderText={'00.00.0000'}
+          placeholderText="00.00.0000"
           onChange={date => {
             setStartDate(date);
             formik.setFieldValue(

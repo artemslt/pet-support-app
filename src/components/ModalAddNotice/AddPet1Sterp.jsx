@@ -25,25 +25,25 @@ export const FirstPart = ({
   errors,
   setImgUrl,
   setFile,
-  onToggleModal
+  onToggleModal,
+  startDate,
+  setStartDate,
 }) => {
   const [focus, setFocus] = useState(false);
   const isInput = useSelector(state => state.isInput.toggle);
-  const [startDate, setStartDate] = useState(null);
 
   function ResetValues() {
     handleReset();
     setImgUrl('');
     setFile(null);
-    
-    onToggleModal()
 
+    onToggleModal();
   }
 
   return (
     <>
       <Text>
-      You can sell or give your pets, or inform others about lost pets{' '}
+        You can sell or give your pets, or inform others about lost pets{' '}
       </Text>
       <RadioBtnGroup role="group">
         <RadioBtn
@@ -84,7 +84,7 @@ export const FirstPart = ({
           Name pet <span>*</span>
         </LabelTitle>
         <Input name="name" placeholder="Type name pet" />
-        <Error name="name" component="div"  />
+        <Error name="name" component="div" />
       </label>
 
       <label>
@@ -98,10 +98,7 @@ export const FirstPart = ({
           placeholderText={'00.00.0000'}
           onChange={date => {
             setStartDate(date);
-            setFieldValue(
-              'date',
-              date.toLocaleString().slice(0, 10)
-            );
+            setFieldValue('date', date.toLocaleString().slice(0, 10));
           }}
           minDate={new Date('December 17, 1900 03:24:00')}
           maxDate={new Date()}
@@ -116,7 +113,7 @@ export const FirstPart = ({
         <LabelTitle>
           Breed <span>*</span>
         </LabelTitle>
-        
+
         {!isInput ? (
           <>
             <Input name="breed" placeholder="Type breed" />

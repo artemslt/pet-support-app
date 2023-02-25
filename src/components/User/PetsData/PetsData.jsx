@@ -22,11 +22,10 @@ export const PetsData = () => {
   // const [petsVisible] = useState(false);
   const [modalToggle, setModalToggle] = useState(false);
   const dispatch = useDispatch();
-
   const list = useSelector(selectPets) ?? [];
   const isLoading = useSelector(selectIsLoading);
 
-  const onToggleModal = () => {
+  const onToggleModal = e => {
     setModalToggle(false);
   };
 
@@ -46,7 +45,7 @@ export const PetsData = () => {
           <BtnName>Add pet</BtnName>
           <AddBtn
             type="submit"
-            onClick={() => {
+            onClick={e => {
               setModalToggle(true);
             }}
           >
@@ -56,11 +55,11 @@ export const PetsData = () => {
       </NavContainer>
 
       {list.length !== 0 && isLoading === true && <p>Loading...</p>}
-      {modalToggle && (
-        <ModalMenu onClose={() => setModalToggle(false)} open={modalToggle}>
-          <ModalAddsPet onToggleModal={onToggleModal}></ModalAddsPet>
-        </ModalMenu>
-      )}
+
+      <ModalMenu onClose={() => setModalToggle(false)} open={modalToggle}>
+        <ModalAddsPet onToggleModal={onToggleModal}></ModalAddsPet>
+      </ModalMenu>
+
       <ListContainer>
         {list.length !== 0 &&
           list.map(item => (
