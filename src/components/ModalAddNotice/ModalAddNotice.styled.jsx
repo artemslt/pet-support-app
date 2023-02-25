@@ -506,6 +506,7 @@ export const Image = styled.img`
   background: #fdf7f2;
   border-radius: 20px;
 
+  object-fit: cover;
   ${up('tablet')} {
     width: 140px;
     height: 140px;

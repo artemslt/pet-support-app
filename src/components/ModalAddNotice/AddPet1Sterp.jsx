@@ -25,7 +25,9 @@ export const FirstPart = ({
   errors,
   setImgUrl,
   setFile,
-  onToggleModal
+  startDate,
+  setStartDate,
+  onToggleModal,
 }) => {
   const [focus, setFocus] = useState(false);
   const isInput = useSelector(state => state.isInput.toggle);
@@ -47,10 +49,9 @@ export const FirstPart = ({
       <RadioBtnGroup role="group">
         <RadioBtn
           type="radio"
-            name="typeOfNotice"
+          name="typeOfNotice"
           value="lost-found"
           id="llost-found"
-         
         />
         <RadioBtnLabel htmlFor="lost-found">
           <span>lost/found</span>
@@ -61,7 +62,6 @@ export const FirstPart = ({
           name="typeOfNotice"
           value="for-free"
           id="for-free"
-         
         />
         <RadioBtnLabel htmlFor="for-free">
           <span>in good hands</span>
@@ -103,7 +103,7 @@ export const FirstPart = ({
           selected={startDate}
           dateFormat="dd.MM.yyyy"
           name="date"
-          placeholderText={'00.00.0000'}
+          placeholderText="00.00.0000"
           onChange={date => {
             setStartDate(date);
             setFieldValue('date', date.toLocaleString().slice(0, 10));
