@@ -25,7 +25,7 @@ const initialValues = {
 
 export const ModalAddsPet = ({ onToggleModal }) => {
   const [pageToggle, setPageToggle] = useState(true);
-  const [imgUrl, setImgUrl] = useState(null);
+  const [imgUrl, setImgUrl] = useState('');
   const [file, setFile] = useState(null);
   const dispatch = useDispatch();
 
@@ -58,7 +58,6 @@ export const ModalAddsPet = ({ onToggleModal }) => {
 
   const handleOnChange = event => {
     event.preventDefault();
-
     if (event.target.files && event.target.files.length > 0) {
       const file = event.target.files[0];
       const size = file.size;
@@ -106,6 +105,7 @@ export const ModalAddsPet = ({ onToggleModal }) => {
                     imgUrl={imgUrl}
                     onClickToggle={setPageToggle}
                     setFile={setFile}
+                    formik={Formik}
                   />
                 )}
               </FormStyled>

@@ -3,6 +3,7 @@ import { SelectComponent } from './SelectComponent';
 import {
   Error,
   Input,
+  InputDatePicker,
   Label,
   ErrorSelect,
   WrapperBtn,
@@ -14,6 +15,8 @@ import { onSelector } from 'redux/InputPets/inputPetsSlice';
 export const FormePageFist = ({ formik, onClickToggle, onToggleModal }) => {
   const [focus, setFocus] = useState(false);
   const isInput = useSelector(state => state.isInput.toggle);
+  const [startDate, setStartDate] = useState();
+
   const dispatch = useDispatch();
 
   return (
@@ -30,8 +33,24 @@ export const FormePageFist = ({ formik, onClickToggle, onToggleModal }) => {
       </Label>
       <Label htmlFor="">
         Date of birth
-        <Input type="text" name="birthday" placeholder="Type date of birth" />
-        <Error name="birthday" component="p"></Error>
+        <InputDatePicker
+          selected={startDate}
+          dateFormat="dd.MM.yyyy"
+          name="birthday"
+          placeholderText={'00.00.0000'}
+          onChange={date => {
+            setStartDate(date);
+            formik.setFieldValue(
+              'birthday',
+              date.toLocaleString().slice(0, 10)
+            );
+          }}
+          minDate={new Date('December 17, 1900 03:24:00')}
+          maxDate={new Date()}
+          showDisabledMonthNavigation
+          shouldCloseOnSelect={true}
+        />
+        <ErrorSelect>{formik.errors.birthday}</ErrorSelect>
       </Label>
       <Label htmlFor="">
         Breed
@@ -55,7 +74,7 @@ export const FormePageFist = ({ formik, onClickToggle, onToggleModal }) => {
           onClick={() => {
             onClickToggle(false);
           }}
-          disabled={!formik.isValid ? true : false}
+          disabled={!(formik.dirty && formik.isValid)}
         >
           Next
         </Button>

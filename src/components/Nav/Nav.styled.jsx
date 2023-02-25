@@ -13,6 +13,13 @@ export const NavContainer = styled.nav`
     flex-direction: column;
     align-items: center;
     margin-top: 88px;
+    @media (orientation: landscape) {
+      & {
+        width: 100%;
+        flex-direction: row;
+        justify-content: space-between;
+      }
+    }
   }
   ${down('tablet')} {
     margin-top: 60px;
@@ -29,6 +36,13 @@ export const Link = styled(NavLink)`
   letter-spacing: 0.04em;
 
   color: ${({ theme }) => theme.colors.mainBlack};
+
+  transition: all 0.3s ease;
+
+  &:hover,
+  &:focus {
+    scale: 1.1;
+  }
 
   ${down('pcSizeS')} {
     margin-right: 0;
@@ -54,8 +68,16 @@ export const Link = styled(NavLink)`
   &.active {
     color: ${({ theme }) => theme.colors.mainAccent};
     text-decoration: underline 1px;
+    scale: 1;
   }
   &:last-child {
     margin-right: 0px;
   }
+  /* 
+  @media (orientation: landscape) {
+    & {
+      font-size: 28px;
+      margin-bottom: 0;
+    }
+  } */
 `;
