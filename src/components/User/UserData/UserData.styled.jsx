@@ -37,7 +37,7 @@ export const UserCard = styled.div`
     justify-content: flex-start;
     width: 411px;
     height: 541px;
-    padding: 20px 16px 18px;
+    padding: 20px 27px 18px;
   }
 `;
 
