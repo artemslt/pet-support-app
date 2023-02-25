@@ -3,7 +3,8 @@ import { up } from 'styled-breakpoints';
 import { ReactComponent as Closes } from '../../images/ButtonCloses.svg';
 import { ReactComponent as iconAddPhoto } from '../../images/addPhoto.svg';
 import { ReactComponent as closeImageIcon } from '../../images/close-image-icon.svg';
-
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
 import Select from 'react-select';
 import { Form, Field, ErrorMessage } from 'formik';
 
@@ -125,6 +126,33 @@ export const Error = styled(ErrorMessage)`
 `;
 
 export const Input = styled(Field)`
+  font-family: ${({ theme }) => theme.fonts[1]};
+  font-weight: ${({ theme }) => theme.fontWeights[0]};
+  font-size: 14px;
+  line-height: calc(19 / 14);
+  width: 240px;
+  padding: 8.7px 8px;
+  color: ${({ theme }) => theme.colors.grayText};
+  background: ${({ theme }) => theme.colors.background};
+  border: 1px solid ${({ theme }) => theme.colors.formInputAccnt};
+  border-radius: 40px;
+  cursor: pointer;
+  margin-top: 8px;
+  ${up('tablet')} {
+    font-size: 16px;
+    line-height: calc(26 / 16);
+    padding: 7.9px 16px;
+    width: 448px;
+    margin-top: 12px;
+  }
+  outline: none;
+  &:hover,
+  &:focus {
+    border-color: ${({ theme }) => theme.colors.activeAccent};
+  }
+`;
+
+export const InputDatePicker = styled(DatePicker)`
   font-family: ${({ theme }) => theme.fonts[1]};
   font-weight: ${({ theme }) => theme.fontWeights[0]};
   font-size: 14px;

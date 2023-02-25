@@ -20,6 +20,7 @@ export const FormePageSecond = ({
   imgUrl,
   onClickToggle,
   setFile,
+  formik,
 }) => {
   return (
     <>
