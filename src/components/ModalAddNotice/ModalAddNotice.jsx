@@ -72,6 +72,7 @@ export const AddPet = ({ onToggleModal }) => {
       );
 
       toast.success('New Notice created successfully');
+
       console.log(`responce`, responce);
     } catch (error) {
       console.log(error);
