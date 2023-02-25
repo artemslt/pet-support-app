@@ -2,6 +2,7 @@ import { ReactComponent as FavoriteIcon } from './akar-icons_heart.svg';
 import { ReactComponent as DeleteIcon } from './fluent_delete-16-filled.svg';
 import { useSelector } from 'react-redux';
 import { selectUser } from 'redux/auth/authSelectors';
+import { selectFilter } from 'redux/notices/noticesSelectors';
 import {
   Card,
   Image,
@@ -18,10 +19,17 @@ import {
 
 export const NoticeCategoryItem = ({ items }) => {
   const { email } = useSelector(selectUser);
+  const filter = useSelector(selectFilter);
+
+  const normalizedFilter = filter.toLowerCase().trim();
+
+  const filteredNotices = items.filter(item =>
+    item.title.toLowerCase().includes(normalizedFilter)
+  );
 
   return (
     <>
-      {items.map(
+      {filteredNotices.map(
         ({ owner, title, _id, image, category, breed, location, price }) => (
           <Card key={_id}>
             <div style={{ position: 'relative' }}>
