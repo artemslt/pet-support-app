@@ -30,7 +30,7 @@ export const Modal = styled.div`
 
   &.show {
     opacity: 1;
-    max-height: 95%;
+    max-height: 90%;
     overflow: auto;
   }
   &.show::-webkit-scrollbar {

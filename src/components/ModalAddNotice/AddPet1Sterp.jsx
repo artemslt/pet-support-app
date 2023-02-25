@@ -2,6 +2,7 @@ import {
   Text,
   LabelTitle,
   Input,
+  InputDatePicker,
   Error,
   ButtonsSection,
   Button,
@@ -10,7 +11,6 @@ import {
   RadioBtnGroup,
 } from './ModalAddNotice.styled';
 
-// Oleksii
 import { SelectComponentNotice } from './SelectComponentNotice';
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
@@ -24,13 +24,20 @@ export const FirstPart = ({
   values,
   errors,
   setImgUrl,
+  setFile,
+  onToggleModal
 }) => {
   const [focus, setFocus] = useState(false);
   const isInput = useSelector(state => state.isInput.toggle);
+  const [startDate, setStartDate] = useState(null);
 
   function ResetValues() {
     handleReset();
     setImgUrl('');
+    setFile(null);
+    
+    onToggleModal()
+
   }
 
   return (
@@ -85,7 +92,24 @@ export const FirstPart = ({
         <LabelTitle>
           Date of birth <span>*</span>
         </LabelTitle>
-        <Input name="date" placeholder="Type date of birth" />
+        <InputDatePicker
+          selected={startDate}
+          dateFormat="dd.MM.yyyy"
+          name="date"
+          placeholderText={'00.00.0000'}
+          onChange={date => {
+            setStartDate(date);
+            setFieldValue(
+              'date',
+              date.toLocaleString().slice(0, 10)
+            );
+          }}
+          minDate={new Date('December 17, 1900 03:24:00')}
+          maxDate={new Date()}
+          showDisabledMonthNavigation
+          shouldCloseOnSelect={true}
+        />
+        {/* <Input name="date" placeholder="Type date of birth" /> */}
         <Error name="date" component="div" />
       </label>
 

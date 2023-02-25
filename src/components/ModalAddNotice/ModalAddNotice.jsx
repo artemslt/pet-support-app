@@ -37,13 +37,8 @@ export const AddPet = ({ onToggleModal }) => {
   const [step, setStep] = useState(true);
   const [imgUrl, setImgUrl] = useState(null);
   const [file, setFile] = useState(null);
-
-  // діспатч перемикає перемикач який в редаксі,
-  //він потрібен для того щоб в нас вмикалася кнопка на перемикання інпута, після закриття
-  //модалки потрібно ставити перемикач на місце  dispatch(onSelector()), бо селектора не буде до перезавантаження сторінки
   const dispatch = useDispatch();
 
-  // файл рідер
   const fileReader = new FileReader();
   fileReader.onloadend = () => {
     setImgUrl(fileReader.result);
@@ -66,7 +61,6 @@ export const AddPet = ({ onToggleModal }) => {
     }
     return;
   };
-  //   setAuthHeader(response.data.data.token);
 
   async function createNotice(newNotice) {
     try {
@@ -144,6 +138,8 @@ export const AddPet = ({ onToggleModal }) => {
                 setImgUrl={setImgUrl}
                 isSubmitting={isSubmitting}
                 setFieldValue={setFieldValue}
+                setFile={setFile}
+                onToggleModal={onToggleModal}
               />
             ) : (
               <SecondPart
