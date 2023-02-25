@@ -16,7 +16,7 @@ export const appPetSchemaStep1 = yup.object().shape({
     .max(16, 'Name should be 16 characters maximum.')
     .required('Name is required field'),
   date: yup
-    .date('Date must be in format dd.MM.yyyy')
+    .string('Date must be in format dd.MM.yyyy')
     .required('Date is required field'),
   breed: yup
     .string()

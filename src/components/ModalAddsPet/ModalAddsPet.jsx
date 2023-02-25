@@ -27,6 +27,7 @@ export const ModalAddsPet = ({ onToggleModal }) => {
   const [pageToggle, setPageToggle] = useState(true);
   const [imgUrl, setImgUrl] = useState('');
   const [file, setFile] = useState(null);
+  const [startDate, setStartDate] = useState('');
   const dispatch = useDispatch();
 
   const fileReader = new FileReader();
@@ -62,7 +63,7 @@ export const ModalAddsPet = ({ onToggleModal }) => {
       const file = event.target.files[0];
       const size = file.size;
       if (Number(size) > 3000000) {
-        return toast.error(`Photo must be no larger than 2.8 megabytes`);
+        return toast.error(`Photo must be no larger than 5 megabytes`);
       }
 
       setFile(file);
@@ -98,6 +99,8 @@ export const ModalAddsPet = ({ onToggleModal }) => {
                     formik={Formik}
                     onClickToggle={setPageToggle}
                     onToggleModal={onToggleModal}
+                    setStartDate={setStartDate}
+                    startDate={startDate}
                   />
                 ) : (
                   <FormePageSecond
