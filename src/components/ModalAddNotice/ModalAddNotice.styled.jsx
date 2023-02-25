@@ -165,7 +165,6 @@ export const Error = styled(ErrorMessage)`
   color: ${({ theme }) => theme.colors.activeAccent};
 `;
 
-
 export const InputDatePicker = styled(DatePicker)`
   font-family: ${({ theme }) => theme.fonts[1]};
   font-weight: ${({ theme }) => theme.fontWeights[0]};
@@ -213,6 +212,8 @@ export const Button = styled.button`
   border: 2px solid #f59256;
 
   font-size: ${({ theme }) => theme.fontSizes[2]}px;
+
+  transition: ${({ theme }) => theme.btnAnimationTransition};
 
   ${up('tablet')} {
     width: 180px;
@@ -285,6 +286,7 @@ export const RadioBtnLabel = styled.label`
   line-height: calc(19 / 14);
 
   cursor: pointer;
+  transition: ${({ theme }) => theme.btnAnimationTransition};
 
   &:hover,
   &:focus {
@@ -507,6 +509,7 @@ export const Image = styled.img`
   background: #fdf7f2;
   border-radius: 20px;
 
+  object-fit: cover;
   ${up('tablet')} {
     width: 140px;
     height: 140px;
@@ -542,6 +545,7 @@ export const ImageDel = styled.button`
   border-radius: 80%;
   border: none;
   cursor: pointer;
+  transition: ${({ theme }) => theme.btnAnimationTransition};
 
   ${up('tablet')} {
     width: 44px;
@@ -551,12 +555,10 @@ export const ImageDel = styled.button`
   }
 
   &:hover {
-    transition: cubic-bezier(0.075, 0.82, 0.165, 1);
     background-color: ${({ theme }) => theme.colors.mainAccent};
   }
 
   &:hover ${ClosesIcon} {
-    transition: cubic-bezier(0.075, 0.82, 0.165, 1);
     fill: ${({ theme }) => theme.colors.mainWhite};
   }
 `;

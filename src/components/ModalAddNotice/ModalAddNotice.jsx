@@ -37,7 +37,7 @@ export const AddPet = ({ onToggleModal }) => {
   const [step, setStep] = useState(true);
   const [imgUrl, setImgUrl] = useState(null);
   const [file, setFile] = useState(null);
-  const [startDate, setStartDate] = useState('');
+  const [startDate, setStartDate] = useState();
   const dispatch = useDispatch();
 
   const fileReader = new FileReader();
@@ -46,8 +46,6 @@ export const AddPet = ({ onToggleModal }) => {
   };
 
   const handleOnChange = event => {
-    event.preventDefault();
-
     if (event.target.files && event.target.files.length > 0) {
       const file = event.target.files[0];
       const size = file.size;
@@ -74,6 +72,7 @@ export const AddPet = ({ onToggleModal }) => {
       );
 
       toast.success('New Notice created successfully');
+
       console.log(`responce`, responce);
     } catch (error) {
       console.log(error);
