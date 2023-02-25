@@ -37,6 +37,7 @@ export const UserDataItem = () => {
   useEffect(() => {
     if (currentUser.birthday) {
       const parts = currentUser.birthday.split('.');
+
       if (parts.length === 3)
         setStartDate(new Date(parts[2], parts[1] - 1, parts[0]));
     }

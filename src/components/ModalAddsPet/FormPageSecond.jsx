@@ -19,7 +19,7 @@ export const FormePageSecond = ({
   setImgUrl,
   imgUrl,
   onClickToggle,
-  setFile,
+  setFile
 }) => {
   return (
     <>
