@@ -146,24 +146,26 @@ export const Button = styled.button`
   margin-bottom: 16px;
   cursor: pointer;
   border-radius: 40px;
-  border: none;
-  background-color: ${prop => prop.theme.colors.mainAccent};
+  background-color: ${prop => prop.theme.colors.background};
+  border: 2px solid ${prop => prop.theme.colors.mainAccent};
   font-family: ${prop => prop.theme.fonts[1]};
   font-weight: ${prop => prop.theme.fontWeights[1]};
   font-size: ${prop => prop.theme.fontSizes[4]}px;
   line-height: 27px;
   letter-spacing: 0.04em;
-  color: ${prop => prop.theme.colors.mainWhite};
+  color: ${prop => prop.theme.colors.additionalBlack};
+  transition: ${({ theme }) => theme.btnAnimationTransition};
   &:hover,
   &:focus {
-    background-color: ${prop => prop.theme.colors.background};
-    border: 2px solid ${prop => prop.theme.colors.mainAccent};
-    color: ${prop => prop.theme.colors.additionalBlack};
+    border: none;
+    background-color: ${prop => prop.theme.colors.mainAccent};
+    color: ${prop => prop.theme.colors.mainWhite};
   }
   ${up('tablet')} {
+    background-color: ${prop => prop.theme.colors.mainWhite};
     &:hover,
     &:focus {
-      background-color: ${prop => prop.theme.colors.mainWhite};
+      background-color: ${prop => prop.theme.colors.mainAccent};
     }
     outline: none;
     width: 458px;
@@ -174,7 +176,7 @@ export const Button = styled.button`
 `;
 
 export const ButtonText = styled.span`
-margin-left: 6px;
+  margin-left: 6px;
 `;
 
 export const Text = styled.p`
