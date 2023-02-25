@@ -43,8 +43,7 @@ export const FirstPart = ({
   return (
     <>
       <Text>
-        Lorem ipsum dolor sit amet, consectetur Lorem ipsum dolor sit amet,
-        consectetur{' '}
+      You can sell or give your pets, or inform others about lost pets{' '}
       </Text>
       <RadioBtnGroup role="group">
         <RadioBtn
