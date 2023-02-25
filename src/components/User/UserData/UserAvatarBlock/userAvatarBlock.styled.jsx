@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { up } from 'styled-breakpoints';
 
 export const Form = styled.form`
   position: relative;
@@ -9,11 +10,21 @@ export const AvatarThumb = styled.div`
   width: 233px;
   height: 233px;
   align-items: center;
-  margin: 0px auto;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 50px;
   background: #fdf7f2;
   object-fit: cover;
   border-radius: 50%;
   box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.11);
+  ${up('tablet')} {
+    margin-left: 40px;
+    padding-bottom: 0;
+  }
+  ${up('pc')} {
+    margin-left: auto;
+    margin-bottom: 35px;
+  }
 `;
 
 export const ImgPlaceholder = styled.img`
@@ -37,13 +48,23 @@ export const Button = styled.button`
   position: absolute;
   display: flex;
   align-items: center;
+  top: 225px;
+  right: 15px;
   border: none;
 
   background: none;
   fill: #f58256;
 
-  top: 205px;
-  right: 0;
+  ${up('tablet')} {
+    margin-bottom: 20px;
+    top: 219px;
+    right: -7px;
+  }
+  ${up('pc')} {
+    margin-bottom: 0;
+    top: 205px;
+    right: 0;
+  }
 `;
 
 export const EditWrapp = styled.span`

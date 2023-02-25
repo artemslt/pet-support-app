@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { up } from 'styled-breakpoints';
 
 export const LogoutWrapper = styled.div`
   display: flex;
@@ -12,6 +13,15 @@ export const Button = styled.div`
   border: none;
   background: transparent;
   cursor: pointer;
+  ${up('tablet')} {
+    position: absolute;
+    flex-direction: row;
+    bottom: 24px;
+    left: 32px;
+  }
+  ${up('pc')} {
+    position: unset;
+  }
 `;
 
 export const Text = styled.span`
