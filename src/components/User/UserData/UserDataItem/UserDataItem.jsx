@@ -7,8 +7,10 @@ import { registerSchema } from '../../../../schemas/authValidationSchemas';
 import {
   DataInputWrapp,
   Label,
+  LabelDatePicker,
   Input,
   InputDatePicker,
+  InputDatePickerWrapp,
   InputWrapper,
   EditBtn,
   ErrorMessage,
@@ -194,8 +196,8 @@ export const UserDataItem = () => {
         >
           <Form>
             <InputWrapper>
-              <Label htmlFor="birthday">Birthday:</Label>
-              <div style={{ width: 245 }}>
+              <LabelDatePicker htmlFor="birthday">Birthday:</LabelDatePicker>
+              <InputDatePickerWrapp>
                 <InputDatePicker
                   selected={startDate}
                   active={!isBirthdayDisabled}
@@ -208,9 +210,14 @@ export const UserDataItem = () => {
                   showDisabledMonthNavigation
                   shouldCloseOnSelect={true}
                 />
-              </div>
+              </InputDatePickerWrapp>
               {isBirthdayDisabled && (
-                <EditBtn type="submit" name="birthday" disabled={isAnyEditing}>
+                <EditBtn
+                  type="submit"
+                  name="birthday"
+                  disabled={isAnyEditing}
+                  isDateEdit={true}
+                >
                   <EditPenIcon
                     fill={isAnyEditing ? iconColorDisabled : iconColor}
                     width="20"
@@ -219,7 +226,7 @@ export const UserDataItem = () => {
                 </EditBtn>
               )}
               {!isBirthdayDisabled && (
-                <EditBtn type="submit">
+                <EditBtn type="submit" isDateEdit={true}>
                   <EditSaveIcon width="20" height="20" />
                 </EditBtn>
               )}
@@ -308,7 +315,7 @@ export const UserDataItem = () => {
                 ) : (
                   <Input
                     type="text"
-                    name="userCity"
+                    name="location"
                     disabled={isCityDisabled}
                     style={{
                       border: '1px solid #F5925680',
