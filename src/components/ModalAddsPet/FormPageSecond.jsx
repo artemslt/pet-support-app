@@ -20,7 +20,7 @@ export const FormePageSecond = ({
   imgUrl,
   onClickToggle,
   setFile,
-  Formik,
+  formik,
 }) => {
   console.log('====================================');
   console.log(Formik);
