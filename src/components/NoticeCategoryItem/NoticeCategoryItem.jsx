@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { useState } from 'react';
 import { ReactComponent as FavoriteIcon } from './akar-icons_heart.svg';
 import { ReactComponent as InFavoriteIcon } from './icon-heart-filled.svg';
 import { ReactComponent as DeleteIcon } from './fluent_delete-16-filled.svg';
@@ -18,12 +19,15 @@ import {
   Table,
   TableData,
 } from './NoticeCategoryItem.styled';
+import { ModalMenu } from 'components/Modal/Modal';
 import { refreshUser } from 'redux/auth/authOperations';
-
+import { ModalDelete } from '../ModalNoticeDelete/ModalDelete';
 axios.defaults.baseURL = 'https://pet-support-backend-v8vc.onrender.com/api/';
 
 export const NoticeCategoryItem = ({ items }) => {
   const { _id: userId, favorite } = useSelector(selectUser);
+  const [openModalDelete, setOpenModalDelete] = useState(false);
+
   const dispatch = useDispatch();
 
   const filter = useSelector(selectFilter);
@@ -32,7 +36,10 @@ export const NoticeCategoryItem = ({ items }) => {
     item.title.toLowerCase().includes(normalizedFilter)
   );
 
-  console.log(filteredNotices);
+  const onToggleModal = e => {
+    setOpenModalDelete(false);
+  };
+
   const addToFavorite = async id => {
     try {
       await axios.post(`notices/favorite/${id}`);
@@ -41,10 +48,11 @@ export const NoticeCategoryItem = ({ items }) => {
       console.log(error.message);
     }
   };
+
   const delFromFavorite = async id => {
     try {
       await axios.delete(`notices/favorite/${id}`);
-      dispatch(refreshUser());
+      filteredNotices.dispatch(refreshUser());
     } catch (error) {
       console.log(error.message);
     }
@@ -55,6 +63,14 @@ export const NoticeCategoryItem = ({ items }) => {
       delFromFavorite(id);
     } else {
       addToFavorite(id);
+    }
+  };
+
+  const deletePet = async id => {
+    try {
+      await axios.delete(`notices/notice/${id}`);
+    } catch (error) {
+      console.log(error);
     }
   };
 
@@ -110,11 +126,26 @@ export const NoticeCategoryItem = ({ items }) => {
               <BlockBtns>
                 <NoticeBtn>Learn more</NoticeBtn>
                 {userId === owner && (
-                  <NoticeBtn>
+                  <NoticeBtn
+                    onClick={e => {
+                      setOpenModalDelete(true);
+                    }}
+                  >
                     <p style={{ marginRight: 13 }}>Delete</p>
                     <DeleteIcon style={{ fill: 'currentcolor' }} />
                   </NoticeBtn>
                 )}
+                <ModalMenu
+                  onClose={() => setOpenModalDelete(false)}
+                  open={openModalDelete}
+                  openModalDelete={openModalDelete}
+                >
+                  <ModalDelete
+                    onToggleModal={onToggleModal}
+                    id={_id}
+                    deletePet={deletePet}
+                  />
+                </ModalMenu>
               </BlockBtns>
             </Thumb>
           </Card>

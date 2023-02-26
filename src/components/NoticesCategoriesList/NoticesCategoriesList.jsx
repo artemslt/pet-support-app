@@ -31,6 +31,7 @@ export const NoticesCategoriesList = () => {
           return;
         }
         const notices = await axios.get(`notices${pathname}`);
+
         setAllNotices(notices.data.data.result);
         setIsLoading(false);
       } catch (error) {
@@ -38,7 +39,7 @@ export const NoticesCategoriesList = () => {
       }
     };
     getNoticesByCategory(pathname);
-  }, [pathname]);
+  }, [pathname, setAllNotices]);
 
   return (
     <>
