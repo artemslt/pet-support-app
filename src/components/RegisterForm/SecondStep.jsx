@@ -28,7 +28,7 @@ export const SecondStep = ({ page, setPage }) => {
           autoComplete="on"
           type="text"
           name="phone"
-          placeholder={t('Mobile phone')}
+          placeholder={t('Mobile_phone')}
         ></Input>
         <Error name="phone" component="p"></Error>
       </Label>
