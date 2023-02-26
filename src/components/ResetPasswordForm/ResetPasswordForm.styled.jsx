@@ -179,12 +179,9 @@ export const Button = styled.button`
   }
 `;
 
-export const ButtonText = styled.span`
-  margin-left: 6px;
-`;
 
 export const Text = styled.p`
-  margin-top: 10px;
+  margin: 30px 0;
   font-family: ${prop => prop.theme.fonts[1]};
   font-weight: ${prop => prop.theme.fontWeights[0]};
   font-size: ${prop => prop.theme.fontSizes[0]}px;

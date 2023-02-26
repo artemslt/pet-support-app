@@ -7,6 +7,7 @@ import {
   refreshUser,
   updateUser,
   updateAvatar,
+  resetPassword,
 } from './authOperations';
 
 const initialState = {
@@ -38,6 +39,11 @@ const authSlice = createSlice({
         state.isLoggedIn = true;
       })
       .addCase(gLogin.fulfilled, (state, action) => {
+        state.user = action.payload.user;
+        state.token = action.payload.token;
+        state.isLoggedIn = true;
+      })
+      .addCase(resetPassword.fulfilled, (state, action) => {
         state.user = action.payload.user;
         state.token = action.payload.token;
         state.isLoggedIn = true;
