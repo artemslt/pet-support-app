@@ -47,10 +47,13 @@ export const NoticesCategoriesList = () => {
         <Spinner style={{ margin: '0 auto' }} />
       ) : (
         <CategoriesList>
-          <NoticeCategoryItem items={allNotices} />
+          {!allNotices ? (
+            <h2>You haven't notices yet</h2>
+          ) : (
+            <NoticeCategoryItem items={allNotices} />
+          )}
         </CategoriesList>
       )}
     </>
   );
 };
-// commit

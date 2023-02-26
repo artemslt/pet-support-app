@@ -30,6 +30,7 @@ import { refreshUser } from 'redux/auth/authOperations';
 import { useNavigate } from 'react-router-dom';
 
 import { ModalDelete } from '../ModalNoticeDelete/ModalDelete';
+
 axios.defaults.baseURL = 'https://pet-support-backend-v8vc.onrender.com/api/';
 
 export const NoticeCategoryItem = ({ items }) => {
@@ -43,6 +44,8 @@ export const NoticeCategoryItem = ({ items }) => {
 
   const filter = useSelector(selectFilter);
   const normalizedFilter = filter.toLowerCase().trim();
+
+  if (items.length === 0) return;
   const filteredNotices = items.filter(item =>
     item.title.toLowerCase().includes(normalizedFilter)
   );

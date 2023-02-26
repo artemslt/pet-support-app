@@ -17,7 +17,7 @@ export const Nav = ({ setOpen }) => {
         {t('News')}
       </Link>
 
-      <Link to="/notices" onClick={() => setOpen(false)}>
+      <Link to="/notices/sell" onClick={() => setOpen(false)}>
         {t('Find_pet')}
       </Link>
 
