@@ -5,7 +5,7 @@ import { UserNav } from 'components/UserNav/UserNav';
 import { useAuth } from 'hooks';
 import { useMatchMedia } from 'hooks/use-match-media';
 import { StyledMenu, StyledNav } from './BurgerMenu.styled';
-
+import { LanguageButton } from 'components/LanguageButton/LanguageButton';
 export const Menu = ({ setOpen, open }) => {
   const { isMobile } = useMatchMedia();
   const { isLoggedIn } = useAuth();
