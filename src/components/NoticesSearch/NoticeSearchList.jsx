@@ -68,7 +68,9 @@ export const NoticeSearchList = () => {
       console.log(error.message);
     }
   };
-
+  console.log('====================================');
+  console.log(items);
+  console.log('====================================');
   return (
     <>
       {isLoading ? (
