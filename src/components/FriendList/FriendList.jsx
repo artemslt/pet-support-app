@@ -12,7 +12,6 @@ import {
   SpinnerContainer,
 } from './FriendList.styled';
 import { Container } from "components/Container/Container.styled";
-
 export const FriendList = () => {
   const dispatch = useDispatch();
   const friends = useSelector(selectFriends);

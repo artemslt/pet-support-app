@@ -10,7 +10,6 @@ import {
   CardTime,
   CardAddress
 } from './Friend.styled';
-
 import notfound from './notfound.jpg';
 
 export const Friend = ({ _id, title, url, imageUrl, addressUrl, address, email, phone, workDays }) => {
