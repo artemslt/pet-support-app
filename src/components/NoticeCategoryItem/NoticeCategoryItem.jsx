@@ -30,7 +30,7 @@ import { useTranslation } from 'react-i18next';
 import { refreshUser } from 'redux/auth/authOperations';
 import { useNavigate } from 'react-router-dom';
 
-{ ModalDelete } from '../ModalNoticeDelete/ModalDelete';
+import { ModalDelete } from '../ModalNoticeDelete/ModalDelete';
 axios.defaults.baseURL = 'https://pet-support-backend-v8vc.onrender.com/api/';
 
 export const NoticeCategoryItem = ({ items }) => {
