@@ -52,23 +52,22 @@ export const Input = styled(Field)`
   padding: 4px 12px 3px;
   line-height: 1.39;
   margin-right: 15px;
-  ${({ isactive }) =>
-    isactive &&
-    `
 
-  &:hover,
-  &:focus {
-    outline: 1px solid  #F5925680;
-  }
-  `}
   ${up('tablet')} {
     font-size: 18px;
     width: 216px;
   }
   ${up('pc')} {
-    font-size: 18px;
     width: 205px;
     margin-right: 24px;
+    ${({ isactive }) =>
+      isactive &&
+      `
+  &:hover,
+  &:focus {
+    outline: 1px solid  #F5925680;
+  }
+  `}
   }
 `;
 
@@ -76,22 +75,24 @@ export const InputDatePickerWrapp = styled.div`
   width: 205px;
   ${up('tablet')} {
     margin-right: 28px;
+    max-width: 202px;
   }
   ${up('pc')} {
     margin-right: 15px;
+    max-width: 205px;
   }
 `;
 
 export const InputDatePicker = styled(DatePicker)`
   font-family: 'Manrope';
   font-size: 12px;
-  width: 140px;
+  width: 150px;
   line-height: 1.39;
   padding: 4px 12px 3px;
   background-color: transparent;
   border: 1px solid transparent;
   color: ${prop => prop.theme.colors.mainBlack};
-  margin-right: 24px;
+  margin-right: 14px;
   ${({ isactive }) =>
     isactive &&
     `
@@ -113,9 +114,9 @@ background: #FDF7F2;
   `}
 
   ${up('tablet')} {
-    width: 215px;
+    width: 216px;
     font-size: 18px;
-    margin-right: 28px;
+    margin-right: 3px;
   }
   ${up('pc')} {
     width: 205px;
