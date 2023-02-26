@@ -39,7 +39,7 @@ export const NoticesCategoriesList = () => {
       }
     };
     getNoticesByCategory(pathname);
-  }, [pathname, setAllNotices]);
+  }, [pathname]);
 
   return (
     <>
