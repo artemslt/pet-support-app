@@ -23,7 +23,6 @@ import {
   TableData,
 } from './NoticeCategoryItem.styled';
 
-import { ModalMenu } from 'components/Modal/Modal';
 
 import { useTranslation } from 'react-i18next';
 
