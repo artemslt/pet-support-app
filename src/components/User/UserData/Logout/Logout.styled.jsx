@@ -36,3 +36,54 @@ export const Text = styled.span`
   color: rgba(0, 0, 0, 0.6);
   margin-left: 8px;
 `;
+
+export const ModalToggleBtn = styled.button`
+  background: ${({ theme }) => theme.colors.mainWhite};
+  width: 240px;
+  height: 40px;
+  border-radius: 40px;
+  border: 2px solid #f59256;
+  &:first-child {
+    margin-bottom: 12px;
+    margin-right: 12px;
+  }
+
+  ${up('tablet')} {
+    width: 180px;
+    height: 44px;
+    margin-bottom: 0px;
+    &:first-child {
+      margin-right: 16px;
+      margin-bottom: 0;
+    }
+  }
+  cursor: pointer;
+  &:hover {
+    background: ${({ theme }) => theme.colors.mainAccent};
+    color: ${({ theme }) => theme.colors.mainWhite};
+  }
+  &.active {
+    background: ${({ theme }) => theme.colors.mainAccent};
+    color: ${({ theme }) => theme.colors.mainWhite};
+
+    &:hover {
+      color: ${({ theme }) => theme.colors.mainBlack};
+      background: ${({ theme }) => theme.colors.mainWhite};
+    }
+  }
+`;
+
+export const ModalMenuInner = styled.div`
+  padding: 20px;
+  text-align: center;
+`;
+
+export const ModalLogoutText = styled.p`
+  display: inline-block;
+  font-size: 14px;
+  padding-bottom: 20px;
+  text-align: center;
+  ${up('tablet')} {
+    font-size: 18px;
+  }
+`;

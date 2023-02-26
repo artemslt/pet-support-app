@@ -1,27 +1,52 @@
-import { LogoutWrapper, Button, Text } from './Logout.styled';
+import {
+  LogoutWrapper,
+  Button,
+  Text,
+  ModalToggleBtn,
+  ModalMenuInner,
+  ModalLogoutText,
+} from './Logout.styled';
 import { useDispatch } from 'react-redux';
 import { googleLogout } from '@react-oauth/google';
 import { logout } from 'redux/auth/authOperations';
 import LogoutIcon from './logout.svg';
 import { useTranslation } from 'react-i18next';
+import { useState } from 'react';
+import { ModalMenu } from 'components/Modal/Modal';
 
 export const Logout = () => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
+  const [modalOpen, setModalOpen] = useState(false);
 
   const logoutHandler = () => {
     googleLogout();
     dispatch(logout());
   };
   return (
-    <LogoutWrapper>
-      <Button
-        onClick={logoutHandler}
-        style={{ border: 'none', background: 'transparent', display: 'flex' }}
-      >
-        <img src={LogoutIcon} alt="" width={18} height={18} />
-        <Text>{t('Log_out')}</Text>
-      </Button>
-    </LogoutWrapper>
+    <>
+      <LogoutWrapper>
+        <Button
+          onClick={() => setModalOpen(true)}
+          style={{ border: 'none', background: 'transparent', display: 'flex' }}
+        >
+          <img src={LogoutIcon} alt="" width={18} height={18} />
+          <Text>{t('Log_out')}</Text>
+        </Button>
+      </LogoutWrapper>
+      <ModalMenu onClose={() => setModalOpen(false)} open={modalOpen}>
+        <ModalMenuInner>
+          <ModalLogoutText>Are you sure you want to logout?</ModalLogoutText>
+          <div>
+            <ModalToggleBtn type="submit" onClick={logoutHandler}>
+              Yes
+            </ModalToggleBtn>
+            <ModalToggleBtn type="button" onClick={() => setModalOpen(false)}>
+              No
+            </ModalToggleBtn>
+          </div>
+        </ModalMenuInner>
+      </ModalMenu>
+    </>
   );
 };
