@@ -1,10 +1,14 @@
-import axios from 'axios';
 import { ReactComponent as FavoriteIcon } from './akar-icons_heart.svg';
 import { ReactComponent as InFavoriteIcon } from './icon-heart-filled.svg';
 import { ReactComponent as DeleteIcon } from './fluent_delete-16-filled.svg';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectUser } from 'redux/auth/authSelectors';
+import { selectIsLoggedIn, selectUser } from 'redux/auth/authSelectors';
 import { selectFilter } from 'redux/notices/noticesSelectors';
+import { ModalMenu } from 'components/Modal/Modal';
+import { LearnMore } from 'components/NoticesModalLearnMore/NoticesModalLearnMore';
+import { useRef, useState } from 'react';
+import axios from 'axios';
+import { toast } from 'react-toastify';
 import {
   Card,
   Image,
@@ -21,6 +25,7 @@ import {
 import { useTranslation } from 'react-i18next';
 
 import { refreshUser } from 'redux/auth/authOperations';
+import { useNavigate } from 'react-router-dom';
 
 axios.defaults.baseURL = 'https://pet-support-backend-v8vc.onrender.com/api/';
 
@@ -28,14 +33,37 @@ export const NoticeCategoryItem = ({ items }) => {
   const { t } = useTranslation();
   const { _id: userId, favorite } = useSelector(selectUser);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const isLoggedIn = useSelector(selectIsLoggedIn);
 
   const filter = useSelector(selectFilter);
   const normalizedFilter = filter.toLowerCase().trim();
   const filteredNotices = items.filter(item =>
     item.title.toLowerCase().includes(normalizedFilter)
   );
+  const [notice, SetNotice] = useState({});
+  const currentIdRef = useRef();
+  const [modalToggle, setModalToggle] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const onToggleModal = e => {
+    setModalToggle(false);
+  };
 
-  console.log(filteredNotices);
+  const onClickLearnMore = e => {
+    const getNoticeById = async id => {
+      setIsLoading(true)
+      try {
+        const notice = await axios.get(`notices/notice/${id}`);
+        SetNotice(notice.data.data.notice);
+        setIsLoading(false)
+      } catch (error) {
+        console.log(error.message);
+      }
+    };
+    getNoticeById(e.target.id);
+    setModalToggle(true);
+  };
+
   const addToFavorite = async id => {
     try {
       await axios.post(`notices/favorite/${id}`);
@@ -44,6 +72,7 @@ export const NoticeCategoryItem = ({ items }) => {
       console.log(error.message);
     }
   };
+
   const delFromFavorite = async id => {
     try {
       await axios.delete(`notices/favorite/${id}`);
@@ -54,11 +83,25 @@ export const NoticeCategoryItem = ({ items }) => {
   };
 
   const addOrDell = id => {
-    if (favorite.includes(id)) {
+    if (favorite && favorite.includes(id)) {
+      console.log('delete success');
       delFromFavorite(id);
     } else {
+      console.log('add success');
       addToFavorite(id);
     }
+  };
+
+  const onClickOnFavoriteBtn = id => {
+    if (!isLoggedIn) {
+      toast.error('that add pet, you need to login', {
+        position: toast.POSITION.TOP_RIGHT,
+      });
+      navigate('/login');
+      return;
+    }
+    console.log('add success');
+    addOrDell(id);
   };
 
   return (
@@ -71,8 +114,15 @@ export const NoticeCategoryItem = ({ items }) => {
               <Badge>
                 <CategoryTitle>{category}</CategoryTitle>
               </Badge>
-              <AddToFavotiteBtn type="submit" onClick={() => addOrDell(_id)}>
-                {favorite.includes(_id) ? <InFavoriteIcon /> : <FavoriteIcon />}
+              <AddToFavotiteBtn
+                type="submit"
+                onClick={() => onClickOnFavoriteBtn(_id)}
+              >
+                {favorite && favorite.includes(_id) ? (
+                  <InFavoriteIcon />
+                ) : (
+                  <FavoriteIcon />
+                )}
               </AddToFavotiteBtn>
             </div>
 
@@ -109,9 +159,24 @@ export const NoticeCategoryItem = ({ items }) => {
                   )}
                 </tbody>
               </Table>
-
               <BlockBtns>
-                <NoticeBtn>{t('Learn_more')}</NoticeBtn>
+              <NoticeBtn
+                  onClick={onClickLearnMore}
+                  ref={currentIdRef}
+                  id={_id}
+                >
+                  Learn more
+                </NoticeBtn>
+                {!isLoading && <ModalMenu
+                  onClose={() => setModalToggle(false)}
+                  open={modalToggle}
+                >
+                  <LearnMore
+                    onToggleModal={onToggleModal}
+                    data={notice}
+                    onClickOnFavoriteBtn={onClickOnFavoriteBtn}
+                  />
+                </ModalMenu>}
                 {userId === owner && (
                   <NoticeBtn>
                     <p style={{ marginRight: 13 }}>Delete</p>
