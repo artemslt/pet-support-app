@@ -8,7 +8,7 @@ export const MobAddBtn = ({ onClick }) => {
     <>
       <MobBtn type="button" onClick={onClick}>
         <PlusIcon />
-        <BtnText> {t('Add_notice')}</BtnText>
+        <BtnText> {t('Add_notice_m')}</BtnText>
       </MobBtn>
     </>
   );

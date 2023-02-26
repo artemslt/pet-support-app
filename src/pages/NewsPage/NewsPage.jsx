@@ -58,7 +58,7 @@ const NewsPage = () => {
     <Container>
       <NewsContainer>
         <GlobalStyle />
-        <Title>News</Title>
+        <Title>{t('News')}</Title>
         <Label>
           <Input
             value={newsTitle}

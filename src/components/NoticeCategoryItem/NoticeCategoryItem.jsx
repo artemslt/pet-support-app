@@ -22,16 +22,22 @@ import {
   Table,
   TableData,
 } from './NoticeCategoryItem.styled';
+
+import { ModalMenu } from 'components/Modal/Modal';
+
 import { useTranslation } from 'react-i18next';
 
 import { refreshUser } from 'redux/auth/authOperations';
 import { useNavigate } from 'react-router-dom';
 
+{ ModalDelete } from '../ModalNoticeDelete/ModalDelete';
 axios.defaults.baseURL = 'https://pet-support-backend-v8vc.onrender.com/api/';
 
 export const NoticeCategoryItem = ({ items }) => {
   const { t } = useTranslation();
   const { _id: userId, favorite } = useSelector(selectUser);
+  const [openModalDelete, setOpenModalDelete] = useState(false);
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const isLoggedIn = useSelector(selectIsLoggedIn);
@@ -64,6 +70,7 @@ export const NoticeCategoryItem = ({ items }) => {
     setModalToggle(true);
   };
 
+  
   const addToFavorite = async id => {
     try {
       await axios.post(`notices/favorite/${id}`);
@@ -84,14 +91,11 @@ export const NoticeCategoryItem = ({ items }) => {
 
   const addOrDell = id => {
     if (favorite && favorite.includes(id)) {
-      console.log('delete success');
       delFromFavorite(id);
     } else {
-      console.log('add success');
       addToFavorite(id);
     }
   };
-
   const onClickOnFavoriteBtn = id => {
     if (!isLoggedIn) {
       toast.error('that add pet, you need to login', {
@@ -102,6 +106,14 @@ export const NoticeCategoryItem = ({ items }) => {
     }
     console.log('add success');
     addOrDell(id);
+  };
+
+  const deletePet = async id => {
+    try {
+      await axios.delete(`notices/notice/${id}`);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -178,11 +190,26 @@ export const NoticeCategoryItem = ({ items }) => {
                   />
                 </ModalMenu>}
                 {userId === owner && (
-                  <NoticeBtn>
+                  <NoticeBtn
+                    onClick={e => {
+                      setOpenModalDelete(true);
+                    }}
+                  >
                     <p style={{ marginRight: 13 }}>Delete</p>
                     <DeleteIcon style={{ fill: 'currentcolor' }} />
                   </NoticeBtn>
                 )}
+                <ModalMenu
+                  onClose={() => setOpenModalDelete(false)}
+                  open={openModalDelete}
+                  openModalDelete={openModalDelete}
+                >
+                  <ModalDelete
+                    onToggleModal={onToggleModal}
+                    id={_id}
+                    deletePet={deletePet}
+                  />
+                </ModalMenu>
               </BlockBtns>
             </Thumb>
           </Card>

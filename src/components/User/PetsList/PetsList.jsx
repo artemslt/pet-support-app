@@ -1,5 +1,4 @@
-// import { useState } from 'react';
-// import { useDispatch } from 'react-redux';
+import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
   PetCard,
@@ -10,11 +9,19 @@ import {
   TextTopic,
   PetDeleteBtn,
 } from '../PetsData/PetsData.styled';
+import {
+  ModalToggleBtn,
+  ModalMenuInner,
+  ModalLogoutText,
+} from '../UserData/Logout/Logout.styled';
+import { ModalMenu } from 'components/Modal/Modal';
 
 import { ReactComponent as DeleteIcon } from './deleteIcon.svg';
 
 export const PetsList = ({ item, handleDeleteCard }) => {
   const [t] = useTranslation();
+  const [modalOpen, setModalOpen] = useState(false);
+
   return (
     <PetCard>
       <PetPhotoWrapper>
@@ -40,14 +47,29 @@ export const PetsList = ({ item, handleDeleteCard }) => {
             {item.comment}
           </Text>
         </div>
-        <PetDeleteBtn
-          type="button"
-          onClick={() => {
-            handleDeleteCard(item._id);
-          }}
-        >
+        <PetDeleteBtn type="button" onClick={() => setModalOpen(true)}>
           <DeleteIcon width={24} height={24} />
         </PetDeleteBtn>
+        <ModalMenu onClose={() => setModalOpen(false)} open={modalOpen}>
+          <ModalMenuInner>
+            <ModalLogoutText>
+              Are you sure you want to delete a card?
+            </ModalLogoutText>
+            <div>
+              <ModalToggleBtn
+                type="submit"
+                onClick={() => {
+                  handleDeleteCard(item._id);
+                }}
+              >
+                Yes
+              </ModalToggleBtn>
+              <ModalToggleBtn type="button" onClick={() => setModalOpen(false)}>
+                No
+              </ModalToggleBtn>
+            </div>
+          </ModalMenuInner>
+        </ModalMenu>
       </PetInfoItem>
     </PetCard>
   );

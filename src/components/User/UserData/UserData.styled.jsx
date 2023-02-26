@@ -5,9 +5,14 @@ export const UserCardWrapp = styled.div`
   margin-bottom: 46px;
   ${up('tablet')} {
     margin-bottom: 20px;
+    width: 768px;
+    margin-left: auto;
+    margin-right: auto;
   }
   ${up('pc')} {
+    width: 411px;
     margin-right: 32px;
+    margin-left: 0;
   }
 `;
 
