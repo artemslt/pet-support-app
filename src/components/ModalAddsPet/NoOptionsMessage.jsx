@@ -5,16 +5,18 @@ import {
   NoOptionsMessageSpan,
 } from './ModalAddsPet.styled';
 import { onInput } from 'redux/InputPets/inputPetsSlice';
+import { useTranslation } from 'react-i18next';
 export const NoOptionsMessage = props => {
+  const { t } = useTranslation();
   const dispatch = useDispatch();
 
   return (
     <components.NoOptionsMessage {...props}>
       <NoOptionsMessageSpan className="custom-css-class">
-        Didn't find the right breed?
+        {t('No_breed')}
       </NoOptionsMessageSpan>
       <ButtonRemoveSelect onClick={() => dispatch(onInput())}>
-        Write by hand
+        {t('Write_by_hand')}
       </ButtonRemoveSelect>
     </components.NoOptionsMessage>
   );

@@ -12,6 +12,7 @@ import {
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 import { onSelector } from 'redux/InputPets/inputPetsSlice';
+import { useTranslation } from 'react-i18next';
 export const FormePageFist = ({
   formik,
   onClickToggle,
@@ -19,6 +20,7 @@ export const FormePageFist = ({
   setStartDate,
   startDate,
 }) => {
+  const { t } = useTranslation();
   const [focus, setFocus] = useState(false);
   const isInput = useSelector(state => state.isInput.toggle);
 
@@ -27,7 +29,7 @@ export const FormePageFist = ({
   return (
     <>
       <Label htmlFor="">
-        Name pet
+        {t('Name_pet')}
         <Input
           type="text"
           name="name"
@@ -37,7 +39,7 @@ export const FormePageFist = ({
         <Error name="name" component="p"></Error>
       </Label>
       <Label htmlFor="">
-        Date of birth
+        {t('Date_of_birth')}
         <InputDatePicker
           selected={startDate}
           dateFormat="dd.MM.yyyy"
@@ -58,7 +60,7 @@ export const FormePageFist = ({
         <ErrorSelect>{formik.errors.birthday}</ErrorSelect>
       </Label>
       <Label htmlFor="">
-        Breed
+        {t('Breed')}
         {!isInput ? (
           <Input type="text" name="breed" placeholder="Type breed" />
         ) : (
@@ -81,7 +83,7 @@ export const FormePageFist = ({
           }}
           disabled={!(formik.dirty && formik.isValid)}
         >
-          Next
+          {t('Next')}
         </Button>
         <Button
           type="button"
@@ -90,7 +92,7 @@ export const FormePageFist = ({
             onToggleModal(e);
           }}
         >
-          Cancel
+          {t('Cancel')}
         </Button>
       </WrapperBtn>
     </>

@@ -19,8 +19,11 @@ import {
   ClosesIcon,
   NoticeForm,
 } from './ModalAddNotice.styled';
+import { useTranslation } from 'react-i18next';
 
 export const AddPet = ({ onToggleModal }) => {
+  const { t } = useTranslation();
+
   const values = {
     typeOfNotice: 'sell',
     title: '',
@@ -111,7 +114,7 @@ export const AddPet = ({ onToggleModal }) => {
         <ClosesIcon />
       </ButtonClose>
 
-      <Title>Add pet</Title>
+      <Title>{t('Add_pet')}</Title>
       <Formik
         initialValues={values}
         validationSchema={step ? appPetSchemaStep1 : appPetSchemaStep2}

@@ -25,8 +25,10 @@ import { Container } from 'components/Container/Container.styled';
 import { ReactComponent as EyeIcon } from '../../images/eye.svg';
 import { ReactComponent as EyeClosedIcon } from '../../images/eye-slash.svg';
 import { ReactComponent as GoogleIcon } from '../../images/google-icon.svg';
+import { useTranslation } from 'react-i18next';
 
 export const LoginForm = () => {
+  const { t } = useTranslation();
   const [showPassword, setShowPassword] = useState(false);
 
   const initialValues = {
@@ -58,9 +60,8 @@ export const LoginForm = () => {
 
       const { email, name } = googleUser.data;
 
-      console.log({ email, name});
-      await dispatch(gLogin({ email, name}));
-
+      console.log({ email, name });
+      await dispatch(gLogin({ email, name }));
     } catch (error) {
       toast.error(`Google login Failed - ${error}`);
     }
@@ -75,49 +76,55 @@ export const LoginForm = () => {
     <Container>
       <FlexBox>
         <FormWrapper>
-          <Heading>Login</Heading>
+          <Heading>{t('Login')}</Heading>
           <Formik
             initialValues={initialValues}
             validationSchema={loginSchema}
             onSubmit={handleSubmit}
           >
             {formik => (
-            <Form>
-              <Label>
-                <Input
-                  autoComplete="on"
-                  type="email"
-                  name="email"
-                  placeholder="Email"
-                ></Input>
-                <Error name="email" component="p"></Error>
-              </Label>
-              <Label>
-                <Input
-                  autoComplete="off"
-                  type={showPassword ? 'text' : 'password'}
-                  name="password"
-                  placeholder="Password"
-                ></Input>
-                <Error name="password" component="p"></Error>
-                <IconButton
-                  type="button"
-                  onClick={() => {
-                    setShowPassword(prevState => !prevState);
-                  }}
+              <Form>
+                <Label>
+                  <Input
+                    autoComplete="on"
+                    type="email"
+                    name="email"
+                    placeholder="Email"
+                  ></Input>
+                  <Error name="email" component="p"></Error>
+                </Label>
+                <Label>
+                  <Input
+                    autoComplete="off"
+                    type={showPassword ? 'text' : 'password'}
+                    name="password"
+                    placeholder="Password"
+                  ></Input>
+                  <Error name="password" component="p"></Error>
+                  <IconButton
+                    type="button"
+                    onClick={() => {
+                      setShowPassword(prevState => !prevState);
+                    }}
+                  >
+                    {showPassword ? <EyeClosedIcon /> : <EyeIcon />}
+                  </IconButton>
+                </Label>
+                <Button
+                  type="submit"
+                  disabled={!(formik.dirty && formik.isValid)}
                 >
-                  {showPassword ? <EyeClosedIcon /> : <EyeIcon />}
-                </IconButton>
-              </Label>
-              <Button type="submit" disabled={!(formik.dirty && formik.isValid)}>Login</Button>
-              <Button type="button" onClick={googleLogin}>
-                <GoogleIcon />
-                <ButtonText>Login with Google</ButtonText>
-              </Button>
-              <Text>
-                Don't have an account? <Link to="/register">Register</Link>
-              </Text>
-            </Form>)}
+                  Login
+                </Button>
+                <Button type="button" onClick={googleLogin}>
+                  <GoogleIcon />
+                  <ButtonText>{t('Login_with_Google')}</ButtonText>
+                </Button>
+                <Text>
+                  {t('No_account')} <Link to="/register">{t('Register')}</Link>
+                </Text>
+              </Form>
+            )}
           </Formik>
         </FormWrapper>
       </FlexBox>
