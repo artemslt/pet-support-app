@@ -41,6 +41,8 @@ export const App = () => {
           <Route path="sell" element={<NoticesCategoriesList />} />
           <Route path="lost-found" element={<NoticesCategoriesList />} />
           <Route path="for-free" element={<NoticesCategoriesList />} />
+          <Route path="favorite" element={<NoticesCategoriesList />} />
+          <Route path="own" element={<NoticesCategoriesList />} />
         </Route>
         <Route path="friends" element={<OurFriendsPage />} />
         <Route

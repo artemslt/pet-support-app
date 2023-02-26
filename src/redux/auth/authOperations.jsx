@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { toast } from 'react-toastify';
+import i18n from 'i18n';
 
 axios.defaults.baseURL = 'https://pet-support-backend-v8vc.onrender.com/api/';
 
@@ -33,7 +34,9 @@ export const login = createAsyncThunk(
       setAuthHeader(response.data.data.token);
       return response.data.data;
     } catch (error) {
-      toast.error(`Something wrong - ${error.response.data.message}`);
+      toast.error(
+        i18n.t('t_samething_wrong') + ` - ${error.response.data.message}`
+      );
       return thunkAPI.rejectWithValue(error.response.data.message);
     }
   }
@@ -47,7 +50,9 @@ export const gLogin = createAsyncThunk(
       setAuthHeader(response.data.data.token);
       return response.data.data;
     } catch (error) {
-      toast.error(`Something wrong - ${error.response.data.message}`);
+      toast.error(
+        i18n.t('t_samething_wrong') + ` - ${error.response.data.message}`
+      );
       return thunkAPI.rejectWithValue(error.response.data.message);
     }
   }
@@ -58,7 +63,9 @@ export const logout = createAsyncThunk('users/logout', async (_, thunkAPI) => {
     await axios.get('auth/logout');
     clearAuthHeader();
   } catch (error) {
-    toast.error(`Something wrong - ${error.response.data.message}`);
+    toast.error(
+      i18n.t('t_samething_wrong') + ` - ${error.response.data.message}`
+    );
     return thunkAPI.rejectWithValue(error.response.data.message);
   }
 });
@@ -94,7 +101,9 @@ export const updateUser = createAsyncThunk(
       const response = await axios.patch('users/edit', credentials);
       return response.data.data;
     } catch (error) {
-      toast.error(`Something wrong - ${error.response.data.message}`);
+      toast.error(
+        i18n.t('t_samething_wrong') + ` - ${error.response.data.message}`
+      );
       return thunkAPI.rejectWithValue(error.response.data.message);
     }
   }

@@ -2,15 +2,17 @@ import PropTypes from 'prop-types';
 
 import { NewsItem } from 'components/NewsItem/NewsItem';
 import { List } from './NewsList.styled';
+import { useTranslation } from 'react-i18next';
 
 export const NewsList = ({ news }) => {
+  const { t } = useTranslation();
   return (
     <List>
       {!news.length ? (
-        <b>There is no news with this title</b>
+        <b>{t('No_news_notification')}</b>
       ) : (
         news
-          .sort(({date: a}, {date: b}) => a > b ? -1 : 0)
+          .sort(({ date: a }, { date: b }) => (a > b ? -1 : 0))
           .map(({ _id, title, url, description, date }) => (
             <NewsItem
               key={_id}

@@ -19,8 +19,12 @@ import {
   ClosesIcon,
   NoticeForm,
 } from './ModalAddNotice.styled';
+import { useTranslation } from 'react-i18next';
+import i18n from 'i18n';
 
 export const AddPet = ({ onToggleModal }) => {
+  const { t } = useTranslation();
+
   const values = {
     typeOfNotice: 'sell',
     title: '',
@@ -52,7 +56,9 @@ export const AddPet = ({ onToggleModal }) => {
 
       if (Number(size) > 5000000) {
         console.log(`ERROR`);
-        return toast.error(`Photo must be no larger than 2.8 megabytes`);
+        return toast.error(
+          i18n.t('t_photo')`Photo must be no larger than 2.8 megabytes`
+        );
       }
 
       setFile(file);
@@ -71,7 +77,7 @@ export const AddPet = ({ onToggleModal }) => {
         }
       );
 
-      toast.success('New Notice created successfully');
+      toast.success(i18n.t('new_notice_create'));
 
       console.log(`responce`, responce);
     } catch (error) {
@@ -111,7 +117,7 @@ export const AddPet = ({ onToggleModal }) => {
         <ClosesIcon />
       </ButtonClose>
 
-      <Title>Add pet</Title>
+      <Title>{t('Add_pet')}</Title>
       <Formik
         initialValues={values}
         validationSchema={step ? appPetSchemaStep1 : appPetSchemaStep2}

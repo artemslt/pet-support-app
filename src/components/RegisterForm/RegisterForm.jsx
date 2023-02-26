@@ -15,8 +15,11 @@ import {
   Link,
   Button,
 } from './RegisterForm.styled';
+import { useTranslation } from 'react-i18next';
+import i18n from 'i18n';
 
 export const RegisterForm = () => {
+  const { t } = useTranslation();
   const [page, setPage] = useState('0');
 
   const dispatch = useDispatch();
@@ -50,14 +53,16 @@ export const RegisterForm = () => {
         setPage('0');
       }
     } catch (error) {
-      toast.error(`Something wrong - ${error.response.data.message}`);
+      toast.error(
+        i18n.t('t_samething_wrong') + ` - ${error.response.data.message}`
+      );
     }
   };
 
   return (
     <FlexBox type={page}>
       <FormWrapper type={page}>
-        <Heading>Registration</Heading>
+        <Heading>{t('Registration')}</Heading>
         <Formik
           initialValues={initialValues}
           validationSchema={registerSchema}
@@ -72,7 +77,7 @@ export const RegisterForm = () => {
                   disabled={!(formik.dirty && formik.isValid)}
                   onClick={() => setPage('1')}
                 >
-                  Next
+                  {t('Next')}
                 </Button>
               )}
               {page === '1' && (
@@ -81,11 +86,11 @@ export const RegisterForm = () => {
                   disabled={!(formik.dirty && formik.isValid)}
                   onClick={() => setPage('0')}
                 >
-                  Back
+                  {t('Back')}
                 </Button>
               )}
               <Text>
-                Already have an account? <Link to="/login">Login</Link>
+                {t('have_account')}? <Link to="/login">{t('Login')}</Link>
               </Text>
             </Form>
           )}
