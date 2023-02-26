@@ -58,6 +58,20 @@ export const gLogin = createAsyncThunk(
   }
 );
 
+export const resetPassword = createAsyncThunk(
+  'auth/resetpassword',
+  async (credentials, thunkAPI) => {
+    try {
+      const response = await axios.patch('auth/newpassword', credentials);
+      setAuthHeader(response.data.data.token);
+      return response.data.data;
+    } catch (error) {
+      toast.error(`Something wrong - ${error.response.data.message}`);
+      return thunkAPI.rejectWithValue(error.response.data.message);
+    }
+  }
+);
+
 export const logout = createAsyncThunk('users/logout', async (_, thunkAPI) => {
   try {
     await axios.get('auth/logout');

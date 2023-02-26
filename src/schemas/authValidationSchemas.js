@@ -49,3 +49,25 @@ export const loginSchema = yup.object().shape({
     .max(32, i18n.t('password_max'))
     .matches(passwordLoginRegexp, i18n.t('password_login_match')),
 });
+
+export const requestResetSchema = yup.object().shape({
+  email: yup
+    .string()
+    .min(6, 'Email should be 6 characters minimum.')
+    .max(63, 'Email should be 63 characters maximum.')
+    .matches(emailRegexp, 'Email must be in format mail@mail.com')
+    .required('Email is required'),
+})
+
+export const resetPasswordSchema = yup.object().shape({
+  password: yup
+    .string()
+    .required('Password is required')
+    .min(7, 'Password should be 7 characters minimum.')
+    .max(32, 'Password should be 32 characters maximum.')
+    .matches(passwordRegexp, 'At least one upper and lowercase letter, number, special character, space is not allowed'),
+  confirmPassword: yup
+    .string()
+    .oneOf([yup.ref('password'), null], 'Password must match')
+    .required('Confirm password is required'),
+});
