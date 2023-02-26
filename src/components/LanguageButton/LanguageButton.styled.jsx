@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { theme } from '../../theme';
-const { space, fonts, fontSizes, fontWeights, colors } = theme;
+const {  fontWeights } = theme;
 export const Switch = styled.div`
   position: relative;
   display: inline-block;
