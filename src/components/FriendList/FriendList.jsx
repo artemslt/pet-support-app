@@ -28,7 +28,7 @@ export const FriendList = () => {
     <Container>
       <FriendsContainer>
         <LanguageButton></LanguageButton>
-        <PartnerTitle>Our friends</PartnerTitle>
+        <PartnerTitle> {t('Our_friends')}</PartnerTitle>
         {isLoading ? (
           <SpinnerContainer>
             <Spinner />
