@@ -12,7 +12,7 @@ import {
   SpinnerContainer,
 } from './FriendList.styled';
 import { Container } from "components/Container/Container.styled";
-
+import { LanguageButton } from 'components/LanguageButton/LanguageButton';
 export const FriendList = () => {
   const dispatch = useDispatch();
   const friends = useSelector(selectFriends);
@@ -25,6 +25,7 @@ export const FriendList = () => {
   return (
     <Container>
       <FriendsContainer>
+        <LanguageButton></LanguageButton>
         <PartnerTitle>Our friends</PartnerTitle>
         {isLoading ? (
           <SpinnerContainer>
