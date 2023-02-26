@@ -56,7 +56,9 @@ export const UserDataItem = () => {
     !isCityDisabled;
 
   const onSubmitClick = useCallback(
-    (event, field) => {
+    (event, field, errors) => {
+      if (errors && Object.keys(errors).length) return;
+
       setTimeout(() => {
         if (field === 'name') setIsNameDisabled(!isNameDisabled);
         if (field === 'email') setIsEmailDisabled(!isEmailDisabled);
@@ -110,9 +112,9 @@ export const UserDataItem = () => {
                   name="name"
                   disabled={isNameDisabled}
                   onChange={e => {
-                    console.log(e.target.name, e.target.value);
                     setFieldValue(e.target.name, e.target.value);
                   }}
+                  isactive={isNameDisabled ? 0 : 1}
                   style={{
                     border: `${
                       isNameDisabled
@@ -141,7 +143,7 @@ export const UserDataItem = () => {
                 {!isNameDisabled && (
                   <EditBtn
                     type="submit"
-                    onClick={e => onSubmitClick(e, 'name')}
+                    onClick={e => onSubmitClick(e, 'name', errors)}
                   >
                     <EditSaveIcon width="20" height="20" />
                   </EditBtn>
@@ -158,9 +160,9 @@ export const UserDataItem = () => {
                   name="email"
                   disabled={isEmailDisabled}
                   onChange={e => {
-                    console.log(e.target.name, e.target.value);
                     setFieldValue(e.target.name, e.target.value);
                   }}
+                  isactive={isEmailDisabled ? 0 : 1}
                   style={{
                     border: `${
                       isEmailDisabled
@@ -189,7 +191,7 @@ export const UserDataItem = () => {
                 {!isEmailDisabled && (
                   <EditBtn
                     type="submit"
-                    onClick={e => onSubmitClick(e, 'email')}
+                    onClick={e => onSubmitClick(e, 'email', errors)}
                   >
                     <EditSaveIcon width="20" height="20" />
                   </EditBtn>
@@ -236,7 +238,7 @@ export const UserDataItem = () => {
                 {!isBirthdayDisabled && (
                   <EditBtn
                     type="submit"
-                    onClick={e => onSubmitClick(e, 'birthday')}
+                    onClick={e => onSubmitClick(e, 'birthday', errors)}
                     isDateEdit={true}
                   >
                     <EditSaveIcon width="20" height="20" />
@@ -251,9 +253,9 @@ export const UserDataItem = () => {
                   name="phone"
                   disabled={isPhoneDisabled}
                   onChange={e => {
-                    console.log(e.target.name, e.target.value);
                     setFieldValue(e.target.name, e.target.value);
                   }}
+                  isactive={isPhoneDisabled ? 0 : 1}
                   style={{
                     border: `${
                       isPhoneDisabled
@@ -282,7 +284,7 @@ export const UserDataItem = () => {
                 {!isPhoneDisabled && (
                   <EditBtn
                     type="submit"
-                    onClick={e => onSubmitClick(e, 'phone')}
+                    onClick={e => onSubmitClick(e, 'phone', errors)}
                   >
                     <EditSaveIcon width="20" height="20" />
                   </EditBtn>
@@ -299,9 +301,9 @@ export const UserDataItem = () => {
                   name="location"
                   disabled={isCityDisabled}
                   onChange={e => {
-                    console.log(e.target.name, e.target.value);
                     setFieldValue(e.target.name, e.target.value);
                   }}
+                  isactive={isCityDisabled ? 0 : 1}
                   style={{
                     border: `${
                       isCityDisabled
@@ -330,7 +332,7 @@ export const UserDataItem = () => {
                 {!isCityDisabled && (
                   <EditBtn
                     type="submit"
-                    onClick={e => onSubmitClick(e, 'location')}
+                    onClick={e => onSubmitClick(e, 'location', errors)}
                   >
                     <EditSaveIcon width="20" height="20" />
                   </EditBtn>
