@@ -88,7 +88,7 @@ i18n
           Mobile_phone: 'Mobile phone',
         },
       },
-      ukr: {
+      ua: {
         translation: {
           News: 'Новини',
           Find_pet: 'Знайти улюбленця',
