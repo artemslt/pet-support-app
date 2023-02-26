@@ -117,12 +117,11 @@ export const SecondPart = ({
           </ImgBox>
         </div>
       </div>
+      
 
       <label>
         <LabelTitle>
-          <p>
-            Comments <span>*</span>
-          </p>
+          Comments <span>*</span>
         </LabelTitle>
         <CommentInput
           component="textarea"
@@ -135,7 +134,7 @@ export const SecondPart = ({
       <ButtonsSection>
         <Button
           type="submit"
-        //   name="done"
+          //   name="done"
           disabled={!(isValid && dirty)}
         >
           Done
@@ -145,7 +144,6 @@ export const SecondPart = ({
           name="back"
           disabled={!isValid || !dirty}
           onClick={() => setStep(true)}
-   
         >
           Back
         </Button>
