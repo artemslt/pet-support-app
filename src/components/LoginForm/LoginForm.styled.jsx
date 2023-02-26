@@ -172,9 +172,11 @@ export const Button = styled.button`
       background-color: ${prop => prop.theme.colors.mainAccent};
     }
     outline: none;
-    width: 458px;
+    width: 448px;
+    height: 44px;
   }
   ${up('pc')} {
+    width: 458px;
     height: 48px;
   }
 `;
