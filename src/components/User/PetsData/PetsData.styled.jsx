@@ -7,7 +7,7 @@ export const PetListCardWrapper = styled.div`
   min-width: 280px;
   margin: 0 auto;
   ${up('tablet')} {
-    width: 704px;
+    width: 768px;
   }
   ${up('pc')} {
     width: 890px;
@@ -21,6 +21,12 @@ export const Title = styled.h3`
   font-weight: ${prop => prop.theme.fontWeights[1]};
   line-height: 1.37;
   color: ${prop => prop.theme.colors.mainBlack};
+  ${up('tablet')} {
+    padding-left: 16px;
+  }
+  ${up('pc')} {
+    padding-left: 0;
+  }
 `;
 
 export const NavContainer = styled.div`
@@ -59,11 +65,23 @@ export const AddBtn = styled.button`
 export const AddBtnWrapper = styled.div`
   display: flex;
   align-items: center;
+  ${up('tablet')} {
+    padding-right: 33px;
+  }
+  ${up('pc')} {
+    padding-right: 0;
+  }
 `;
 
 export const ListContainer = styled.ul`
   margin: 0;
   padding-left: 0;
+  ${up('tablet')} {
+    margin: 0 auto;
+  }
+  ${up('pc')} {
+    margin: 0;
+  }
 `;
 
 export const PetCard = styled.li`

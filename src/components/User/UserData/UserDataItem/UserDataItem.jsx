@@ -21,8 +21,11 @@ import { selectUser } from 'redux/auth/authSelectors';
 
 import { ReactComponent as EditPenIcon } from './editPenIcon.svg';
 import { ReactComponent as EditSaveIcon } from './editSaveIcon.svg';
+import { useTranslation } from 'react-i18next';
 
 export const UserDataItem = () => {
+  const { t } = useTranslation();
+
   const [isNameDisabled, setIsNameDisabled] = useState(true);
   const [isEmailDisabled, setIsEmailDisabled] = useState(true);
   const [isBirthdayDisabled, setIsBirthdayDisabled] = useState(true);
@@ -53,7 +56,9 @@ export const UserDataItem = () => {
     !isCityDisabled;
 
   const onSubmitClick = useCallback(
-    (event, field) => {
+    (event, field, errors) => {
+      if (errors && Object.keys(errors).length) return;
+
       setTimeout(() => {
         if (field === 'name') setIsNameDisabled(!isNameDisabled);
         if (field === 'email') setIsEmailDisabled(!isEmailDisabled);
@@ -101,15 +106,15 @@ export const UserDataItem = () => {
           {({ errors, touched, setFieldValue }) => (
             <Form>
               <InputWrapper>
-                <Label htmlFor="name">Name:</Label>
+                <Label htmlFor="name">{t('Name')}:</Label>
                 <Input
                   type="text"
                   name="name"
                   disabled={isNameDisabled}
                   onChange={e => {
-                    console.log(e.target.name, e.target.value);
                     setFieldValue(e.target.name, e.target.value);
                   }}
+                  isactive={isNameDisabled ? 0 : 1}
                   style={{
                     border: `${
                       isNameDisabled
@@ -138,7 +143,7 @@ export const UserDataItem = () => {
                 {!isNameDisabled && (
                   <EditBtn
                     type="submit"
-                    onClick={e => onSubmitClick(e, 'name')}
+                    onClick={e => onSubmitClick(e, 'name', errors)}
                   >
                     <EditSaveIcon width="20" height="20" />
                   </EditBtn>
@@ -149,15 +154,15 @@ export const UserDataItem = () => {
               )}
 
               <InputWrapper>
-                <Label htmlFor="email">Email:</Label>
+                <Label htmlFor="email">{t('Email')}:</Label>
                 <Input
                   type="text"
                   name="email"
                   disabled={isEmailDisabled}
                   onChange={e => {
-                    console.log(e.target.name, e.target.value);
                     setFieldValue(e.target.name, e.target.value);
                   }}
+                  isactive={isEmailDisabled ? 0 : 1}
                   style={{
                     border: `${
                       isEmailDisabled
@@ -186,7 +191,7 @@ export const UserDataItem = () => {
                 {!isEmailDisabled && (
                   <EditBtn
                     type="submit"
-                    onClick={e => onSubmitClick(e, 'email')}
+                    onClick={e => onSubmitClick(e, 'email', errors)}
                   >
                     <EditSaveIcon width="20" height="20" />
                   </EditBtn>
@@ -197,7 +202,9 @@ export const UserDataItem = () => {
               )}
 
               <InputWrapper>
-                <LabelDatePicker htmlFor="birthday">Birthday:</LabelDatePicker>
+                <LabelDatePicker htmlFor="birthday">
+                  {t('Birthday')}:
+                </LabelDatePicker>
                 <InputDatePickerWrapp>
                   <InputDatePicker
                     selected={startDate}
@@ -231,7 +238,7 @@ export const UserDataItem = () => {
                 {!isBirthdayDisabled && (
                   <EditBtn
                     type="submit"
-                    onClick={e => onSubmitClick(e, 'birthday')}
+                    onClick={e => onSubmitClick(e, 'birthday', errors)}
                     isDateEdit={true}
                   >
                     <EditSaveIcon width="20" height="20" />
@@ -240,15 +247,15 @@ export const UserDataItem = () => {
               </InputWrapper>
 
               <InputWrapper>
-                <Label htmlFor="phone">Phone:</Label>
+                <Label htmlFor="phone">{t('Phone')}:</Label>
                 <Input
                   type="text"
                   name="phone"
                   disabled={isPhoneDisabled}
                   onChange={e => {
-                    console.log(e.target.name, e.target.value);
                     setFieldValue(e.target.name, e.target.value);
                   }}
+                  isactive={isPhoneDisabled ? 0 : 1}
                   style={{
                     border: `${
                       isPhoneDisabled
@@ -277,7 +284,7 @@ export const UserDataItem = () => {
                 {!isPhoneDisabled && (
                   <EditBtn
                     type="submit"
-                    onClick={e => onSubmitClick(e, 'phone')}
+                    onClick={e => onSubmitClick(e, 'phone', errors)}
                   >
                     <EditSaveIcon width="20" height="20" />
                   </EditBtn>
@@ -288,15 +295,15 @@ export const UserDataItem = () => {
               )}
 
               <InputWrapper>
-                <Label htmlFor="location">City:</Label>
+                <Label htmlFor="location">{t('City')}:</Label>
                 <Input
                   type="text"
                   name="location"
                   disabled={isCityDisabled}
                   onChange={e => {
-                    console.log(e.target.name, e.target.value);
                     setFieldValue(e.target.name, e.target.value);
                   }}
+                  isactive={isCityDisabled ? 0 : 1}
                   style={{
                     border: `${
                       isCityDisabled
@@ -325,7 +332,7 @@ export const UserDataItem = () => {
                 {!isCityDisabled && (
                   <EditBtn
                     type="submit"
-                    onClick={e => onSubmitClick(e, 'location')}
+                    onClick={e => onSubmitClick(e, 'location', errors)}
                   >
                     <EditSaveIcon width="20" height="20" />
                   </EditBtn>
