@@ -12,8 +12,8 @@ import {
   SpinnerContainer,
 } from './FriendList.styled';
 import { Container } from 'components/Container/Container.styled';
-import { useTranslation } from 'react-i18next';
 import { LanguageButton } from 'components/LanguageButton/LanguageButton';
+import { useTranslation } from 'react-i18next';
 export const FriendList = () => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
@@ -27,8 +27,8 @@ export const FriendList = () => {
   return (
     <Container>
       <FriendsContainer>
-        <PartnerTitle>{t('Our_friends')}</PartnerTitle>
         <LanguageButton></LanguageButton>
+        <PartnerTitle>Our friends</PartnerTitle>
         {isLoading ? (
           <SpinnerContainer>
             <Spinner />

@@ -4,7 +4,15 @@ const {  fontWeights } = theme;
 export const Switch = styled.div`
   position: relative;
   display: inline-block;
-  margin: 0 5px;
+  margin-left: auto;
+  margin-right:10px;
+  scale: 0.8; 
+  z-index: 6;
+
+  @media (min-width: 770px) {
+  margin-right:15px;
+  scale: 1.15;  
+  }
 
   > span {
     position: absolute;
