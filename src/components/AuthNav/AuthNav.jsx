@@ -1,13 +1,16 @@
+import { useTranslation } from 'react-i18next';
 import { Link, AuthNavContainer } from './AuthNav.styled';
 
 export const AuthNav = ({ setOpen }) => {
+  const { t } = useTranslation();
+
   return (
     <AuthNavContainer>
       <Link to="/login" onClick={() => setOpen(false)}>
-        Login
+        {t('Login')}
       </Link>
       <Link to="/register" onClick={() => setOpen(false)}>
-        Registration
+        {t('Registration')}
       </Link>
     </AuthNavContainer>
   );

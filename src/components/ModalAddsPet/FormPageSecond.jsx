@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import {
   Error,
   Label,
@@ -22,9 +23,10 @@ export const FormePageSecond = ({
   setFile,
   formik,
 }) => {
+  const { t } = useTranslation();
   return (
     <>
-      <TitleAddPhoto> Add photo and some comments</TitleAddPhoto>
+      <TitleAddPhoto> {t('Add_pet_notification')}</TitleAddPhoto>
       <Label>
         <AddImage className={!imgUrl ? 'Add_Image_show' : ''}>
           {!imgUrl && (
@@ -55,23 +57,23 @@ export const FormePageSecond = ({
       </Label>
 
       <Label htmlFor="">
-        <CommentTitle> Comments</CommentTitle>
+        <CommentTitle> {t('Comments')}</CommentTitle>
         <Comment
           component="textarea"
           name="comment"
-          placeholder="Type comments"
+          placeholder={t('Comments_p')}
         />
         <Error name="comment" component="p"></Error>
       </Label>
       <WrapperBtn>
-        <Button type="submit">Submit</Button>
+        <Button type="submit">{t('Submit')}</Button>
         <Button
           type="button"
           onClick={() => onClickToggle(true)}
           name="back"
           disabled={!(formik.dirty && formik.isValid)}
         >
-          Back
+          {t('Back')}
         </Button>
       </WrapperBtn>
     </>

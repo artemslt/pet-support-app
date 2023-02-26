@@ -17,8 +17,10 @@ import { ModalAddsPet } from 'components/ModalAddsPet/ModalAddsPet';
 import { ModalMenu } from 'components/Modal/Modal';
 
 import { ReactComponent as AddPhotoIcon } from './addPhoto.svg';
+import { useTranslation } from 'react-i18next';
 
 export const PetsData = () => {
+  const { t } = useTranslation();
   // const [petsVisible] = useState(false);
   const [modalToggle, setModalToggle] = useState(false);
   const dispatch = useDispatch();
@@ -40,9 +42,9 @@ export const PetsData = () => {
   return (
     <PetListCardWrapper>
       <NavContainer>
-        <Title>My pets:</Title>
+        <Title>{t("My_pets")}:</Title>
         <AddBtnWrapper>
-          <BtnName>Add pet</BtnName>
+          <BtnName>{t('Add_pet')}</BtnName>
           <AddBtn
             type="submit"
             onClick={e => {

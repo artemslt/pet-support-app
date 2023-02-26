@@ -13,8 +13,10 @@ import { selectIsLoggedIn } from 'redux/auth/authSelectors';
 import { useState } from 'react';
 import { AddPet } from 'components/ModalAddNotice/ModalAddNotice';
 import { ModalMenu } from 'components/Modal/Modal';
+import { useTranslation } from 'react-i18next';
 
 export const NoticesCategoriesNav = () => {
+  const { t } = useTranslation();
   const mob = useBreakpoint(only('mobile'));
   const tablet = useBreakpoint(up('tablet'));
   let isLoggin = useSelector(selectIsLoggedIn);
@@ -30,13 +32,13 @@ export const NoticesCategoriesNav = () => {
         <AddPet onToggleModal={onToggleModal}></AddPet>
       </ModalMenu>
       <LinkWrapper>
-        <StyledLink to="sell">sell</StyledLink>
-        <StyledLink to="lost-found">lost/found</StyledLink>
-        <StyledLink to="for-free">in good hands</StyledLink>
+        <StyledLink to="sell">{t('sell')}</StyledLink>
+        <StyledLink to="lost-found">{t('lost_found')}</StyledLink>
+        <StyledLink to="for-free">{t('in_good_hands')}</StyledLink>
         {isLoggin ? (
           <>
-            <StyledLink to="favorite">favorite ads</StyledLink>
-            <StyledLink to="own">my ads</StyledLink>
+            <StyledLink to="for-free">{t('favorite_ads')}</StyledLink>
+            <StyledLink to="for-free">{t('my_ads')}</StyledLink>
           </>
         ) : null}
       </LinkWrapper>

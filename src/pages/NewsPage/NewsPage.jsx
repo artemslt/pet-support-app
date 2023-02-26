@@ -23,8 +23,10 @@ import {
 import { ReactComponent as DeleteIcon } from '../../images/x-circle.svg';
 import { ReactComponent as SearchIcon } from '../../images/search.svg';
 import { Container } from 'components/Container/Container.styled';
+import { useTranslation } from 'react-i18next';
 
 const NewsPage = () => {
+  const { t } = useTranslation();
   const dispatch = useDispatch();
   const [searchParams, setSearchParams] = useSearchParams();
   const error = useSelector(selectError);
@@ -61,7 +63,7 @@ const NewsPage = () => {
           <Input
             value={newsTitle}
             name="search"
-            placeholder="Search"
+            placeholder={t('Search')}
             type="text"
             onChange={updateQueryString}
           />

@@ -15,8 +15,10 @@ import {
   Link,
   Button,
 } from './RegisterForm.styled';
+import { useTranslation } from 'react-i18next';
 
 export const RegisterForm = () => {
+  const { t } = useTranslation();
   const [page, setPage] = useState('0');
 
   const dispatch = useDispatch();
@@ -72,7 +74,7 @@ export const RegisterForm = () => {
                   disabled={!(formik.dirty && formik.isValid)}
                   onClick={() => setPage('1')}
                 >
-                  Next
+                  {t('Next')}
                 </Button>
               )}
               {page === '1' && (
@@ -81,11 +83,11 @@ export const RegisterForm = () => {
                   disabled={!(formik.dirty && formik.isValid)}
                   onClick={() => setPage('0')}
                 >
-                  Back
+                  {t('Back')}
                 </Button>
               )}
               <Text>
-                Already have an account? <Link to="/login">Login</Link>
+                {t('have_account')}? <Link to="/login">{t('Login')}</Link>
               </Text>
             </Form>
           )}

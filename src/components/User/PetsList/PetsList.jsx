@@ -1,5 +1,6 @@
 // import { useState } from 'react';
 // import { useDispatch } from 'react-redux';
+import { useTranslation } from 'react-i18next';
 import {
   PetCard,
   PetPhotoWrapper,
@@ -13,6 +14,7 @@ import {
 import { ReactComponent as DeleteIcon } from './deleteIcon.svg';
 
 export const PetsList = ({ item, handleDeleteCard }) => {
+  const [t] = useTranslation();
   return (
     <PetCard>
       <PetPhotoWrapper>
@@ -22,19 +24,19 @@ export const PetsList = ({ item, handleDeleteCard }) => {
       <PetInfoItem>
         <div>
           <Text>
-            <TextTopic>Name: </TextTopic>
+            <TextTopic>{t('Name')}: </TextTopic>
             {item.name}
           </Text>
           <Text>
-            <TextTopic>Date of birth: </TextTopic>
+            <TextTopic>{t('Date_of_birth')}: </TextTopic>
             {item.birthday}
           </Text>
           <Text>
-            <TextTopic>Breed: </TextTopic>
+            <TextTopic>{t('Breed')}: </TextTopic>
             {item.breed}
           </Text>
           <Text>
-            <TextTopic>Comments: </TextTopic>
+            <TextTopic>{t('Comments')}: </TextTopic>
             {item.comment}
           </Text>
         </div>

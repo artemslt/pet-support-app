@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import { Link, NavContainer } from './Nav.styled';
 
 export const Nav = ({ setOpen }) => {
@@ -7,18 +8,24 @@ export const Nav = ({ setOpen }) => {
   //   window.screen.orientation.type === 'landscape-primary' ? true : false;
 
   // console.log(isOrientationLandscape);
+
+  const { t } = useTranslation();
+
   return (
     <NavContainer>
       <Link to="/news" onClick={() => setOpen(false)}>
-        News
+        {t('News')}
+        {/* News */}
       </Link>
 
       <Link to="/notices" onClick={() => setOpen(false)}>
-        Find pet
+        {t('Find_pet')}
+        {/* Find pet */}
       </Link>
 
       <Link to="/friends" onClick={() => setOpen(false)}>
-        Our friends
+        {t('Our_friends')}
+        {/* Our friends */}
       </Link>
     </NavContainer>
   );

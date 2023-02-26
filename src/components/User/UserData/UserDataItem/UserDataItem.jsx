@@ -21,8 +21,11 @@ import { selectUser } from 'redux/auth/authSelectors';
 
 import { ReactComponent as EditPenIcon } from './editPenIcon.svg';
 import { ReactComponent as EditSaveIcon } from './editSaveIcon.svg';
+import { useTranslation } from 'react-i18next';
 
 export const UserDataItem = () => {
+  const { t } = useTranslation();
+
   const [isNameDisabled, setIsNameDisabled] = useState(true);
   const [isEmailDisabled, setIsEmailDisabled] = useState(true);
   const [isBirthdayDisabled, setIsBirthdayDisabled] = useState(true);
@@ -101,7 +104,7 @@ export const UserDataItem = () => {
           {({ errors, touched, setFieldValue }) => (
             <Form>
               <InputWrapper>
-                <Label htmlFor="name">Name:</Label>
+                <Label htmlFor="name">{t('Name')}:</Label>
                 <Input
                   type="text"
                   name="name"
@@ -149,7 +152,7 @@ export const UserDataItem = () => {
               )}
 
               <InputWrapper>
-                <Label htmlFor="email">Email:</Label>
+                <Label htmlFor="email">{t('Email')}:</Label>
                 <Input
                   type="text"
                   name="email"
@@ -197,7 +200,9 @@ export const UserDataItem = () => {
               )}
 
               <InputWrapper>
-                <LabelDatePicker htmlFor="birthday">Birthday:</LabelDatePicker>
+                <LabelDatePicker htmlFor="birthday">
+                  {t('Birthday')}:
+                </LabelDatePicker>
                 <InputDatePickerWrapp>
                   <InputDatePicker
                     selected={startDate}
@@ -240,7 +245,7 @@ export const UserDataItem = () => {
               </InputWrapper>
 
               <InputWrapper>
-                <Label htmlFor="phone">Phone:</Label>
+                <Label htmlFor="phone">{t('Phone')}:</Label>
                 <Input
                   type="text"
                   name="phone"
@@ -288,7 +293,7 @@ export const UserDataItem = () => {
               )}
 
               <InputWrapper>
-                <Label htmlFor="location">City:</Label>
+                <Label htmlFor="location">{t('City')}:</Label>
                 <Input
                   type="text"
                   name="location"
