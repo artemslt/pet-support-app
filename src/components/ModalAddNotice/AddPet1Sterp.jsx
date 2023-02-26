@@ -83,7 +83,7 @@ export const FirstPart = ({
         <LabelTitle>
           {t('Tittle_of_ad')} <span>*</span>
         </LabelTitle>
-        <Input name="title" placeholder="Type name" />
+        <Input name="title" placeholder={t('Type_name')} />
         <Error name="title" component="div" />
       </label>
 
@@ -91,7 +91,7 @@ export const FirstPart = ({
         <LabelTitle>
           {t('Name_pet')} <span>*</span>
         </LabelTitle>
-        <Input name="name" placeholder="Type name pet" />
+        <Input name="name" placeholder={t('Name_pet_p')} />
         <Error name="name" component="div" />
       </label>
 
@@ -124,7 +124,7 @@ export const FirstPart = ({
 
         {!isInput ? (
           <>
-            <Input name="breed" placeholder="Type breed" />
+            <Input name="breed" placeholder={t('Breed_p')} />
             <Error name="breed" component="div" />
           </>
         ) : (

@@ -33,7 +33,7 @@ export const FormePageFist = ({
         <Input
           type="text"
           name="name"
-          placeholder="Type name pet"
+          placeholder={t('Name_pet_p')}
           autoFocus={true}
         />
         <Error name="name" component="p"></Error>
@@ -62,7 +62,7 @@ export const FormePageFist = ({
       <Label htmlFor="">
         {t('Breed')}
         {!isInput ? (
-          <Input type="text" name="breed" placeholder="Type breed" />
+          <Input type="text" name="breed" placeholder={t('Breed_p')} />
         ) : (
           <SelectComponent
             onChange={value => formik.setFieldValue('breed', value.value)}

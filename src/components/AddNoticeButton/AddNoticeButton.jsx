@@ -7,7 +7,7 @@ export const AddNoticeButton = ({ onClick }) => {
 
   return (
     <AddButton type="button" onClick={onClick}>
-      {t('Add_pet')}
+      {t('Add_notice')}
       {
         <Circle>
           <PlusIcon />

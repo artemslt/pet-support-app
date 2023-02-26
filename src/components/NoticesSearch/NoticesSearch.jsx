@@ -4,8 +4,10 @@ import { ReactComponent as DelIcon } from './x-circle.svg';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { addFilter } from 'redux/notices/noticesSlice';
+import { useTranslation } from 'react-i18next';
 
 export const NoticesSearch = () => {
+  const { t } = useTranslation();
   const [filter, setFilter] = useState('');
   const dispatch = useDispatch();
 
@@ -23,7 +25,7 @@ export const NoticesSearch = () => {
     <>
       <Form>
         <Search
-          placeholder="Search"
+          placeholder={t('Search')}
           type="text"
           name="filter"
           value={filter}

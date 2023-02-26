@@ -60,7 +60,7 @@ export const FormePageSecond = ({
         <Comment
           component="textarea"
           name="comment"
-          placeholder="Type comments"
+          placeholder={t('Comments_p')}
         />
         <Error name="comment" component="p"></Error>
       </Label>

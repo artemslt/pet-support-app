@@ -89,7 +89,7 @@ export const LoginForm = () => {
                     autoComplete="on"
                     type="email"
                     name="email"
-                    placeholder="Email"
+                    placeholder={t("Email")}
                   ></Input>
                   <Error name="email" component="p"></Error>
                 </Label>
@@ -98,7 +98,7 @@ export const LoginForm = () => {
                     autoComplete="off"
                     type={showPassword ? 'text' : 'password'}
                     name="password"
-                    placeholder="Password"
+                    placeholder={t("Password")}
                   ></Input>
                   <Error name="password" component="p"></Error>
                   <IconButton

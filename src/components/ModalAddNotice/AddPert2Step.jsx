@@ -75,7 +75,7 @@ export const SecondPart = ({
           <span>*</span>:
         </LabelTitle>
 
-        <Input name="location" placeholder="Type location" />
+        <Input name="location" placeholder={t('Location_p')} />
         <Error name="location" component="div" />
       </label>
 
@@ -86,7 +86,7 @@ export const SecondPart = ({
               {t('Price')}
               <span>*</span>:
             </LabelTitle>
-            <Input name="price" placeholder="Type price" />
+            <Input name="price" placeholder={t('Price_p')} />
             <Error name="price" component="div" />
           </label>
         </>
@@ -133,7 +133,7 @@ export const SecondPart = ({
         <CommentInput
           component="textarea"
           name="comment"
-          placeholder="Type comment"
+          placeholder={t('Comments_p')}
         />
         <Error name="comment" component="div" />
       </label>

@@ -10,7 +10,7 @@ export const SecondStep = ({ page, setPage }) => {
           autoComplete="on"
           type="text"
           name="name"
-          placeholder="Name"
+          placeholder={t('Name')}
         ></Input>
         <Error name="name" component="p"></Error>
       </Label>
@@ -19,7 +19,7 @@ export const SecondStep = ({ page, setPage }) => {
           autoComplete="on"
           type="text"
           name="location"
-          placeholder="City, region"
+          placeholder={t('City_region')}
         ></Input>
         <Error name="location" component="p"></Error>
       </Label>
@@ -28,7 +28,7 @@ export const SecondStep = ({ page, setPage }) => {
           autoComplete="on"
           type="text"
           name="phone"
-          placeholder="Mobile phone"
+          placeholder={t('Mobile phone')}
         ></Input>
         <Error name="phone" component="p"></Error>
       </Label>
