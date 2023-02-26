@@ -20,10 +20,8 @@ export const Title = styled.h3`
   font-size: 28px;
   font-weight: ${prop => prop.theme.fontWeights[1]};
   line-height: 1.37;
+  padding-left: 16px;
   color: ${prop => prop.theme.colors.mainBlack};
-  ${up('tablet')} {
-    padding-left: 16px;
-  }
   ${up('pc')} {
     padding-left: 0;
   }
@@ -33,7 +31,7 @@ export const NavContainer = styled.div`
   display: flex;
   width: 100%;
   justify-content: space-between;
-  margin: 0 20px 25px;
+  margin-bottom: 25px;
   ${up('tablet')} {
     margin: 0 0 32px 0;
   }
@@ -65,6 +63,7 @@ export const AddBtn = styled.button`
 export const AddBtnWrapper = styled.div`
   display: flex;
   align-items: center;
+  padding-right: 16px;
   ${up('tablet')} {
     padding-right: 33px;
   }
@@ -88,7 +87,7 @@ export const PetCard = styled.li`
   position: relative;
   display: flex;
   flex-direction: column;
-  width: 100%;
+  width: 280px;
   padding: 16px 20px 40px;
   margin-bottom: 22px;
   &:last-child {
