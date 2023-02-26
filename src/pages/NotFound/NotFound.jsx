@@ -3,8 +3,10 @@ import { useNavigate } from 'react-router-dom';
 import { Container } from 'components/Container/Container.styled';
 import notfound from '../../images/error.jpg';
 import { NotFoundContainer, Image, Redirect } from './NotFound.styled';
+import { useTranslation } from 'react-i18next';
 
 const NotFound = () => {
+  const { t } = useTranslation();
   const navigate = useNavigate();
   return (
     <Container>
@@ -15,7 +17,7 @@ const NotFound = () => {
             navigate('/');
           }}
         >
-          Back to home
+          {t('Back_to_home')}
         </Redirect>
       </NotFoundContainer>
     </Container>

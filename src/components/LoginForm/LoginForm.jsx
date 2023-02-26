@@ -26,6 +26,7 @@ import { ReactComponent as EyeIcon } from '../../images/eye.svg';
 import { ReactComponent as EyeClosedIcon } from '../../images/eye-slash.svg';
 import { ReactComponent as GoogleIcon } from '../../images/google-icon.svg';
 import { useTranslation } from 'react-i18next';
+import i18n from 'i18n';
 
 export const LoginForm = () => {
   const { t } = useTranslation();
@@ -49,7 +50,7 @@ export const LoginForm = () => {
         resetForm();
       }
     } catch (error) {
-      toast.error('Something wrong, please try again later');
+      toast.error(i18n.t('t_login_1'));
     }
   };
   const onSuccess = async response => {
@@ -64,13 +65,13 @@ export const LoginForm = () => {
       console.log({ email, name });
       await dispatch(gLogin({ email, name, accessToken }));
     } catch (error) {
-      toast.error(`Google login Failed - ${error}`);
+      toast.error(i18n.t('t_login_2')` - ${error}`);
     }
   };
 
   const googleLogin = useGoogleLogin({
     onSuccess,
-    onError: error => toast.error(`Google login Failed - ${error}`),
+    onError: error => toast.error(i18n.t('t_login_2')` - ${error}`),
   });
 
   return (
@@ -115,7 +116,7 @@ export const LoginForm = () => {
                   type="submit"
                   disabled={!(formik.dirty && formik.isValid)}
                 >
-                  Login
+                  {t('Login')}
                 </Button>
                 <Button type="button" onClick={googleLogin}>
                   <GoogleIcon />
