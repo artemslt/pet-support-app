@@ -90,7 +90,6 @@ export const refreshUser = createAsyncThunk(
       const response = await axios.get('users/current');
       return response.data.data;
     } catch (error) {
-      console.log(`Something wrong - ${error.response.data.message}`);
       return thunkAPI.rejectWithValue(error.response.data.message);
     }
   }
