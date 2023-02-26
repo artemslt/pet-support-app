@@ -1,6 +1,8 @@
+import { useTranslation } from 'react-i18next';
 import { LinkFull, UserNavContainer } from './UserNav.styled';
 
 export const UserNav = ({ setOpen }) => {
+  const { t } = useTranslation();
   return (
     <UserNavContainer>
       <LinkFull to="/user" onClick={() => setOpen(false)}>
@@ -16,7 +18,7 @@ export const UserNav = ({ setOpen }) => {
             fill="white"
           />
         </svg>
-        Account
+        {t('Account')}
       </LinkFull>
     </UserNavContainer>
   );

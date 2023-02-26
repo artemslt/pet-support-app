@@ -19,12 +19,17 @@ import {
   Table,
   TableData,
 } from './NoticeCategoryItem.styled';
+
 import { ModalMenu } from 'components/Modal/Modal';
+
+import { useTranslation } from 'react-i18next';
+
 import { refreshUser } from 'redux/auth/authOperations';
 import { ModalDelete } from '../ModalNoticeDelete/ModalDelete';
 axios.defaults.baseURL = 'https://pet-support-backend-v8vc.onrender.com/api/';
 
 export const NoticeCategoryItem = ({ items }) => {
+  const { t } = useTranslation();
   const { _id: userId, favorite } = useSelector(selectUser);
   const [openModalDelete, setOpenModalDelete] = useState(false);
 
@@ -103,20 +108,20 @@ export const NoticeCategoryItem = ({ items }) => {
               <Table>
                 <tbody>
                   <tr>
-                    <TableData>Breed:</TableData>
+                    <TableData>{t('Breed')}:</TableData>
                     <TableData>{breed}</TableData>
                   </tr>
                   <tr>
-                    <TableData>Place:</TableData>
+                    <TableData>{t('Place')}:</TableData>
                     <TableData>{location}</TableData>
                   </tr>
                   <tr>
-                    <TableData>Age:</TableData>
-                    <TableData>very old</TableData>
+                    <TableData>{t('Age')}:</TableData>
+                    <TableData>{t('very_old')}</TableData>
                   </tr>
                   {category === 'sell' && (
                     <tr>
-                      <TableData>Price:</TableData>
+                      <TableData>{t('Price')}:</TableData>
                       <TableData>{price}$</TableData>
                     </tr>
                   )}
@@ -124,7 +129,7 @@ export const NoticeCategoryItem = ({ items }) => {
               </Table>
 
               <BlockBtns>
-                <NoticeBtn>Learn more</NoticeBtn>
+                <NoticeBtn>{t('Learn_more')}</NoticeBtn>
                 {userId === owner && (
                   <NoticeBtn
                     onClick={e => {

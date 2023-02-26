@@ -8,7 +8,6 @@ export const AuthNavContainer = styled.div`
   justify-content: center;
 
   ${between('tablet', 'pcSizeS')} {
-    margin-left: auto;
     margin-right: 20px;
   }
   ${down('tablet')} {

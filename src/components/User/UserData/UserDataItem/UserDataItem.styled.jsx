@@ -52,6 +52,15 @@ export const Input = styled(Field)`
   padding: 4px 12px 3px;
   line-height: 1.39;
   margin-right: 15px;
+  ${({ isactive }) =>
+    isactive &&
+    `
+
+  &:hover,
+  &:focus {
+    outline: 1px solid  #F5925680;
+  }
+  `}
   ${up('tablet')} {
     font-size: 18px;
     width: 216px;
@@ -83,36 +92,34 @@ export const InputDatePicker = styled(DatePicker)`
   border: 1px solid transparent;
   color: ${prop => prop.theme.colors.mainBlack};
   margin-right: 24px;
+  ${({ isactive }) =>
+    isactive &&
+    `
+  &:hover,
+  &:focus {
+    outline: 1px solid  #F5925680;
+  }
+  `}
   ${({ active }) =>
     active &&
     `
 border: 1px solid #F5925680;
 border-radius: 40px;
 background: #FDF7F2;
+  &:hover,
+  &:focus {
+    outline: 1px solid  #F5925680;
+  }
   `}
 
   ${up('tablet')} {
     width: 215px;
     font-size: 18px;
     margin-right: 28px;
-    ${({ active }) =>
-      active &&
-      `
-border: 1px solid #F5925680;
-border-radius: 40px;
-background: #FDF7F2;
-  `}
   }
   ${up('pc')} {
     width: 205px;
     margin-right: 0;
-    ${({ active }) =>
-      active &&
-      `
-border: 1px solid #F5925680;
-border-radius: 40px;
-background: #FDF7F2;
-  `}
   }
 `;
 

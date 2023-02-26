@@ -15,8 +15,10 @@ import { selectAvatarURL, selectUser } from 'redux/auth/authSelectors';
 
 import addIcon from './addIcon.svg';
 import cameraIcon from './cameraIcon.svg';
+import { useTranslation } from 'react-i18next';
 
 export const UserAvatarBlock = () => {
+  const { t } = useTranslation();
   const userAvatar = useSelector(selectAvatarURL);
   const dispatch = useDispatch();
 
@@ -55,7 +57,7 @@ export const UserAvatarBlock = () => {
           />
           <EditWrapp>
             <img src={cameraIcon} alt="" />
-            <Text>Edit photo</Text>
+            <Text>{t('Edit_photo')}</Text>
           </EditWrapp>
         </label>
       </Button>
