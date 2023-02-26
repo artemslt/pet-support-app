@@ -52,7 +52,7 @@ export const NoticeCategoryItem = ({ items }) => {
   const delFromFavorite = async id => {
     try {
       await axios.delete(`notices/favorite/${id}`);
-      filteredNotices.dispatch(refreshUser());
+       dispatch(refreshUser());
     } catch (error) {
       console.log(error.message);
     }
