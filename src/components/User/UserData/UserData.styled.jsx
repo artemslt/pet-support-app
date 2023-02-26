@@ -37,12 +37,20 @@ export const UserCard = styled.div`
     margin-left: 0;
     border-radius: 0px 40px 40px 0px;
   }
+  ${up('tabletM')} {
+    border-radius: 40px;
+    margin-right: auto;
+    margin-left: auto;
+  }
   ${up('pc')} {
     flex-direction: column;
     justify-content: flex-start;
     width: 411px;
     height: 541px;
     padding: 20px 27px 18px;
+    border-radius: 0px 40px 40px 0px;
+    margin-right: 0;
+    margin-left: 0;
   }
 `;
 
