@@ -31,6 +31,7 @@ export const NoticeCategoryItem = ({ items }) => {
   const dispatch = useDispatch();
 
   const filter = useSelector(selectFilter);
+
   const normalizedFilter = filter.toLowerCase().trim();
   const filteredNotices = items.filter(item =>
     item.title.toLowerCase().includes(normalizedFilter)

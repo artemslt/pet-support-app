@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useSearchParams } from 'react-router-dom';
 
 import { NoticeCategoryItem } from 'components/NoticeCategoryItem/NoticeCategoryItem';
 import { CategoriesList } from './NoticesCategoriesList.styled';
@@ -40,7 +40,7 @@ export const NoticesCategoriesList = () => {
     };
     getNoticesByCategory(pathname);
   }, [pathname]);
-
+  console.log(allNotices);
   return (
     <>
       {isLoading ? (

@@ -91,7 +91,6 @@ export const TableData = styled.td`
   text-align: start;
   font-family: ${({ theme }) => theme.fonts[1]};
   font-weight: 500;
-  padding-right: 40px;
   padding-bottom: 8px;
 `;
 
