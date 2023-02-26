@@ -2,6 +2,7 @@ import {
   Text,
   LabelTitle,
   Input,
+  InputDatePicker,
   Error,
   ButtonsSection,
   Button,
@@ -10,7 +11,6 @@ import {
   RadioBtnGroup,
 } from './ModalAddNotice.styled';
 
-// Oleksii
 import { SelectComponentNotice } from './SelectComponentNotice';
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
@@ -24,6 +24,10 @@ export const FirstPart = ({
   values,
   errors,
   setImgUrl,
+  setFile,
+  startDate,
+  setStartDate,
+  onToggleModal,
 }) => {
   const [focus, setFocus] = useState(false);
   const isInput = useSelector(state => state.isInput.toggle);
@@ -31,35 +35,45 @@ export const FirstPart = ({
   function ResetValues() {
     handleReset();
     setImgUrl('');
+    setFile(null);
+
+    onToggleModal();
   }
 
   return (
     <>
       <Text>
-        Lorem ipsum dolor sit amet, consectetur Lorem ipsum dolor sit amet,
-        consectetur{' '}
+        You can sell or give your pets, or inform others about lost pets{' '}
       </Text>
+
       <RadioBtnGroup role="group">
         <RadioBtn
           type="radio"
           name="typeOfNotice"
-          value="lost/found"
-          id="lost_found"
+          value="lost-found"
+          id="lost-found"
         />
-        <RadioBtnLabel htmlFor="lost_found">
+        <RadioBtnLabel htmlFor="lost-found">
           <span>lost/found</span>
         </RadioBtnLabel>
 
         <RadioBtn
           type="radio"
           name="typeOfNotice"
-          value="in good hands"
-          id="in_good_hands"
+          value="for-free"
+          id="for-free"
         />
-        <RadioBtnLabel htmlFor="in_good_hands">
+        <RadioBtnLabel htmlFor="for-free">
           <span>in good hands</span>
         </RadioBtnLabel>
-        <RadioBtn type="radio" name="typeOfNotice" value="sell" id="sell" />
+        <RadioBtn
+          type="radio"
+          name="typeOfNotice"
+          value="sell"
+          id="sell"
+          checked={values.typeOfNotice === 'sell'}
+          onChange={() => setFieldValue('typeOfNotice', 'sell')}
+        />
         <RadioBtnLabel htmlFor="sell">
           <span>sell</span>
         </RadioBtnLabel>
@@ -78,14 +92,28 @@ export const FirstPart = ({
           Name pet <span>*</span>
         </LabelTitle>
         <Input name="name" placeholder="Type name pet" />
-        <Error name="name" component="div"  />
+        <Error name="name" component="div" />
       </label>
 
       <label>
         <LabelTitle>
           Date of birth <span>*</span>
         </LabelTitle>
-        <Input name="date" placeholder="Type date of birth" />
+        <InputDatePicker
+          selected={startDate}
+          dateFormat="dd.MM.yyyy"
+          name="date"
+          placeholderText="00.00.0000"
+          onChange={date => {
+            setStartDate(date);
+            setFieldValue('date', date.toLocaleString().slice(0, 10));
+          }}
+          minDate={new Date('December 17, 1900 03:24:00')}
+          maxDate={new Date()}
+          showDisabledMonthNavigation
+          shouldCloseOnSelect={true}
+        />
+        {/* <Input name="date" placeholder="Type date of birth" /> */}
         <Error name="date" component="div" />
       </label>
 
@@ -93,7 +121,7 @@ export const FirstPart = ({
         <LabelTitle>
           Breed <span>*</span>
         </LabelTitle>
-        
+
         {!isInput ? (
           <>
             <Input name="breed" placeholder="Type breed" />

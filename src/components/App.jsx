@@ -34,13 +34,15 @@ export const App = () => {
       <Route path="/" element={<SharedLayout />}>
         <Route
           index
-          element={<PrivateRoute component={Home} redirectTo="/notices/sell" />}
+          element={<PrivateRoute component={Home} redirectTo="/notices" />}
         />
         <Route path="news" element={<NewsPage />} />
         <Route path="notices" element={<NoticesPage />}>
           <Route path="sell" element={<NoticesCategoriesList />} />
           <Route path="lost-found" element={<NoticesCategoriesList />} />
           <Route path="for-free" element={<NoticesCategoriesList />} />
+          <Route path="favorite" element={<NoticesCategoriesList />} />
+          <Route path="own" element={<NoticesCategoriesList />} />
         </Route>
         <Route path="friends" element={<OurFriendsPage />} />
         <Route

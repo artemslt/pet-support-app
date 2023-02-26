@@ -1,18 +1,7 @@
-import { parse, isDate } from 'date-fns';
 import * as yup from 'yup';
 
-// check the date of birth
-const today = new Date();
-function parseDateString(value, originalValue) {
-  const parsedDate = isDate(originalValue)
-    ? originalValue
-    : parse(originalValue, 'dd.MM.yyyy', new Date());
-
-  return parsedDate;
-}
 // for exemple Brovary, Kyiv or Akhtyrka, Sumy
-const locationRegexp =
-  /^(?:(?:\w+-\w+)+|(?:\w+)+),\s(?:(?:\w+-\w+)+|(?:\w+)+)$/;
+const locationRegexp =/^([А-Яа-яЁёЇїІіЄєҐґ'),\s]+|[a-zA-Z\s]+){2,}$/;
 
 export const appPetSchemaStep1 = yup.object().shape({
   typeOfNotice: yup.string().required(),
@@ -27,9 +16,7 @@ export const appPetSchemaStep1 = yup.object().shape({
     .max(16, 'Name should be 16 characters maximum.')
     .required('Name is required field'),
   date: yup
-    .date('Date must be in format dd.MM.yyyy')
-    .transform(parseDateString)
-    .max(today)
+    .string('Date must be in format dd.MM.yyyy')
     .required('Date is required field'),
   breed: yup
     .string()
@@ -52,6 +39,6 @@ export const appPetSchemaStep2 = yup.object().shape({
   comment: yup
     .string()
     .min(10, 'Comment should be 10 characters minimum.')
-    .max(100, 'Comment should be 30 characters maximum.')
+    .max(100, 'Comment should be 100 characters maximum.')
     .required('Comment is required field'),
 });

@@ -149,9 +149,10 @@ export const IconButton = styled.button`
   padding: 0;
   background-color: transparent;
   fill: ${prop => prop.theme.colors.greyText};
+  transition: ${({ theme }) => theme.btnAnimationTransition};
   &:hover,
   &:focus {
-    stroke: ${prop => prop.theme.colors.mainAccent};
+    fill: ${prop => prop.theme.colors.mainAccent};
   }
   ${up('tablet')} {
     right: 9px;
@@ -170,26 +171,31 @@ export const Button = styled.button`
   }
   cursor: pointer;
   border-radius: 40px;
-  border: none;
-  background-color: ${prop => prop.theme.colors.mainAccent};
+  background-color: ${prop => prop.theme.colors.background};
+  border: 2px solid ${prop => prop.theme.colors.mainAccent};
   font-family: ${prop => prop.theme.fonts[1]};
   font-weight: ${prop => prop.theme.fontWeights[1]};
   font-size: ${prop => prop.theme.fontSizes[4]}px;
   line-height: 27px;
   letter-spacing: 0.04em;
-  color: ${prop => prop.theme.colors.mainWhite};
+  color: ${prop => prop.theme.colors.additionalBlack};
+  transition: ${({ theme }) => theme.btnAnimationTransition};
   &:hover,
   &:focus {
-    box-sizing: border-box;
-    background-color: ${prop => prop.theme.colors.background};
-    border: 2px solid ${prop => prop.theme.colors.mainAccent};
-    color: ${prop => prop.theme.colors.additionalBlack};
+    background-color: ${prop => prop.theme.colors.mainAccent};
+    color: ${prop => prop.theme.colors.mainWhite};
   }
+  &[type='button']:disabled {
+    background-color: ${({ theme }) => theme.colors.mainAccent};
+    color: ${({ theme }) => theme.colors.mainWhite};
+    opacity: 0.5;
+    }
   ${up('tablet')} {
+    background-color: ${prop => prop.theme.colors.mainWhite};
     {
       &:hover,
       &:focus {
-        background-color: ${prop => prop.theme.colors.mainWhite};
+        background-color: ${prop => prop.theme.colors.mainAccent};
       }
     outline: none;
     width: 458px;
@@ -212,6 +218,7 @@ export const Text = styled.p`
 export const Link = styled(RouterLink)`
   text-decoration: none;
   color: ${prop => prop.theme.colors.blue};
+  transition: ${({ theme }) => theme.btnAnimationTransition};
   &:hover,
   &:focus {
     color: ${prop => prop.theme.colors.activeAccent};

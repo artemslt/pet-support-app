@@ -1,10 +1,14 @@
 import styled from 'styled-components';
+import { up } from 'styled-breakpoints';
 
 export const LogoutWrapper = styled.div`
   display: flex;
-  justify-content: start;
+  justify-content: end;
   font-size: 16px;
   margin-top: 15px;
+  ${up('tablet')} {
+    justify-content: start;
+  }
 `;
 
 export const Button = styled.div`
@@ -12,6 +16,15 @@ export const Button = styled.div`
   border: none;
   background: transparent;
   cursor: pointer;
+  ${up('tablet')} {
+    position: absolute;
+    flex-direction: row;
+    bottom: 24px;
+    left: 32px;
+  }
+  ${up('pc')} {
+    position: unset;
+  }
 `;
 
 export const Text = styled.span`

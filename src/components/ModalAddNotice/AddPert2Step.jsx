@@ -87,7 +87,7 @@ export const SecondPart = ({
         </>
       )}
 
-      <label>
+      <div>
         <LabelTitle>
           Load the pet’s image:<span>*</span>
         </LabelTitle>
@@ -116,7 +116,7 @@ export const SecondPart = ({
             )}
           </ImgBox>
         </div>
-      </label>
+      </div>
 
       <label>
         <LabelTitle>
@@ -135,7 +135,7 @@ export const SecondPart = ({
       <ButtonsSection>
         <Button
           type="submit"
-          // name="done"
+        //   name="done"
           disabled={!(isValid && dirty)}
         >
           Done
@@ -145,7 +145,7 @@ export const SecondPart = ({
           name="back"
           disabled={!isValid || !dirty}
           onClick={() => setStep(true)}
-          //   onClick={Step}
+   
         >
           Back
         </Button>
