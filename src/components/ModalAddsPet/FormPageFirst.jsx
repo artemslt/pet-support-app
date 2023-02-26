@@ -82,6 +82,7 @@ export const FormePageFist = ({
             onClickToggle(false);
           }}
           disabled={!(formik.dirty && formik.isValid)}
+          name="next"
         >
           {t('Next')}
         </Button>

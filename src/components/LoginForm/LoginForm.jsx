@@ -59,9 +59,10 @@ export const LoginForm = () => {
       );
 
       const { email, name } = googleUser.data;
+      const accessToken = response.access_token;
 
       console.log({ email, name });
-      await dispatch(gLogin({ email, name }));
+      await dispatch(gLogin({ email, name, accessToken }));
     } catch (error) {
       toast.error(`Google login Failed - ${error}`);
     }
@@ -89,7 +90,7 @@ export const LoginForm = () => {
                     autoComplete="on"
                     type="email"
                     name="email"
-                    placeholder={t("Email")}
+                    placeholder={t('Email')}
                   ></Input>
                   <Error name="email" component="p"></Error>
                 </Label>
@@ -98,7 +99,7 @@ export const LoginForm = () => {
                     autoComplete="off"
                     type={showPassword ? 'text' : 'password'}
                     name="password"
-                    placeholder={t("Password")}
+                    placeholder={t('Password')}
                   ></Input>
                   <Error name="password" component="p"></Error>
                   <IconButton

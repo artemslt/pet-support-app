@@ -21,6 +21,7 @@ export const FormePageSecond = ({
   imgUrl,
   onClickToggle,
   setFile,
+  formik,
 }) => {
   const { t } = useTranslation();
   return (
@@ -66,7 +67,12 @@ export const FormePageSecond = ({
       </Label>
       <WrapperBtn>
         <Button type="submit">{t('Submit')}</Button>
-        <Button type="button" onClick={() => onClickToggle(true)}>
+        <Button
+          type="button"
+          onClick={() => onClickToggle(true)}
+          name="back"
+          disabled={!(formik.dirty && formik.isValid)}
+        >
           {t('Back')}
         </Button>
       </WrapperBtn>
