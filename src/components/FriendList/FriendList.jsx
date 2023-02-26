@@ -26,7 +26,6 @@ export const FriendList = () => {
   return (
     <Container>
       <FriendsContainer>
-        <LanguageButton></LanguageButton>
         <PartnerTitle> {t('Our_friends')}</PartnerTitle>
         {isLoading ? (
           <SpinnerContainer>

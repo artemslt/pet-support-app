@@ -9,12 +9,8 @@ export const Nav = ({ setOpen }) => {
 
   // console.log(isOrientationLandscape);
 
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
 
-  const lngs = {
-    en: { nativeName: 'English' },
-    ua: { nativeName: 'Ukranian' },
-  };
   return (
     <NavContainer>
       <Link to="/news" onClick={() => setOpen(false)}>
