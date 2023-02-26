@@ -18,10 +18,11 @@ import {
   Table,
   TableData,
 } from './NoticeCategoryItem.styled';
+import { useTranslation } from 'react-i18next';
+
 import { refreshUser } from 'redux/auth/authOperations';
 
 axios.defaults.baseURL = 'https://pet-support-backend-v8vc.onrender.com/api/';
-import { useTranslation } from 'react-i18next';
 
 export const NoticeCategoryItem = ({ items }) => {
   const { t } = useTranslation();
