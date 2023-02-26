@@ -26,7 +26,7 @@ export const FriendList = () => {
   return (
     <Container>
       <FriendsContainer>
-        <PartnerTitle>Our friends</PartnerTitle>
+        <PartnerTitle> {t('Our_friends')}</PartnerTitle>
         {isLoading ? (
           <SpinnerContainer>
             <Spinner />

@@ -4,7 +4,9 @@ import { Switch } from './LanguageButton.styled';
 
 export const LanguageButton = () => {
   const { i18n } = useTranslation();
-  const [language, setLanguage] = useState(() => localStorage.getItem('language') || 'ua');
+  const [language, setLanguage] = useState(
+    () => localStorage.getItem('language') || 'ua'
+  );
 
   const handleLanguageToggle = () => {
     const newLanguage = language === 'ua' ? 'en' : 'ua';
@@ -19,17 +21,6 @@ export const LanguageButton = () => {
     }
   }, [i18n]);
 
-      // const lngs = {
-  //   en: { nativeName: 'English' },
-  //   ukr: { nativeName: 'Ukranian' },
-  // };
-  // function doalert(checkboxElem) {
-  //   if (checkboxElem.checked) {
-  //     i18n.changeLanguage('ukr');
-  //   } else {
-  //     i18n.changeLanguage('en');
-  //   }
-  // }
   return (
     <Switch>
       <input
