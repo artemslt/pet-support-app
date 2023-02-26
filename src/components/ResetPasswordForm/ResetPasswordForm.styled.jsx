@@ -27,11 +27,11 @@ export const FormWrapper = styled.div`
     box-shadow: 7px 4px 14px rgba(0, 0, 0, 0.11);
     border-radius: 40px;
     width: 608px;
-    height: 519px;
+    height: 469px;
   }
   ${up('pc')} {
     width: 618px;
-    height: 523px;
+    height: 473px;
   }
 `;
 
@@ -164,7 +164,7 @@ export const Button = styled.button`
     background-color: ${({ theme }) => theme.colors.mainAccent};
     color: ${({ theme }) => theme.colors.mainWhite};
     opacity: 0.5;
-    }
+  }
   ${up('tablet')} {
     background-color: ${prop => prop.theme.colors.mainWhite};
     &:hover,
@@ -181,12 +181,8 @@ export const Button = styled.button`
   }
 `;
 
-export const ButtonText = styled.span`
-  margin-left: 6px;
-`;
-
 export const Text = styled.p`
-  margin-top: 10px;
+  margin: 30px 0;
   font-family: ${prop => prop.theme.fonts[1]};
   font-weight: ${prop => prop.theme.fontWeights[0]};
   font-size: ${prop => prop.theme.fontSizes[0]}px;

@@ -123,12 +123,11 @@ export const SecondPart = ({
           </ImgBox>
         </div>
       </div>
+      
 
       <label>
         <LabelTitle>
-          <p>
             {t('Comments')} <span>*</span>
-          </p>
         </LabelTitle>
         <CommentInput
           component="textarea"

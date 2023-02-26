@@ -106,14 +106,14 @@ export const FirstPart = ({
           placeholderText="00.00.0000"
           onChange={date => {
             setStartDate(date);
-            setFieldValue('date', date.toLocaleString().slice(0, 10));
+            setFieldValue('date', date.toLocaleString("az-Cyrl-AZ").slice(0, 10));
           }}
           minDate={new Date('December 17, 1900 03:24:00')}
           maxDate={new Date()}
           showDisabledMonthNavigation
           shouldCloseOnSelect={true}
         />
-        {/* <Input name="date" placeholder="Type date of birth" /> */}
+
         <Error name="date" component="div" />
       </label>
 

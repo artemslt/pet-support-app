@@ -125,6 +125,9 @@ export const LoginForm = () => {
                 <Text>
                   {t('No_account')} <Link to="/register">{t('Register')}</Link>
                 </Text>
+                <Text>
+                  Forgot your password? <Link to="/requestreset">Reset</Link>
+                </Text>
               </Form>
             )}
           </Formik>

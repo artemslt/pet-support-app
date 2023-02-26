@@ -16,3 +16,4 @@ export const AddNoticeButton = ({ onClick }) => {
     </AddButton>
   );
 };
+
