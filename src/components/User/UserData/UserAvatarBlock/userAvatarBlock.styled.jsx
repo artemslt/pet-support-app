@@ -2,11 +2,12 @@ import styled from 'styled-components';
 import { up } from 'styled-breakpoints';
 
 export const Form = styled.form`
-  position: relative;
+  /* position: relative; */
 `;
 
 export const AvatarThumb = styled.div`
   display: flex;
+  position: relative;
   width: 233px;
   height: 233px;
   align-items: center;
@@ -47,9 +48,8 @@ export const Avatar = styled.img`
 export const Button = styled.button`
   position: absolute;
   display: flex;
-  align-items: center;
   top: 225px;
-  right: 15px;
+  right: -5px;
   border: none;
 
   background: none;
@@ -62,8 +62,8 @@ export const Button = styled.button`
   }
   ${up('pc')} {
     margin-bottom: 0;
-    top: 205px;
-    right: 0;
+    top: 210px;
+    right: -50px;
   }
 `;
 
