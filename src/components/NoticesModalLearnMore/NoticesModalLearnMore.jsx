@@ -1,3 +1,4 @@
+import moment from 'moment';
 import { useSelector } from 'react-redux';
 import { selectUser } from 'redux/auth/authSelectors';
 import {
@@ -40,7 +41,28 @@ export const LearnMore = ({ onToggleModal, data, onClickOnFavoriteBtn }) => {
     owner,
     _id,
   } = data;
-  
+
+  const calcAge = date => {
+    const diff = moment(date, 'DD-MM-YYYY');
+    const duration = moment().diff(diff, 'milliseconds');
+    const years = moment.duration(duration).years();
+    const months = moment.duration(duration).months();
+
+    switch (years) {
+      case 0: {
+        if (months < 1) return 'under a month';
+        return `${months} months`;
+      }
+
+      case 1: {
+        return '1 year';
+      }
+      default: {
+        return `${years} years`;
+      }
+    }
+  };
+
   return (
     <>
       {Object.keys(data).length && (
@@ -68,12 +90,12 @@ export const LearnMore = ({ onToggleModal, data, onClickOnFavoriteBtn }) => {
                     <TableData>Name:</TableData>
                     <TableValue>{name}</TableValue>
                   </tr>
-                  {date && <tr>
-                    <TableData>Birthday:</TableData>
-                    <TableValue>
-                      {new Date(date).toLocaleDateString()}
-                    </TableValue>
-                  </tr>}
+                  {date && (
+                    <tr>
+                      <TableData>Birthday:</TableData>
+                      <TableValue>{calcAge(date)}</TableValue>
+                    </tr>
+                  )}
                   <tr>
                     <TableData>Breed:</TableData>
                     <TableValue>{breed}</TableValue>
@@ -125,9 +147,11 @@ export const LearnMore = ({ onToggleModal, data, onClickOnFavoriteBtn }) => {
           </Comment>
           <BlockBtns>
             <Btn onClick={e => window.open(`tel:${owner.phone}`)}>Contact</Btn>
-            {!favorite ? <Btn onClick={e => onClickOnFavoriteBtn(_id)}>
+            {!favorite ? (
+              <Btn onClick={e => onClickOnFavoriteBtn(_id)}>
                 Add to <FavoriteIcon />
-              </Btn> : !favorite.includes(_id) ? (
+              </Btn>
+            ) : !favorite.includes(_id) ? (
               <Btn onClick={e => onClickOnFavoriteBtn(_id)}>
                 Add to <FavoriteIcon />
               </Btn>
