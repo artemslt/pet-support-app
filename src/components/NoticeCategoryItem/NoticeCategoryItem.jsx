@@ -53,6 +53,7 @@ export const NoticeCategoryItem = ({ items, onListChange, pathname }) => {
   const currentIdRef = useRef();
   const [modalToggle, setModalToggle] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [deleteId, setDeleteId] = useState(null);
   const onToggleModal = e => {
     setModalToggle(false);
     setOpenModalDelete(false);
@@ -77,6 +78,7 @@ export const NoticeCategoryItem = ({ items, onListChange, pathname }) => {
     try {
       await axios.post(`notices/favorite/${id}`);
       dispatch(refreshUser());
+      setDeleteId(null);
     } catch (error) {
       console.log(error.message);
     }
@@ -247,6 +249,7 @@ export const NoticeCategoryItem = ({ items, onListChange, pathname }) => {
                   <NoticeBtn
                     onClick={e => {
                       setOpenModalDelete(true);
+                      setDeleteId(_id);
                     }}
                   >
                     <p style={{ marginRight: 13 }}>{t('Delete')}</p>
@@ -260,8 +263,8 @@ export const NoticeCategoryItem = ({ items, onListChange, pathname }) => {
                 >
                   <ModalDelete
                     onToggleModal={onToggleModal}
-                    id={_id}
                     deletePet={deletePet}
+                    deleteId={deleteId}
                   />
                 </ModalMenu>
               </BlockBtns>
