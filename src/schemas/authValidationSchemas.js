@@ -3,7 +3,7 @@ import * as yup from 'yup';
 const emailRegexp =
   /^([a-zA-Z0-9_.]+){1}([a-zA-Z0-9_\-.]+){1}@([a-zA-Z0-9_\-.]+)\.([a-zA-Z]{2,3})$/;
 const passwordRegexp =
-  /(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&()<>,.;:/=-])[A-Za-z0-9\d@$!%*?&]\S*$/;
+  /^(?!.* )(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&()<>,.;:/=-])[A-Za-z0-9\d@$!%*?&]/;
 const passwordLoginRegexp = /^\S*$/;
 const nameRegexp = /^([a-zA-Zа-яА-ЯІіЇїЄє\s]+)$/;
 const phoneRegexp = /^\+380\d{3}\d{2}\d{2}\d{2}$/;
