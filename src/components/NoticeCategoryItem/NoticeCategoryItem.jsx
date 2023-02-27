@@ -35,7 +35,7 @@ import i18n from 'i18n';
 
 axios.defaults.baseURL = 'https://pet-support-backend-v8vc.onrender.com/api/';
 
-export const NoticeCategoryItem = ({ items, onListChange }) => {
+export const NoticeCategoryItem = ({ items, onListChange, pathname }) => {
   const { t } = useTranslation();
   const { _id: userId, favorite } = useSelector(selectUser);
   const [openModalDelete, setOpenModalDelete] = useState(false);
@@ -86,9 +86,10 @@ export const NoticeCategoryItem = ({ items, onListChange }) => {
     try {
       await axios.delete(`notices/favorite/${id}`);
       dispatch(refreshUser());
-      const newList = items.filter(item => item._id !== id);
-
-      onListChange(newList);
+      if (pathname === '/notices/favorite') {
+        const newList = items.filter(item => item._id !== id);
+        onListChange(newList);
+      }
     } catch (error) {
       console.log(error.message);
     }
@@ -103,7 +104,6 @@ export const NoticeCategoryItem = ({ items, onListChange }) => {
   };
   const onClickOnFavoriteBtn = id => {
     if (!isLoggedIn) {
-
       toast.error(i18n.t('pet_add_notice_auth'), {
         position: toast.POSITION.TOP_RIGHT,
       });
