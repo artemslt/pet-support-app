@@ -164,7 +164,7 @@ export const Button = styled.button`
     background-color: ${({ theme }) => theme.colors.mainAccent};
     color: ${({ theme }) => theme.colors.mainWhite};
     opacity: 0.5;
-    }
+  }
   ${up('tablet')} {
     background-color: ${prop => prop.theme.colors.mainWhite};
     &:hover,
@@ -196,6 +196,7 @@ export const Text = styled.p`
 `;
 
 export const Link = styled(RouterLink)`
+  margin-left: 2px;
   text-decoration: none;
   color: ${prop => prop.theme.colors.blue};
   transition: ${({ theme }) => theme.btnAnimationTransition};
