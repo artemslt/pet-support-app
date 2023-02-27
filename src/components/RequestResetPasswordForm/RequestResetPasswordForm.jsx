@@ -72,7 +72,7 @@ export const RequestResetPasswordForm = () => {
                   type="submit"
                   disabled={!(formik.dirty && formik.isValid)}
                 >
-                  Reset password
+                  {t('Reset_Password')}
                 </Button>
 
                 <Text>
