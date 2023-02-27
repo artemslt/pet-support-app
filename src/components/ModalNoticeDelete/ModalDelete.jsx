@@ -1,15 +1,16 @@
 import { useTranslation } from 'react-i18next';
 import { Wrapper, Title, Button } from './ModalDelete.style';
 
-export const ModalDelete = ({ onToggleModal, id, deletePet }) => {
+export const ModalDelete = ({ onToggleModal, deleteId, deletePet }) => {
   const { t } = useTranslation();
+
   return (
     <Wrapper>
       <Title>{t('delete_info_text')}</Title>
       <div>
         <Button
           onClick={() => {
-            deletePet(id);
+            deletePet(deleteId);
             onToggleModal();
           }}
         >
