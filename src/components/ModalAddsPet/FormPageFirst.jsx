@@ -47,6 +47,9 @@ export const FormePageFist = ({
           placeholderText="00.00.0000"
           onChange={date => {
             setStartDate(date);
+            if (!date) {
+              return formik.setFieldValue('birthday', '');
+            }
             formik.setFieldValue(
               'birthday',
               date.toLocaleString('az-Cyrl-AZ').slice(0, 10)
