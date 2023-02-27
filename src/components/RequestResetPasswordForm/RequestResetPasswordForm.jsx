@@ -1,6 +1,7 @@
 import { Formik } from 'formik';
 import { toast } from 'react-toastify';
 import axios from 'axios';
+import { useState } from 'react';
 
 import {
   FlexBox,
@@ -14,6 +15,7 @@ import {
   Error,
   Link,
   InfoText,
+  StyledSpinner,
 } from './RequestResetPasswordForm.styled';
 import { requestResetSchema } from '../../schemas/authValidationSchemas';
 import { Container } from 'components/Container/Container.styled';
@@ -24,6 +26,7 @@ axios.defaults.baseURL = 'https://pet-support-backend-v8vc.onrender.com/api/';
 
 export const RequestResetPasswordForm = () => {
   const { t } = useTranslation();
+  const [isLoading, setIsLoading] = useState(false);
   const initialValues = {
     email: '',
   };
@@ -33,14 +36,14 @@ export const RequestResetPasswordForm = () => {
       email: values.email,
     };
     try {
-      const data = await axios.patch('auth/resetpassword', email);
+      setIsLoading(true);
+      await axios.patch('auth/resetpassword', email);
       toast.success(i18n.t('Reset_Password_notification_check'));
-      if (data.type === 'auth/resetpassword/fulfilled') {
-        resetForm();
-      }
+      resetForm();
     } catch (error) {
       toast.error(error.response.data.message);
     }
+    setIsLoading(false);
   };
 
   return (
@@ -68,9 +71,9 @@ export const RequestResetPasswordForm = () => {
 
                 <Button
                   type="submit"
-                  disabled={!(formik.dirty && formik.isValid)}
+                  disabled={!(formik.dirty && formik.isValid) || isLoading}
                 >
-                  {t('Reset_Password')}
+                  {isLoading && <StyledSpinner />} {t('Reset_Password')}
                 </Button>
 
                 <Text>

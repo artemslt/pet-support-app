@@ -16,6 +16,7 @@ import {
   Error,
   Link,
   IconButton,
+  StyledSpinner,
 } from './ResetPasswordForm.styled';
 import { resetPassword } from 'redux/auth/authOperations';
 import { resetPasswordSchema } from '../../schemas/authValidationSchemas';
@@ -30,6 +31,7 @@ export const ResetPasswordForm = () => {
 
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const { resetToken } = useParams();
 
@@ -46,6 +48,7 @@ export const ResetPasswordForm = () => {
       resetToken,
     };
     try {
+      setIsLoading(true);
       const data = await dispatch(resetPassword(newPassword));
       if (data.type === 'auth/resetpassword/fulfilled') {
         resetForm();
@@ -53,6 +56,7 @@ export const ResetPasswordForm = () => {
     } catch (error) {
       toast.error(i18n.t('t_login_1'));
     }
+    setIsLoading(false);
   };
 
   return (
@@ -103,9 +107,9 @@ export const ResetPasswordForm = () => {
                 </Label>
                 <Button
                   type="submit"
-                  disabled={!(formik.dirty && formik.isValid)}
+                  disabled={!(formik.dirty && formik.isValid) || isLoading}
                 >
-                  {t('Reset_Password')}
+                 {isLoading && <StyledSpinner />} {t('Reset_Password')}
                 </Button>
 
                 <Text>
@@ -119,3 +123,5 @@ export const ResetPasswordForm = () => {
     </Container>
   );
 };
+
+
