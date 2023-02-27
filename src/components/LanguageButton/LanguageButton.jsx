@@ -20,7 +20,7 @@ export const LanguageButton = () => {
     if (localStorage.getItem('i18nextLng')) {
       i18n.changeLanguage(localStorage.getItem('i18nextLng'));
     }
-  }, [i18n]);
+  }, []);
 
   return (
     <Switch>
