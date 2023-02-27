@@ -51,6 +51,7 @@ export const NoticeCategoryItem = ({ items, onListChange }) => {
   const [isLoading, setIsLoading] = useState(false);
   const onToggleModal = e => {
     setModalToggle(false);
+    setOpenModalDelete(false);
   };
 
   const onClickLearnMore = e => {
