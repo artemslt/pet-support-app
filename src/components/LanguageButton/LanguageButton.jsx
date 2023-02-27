@@ -4,10 +4,8 @@ import { Switch } from './LanguageButton.styled';
 
 export const LanguageButton = () => {
   const { i18n } = useTranslation();
-  const [language, setLanguage] = useState(() =>
-    localStorage.getItem('i18nextLng')
-  );
-  // console.log('lng', language);
+  const [language, setLanguage] = useState('en');
+  console.log('lng', language);
 
   const handleLanguageToggle = () => {
     const newLanguage = language === 'uk' ? 'en' : 'uk';
@@ -20,7 +18,8 @@ export const LanguageButton = () => {
     if (localStorage.getItem('i18nextLng')) {
       i18n.changeLanguage(localStorage.getItem('i18nextLng'));
     }
-  }, [i18n]);
+    console.log(language === 'uk');
+  }, [i18n, language]);
 
   return (
     <Switch>

@@ -18,6 +18,7 @@ import { ModalMenu } from 'components/Modal/Modal';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import i18n from 'i18n';
 
 export const NoticesCategoriesNav = () => {
   const { t } = useTranslation();
@@ -30,16 +31,16 @@ export const NoticesCategoriesNav = () => {
   const onToggleModal = e => {
     setModalToggle(false);
   };
-  
+
   const addPet = () => {
     if (!isLoggin) {
-      toast.error('that add pet, you need to login');
+      toast.error(i18n.t('pet_add_notice_auth'));
       navigate('/login');
       return;
     }
-    setModalToggle(true)
-  }
-  
+    setModalToggle(true);
+  };
+
   return (
     <CategoriesNav>
       <ModalMenu onClose={() => setModalToggle(false)} open={modalToggle}>
