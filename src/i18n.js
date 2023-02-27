@@ -150,9 +150,10 @@ i18n
           logout_info_text: 'Are you sure you want to logout?',
           delete_info_text: 'Are you sure you want to delete a card?',
           no_notice: "You haven't notices yet",
+          pet_add_notice_auth: 'To add pet, you need to login',
         },
       },
-      ua: {
+      uk: {
         translation: {
           News: 'Новини',
           Find_pet: 'Знайти улюбленця',
@@ -285,6 +286,7 @@ i18n
           logout_info_text: 'Ви впевнені, що хочете вийти?',
           delete_info_text: 'Ви впевнені, що хочете видалити карту?',
           no_notice: 'Оголошення відсутні',
+          pet_add_notice_auth: 'Увійдіть для додавання оголошення',
         },
       },
     },

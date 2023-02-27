@@ -29,6 +29,7 @@ import { refreshUser } from 'redux/auth/authOperations';
 import { useNavigate } from 'react-router-dom';
 
 import { ModalDelete } from '../ModalNoticeDelete/ModalDelete';
+import i18n from 'i18n';
 axios.defaults.baseURL = 'https://pet-support-backend-v8vc.onrender.com/api/';
 
 export const NoticeCategoryItem = ({ items, onListChange }) => {
@@ -98,7 +99,7 @@ export const NoticeCategoryItem = ({ items, onListChange }) => {
   };
   const onClickOnFavoriteBtn = id => {
     if (!isLoggedIn) {
-      toast.error('that add pet, you need to login', {
+      toast.error(i18n.t('pet_add_notice_auth'), {
         position: toast.POSITION.TOP_RIGHT,
       });
       navigate('/login');
