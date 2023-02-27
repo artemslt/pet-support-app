@@ -8,7 +8,7 @@ import {
   LinkWrapper,
 } from './NoticesCategoriesNav.styled';
 import { useBreakpoint } from 'styled-breakpoints/react-styled';
-import { up, only } from 'styled-breakpoints';
+import { up, only, down } from 'styled-breakpoints';
 import { MobAddBtn } from 'components/AddNoticeButton/MobVersion';
 import { selectIsLoggedIn } from 'redux/auth/authSelectors';
 
@@ -22,7 +22,7 @@ import i18n from 'i18n';
 
 export const NoticesCategoriesNav = () => {
   const { t } = useTranslation();
-  const mob = useBreakpoint(only('mobile'));
+  const mob = useBreakpoint(down('tablet'));
   const tablet = useBreakpoint(up('tablet'));
 
   const navigate = useNavigate();
