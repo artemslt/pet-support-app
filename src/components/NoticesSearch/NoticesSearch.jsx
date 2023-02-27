@@ -15,22 +15,17 @@ export const NoticesSearch = () => {
   const filter = useSelector(selectFilter);
   const [searchParams, setSearchParams] = useSearchParams();
 
-  const postQuery = searchParams.get('post') || '';
+  // const postQuery = searchParams.get('post') || '';
 
-  useEffect(() => {
-    setSearchParams({ post: filter });
+  // useEffect(() => {
+  //   setSearchParams({ post: filter });
 
-    // dispatch(addFilter(postQuery));
-  }, [dispatch, filter, postQuery, setSearchParams]);
-
-  if (postQuery) {
-    // setFilter(postQuery);
-    dispatch(addFilter(postQuery));
-  }
+  //   // dispatch(addFilter(postQuery));
+  // }, [dispatch, filter, postQuery, setSearchParams]);
 
   const onChangeFilter = e => {
-    dispatch(addFilter(e.target.value));
     setSearchParams({ post: e.target.value });
+    dispatch(addFilter(e.target.value));
     // setFilter(e.target.value);
     // dispatch(addFilter(e.target.value));
   };

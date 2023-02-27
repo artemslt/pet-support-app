@@ -26,7 +26,6 @@ export const NoticeSearchList = () => {
     fatchGetSearch(filter);
   }, [filter]);
 
-  console.log(items);
   return (
     <>
       {isLoading ? (
