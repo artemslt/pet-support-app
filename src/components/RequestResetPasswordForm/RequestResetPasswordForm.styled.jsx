@@ -181,6 +181,7 @@ export const Text = styled.p`
 `;
 
 export const Link = styled(RouterLink)`
+  margin-left: 2px;
   text-decoration: none;
   color: ${prop => prop.theme.colors.blue};
   transition: ${({ theme }) => theme.btnAnimationTransition};
