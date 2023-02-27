@@ -1,4 +1,3 @@
-// import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   Form,
@@ -44,23 +43,24 @@ export const UserAvatarBlock = () => {
         ) : (
           <ImgPlaceholder src={addIcon} />
         )}
+
+        <Button type="button">
+          <label htmlFor="uploadAvatar">
+            <input
+              type="file"
+              accept=".png, .jpg, .jpeg"
+              name="userAvatar"
+              id="uploadAvatar"
+              style={{ width: 0, height: 0, opacity: 0 }}
+              onChange={onChangeAvatar}
+            />
+            <EditWrapp>
+              <img src={cameraIcon} alt="" />
+              <Text>{t('Edit_photo')}</Text>
+            </EditWrapp>
+          </label>
+        </Button>
       </AvatarThumb>
-      <Button type="button">
-        <label htmlFor="uploadAvatar">
-          <input
-            type="file"
-            accept=".png, .jpg, .jpeg"
-            name="userAvatar"
-            id="uploadAvatar"
-            style={{ width: 0, height: 0, opacity: 0 }}
-            onChange={onChangeAvatar}
-          />
-          <EditWrapp>
-            <img src={cameraIcon} alt="" />
-            <Text>{t('Edit_photo')}</Text>
-          </EditWrapp>
-        </label>
-      </Button>
     </Form>
   );
 };
