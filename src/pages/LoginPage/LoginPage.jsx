@@ -4,8 +4,9 @@ import { BackgroundWrapper } from './AuthPage.styled';
 const LoginPage = () => {
   return (
     <>
-      <BackgroundWrapper> <LoginForm /></BackgroundWrapper>
-     
+      <BackgroundWrapper>
+        <LoginForm />
+      </BackgroundWrapper>
     </>
   );
 };
