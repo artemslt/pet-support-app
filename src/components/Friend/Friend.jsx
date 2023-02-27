@@ -57,7 +57,7 @@ export const Friend = ({
                 onMouseEnter={handleTimeHover}
                 onMouseLeave={handleTimeLeave}
               >
-                {t('Time:')}
+                <span>{t('Time')}</span>
               </CardTime>
               {hours ? (
                 <CardTime

@@ -31,11 +31,14 @@ export const RequestResetPasswordForm = () => {
     };
     try {
       const data = await axios.patch('auth/resetpassword', email);
-      if (data.type === 'auth/requestreset/fulfilled') {
+      toast.success(
+        'Received your request, please check your email and follow the link to reset password'
+      );
+      if (data.type === 'auth/resetpassword/fulfilled') {
         resetForm();
       }
     } catch (error) {
-      toast.error('Something wrong, please try again later');
+      toast.error(error.response.data.message);
     }
   };
 
@@ -69,7 +72,7 @@ export const RequestResetPasswordForm = () => {
                   type="submit"
                   disabled={!(formik.dirty && formik.isValid)}
                 >
-                  Reset password
+                  Request reset password
                 </Button>
 
                 <Text>
