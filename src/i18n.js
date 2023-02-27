@@ -151,6 +151,8 @@ i18n
           delete_info_text: 'Are you sure you want to delete a card?',
           no_notice: "You haven't notices yet",
           pet_add_notice_auth: 'To add pet, you need to login',
+          Add_to: 'Add to',
+          Delete_from: 'Delete from',
         },
       },
       uk: {
@@ -276,7 +278,6 @@ i18n
           Reset_Password_notification: `Введіть свою електронну адресу, і ми надішлемо вам електронний лист для оновлення паролю.`,
           Reset_Password_notification_check:
             'Отримали ваш запит, перевірте свою електронну пошту та перейдіть за посиланням, щоб скинути пароль',
-
           Back_to: 'Повернутись ',
           Password: 'Пароль',
           Reset: 'Оновити',
@@ -287,6 +288,8 @@ i18n
           delete_info_text: 'Ви впевнені, що хочете видалити карту?',
           no_notice: 'Оголошення відсутні',
           pet_add_notice_auth: 'Увійдіть для додавання оголошення',
+          Add_to: 'Додати до',
+          Delete_from: 'Видалити з',
         },
       },
     },
