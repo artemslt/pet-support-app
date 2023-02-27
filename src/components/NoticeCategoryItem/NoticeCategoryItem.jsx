@@ -187,7 +187,7 @@ export const NoticeCategoryItem = ({ items, onListChange }) => {
                   ref={currentIdRef}
                   id={_id}
                 >
-                  Learn more
+                  {t('Learn_more')}
                 </NoticeBtn>
                 {!isLoading && (
                   <ModalMenu
@@ -207,7 +207,7 @@ export const NoticeCategoryItem = ({ items, onListChange }) => {
                       setOpenModalDelete(true);
                     }}
                   >
-                    <p style={{ marginRight: 13 }}>Delete</p>
+                    <p style={{ marginRight: 13 }}>{t('Delete')}</p>
                     <DeleteIcon style={{ fill: 'currentcolor' }} />
                   </NoticeBtn>
                 )}
