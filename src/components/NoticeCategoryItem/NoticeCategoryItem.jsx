@@ -8,6 +8,7 @@ import { ModalMenu } from 'components/Modal/Modal';
 import { LearnMore } from 'components/NoticesModalLearnMore/NoticesModalLearnMore';
 import { useRef, useState } from 'react';
 import axios from 'axios';
+import moment from 'moment/moment';
 import { toast } from 'react-toastify';
 import {
   Card,
@@ -116,6 +117,17 @@ export const NoticeCategoryItem = ({ items, onListChange }) => {
     }
   };
 
+  const calcAge = date => {
+    const diff = moment(date, 'DD-MM-YYYY');
+    const duration = moment().diff(diff, 'milliseconds');
+    const years = moment.duration(duration).years();
+    const months = moment.duration(duration).months();
+    if (years < 1) {
+      return `${months} months`;
+    }
+    return `${years} years`;
+  };
+
   return (
     <>
       {filteredNotices.map(
@@ -171,7 +183,7 @@ export const NoticeCategoryItem = ({ items, onListChange }) => {
                   </tr>
                   <tr>
                     <TableData>{t('Age')}:</TableData>
-                    <TableData>{date}</TableData>
+                    <TableData>{calcAge(date)}</TableData>
                   </tr>
                   {category === 'sell' && (
                     <tr>
