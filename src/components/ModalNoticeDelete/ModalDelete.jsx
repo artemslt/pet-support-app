@@ -5,7 +5,7 @@ export const ModalDelete = ({ onToggleModal, id, deletePet }) => {
   const { t } = useTranslation();
   return (
     <Wrapper>
-      <Title>Are you sure you want to delete this ad?</Title>
+      <Title>{t('delete_info_text')}</Title>
       <div>
         <Button
           onClick={() => {

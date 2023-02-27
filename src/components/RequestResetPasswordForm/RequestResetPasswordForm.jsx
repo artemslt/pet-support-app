@@ -34,9 +34,7 @@ export const RequestResetPasswordForm = () => {
     };
     try {
       const data = await axios.patch('auth/resetpassword', email);
-      toast.success(
-        'Received your request, please check your email and follow the link to reset password'
-      );
+      toast.success(i18n.t('Reset_Password_notification_check'));
       if (data.type === 'auth/resetpassword/fulfilled') {
         resetForm();
       }

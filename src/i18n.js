@@ -139,6 +139,8 @@ i18n
           Delete: 'Delete',
           Reset_Password: 'Reset Password',
           Reset_Password_notification: ` Please enter your email address and we will send you an email to reset your password.`,
+          Reset_Password_notification_check:
+            'Received your request, please check your email and follow the link to reset password',
           Back_to: 'Back to',
           Password: 'Password',
           Reset: 'Reset',
@@ -147,6 +149,7 @@ i18n
           no: 'No',
           logout_info_text: 'Are you sure you want to logout?',
           delete_info_text: 'Are you sure you want to delete a card?',
+          no_notice: "You haven't notices yet",
         },
       },
       ua: {
@@ -270,6 +273,9 @@ i18n
           Delete: 'Видалити',
           Reset_Password: 'Оновити пароль',
           Reset_Password_notification: `Введіть свою електронну адресу, і ми надішлемо вам електронний лист щоб оновити свій пароль.`,
+          Reset_Password_notification_check:
+            'Отримали ваш запит, перевірте свою електронну пошту та перейдіть за посиланням, щоб скинути пароль',
+
           Back_to: 'Повернутись ',
           Password: 'Паролль',
           Reset: 'Оновити',
@@ -278,6 +284,7 @@ i18n
           No: 'Ні',
           logout_info_text: 'Ви впевнені, що хочете вийти?',
           delete_info_text: 'Ви впевнені, що хочете видалити карту?',
+          no_notice: 'Оголошення відсутні',
         },
       },
     },

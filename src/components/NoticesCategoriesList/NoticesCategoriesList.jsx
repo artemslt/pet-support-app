@@ -5,10 +5,12 @@ import { useLocation } from 'react-router-dom';
 import { NoticeCategoryItem } from 'components/NoticeCategoryItem/NoticeCategoryItem';
 import { CategoriesList } from './NoticesCategoriesList.styled';
 import { Spinner } from 'components/Spinner/Spinner.styled';
+import { useTranslation } from 'react-i18next';
 
 axios.defaults.baseURL = 'https://pet-support-backend-v8vc.onrender.com/api/';
 
 export const NoticesCategoriesList = () => {
+  const { t } = useTranslation();
   const [allNotices, setAllNotices] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -46,10 +48,6 @@ export const NoticesCategoriesList = () => {
     getNoticesByCategory(pathname);
   }, [pathname]);
 
-  function onListChange(newList) {
-    console.log('newList__2', newList);
-    setAllNotices(newList);
-  }
   return (
     <>
       {isLoading ? (
@@ -57,7 +55,7 @@ export const NoticesCategoriesList = () => {
       ) : (
         <CategoriesList>
           {allNotices.length === 0 ? (
-            <h2>You haven't notices yet</h2>
+            <h2>{t('no_notice')}</h2>
           ) : (
             <NoticeCategoryItem
               items={allNotices}
