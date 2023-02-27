@@ -5,7 +5,6 @@ import { Overlay, Modal } from './Modal.styled';
 
 export const ModalMenu = ({ children, open, onClose }) => {
   const dispatch = useDispatch();
-
   useEffect(() => {
     window.addEventListener('keydown', handlerKeyDown);
     if (open) {
