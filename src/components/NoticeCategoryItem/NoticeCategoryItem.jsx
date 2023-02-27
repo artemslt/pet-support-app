@@ -8,6 +8,7 @@ import { ModalMenu } from 'components/Modal/Modal';
 import { LearnMore } from 'components/NoticesModalLearnMore/NoticesModalLearnMore';
 import { useRef, useState } from 'react';
 import axios from 'axios';
+import moment from 'moment/moment';
 import { toast } from 'react-toastify';
 import {
   Card,
@@ -29,9 +30,12 @@ import { refreshUser } from 'redux/auth/authOperations';
 import { useNavigate } from 'react-router-dom';
 
 import { ModalDelete } from '../ModalNoticeDelete/ModalDelete';
+
+import i18n from 'i18n';
+
 axios.defaults.baseURL = 'https://pet-support-backend-v8vc.onrender.com/api/';
 
-export const NoticeCategoryItem = ({ items, onListChange }) => {
+export const NoticeCategoryItem = ({ items, onListChange, pathname }) => {
   const { t } = useTranslation();
   const { _id: userId, favorite } = useSelector(selectUser);
   const [openModalDelete, setOpenModalDelete] = useState(false);
@@ -49,6 +53,7 @@ export const NoticeCategoryItem = ({ items, onListChange }) => {
   const currentIdRef = useRef();
   const [modalToggle, setModalToggle] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [deleteId, setDeleteId] = useState(null);
   const onToggleModal = e => {
     setModalToggle(false);
     setOpenModalDelete(false);
@@ -73,6 +78,7 @@ export const NoticeCategoryItem = ({ items, onListChange }) => {
     try {
       await axios.post(`notices/favorite/${id}`);
       dispatch(refreshUser());
+      setDeleteId(null);
     } catch (error) {
       console.log(error.message);
     }
@@ -82,9 +88,10 @@ export const NoticeCategoryItem = ({ items, onListChange }) => {
     try {
       await axios.delete(`notices/favorite/${id}`);
       dispatch(refreshUser());
-      const newList = items.filter(item => item._id !== id);
-
-      onListChange(newList);
+      if (pathname === '/notices/favorite') {
+        const newList = items.filter(item => item._id !== id);
+        onListChange(newList);
+      }
     } catch (error) {
       console.log(error.message);
     }
@@ -99,9 +106,10 @@ export const NoticeCategoryItem = ({ items, onListChange }) => {
   };
   const onClickOnFavoriteBtn = id => {
     if (!isLoggedIn) {
-      toast.error('that add pet, you need to login', {
+      toast.error(i18n.t('pet_add_notice_auth'), {
         position: toast.POSITION.TOP_RIGHT,
       });
+
       navigate('/login');
       return;
     }
@@ -114,6 +122,42 @@ export const NoticeCategoryItem = ({ items, onListChange }) => {
       await axios.delete(`notices/notice/${id}`);
     } catch (error) {
       console.log(error);
+    }
+  };
+
+  const calcAge = date => {
+    const diff = moment(date, 'DD-MM-YYYY');
+    const duration = moment().diff(diff, 'milliseconds');
+    const years = moment.duration(duration).years();
+    const months = moment.duration(duration).months();
+
+    switch (years) {
+      case 0: {
+        if (months < 1) return 'under a month';
+        return `${months} months`;
+      }
+
+      case 1: {
+        return '1 year';
+      }
+      default: {
+        return `${years} years`;
+      }
+    }
+  };
+
+  const categorySelector = categ => {
+    switch (categ) {
+      case 'for-free': {
+        return 'in good hands';
+      }
+      case 'lost-found': {
+        return 'lost/found';
+      }
+
+      default: {
+        return 'sell';
+      }
     }
   };
 
@@ -135,7 +179,7 @@ export const NoticeCategoryItem = ({ items, onListChange }) => {
             <div style={{ position: 'relative' }}>
               <Image src={image} alt="pet" />
               <Badge>
-                <CategoryTitle>{category}</CategoryTitle>
+                <CategoryTitle>{categorySelector(category)}</CategoryTitle>
               </Badge>
               <AddToFavotiteBtn
                 type="submit"
@@ -154,7 +198,6 @@ export const NoticeCategoryItem = ({ items, onListChange }) => {
                 style={{
                   height: 80,
                   overflow: 'hidden',
-                  marginBottom: 20,
                 }}
               >
                 <NoticeTitle>{title}</NoticeTitle>
@@ -172,7 +215,7 @@ export const NoticeCategoryItem = ({ items, onListChange }) => {
                   </tr>
                   <tr>
                     <TableData>{t('Age')}:</TableData>
-                    <TableData>{date}</TableData>
+                    <TableData>{calcAge(date)}</TableData>
                   </tr>
                   {category === 'sell' && (
                     <tr>
@@ -188,7 +231,7 @@ export const NoticeCategoryItem = ({ items, onListChange }) => {
                   ref={currentIdRef}
                   id={_id}
                 >
-                  Learn more
+                  {t('Learn_more')}
                 </NoticeBtn>
                 {!isLoading && (
                   <ModalMenu
@@ -206,9 +249,10 @@ export const NoticeCategoryItem = ({ items, onListChange }) => {
                   <NoticeBtn
                     onClick={e => {
                       setOpenModalDelete(true);
+                      setDeleteId(_id);
                     }}
                   >
-                    <p style={{ marginRight: 13 }}>Delete</p>
+                    <p style={{ marginRight: 13 }}>{t('Delete')}</p>
                     <DeleteIcon style={{ fill: 'currentcolor' }} />
                   </NoticeBtn>
                 )}
@@ -219,8 +263,8 @@ export const NoticeCategoryItem = ({ items, onListChange }) => {
                 >
                   <ModalDelete
                     onToggleModal={onToggleModal}
-                    id={_id}
                     deletePet={deletePet}
+                    deleteId={deleteId}
                   />
                 </ModalMenu>
               </BlockBtns>

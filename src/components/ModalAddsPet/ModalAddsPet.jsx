@@ -15,6 +15,7 @@ import { useDispatch } from 'react-redux';
 import { onSelector } from 'redux/InputPets/inputPetsSlice';
 import { addPet } from 'redux/pets/petsOperations';
 import i18n from 'i18n';
+import { useTranslation } from 'react-i18next';
 
 const initialValues = {
   name: '',
@@ -25,6 +26,7 @@ const initialValues = {
 };
 
 export const ModalAddsPet = ({ onToggleModal }) => {
+  const { t } = useTranslation();
   const [pageToggle, setPageToggle] = useState(true);
   const [imgUrl, setImgUrl] = useState('');
   const [file, setFile] = useState(null);
@@ -84,7 +86,7 @@ export const ModalAddsPet = ({ onToggleModal }) => {
         <ClosesIcon />
       </ButtonCloses>
       <div>
-        <Title>Add pet</Title>
+        <Title>{t('Add_pet')}</Title>
         <Formik
           initialValues={initialValues}
           onSubmit={handleSubmit}

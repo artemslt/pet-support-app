@@ -126,7 +126,7 @@ export const LoginForm = () => {
                   {t('No_account')} <Link to="/register">{t('Register')}</Link>
                 </Text>
                 <Text>
-                  Forgot your password? <Link to="/requestreset">Reset</Link>
+                  {t('Forgot_password')} <Link to="/requestreset">{t('Reset')}</Link>
                 </Text>
               </Form>
             )}

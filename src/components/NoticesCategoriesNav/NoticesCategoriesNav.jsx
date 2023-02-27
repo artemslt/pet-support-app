@@ -16,18 +16,31 @@ import { useState } from 'react';
 import { AddPet } from 'components/ModalAddNotice/ModalAddNotice';
 import { ModalMenu } from 'components/Modal/Modal';
 import { useTranslation } from 'react-i18next';
+import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import i18n from 'i18n';
 
 export const NoticesCategoriesNav = () => {
   const { t } = useTranslation();
   const mob = useBreakpoint(only('mobile'));
   const tablet = useBreakpoint(up('tablet'));
 
+  const navigate = useNavigate();
   let isLoggin = useSelector(selectIsLoggedIn);
   const [modalToggle, setModalToggle] = useState(false);
   const onToggleModal = e => {
     setModalToggle(false);
   };
-  
+
+  const addPet = () => {
+    if (!isLoggin) {
+      toast.error(i18n.t('pet_add_notice_auth'));
+      navigate('/login');
+      return;
+    }
+    setModalToggle(true);
+  };
+
   return (
     <CategoriesNav>
       <ModalMenu onClose={() => setModalToggle(false)} open={modalToggle}>
@@ -45,8 +58,8 @@ export const NoticesCategoriesNav = () => {
         ) : null}
       </LinkWrapper>
 
-      {mob && <MobAddBtn onClick={e => setModalToggle(true)} />}
-      {tablet && <AddNoticeButton onClick={e => setModalToggle(true)} />}
+      {mob && <MobAddBtn onClick={e => addPet()} />}
+      {tablet && <AddNoticeButton onClick={e => addPet()} />}
     </CategoriesNav>
   );
 };

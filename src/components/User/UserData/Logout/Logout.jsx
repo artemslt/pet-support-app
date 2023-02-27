@@ -36,13 +36,13 @@ export const Logout = () => {
       </LogoutWrapper>
       <ModalMenu onClose={() => setModalOpen(false)} open={modalOpen}>
         <ModalMenuInner>
-          <ModalLogoutText>Are you sure you want to logout?</ModalLogoutText>
+          <ModalLogoutText>{t('logout_info_text')}</ModalLogoutText>
           <div>
             <ModalToggleBtn type="submit" onClick={logoutHandler}>
-              Yes
+              {t('Yes')}
             </ModalToggleBtn>
             <ModalToggleBtn type="button" onClick={() => setModalOpen(false)}>
-              No
+              {t('No')}
             </ModalToggleBtn>
           </div>
         </ModalMenuInner>
