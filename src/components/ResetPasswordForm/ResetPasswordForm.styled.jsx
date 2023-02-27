@@ -27,11 +27,11 @@ export const FormWrapper = styled.div`
     box-shadow: 7px 4px 14px rgba(0, 0, 0, 0.11);
     border-radius: 40px;
     width: 608px;
-    height: 519px;
+    height: 469px;
   }
   ${up('pc')} {
     width: 618px;
-    height: 523px;
+    height: 473px;
   }
 `;
 
@@ -164,7 +164,7 @@ export const Button = styled.button`
     background-color: ${({ theme }) => theme.colors.mainAccent};
     color: ${({ theme }) => theme.colors.mainWhite};
     opacity: 0.5;
-    }
+  }
   ${up('tablet')} {
     background-color: ${prop => prop.theme.colors.mainWhite};
     &:hover,
@@ -172,13 +172,14 @@ export const Button = styled.button`
       background-color: ${prop => prop.theme.colors.mainAccent};
     }
     outline: none;
-    width: 458px;
+    width: 448px;
+    height: 44px;
   }
   ${up('pc')} {
+    width: 458px;
     height: 48px;
   }
 `;
-
 
 export const Text = styled.p`
   margin: 30px 0;
