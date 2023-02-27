@@ -22,16 +22,17 @@ import { resetPasswordSchema } from '../../schemas/authValidationSchemas';
 import { Container } from 'components/Container/Container.styled';
 import { ReactComponent as EyeIcon } from '../../images/eye.svg';
 import { ReactComponent as EyeClosedIcon } from '../../images/eye-slash.svg';
-
+import i18n from 'i18n';
+import { useTranslation } from 'react-i18next';
 
 export const ResetPasswordForm = () => {
-  
+  const { t } = useTranslation();
 
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
   const { resetToken } = useParams();
- 
+
   const initialValues = {
     password: '',
     confirmPassword: '',
@@ -50,7 +51,7 @@ export const ResetPasswordForm = () => {
         resetForm();
       }
     } catch (error) {
-      toast.error('Something wrong, please try again later');
+      toast.error(i18n.t('t_login_1'));
     }
   };
 
@@ -58,7 +59,7 @@ export const ResetPasswordForm = () => {
     <Container>
       <FlexBox>
         <FormWrapper>
-          <Heading>Reset Password</Heading>
+          <Heading>{t('Reset_Password')}</Heading>
           <Formik
             initialValues={initialValues}
             validationSchema={resetPasswordSchema}
@@ -71,7 +72,7 @@ export const ResetPasswordForm = () => {
                     autoComplete="on"
                     type={showPassword ? 'text' : 'password'}
                     name="password"
-                    placeholder='Password'
+                    placeholder={t('Password')}
                   ></Input>
                   <Error name="password" component="p"></Error>
                   <IconButton
@@ -88,7 +89,7 @@ export const ResetPasswordForm = () => {
                     autoComplete="off"
                     type={showConfirmPassword ? 'text' : 'password'}
                     name="confirmPassword"
-                    placeholder='Confirm Password'
+                    placeholder={t('Confirm_Password')}
                   ></Input>
                   <Error name="confirmPassword" component="p"></Error>
                   <IconButton
@@ -104,11 +105,11 @@ export const ResetPasswordForm = () => {
                   type="submit"
                   disabled={!(formik.dirty && formik.isValid)}
                 >
-                  Reset password
+                  {t('Reset_Password')}
                 </Button>
 
                 <Text>
-                  Back to <Link to="/login">Login</Link>
+                  {t('Back_to')} <Link to="/login">{t('Login')}</Link>
                 </Text>
               </Form>
             )}

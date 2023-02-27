@@ -52,9 +52,7 @@ export const PetsList = ({ item, handleDeleteCard }) => {
         </PetDeleteBtn>
         <ModalMenu onClose={() => setModalOpen(false)} open={modalOpen}>
           <ModalMenuInner>
-            <ModalLogoutText>
-              Are you sure you want to delete a card?
-            </ModalLogoutText>
+            <ModalLogoutText>{t('delete_info_text')}</ModalLogoutText>
             <div>
               <ModalToggleBtn
                 type="submit"
@@ -62,10 +60,10 @@ export const PetsList = ({ item, handleDeleteCard }) => {
                   handleDeleteCard(item._id);
                 }}
               >
-                Yes
+                {t('Yes')}
               </ModalToggleBtn>
               <ModalToggleBtn type="button" onClick={() => setModalOpen(false)}>
-                No
+                {t('No')}
               </ModalToggleBtn>
             </div>
           </ModalMenuInner>

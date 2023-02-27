@@ -125,9 +125,6 @@ export const LearnMore = ({ onToggleModal, data, onClickOnFavoriteBtn }) => {
           </Comment>
           <BlockBtns>
             <Btn onClick={e => window.open(`tel:${owner.phone}`)}>Contact</Btn>
-            {/* {!favorite && <Btn onClick={e => addOrDell(_id)}>
-                Add to <FavoriteIcon />
-              </Btn>} */}
             {!favorite ? <Btn onClick={e => onClickOnFavoriteBtn(_id)}>
                 Add to <FavoriteIcon />
               </Btn> : !favorite.includes(_id) ? (

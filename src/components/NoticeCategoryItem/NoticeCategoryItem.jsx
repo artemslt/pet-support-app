@@ -8,6 +8,7 @@ import { ModalMenu } from 'components/Modal/Modal';
 import { LearnMore } from 'components/NoticesModalLearnMore/NoticesModalLearnMore';
 import { useRef, useState } from 'react';
 import axios from 'axios';
+import moment from 'moment/moment';
 import { toast } from 'react-toastify';
 import {
   Card,
@@ -51,6 +52,7 @@ export const NoticeCategoryItem = ({ items, onListChange }) => {
   const [isLoading, setIsLoading] = useState(false);
   const onToggleModal = e => {
     setModalToggle(false);
+    setOpenModalDelete(false);
   };
 
   const onClickLearnMore = e => {
@@ -98,9 +100,7 @@ export const NoticeCategoryItem = ({ items, onListChange }) => {
   };
   const onClickOnFavoriteBtn = id => {
     if (!isLoggedIn) {
-      toast.error('that add pet, you need to login', {
-        position: toast.POSITION.TOP_RIGHT,
-      });
+      toast.error('that add pet to favorite, you need to login');
       navigate('/login');
       return;
     }
@@ -114,6 +114,17 @@ export const NoticeCategoryItem = ({ items, onListChange }) => {
     } catch (error) {
       console.log(error);
     }
+  };
+
+  const calcAge = date => {
+    const diff = moment(date, 'DD-MM-YYYY');
+    const duration = moment().diff(diff, 'milliseconds');
+    const years = moment.duration(duration).years();
+    const months = moment.duration(duration).months();
+    if (years < 1) {
+      return `${months} months`;
+    }
+    return `${years} years`;
   };
 
   return (
@@ -171,7 +182,7 @@ export const NoticeCategoryItem = ({ items, onListChange }) => {
                   </tr>
                   <tr>
                     <TableData>{t('Age')}:</TableData>
-                    <TableData>{date}</TableData>
+                    <TableData>{calcAge(date)}</TableData>
                   </tr>
                   {category === 'sell' && (
                     <tr>
@@ -187,7 +198,7 @@ export const NoticeCategoryItem = ({ items, onListChange }) => {
                   ref={currentIdRef}
                   id={_id}
                 >
-                  Learn more
+                  {t('Learn_more')}
                 </NoticeBtn>
                 {!isLoading && (
                   <ModalMenu
@@ -207,7 +218,7 @@ export const NoticeCategoryItem = ({ items, onListChange }) => {
                       setOpenModalDelete(true);
                     }}
                   >
-                    <p style={{ marginRight: 13 }}>Delete</p>
+                    <p style={{ marginRight: 13 }}>{t('Delete')}</p>
                     <DeleteIcon style={{ fill: 'currentcolor' }} />
                   </NoticeBtn>
                 )}
