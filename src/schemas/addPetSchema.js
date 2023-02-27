@@ -1,3 +1,4 @@
+import i18n from 'i18n';
 import * as yup from 'yup';
 const nameRegexp = /^([a-zA-Zа-яА-ЯёЁёЁЇїІіҐґЄє\s]+)$/;
 const birthdayRegexp = /^(\d{1,2})\.(\d{1,2})(?:\.(\d{4}))?$/;
@@ -5,27 +6,29 @@ const birthdayRegexp = /^(\d{1,2})\.(\d{1,2})(?:\.(\d{4}))?$/;
 export const AddPetSchemaPageOne = yup.object().shape({
   name: yup
     .string()
-    .matches(nameRegexp, 'Name has the format "Barsik"')
-    .min(2, 'Name should be 2 characters minimum.')
-    .max(16, 'Name should be 16 characters maximum.')
-    .required('Name is required'),
+    .matches(nameRegexp, i18n.t('pet_name_match'))
+    .min(2, i18n.t('pet_name_min'))
+    .max(16, i18n.t('pet_name_max'))
+    .required(i18n.t('pet_name_required')),
   birthday: yup
     .string()
-    .matches(birthdayRegexp, 'Birthday has the format "12.05.2022"')
-    .required('Birthday required'),
+    .matches(birthdayRegexp, i18n.t('birthday_match'))
+    .required(i18n.t('birthday_required')),
   breed: yup
     .string()
-    .matches(nameRegexp, 'Breed must contain only letters')
-    .min(3, 'Breed should be 3 characters minimum.')
-    .max(40, 'Breed should be 40 characters maximum.')
-    .required('Breed is required'),
+    .matches(nameRegexp, i18n.t('breed_match'))
+    .min(2, i18n.t('breed_min'))
+    .max(40, i18n.t('breed_max'))
+    .required(i18n.t('breed_required')),
 });
 
 export const AddPetSchemaPageTwo = yup.object().shape({
-  photo: yup.string().required('Photo required'),
+  photo: yup.string().required(i18n.t('photo_required')),
   comment: yup
     .string()
-    .min(8, 'Comment should be 8 characters minimum.')
-    .max(120, 'Comment should be 120 characters maximum.')
-    .required('Comment is required'),
+    .min(8, i18n.t('commet_min_'))
+    .max(120, i18n.t('commet_max_'))
+    .required(i18n.t('commet_required_')),
 });
+
+i18n.t('photo_required');

@@ -14,6 +14,8 @@ import { AddPetSchemaPageOne, AddPetSchemaPageTwo } from 'schemas/addPetSchema';
 import { useDispatch } from 'react-redux';
 import { onSelector } from 'redux/InputPets/inputPetsSlice';
 import { addPet } from 'redux/pets/petsOperations';
+import i18n from 'i18n';
+import { useTranslation } from 'react-i18next';
 
 const initialValues = {
   name: '',
@@ -24,6 +26,7 @@ const initialValues = {
 };
 
 export const ModalAddsPet = ({ onToggleModal }) => {
+  const { t } = useTranslation();
   const [pageToggle, setPageToggle] = useState(true);
   const [imgUrl, setImgUrl] = useState('');
   const [file, setFile] = useState(null);
@@ -39,7 +42,7 @@ export const ModalAddsPet = ({ onToggleModal }) => {
     const { name, birthday, breed, comment } = values;
 
     if (!name || !birthday || !breed || !comment || !file) {
-      return toast.error(`All fields must be filled`);
+      return toast.error(i18n.t('all_field'));
     }
 
     const userPet = {
@@ -62,8 +65,8 @@ export const ModalAddsPet = ({ onToggleModal }) => {
     if (event.target.files && event.target.files.length > 0) {
       const file = event.target.files[0];
       const size = file.size;
-      if (Number(size) > 3000000) {
-        return toast.error(`Photo must be no larger than 5 megabytes`);
+      if (Number(size) > 5000000) {
+        return toast.error(i18n.t('t_photo'));
       }
 
       setFile(file);
@@ -83,7 +86,7 @@ export const ModalAddsPet = ({ onToggleModal }) => {
         <ClosesIcon />
       </ButtonCloses>
       <div>
-        <Title>Add pet</Title>
+        <Title>{t('Add_pet')}</Title>
         <Formik
           initialValues={initialValues}
           onSubmit={handleSubmit}

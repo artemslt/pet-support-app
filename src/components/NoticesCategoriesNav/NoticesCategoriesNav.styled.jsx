@@ -32,6 +32,7 @@ export const LinkWrapper = styled.div`
 
   ${up('pc')} {
     max-width: 100%;
+    flex-direction: row;
   }
 `;
 

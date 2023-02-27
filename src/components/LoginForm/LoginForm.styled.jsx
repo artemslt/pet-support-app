@@ -172,9 +172,11 @@ export const Button = styled.button`
       background-color: ${prop => prop.theme.colors.mainAccent};
     }
     outline: none;
-    width: 458px;
+    width: 448px;
+    height: 44px;
   }
   ${up('pc')} {
+    width: 458px;
     height: 48px;
   }
 `;
@@ -184,7 +186,7 @@ export const ButtonText = styled.span`
 `;
 
 export const Text = styled.p`
-  margin: 30px 0;
+  margin-top: 10px;
   font-family: ${prop => prop.theme.fonts[1]};
   font-weight: ${prop => prop.theme.fontWeights[0]};
   font-size: ${prop => prop.theme.fontSizes[0]}px;

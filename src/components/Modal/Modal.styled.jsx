@@ -12,7 +12,6 @@ export const Overlay = styled.div`
   z-index: 1200;
   opacity: 0;
   visibility: hidden;
-
   background: rgba(17, 17, 17, 0.6);
   backdrop-filter: blur(10px);
   &.show {
@@ -27,7 +26,6 @@ export const Modal = styled.div`
   border-radius: 40px;
   opacity: 0;
   transition: opacity 300ms ease-in;
-
   &.show {
     opacity: 1;
     max-height: 90%;

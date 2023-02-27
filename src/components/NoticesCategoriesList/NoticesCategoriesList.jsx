@@ -5,14 +5,20 @@ import { useLocation } from 'react-router-dom';
 import { NoticeCategoryItem } from 'components/NoticeCategoryItem/NoticeCategoryItem';
 import { CategoriesList } from './NoticesCategoriesList.styled';
 import { Spinner } from 'components/Spinner/Spinner.styled';
+import { useTranslation } from 'react-i18next';
 
 axios.defaults.baseURL = 'https://pet-support-backend-v8vc.onrender.com/api/';
 
 export const NoticesCategoriesList = () => {
+  const { t } = useTranslation();
   const [allNotices, setAllNotices] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
   let { pathname } = useLocation();
+
+  function onListChange(newList) {
+    setAllNotices(newList);
+  }
 
   useEffect(() => {
     const getNoticesByCategory = async pathname => {
@@ -31,10 +37,12 @@ export const NoticesCategoriesList = () => {
           return;
         }
         const notices = await axios.get(`notices${pathname}`);
+
         setAllNotices(notices.data.data.result);
         setIsLoading(false);
       } catch (error) {
-        console.log(error.message);
+        setAllNotices([]);
+        setIsLoading(false);
       }
     };
     getNoticesByCategory(pathname);
@@ -46,7 +54,14 @@ export const NoticesCategoriesList = () => {
         <Spinner style={{ margin: '0 auto' }} />
       ) : (
         <CategoriesList>
-          <NoticeCategoryItem items={allNotices} />
+          {allNotices.length === 0 ? (
+            <h2>{t('no_notice')}</h2>
+          ) : (
+            <NoticeCategoryItem
+              items={allNotices}
+              onListChange={onListChange}
+            />
+          )}
         </CategoriesList>
       )}
     </>

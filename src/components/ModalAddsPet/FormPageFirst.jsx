@@ -12,6 +12,7 @@ import {
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 import { onSelector } from 'redux/InputPets/inputPetsSlice';
+import { useTranslation } from 'react-i18next';
 export const FormePageFist = ({
   formik,
   onClickToggle,
@@ -19,6 +20,7 @@ export const FormePageFist = ({
   setStartDate,
   startDate,
 }) => {
+  const { t } = useTranslation();
   const [focus, setFocus] = useState(false);
   const isInput = useSelector(state => state.isInput.toggle);
 
@@ -27,17 +29,17 @@ export const FormePageFist = ({
   return (
     <>
       <Label htmlFor="">
-        Name pet
+        {t('Name_pet')}
         <Input
           type="text"
           name="name"
-          placeholder="Type name pet"
+          placeholder={t('Name_pet_p')}
           autoFocus={true}
         />
         <Error name="name" component="p"></Error>
       </Label>
       <Label htmlFor="">
-        Date of birth
+        {t('Date_of_birth')}
         <InputDatePicker
           selected={startDate}
           dateFormat="dd.MM.yyyy"
@@ -47,7 +49,7 @@ export const FormePageFist = ({
             setStartDate(date);
             formik.setFieldValue(
               'birthday',
-              date.toLocaleString().slice(0, 10)
+              date.toLocaleString('az-Cyrl-AZ').slice(0, 10)
             );
           }}
           minDate={new Date('December 17, 1900 03:24:00')}
@@ -58,9 +60,9 @@ export const FormePageFist = ({
         <ErrorSelect>{formik.errors.birthday}</ErrorSelect>
       </Label>
       <Label htmlFor="">
-        Breed
+        {t('Breed')}
         {!isInput ? (
-          <Input type="text" name="breed" placeholder="Type breed" />
+          <Input type="text" name="breed" placeholder={t('Breed_p')} />
         ) : (
           <SelectComponent
             onChange={value => formik.setFieldValue('breed', value.value)}
@@ -82,7 +84,7 @@ export const FormePageFist = ({
           disabled={!(formik.dirty && formik.isValid)}
           name="next"
         >
-          Next
+          {t('Next')}
         </Button>
         <Button
           type="button"
@@ -91,7 +93,7 @@ export const FormePageFist = ({
             onToggleModal(e);
           }}
         >
-          Cancel
+          {t('Cancel')}
         </Button>
       </WrapperBtn>
     </>

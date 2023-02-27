@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 
 import {
   LabelTitle,
@@ -32,6 +33,7 @@ export const SecondPart = ({
   imgUrl,
   setImgUrl,
 }) => {
+  const { t } = useTranslation();
   const { typeOfNotice } = values;
 
   useEffect(() => {
@@ -45,20 +47,21 @@ export const SecondPart = ({
     <div>
       <>
         <LabelTitle>
-          The sex<span>*</span>:
+          {t('The_sex')}
+          <span>*</span>:
         </LabelTitle>
         <>
           <SexSection role="group">
             <RadioBtnSex type="radio" name="sex" value="male" id="male" />
             <LabelSex htmlFor="male">
               <MaleIcon />
-              <Sex>Male</Sex>
+              <Sex>{t('Male')}</Sex>
             </LabelSex>
 
             <RadioBtnSex type="radio" name="sex" value="female" id="female" />
             <LabelSex htmlFor="female">
               <FemaleIcon />
-              <Sex>Female</Sex>
+              <Sex>{t('Female')}</Sex>
             </LabelSex>
           </SexSection>
         </>
@@ -68,10 +71,11 @@ export const SecondPart = ({
 
       <label>
         <LabelTitle>
-          Location<span>*</span>:
+          {t('Location')}
+          <span>*</span>:
         </LabelTitle>
 
-        <Input name="location" placeholder="Type location" />
+        <Input name="location" placeholder={t('Location_p')} />
         <Error name="location" component="div" />
       </label>
 
@@ -79,9 +83,10 @@ export const SecondPart = ({
         <>
           <label>
             <LabelTitle>
-              Price<span>*</span>:
+              {t('Price')}
+              <span>*</span>:
             </LabelTitle>
-            <Input name="price" placeholder="Type price" />
+            <Input name="price" placeholder={t('Price_p')} />
             <Error name="price" component="div" />
           </label>
         </>
@@ -89,7 +94,8 @@ export const SecondPart = ({
 
       <div>
         <LabelTitle>
-          Load the pet’s image:<span>*</span>
+          {t('Load_img')}
+          <span>*</span>
         </LabelTitle>
         <div>
           <ImgBox>
@@ -117,17 +123,16 @@ export const SecondPart = ({
           </ImgBox>
         </div>
       </div>
+      
 
       <label>
         <LabelTitle>
-          <p>
-            Comments <span>*</span>
-          </p>
+            {t('Comments')} <span>*</span>
         </LabelTitle>
         <CommentInput
           component="textarea"
           name="comment"
-          placeholder="Type comment"
+          placeholder={t('Comments_p')}
         />
         <Error name="comment" component="div" />
       </label>
@@ -135,19 +140,18 @@ export const SecondPart = ({
       <ButtonsSection>
         <Button
           type="submit"
-        //   name="done"
+          //   name="done"
           disabled={!(isValid && dirty)}
         >
-          Done
+          {t('Done')}
         </Button>
         <Button
           type="button"
           name="back"
           disabled={!isValid || !dirty}
           onClick={() => setStep(true)}
-   
         >
-          Back
+          {t('Back')}
         </Button>
       </ButtonsSection>
     </div>

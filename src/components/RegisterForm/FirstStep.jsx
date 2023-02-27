@@ -3,8 +3,10 @@ import { useState } from 'react';
 import { Label, Input, Error, IconButton } from './RegisterForm.styled';
 import { ReactComponent as EyeIcon } from '../../images/eye.svg';
 import { ReactComponent as EyeClosedIcon } from '../../images/eye-slash.svg';
+import { useTranslation } from 'react-i18next';
 
 export const FirstStep = () => {
+  const { t } = useTranslation();
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   return (
@@ -14,7 +16,7 @@ export const FirstStep = () => {
           autoComplete="on"
           type="text"
           name="email"
-          placeholder="Email"
+          placeholder={t('Email')}
         ></Input>
         <Error name="email" component="p"></Error>
       </Label>
@@ -23,7 +25,7 @@ export const FirstStep = () => {
           autoComplete="off"
           type={showPassword ? 'text' : 'password'}
           name="password"
-          placeholder="Password"
+          placeholder={t('Password')}
         ></Input>
         <Error name="password" component="p"></Error>
         <IconButton
@@ -40,7 +42,7 @@ export const FirstStep = () => {
           autoComplete="off"
           type={showConfirmPassword ? 'text' : 'password'}
           name="confirmPassword"
-          placeholder="Confirm Password"
+          placeholder={t('Confirm_Password')}
         ></Input>
         <Error name="confirmPassword" component="p"></Error>
         <IconButton
