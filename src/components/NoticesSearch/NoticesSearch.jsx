@@ -15,13 +15,7 @@ export const NoticesSearch = () => {
   const filter = useSelector(selectFilter);
   const [searchParams, setSearchParams] = useSearchParams();
 
-  // const postQuery = searchParams.get('post') || '';
-
-  // useEffect(() => {
-  //   setSearchParams({ post: filter });
-
-  //   // dispatch(addFilter(postQuery));
-  // }, [dispatch, filter, postQuery, setSearchParams]);
+  const postQuery = searchParams.get('post') || '';
 
   const onChangeFilter = e => {
     setSearchParams({ post: e.target.value });
@@ -35,6 +29,13 @@ export const NoticesSearch = () => {
     setSearchParams({ post: '' });
     dispatch(addFilter(''));
   };
+
+  useEffect(() => {
+    setSearchParams({ post: filter });
+    if (postQuery) {
+      dispatch(addFilter(postQuery));
+    }
+  }, [dispatch, filter, postQuery, setSearchParams]);
 
   return (
     <>
