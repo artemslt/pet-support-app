@@ -30,6 +30,7 @@ import { refreshUser } from 'redux/auth/authOperations';
 import { useNavigate } from 'react-router-dom';
 
 import { ModalDelete } from '../ModalNoticeDelete/ModalDelete';
+
 axios.defaults.baseURL = 'https://pet-support-backend-v8vc.onrender.com/api/';
 
 export const NoticeCategoryItem = ({ items, onListChange }) => {
@@ -121,10 +122,20 @@ export const NoticeCategoryItem = ({ items, onListChange }) => {
     const duration = moment().diff(diff, 'milliseconds');
     const years = moment.duration(duration).years();
     const months = moment.duration(duration).months();
-    if (years < 1) {
-      return `${months} months`;
+
+    switch (years) {
+      case 0: {
+        if (months < 1) return 'under a month';
+        return `${months} months`;
+      }
+
+      case 1: {
+        return '1 year';
+      }
+      default: {
+        return `${years} years`;
+      }
     }
-    return `${years} years`;
   };
 
   return (
