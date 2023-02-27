@@ -118,7 +118,6 @@ export const SecondPart = ({
         </div>
       </div>
       
-
       <label>
         <LabelTitle>
           Comments <span>*</span>
