@@ -60,6 +60,7 @@ export const NoticesCategoriesList = () => {
             <NoticeCategoryItem
               items={allNotices}
               onListChange={onListChange}
+              pathname={pathname}
             />
           )}
         </CategoriesList>
