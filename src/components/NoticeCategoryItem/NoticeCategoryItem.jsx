@@ -23,7 +23,6 @@ import {
   TableData,
 } from './NoticeCategoryItem.styled';
 
-
 import { useTranslation } from 'react-i18next';
 
 import { refreshUser } from 'redux/auth/authOperations';
@@ -32,7 +31,7 @@ import { useNavigate } from 'react-router-dom';
 import { ModalDelete } from '../ModalNoticeDelete/ModalDelete';
 axios.defaults.baseURL = 'https://pet-support-backend-v8vc.onrender.com/api/';
 
-export const NoticeCategoryItem = ({ items }) => {
+export const NoticeCategoryItem = ({ items, onListChange }) => {
   const { t } = useTranslation();
   const { _id: userId, favorite } = useSelector(selectUser);
   const [openModalDelete, setOpenModalDelete] = useState(false);
@@ -56,11 +55,11 @@ export const NoticeCategoryItem = ({ items }) => {
 
   const onClickLearnMore = e => {
     const getNoticeById = async id => {
-      setIsLoading(true)
+      setIsLoading(true);
       try {
         const notice = await axios.get(`notices/notice/${id}`);
         SetNotice(notice.data.data.notice);
-        setIsLoading(false)
+        setIsLoading(false);
       } catch (error) {
         console.log(error.message);
       }
@@ -69,7 +68,6 @@ export const NoticeCategoryItem = ({ items }) => {
     setModalToggle(true);
   };
 
-  
   const addToFavorite = async id => {
     try {
       await axios.post(`notices/favorite/${id}`);
@@ -83,6 +81,9 @@ export const NoticeCategoryItem = ({ items }) => {
     try {
       await axios.delete(`notices/favorite/${id}`);
       dispatch(refreshUser());
+      const newList = items.filter(item => item._id !== id);
+
+      onListChange(newList);
     } catch (error) {
       console.log(error.message);
     }
@@ -171,23 +172,25 @@ export const NoticeCategoryItem = ({ items }) => {
                 </tbody>
               </Table>
               <BlockBtns>
-              <NoticeBtn
+                <NoticeBtn
                   onClick={onClickLearnMore}
                   ref={currentIdRef}
                   id={_id}
                 >
                   Learn more
                 </NoticeBtn>
-                {!isLoading && <ModalMenu
-                  onClose={() => setModalToggle(false)}
-                  open={modalToggle}
-                >
-                  <LearnMore
-                    onToggleModal={onToggleModal}
-                    data={notice}
-                    onClickOnFavoriteBtn={onClickOnFavoriteBtn}
-                  />
-                </ModalMenu>}
+                {!isLoading && (
+                  <ModalMenu
+                    onClose={() => setModalToggle(false)}
+                    open={modalToggle}
+                  >
+                    <LearnMore
+                      onToggleModal={onToggleModal}
+                      data={notice}
+                      onClickOnFavoriteBtn={onClickOnFavoriteBtn}
+                    />
+                  </ModalMenu>
+                )}
                 {userId === owner && (
                   <NoticeBtn
                     onClick={e => {

@@ -17,10 +17,13 @@ import {
 } from './RequestResetPasswordForm.styled';
 import { requestResetSchema } from '../../schemas/authValidationSchemas';
 import { Container } from 'components/Container/Container.styled';
+import { useTranslation } from 'react-i18next';
+import i18n from 'i18n';
 
 axios.defaults.baseURL = 'https://pet-support-backend-v8vc.onrender.com/api/';
 
 export const RequestResetPasswordForm = () => {
+  const { t } = useTranslation();
   const initialValues = {
     email: '',
   };
@@ -35,7 +38,7 @@ export const RequestResetPasswordForm = () => {
         resetForm();
       }
     } catch (error) {
-      toast.error('Something wrong, please try again later');
+      toast.error(i18n.t('t_login_1'));
     }
   };
 
@@ -43,7 +46,7 @@ export const RequestResetPasswordForm = () => {
     <Container>
       <FlexBox>
         <FormWrapper>
-          <Heading>Reset Password</Heading>
+          <Heading>{t('Reset_Password')}</Heading>
           <Formik
             initialValues={initialValues}
             validationSchema={requestResetSchema}
@@ -51,16 +54,13 @@ export const RequestResetPasswordForm = () => {
           >
             {formik => (
               <Form>
-                <InfoText>
-                  Please enter your email address and we will send you an email
-                  to reset your password.
-                </InfoText>
+                <InfoText>{t('Reset_Password_notification')}</InfoText>
                 <Label>
                   <Input
                     autoComplete="on"
                     type="email"
                     name="email"
-                    placeholder="Email"
+                    placeholder={t('Email')}
                   ></Input>
                   <Error name="email" component="p"></Error>
                 </Label>
@@ -69,11 +69,12 @@ export const RequestResetPasswordForm = () => {
                   type="submit"
                   disabled={!(formik.dirty && formik.isValid)}
                 >
-                  Reset password
+                  {t('Reset_Password')}
                 </Button>
 
                 <Text>
-                  Back to <Link to="/login">Login</Link>
+                  {t('Back_to')}
+                  <Link to="/login">{t('Login')}</Link>
                 </Text>
               </Form>
             )}

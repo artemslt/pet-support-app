@@ -41,13 +41,17 @@ export const NoticesCategoriesList = () => {
     getNoticesByCategory(pathname);
   }, [pathname]);
 
+  function onListChange(newList) {
+    console.log('newList__2', newList);
+    setAllNotices(newList);
+  }
   return (
     <>
       {isLoading ? (
         <Spinner style={{ margin: '0 auto' }} />
       ) : (
         <CategoriesList>
-          <NoticeCategoryItem items={allNotices} />
+          <NoticeCategoryItem items={allNotices} onListChange={onListChange} />
         </CategoriesList>
       )}
     </>
