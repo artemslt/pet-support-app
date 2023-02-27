@@ -85,6 +85,7 @@ export const NoticeTitle = styled.h2`
 `;
 export const Table = styled.table`
   table-layout: fixed;
+  height: 150px;
 `;
 
 export const TableData = styled.td`

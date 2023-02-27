@@ -175,7 +175,6 @@ export const NoticeCategoryItem = ({ items, onListChange }) => {
                 style={{
                   height: 80,
                   overflow: 'hidden',
-                  marginBottom: 20,
                 }}
               >
                 <NoticeTitle>{title}</NoticeTitle>
