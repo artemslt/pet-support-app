@@ -21,6 +21,12 @@ const RegisterPage = lazy(() => import('../pages/RegisterPage/RegisterPage'));
 const LoginPage = lazy(() => import('../pages/LoginPage/LoginPage'));
 const UserPage = lazy(() => import('../pages/UserPage/UserPage'));
 const NotFound = lazy(() => import('../pages/NotFound/NotFound'));
+const ResetPasswordPage = lazy(() =>
+  import('../pages/ResetPasswordPage/ResetPasswordPage')
+);
+const RequestResetPasswordPage = lazy(() =>
+  import('../pages/RequestResetPasswordPage/RequestResetPasswordPage')
+);
 
 export const App = () => {
   const dispatch = useDispatch();
@@ -41,6 +47,8 @@ export const App = () => {
           <Route path="sell" element={<NoticesCategoriesList />} />
           <Route path="lost-found" element={<NoticesCategoriesList />} />
           <Route path="for-free" element={<NoticesCategoriesList />} />
+          <Route path="favorite" element={<NoticesCategoriesList />} />
+          <Route path="own" element={<NoticesCategoriesList />} />
         </Route>
         <Route path="friends" element={<OurFriendsPage />} />
         <Route
@@ -56,6 +64,13 @@ export const App = () => {
         <Route
           path="user"
           element={<PrivateRoute component={UserPage} redirectTo="/login" />}
+        />
+        <Route path="requestreset" element={<RequestResetPasswordPage />} />
+        <Route
+          path="resetpassword/:resetToken"
+          element={
+            <RestrictedRoute component={ResetPasswordPage} redirectTo="/user" />
+          }
         />
         <Route path="*" element={<NotFound />} />
       </Route>

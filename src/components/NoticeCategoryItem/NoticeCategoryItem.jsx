@@ -1,8 +1,14 @@
 import { ReactComponent as FavoriteIcon } from './akar-icons_heart.svg';
+import { ReactComponent as InFavoriteIcon } from './icon-heart-filled.svg';
 import { ReactComponent as DeleteIcon } from './fluent_delete-16-filled.svg';
-import { useSelector } from 'react-redux';
-import { selectUser } from 'redux/auth/authSelectors';
+import { useDispatch, useSelector } from 'react-redux';
+import { selectIsLoggedIn, selectUser } from 'redux/auth/authSelectors';
 import { selectFilter } from 'redux/notices/noticesSelectors';
+import { ModalMenu } from 'components/Modal/Modal';
+import { LearnMore } from 'components/NoticesModalLearnMore/NoticesModalLearnMore';
+import { useRef, useState } from 'react';
+import axios from 'axios';
+import { toast } from 'react-toastify';
 import {
   Card,
   Image,
@@ -17,28 +23,128 @@ import {
   TableData,
 } from './NoticeCategoryItem.styled';
 
-export const NoticeCategoryItem = ({ items }) => {
-  const { email } = useSelector(selectUser);
+import { useTranslation } from 'react-i18next';
+
+import { refreshUser } from 'redux/auth/authOperations';
+import { useNavigate } from 'react-router-dom';
+
+import { ModalDelete } from '../ModalNoticeDelete/ModalDelete';
+axios.defaults.baseURL = 'https://pet-support-backend-v8vc.onrender.com/api/';
+
+export const NoticeCategoryItem = ({ items, onListChange }) => {
+  const { t } = useTranslation();
+  const { _id: userId, favorite } = useSelector(selectUser);
+  const [openModalDelete, setOpenModalDelete] = useState(false);
+
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const isLoggedIn = useSelector(selectIsLoggedIn);
+
   const filter = useSelector(selectFilter);
-
   const normalizedFilter = filter.toLowerCase().trim();
-
   const filteredNotices = items.filter(item =>
     item.title.toLowerCase().includes(normalizedFilter)
   );
+  const [notice, SetNotice] = useState({});
+  const currentIdRef = useRef();
+  const [modalToggle, setModalToggle] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const onToggleModal = e => {
+    setModalToggle(false);
+  };
+
+  const onClickLearnMore = e => {
+    const getNoticeById = async id => {
+      setIsLoading(true);
+      try {
+        const notice = await axios.get(`notices/notice/${id}`);
+        SetNotice(notice.data.data.notice);
+        setIsLoading(false);
+      } catch (error) {
+        console.log(error.message);
+      }
+    };
+    getNoticeById(e.target.id);
+    setModalToggle(true);
+  };
+
+  const addToFavorite = async id => {
+    try {
+      await axios.post(`notices/favorite/${id}`);
+      dispatch(refreshUser());
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+
+  const delFromFavorite = async id => {
+    try {
+      await axios.delete(`notices/favorite/${id}`);
+      dispatch(refreshUser());
+      const newList = items.filter(item => item._id !== id);
+
+      onListChange(newList);
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+
+  const addOrDell = id => {
+    if (favorite && favorite.includes(id)) {
+      delFromFavorite(id);
+    } else {
+      addToFavorite(id);
+    }
+  };
+  const onClickOnFavoriteBtn = id => {
+    if (!isLoggedIn) {
+      toast.error('that add pet, you need to login', {
+        position: toast.POSITION.TOP_RIGHT,
+      });
+      navigate('/login');
+      return;
+    }
+
+    addOrDell(id);
+  };
+
+  const deletePet = async id => {
+    try {
+      await axios.delete(`notices/notice/${id}`);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <>
       {filteredNotices.map(
-        ({ owner, title, _id, image, category, breed, location, price }) => (
+        ({
+          owner,
+          title,
+          _id,
+          image,
+          category,
+          breed,
+          location,
+          price,
+          date,
+        }) => (
           <Card key={_id}>
             <div style={{ position: 'relative' }}>
               <Image src={image} alt="pet" />
               <Badge>
                 <CategoryTitle>{category}</CategoryTitle>
               </Badge>
-              <AddToFavotiteBtn>
-                <FavoriteIcon />
+              <AddToFavotiteBtn
+                type="submit"
+                onClick={() => onClickOnFavoriteBtn(_id)}
+              >
+                {favorite && favorite.includes(_id) ? (
+                  <InFavoriteIcon />
+                ) : (
+                  <FavoriteIcon />
+                )}
               </AddToFavotiteBtn>
             </div>
 
@@ -56,34 +162,66 @@ export const NoticeCategoryItem = ({ items }) => {
               <Table>
                 <tbody>
                   <tr>
-                    <TableData>Breed:</TableData>
+                    <TableData>{t('Breed')}:</TableData>
                     <TableData>{breed}</TableData>
                   </tr>
                   <tr>
-                    <TableData>Place:</TableData>
+                    <TableData>{t('Place')}:</TableData>
                     <TableData>{location}</TableData>
                   </tr>
                   <tr>
-                    <TableData>Age:</TableData>
-                    <TableData>very old</TableData>
+                    <TableData>{t('Age')}:</TableData>
+                    <TableData>{date}</TableData>
                   </tr>
                   {category === 'sell' && (
                     <tr>
-                      <TableData>Price:</TableData>
+                      <TableData>{t('Price')}:</TableData>
                       <TableData>{price}$</TableData>
                     </tr>
                   )}
                 </tbody>
               </Table>
-
               <BlockBtns>
-                <NoticeBtn>Learn more</NoticeBtn>
-                {owner.email === email && (
-                  <NoticeBtn>
+                <NoticeBtn
+                  onClick={onClickLearnMore}
+                  ref={currentIdRef}
+                  id={_id}
+                >
+                  Learn more
+                </NoticeBtn>
+                {!isLoading && (
+                  <ModalMenu
+                    onClose={() => setModalToggle(false)}
+                    open={modalToggle}
+                  >
+                    <LearnMore
+                      onToggleModal={onToggleModal}
+                      data={notice}
+                      onClickOnFavoriteBtn={onClickOnFavoriteBtn}
+                    />
+                  </ModalMenu>
+                )}
+                {userId === owner && (
+                  <NoticeBtn
+                    onClick={e => {
+                      setOpenModalDelete(true);
+                    }}
+                  >
                     <p style={{ marginRight: 13 }}>Delete</p>
                     <DeleteIcon style={{ fill: 'currentcolor' }} />
                   </NoticeBtn>
                 )}
+                <ModalMenu
+                  onClose={() => setOpenModalDelete(false)}
+                  open={openModalDelete}
+                  openModalDelete={openModalDelete}
+                >
+                  <ModalDelete
+                    onToggleModal={onToggleModal}
+                    id={_id}
+                    deletePet={deletePet}
+                  />
+                </ModalMenu>
               </BlockBtns>
             </Thumb>
           </Card>

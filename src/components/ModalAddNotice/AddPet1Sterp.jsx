@@ -14,6 +14,7 @@ import {
 import { SelectComponentNotice } from './SelectComponentNotice';
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
+import { useTranslation } from 'react-i18next';
 
 export const FirstPart = ({
   setStep,
@@ -29,6 +30,7 @@ export const FirstPart = ({
   setStartDate,
   onToggleModal,
 }) => {
+  const { t } = useTranslation();
   const [focus, setFocus] = useState(false);
   const isInput = useSelector(state => state.isInput.toggle);
 
@@ -42,9 +44,7 @@ export const FirstPart = ({
 
   return (
     <>
-      <Text>
-        You can sell or give your pets, or inform others about lost pets{' '}
-      </Text>
+      <Text>{t('Notice_add_pet')}</Text>
 
       <RadioBtnGroup role="group">
         <RadioBtn
@@ -54,7 +54,7 @@ export const FirstPart = ({
           id="lost-found"
         />
         <RadioBtnLabel htmlFor="lost-found">
-          <span>lost/found</span>
+          <span>{t('lost_found')}</span>
         </RadioBtnLabel>
 
         <RadioBtn
@@ -64,7 +64,7 @@ export const FirstPart = ({
           id="for-free"
         />
         <RadioBtnLabel htmlFor="for-free">
-          <span>in good hands</span>
+          <span>{t('in_good_hands')}</span>
         </RadioBtnLabel>
         <RadioBtn
           type="radio"
@@ -75,29 +75,29 @@ export const FirstPart = ({
           onChange={() => setFieldValue('typeOfNotice', 'sell')}
         />
         <RadioBtnLabel htmlFor="sell">
-          <span>sell</span>
+          <span>{t('sell')}</span>
         </RadioBtnLabel>
       </RadioBtnGroup>
 
       <label>
         <LabelTitle>
-          Tittle of ad <span>*</span>
+          {t('Tittle_of_ad')} <span>*</span>
         </LabelTitle>
-        <Input name="title" placeholder="Type name" />
+        <Input name="title" placeholder={t('Type_name')} />
         <Error name="title" component="div" />
       </label>
 
       <label>
         <LabelTitle>
-          Name pet <span>*</span>
+          {t('Name_pet')} <span>*</span>
         </LabelTitle>
-        <Input name="name" placeholder="Type name pet" />
+        <Input name="name" placeholder={t('Name_pet_p')} />
         <Error name="name" component="div" />
       </label>
 
       <label>
         <LabelTitle>
-          Date of birth <span>*</span>
+          {t('Date_of_birth')} <span>*</span>
         </LabelTitle>
         <InputDatePicker
           selected={startDate}
@@ -119,12 +119,12 @@ export const FirstPart = ({
 
       <label>
         <LabelTitle>
-          Breed <span>*</span>
+          {t('Breed')} <span>*</span>
         </LabelTitle>
 
         {!isInput ? (
           <>
-            <Input name="breed" placeholder="Type breed" />
+            <Input name="breed" placeholder={t('Breed_p')} />
             <Error name="breed" component="div" />
           </>
         ) : (
@@ -148,10 +148,10 @@ export const FirstPart = ({
           //   onClick={Step}
           type="button"
         >
-          Next
+          {t('Next')}
         </Button>
         <Button type="button" onClick={ResetValues}>
-          Cancel
+          {t('Cancel')}
         </Button>
       </ButtonsSection>
     </>

@@ -1,3 +1,6 @@
+import { useSelector } from 'react-redux';
+import 'react-toastify/dist/ReactToastify.css';
+
 import { AddNoticeButton } from 'components/AddNoticeButton/AddNoticeButton';
 import {
   CategoriesNav,
@@ -7,36 +10,37 @@ import {
 import { useBreakpoint } from 'styled-breakpoints/react-styled';
 import { up, only } from 'styled-breakpoints';
 import { MobAddBtn } from 'components/AddNoticeButton/MobVersion';
-import { useSelector } from 'react-redux';
 import { selectIsLoggedIn } from 'redux/auth/authSelectors';
 
 import { useState } from 'react';
 import { AddPet } from 'components/ModalAddNotice/ModalAddNotice';
 import { ModalMenu } from 'components/Modal/Modal';
+import { useTranslation } from 'react-i18next';
 
 export const NoticesCategoriesNav = () => {
+  const { t } = useTranslation();
   const mob = useBreakpoint(only('mobile'));
   const tablet = useBreakpoint(up('tablet'));
-  let isLoggin = useSelector(selectIsLoggedIn);
 
+  let isLoggin = useSelector(selectIsLoggedIn);
   const [modalToggle, setModalToggle] = useState(false);
   const onToggleModal = e => {
     setModalToggle(false);
   };
-
+  
   return (
     <CategoriesNav>
       <ModalMenu onClose={() => setModalToggle(false)} open={modalToggle}>
         <AddPet onToggleModal={onToggleModal}></AddPet>
       </ModalMenu>
       <LinkWrapper>
-        <StyledLink to="sell">sell</StyledLink>
-        <StyledLink to="lost-found">lost/found</StyledLink>
-        <StyledLink to="for-free">in good hands</StyledLink>
+        <StyledLink to="sell">{t('sell')}</StyledLink>
+        <StyledLink to="lost-found">{t('lost_found')}</StyledLink>
+        <StyledLink to="for-free">{t('in_good_hands')}</StyledLink>
         {isLoggin ? (
           <>
-            <StyledLink to="for-free">favorite ads</StyledLink>
-            <StyledLink to="for-free">my ads</StyledLink>
+            <StyledLink to="favorite">{t('favorite_ads')}</StyledLink>
+            <StyledLink to="own">{t('my_ads')}</StyledLink>
           </>
         ) : null}
       </LinkWrapper>

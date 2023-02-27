@@ -1,7 +1,9 @@
 import { CustomSelect } from './ModalAddNotice.styled';
 import { dogs, cats } from '../ModalAddsPet/petsApi';
 import { NoOptionsMessage } from '../ModalAddsPet/NoOptionsMessage';
+import { useTranslation } from 'react-i18next';
 export const SelectComponentNotice = ({ onChange, value, onFocus }) => {
+  const { t } = useTranslation();
   const pets = [...dogs, ...cats];
 
   const audit = pets
@@ -31,7 +33,7 @@ export const SelectComponentNotice = ({ onChange, value, onFocus }) => {
         onChange(value);
       }}
       onFocus={() => onFocus(true)}
-      placeholder="Type breed"
+      placeholder={t('Breed_p')}
       components={{ NoOptionsMessage }}
     ></CustomSelect>
   );
