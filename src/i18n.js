@@ -121,6 +121,7 @@ i18n
           location_match: 'Location must be in format: City, Region',
           location_required: 'Location is required field',
           price_match: 'Must contain only numbers',
+          price_required: 'Price is required field',
           commet_min: 'Comment should be 10 characters minimum.',
           commet_max: 'Comment should be 100 characters maximum.',
           commet_required: 'Comment is required field',
@@ -258,6 +259,8 @@ i18n
           location_match: 'Локація має бути в форматі Місто, Область.',
           location_required: `Назва місця є обов'язковою.`,
           price_match: 'Ціна має містити тільки цифри.',
+          price_required: `Ціна є обов'язковою.`,
+
           commet_min: 'Коментар має містити мінімум 10 символів.',
           commet_max: 'Коментар може містити максимум 120 символів.',
           commet_required: `Коментар є обов'язковим.`,

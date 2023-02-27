@@ -20,6 +20,7 @@ export const register = createAsyncThunk(
       const response = await axios.post('auth/register', credentials);
       return response.data.data;
     } catch (error) {
+      console.log(error.response.data.message);
       toast.error(`Something wrong - ${error.response.data.message}`);
       return thunkAPI.rejectWithValue(error.response.data.message);
     }
