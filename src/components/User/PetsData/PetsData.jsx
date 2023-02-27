@@ -21,7 +21,6 @@ import { useTranslation } from 'react-i18next';
 
 export const PetsData = () => {
   const { t } = useTranslation();
-  // const [petsVisible] = useState(false);
   const [modalToggle, setModalToggle] = useState(false);
   const dispatch = useDispatch();
   const list = useSelector(selectPets) ?? [];
@@ -42,7 +41,7 @@ export const PetsData = () => {
   return (
     <PetListCardWrapper>
       <NavContainer>
-        <Title>{t("My_pets")}:</Title>
+        <Title>{t('My_pets')}:</Title>
         <AddBtnWrapper>
           <BtnName>{t('Add_pet')}</BtnName>
           <AddBtn

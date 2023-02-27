@@ -5,6 +5,7 @@ import {
   ModalToggleBtn,
   ModalMenuInner,
   ModalLogoutText,
+  SvgWrapp,
 } from './Logout.styled';
 import { useDispatch } from 'react-redux';
 import { googleLogout } from '@react-oauth/google';
@@ -30,7 +31,9 @@ export const Logout = () => {
           onClick={() => setModalOpen(true)}
           style={{ border: 'none', background: 'transparent', display: 'flex' }}
         >
-          <img src={LogoutIcon} alt="" width={18} height={18} />
+          <SvgWrapp>
+            <img src={LogoutIcon} alt="" width={18} height={18} />
+          </SvgWrapp>
           <Text>{t('Log_out')}</Text>
         </Button>
       </LogoutWrapper>
