@@ -49,7 +49,7 @@ export const FormePageFist = ({
             setStartDate(date);
             formik.setFieldValue(
               'birthday',
-              date.toLocaleString().slice(0, 10)
+              date.toLocaleString('az-Cyrl-AZ').slice(0, 10)
             );
           }}
           minDate={new Date('December 17, 1900 03:24:00')}
