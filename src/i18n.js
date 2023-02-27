@@ -110,7 +110,7 @@ i18n
           title_required: 'Title is required field',
           pet_name_match: 'Name has the format "Barsik"',
           pet_name_min: 'Name should be 2 characters minimum.',
-          pet_name_max: 'Name should be 16 characters maximum.',
+          pet_name_max: 'Name should be 48 characters maximum.',
           pet_name_required: 'Name is required field',
           date_pet_string: 'Date must be in format dd.MM.yyyy',
           date_pet_required: 'Date is required field',
