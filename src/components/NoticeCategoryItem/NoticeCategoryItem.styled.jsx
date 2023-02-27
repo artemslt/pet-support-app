@@ -22,6 +22,11 @@ export const Card = styled.li`
     margin: 0;
   }
 
+  ${up('pcSizeM')} {
+    width: calc(100% / 3 - 32px);
+    margin: 0;
+  }
+
   ${up('pc')} {
     width: 288px;
   }
@@ -100,7 +105,10 @@ export const TableData = styled.td`
   text-align: start;
   font-family: ${({ theme }) => theme.fonts[1]};
   font-weight: 500;
-  /* padding-right: 40px; */
+  padding-right: 40px;
+  :nth-child(2) {
+    padding-right: 0;
+  }
   padding-bottom: 8px;
 `;
 

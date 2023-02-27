@@ -10,6 +10,24 @@ export const CategoriesList = styled.ul`
     flex-wrap: wrap;
     gap: 32px 32px;
   }
+
+  ${up('pcSizeS')} {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 32px 32px;
+  }
+
+  ${up('pcSizeM')} {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 32px 48px;
+  }
+
+  ${up('pc')} {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 32px 32px;
+  }
   list-style: none;
   /* padding-left: 0px;
   display: grid;
