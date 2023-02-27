@@ -62,7 +62,6 @@ export const LoginForm = () => {
       const { email, name } = googleUser.data;
       const accessToken = response.access_token;
 
-      console.log({ email, name });
       await dispatch(gLogin({ email, name, accessToken }));
     } catch (error) {
       toast.error(i18n.t('t_login_2')` - ${error}`);

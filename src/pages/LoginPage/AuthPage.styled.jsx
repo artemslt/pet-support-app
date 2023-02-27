@@ -7,7 +7,7 @@ import {
 } from '../../images';
 
 export const BackgroundWrapper = styled.div`
-height: 100vh;
+  height: 100vh;
   background-color: ${prop => prop.theme.colors.background};
   background-origin: border-box;
   background-size: contain;

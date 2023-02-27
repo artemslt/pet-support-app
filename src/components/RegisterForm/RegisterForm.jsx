@@ -41,10 +41,9 @@ export const RegisterForm = () => {
       location: values.location,
       phone: values.phone,
     };
-    console.log(newUser);
     try {
       const data = await dispatch(register(newUser));
-      console.log(data);
+
       if (data.type === 'auth/register/fulfilled') {
         await dispatch(
           login({ email: values.email, password: values.password })
