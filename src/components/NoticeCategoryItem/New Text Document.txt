@@ -104,7 +104,7 @@ export const NoticeCategoryItem = ({ items, onListChange }) => {
       navigate('/login');
       return;
     }
-
+    console.log('add success');
     addOrDell(id);
   };
 
@@ -119,17 +119,7 @@ export const NoticeCategoryItem = ({ items, onListChange }) => {
   return (
     <>
       {filteredNotices.map(
-        ({
-          owner,
-          title,
-          _id,
-          image,
-          category,
-          breed,
-          location,
-          price,
-          date,
-        }) => (
+        ({ owner, title, _id, image, category, breed, location, price }) => (
           <Card key={_id}>
             <div style={{ position: 'relative' }}>
               <Image src={image} alt="pet" />
@@ -171,7 +161,7 @@ export const NoticeCategoryItem = ({ items, onListChange }) => {
                   </tr>
                   <tr>
                     <TableData>{t('Age')}:</TableData>
-                    <TableData>{date}</TableData>
+                    <TableData>{t('very_old')}</TableData>
                   </tr>
                   {category === 'sell' && (
                     <tr>

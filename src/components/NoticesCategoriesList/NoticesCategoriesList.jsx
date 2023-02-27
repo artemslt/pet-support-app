@@ -14,6 +14,10 @@ export const NoticesCategoriesList = () => {
 
   let { pathname } = useLocation();
 
+  function onListChange(newList) {
+    setAllNotices(newList);
+  }
+
   useEffect(() => {
     const getNoticesByCategory = async pathname => {
       try {
@@ -35,7 +39,8 @@ export const NoticesCategoriesList = () => {
         setAllNotices(notices.data.data.result);
         setIsLoading(false);
       } catch (error) {
-        console.log(error.message);
+        setAllNotices([]);
+        setIsLoading(false);
       }
     };
     getNoticesByCategory(pathname);
@@ -51,7 +56,14 @@ export const NoticesCategoriesList = () => {
         <Spinner style={{ margin: '0 auto' }} />
       ) : (
         <CategoriesList>
-          <NoticeCategoryItem items={allNotices} onListChange={onListChange} />
+          {allNotices.length === 0 ? (
+            <h2>You haven't notices yet</h2>
+          ) : (
+            <NoticeCategoryItem
+              items={allNotices}
+              onListChange={onListChange}
+            />
+          )}
         </CategoriesList>
       )}
     </>
