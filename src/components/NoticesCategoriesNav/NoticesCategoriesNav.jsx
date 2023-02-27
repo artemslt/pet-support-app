@@ -8,7 +8,7 @@ import {
   LinkWrapper,
 } from './NoticesCategoriesNav.styled';
 import { useBreakpoint } from 'styled-breakpoints/react-styled';
-import { up, only, down } from 'styled-breakpoints';
+import { up, down } from 'styled-breakpoints';
 import { MobAddBtn } from 'components/AddNoticeButton/MobVersion';
 import { selectIsLoggedIn } from 'redux/auth/authSelectors';
 
