@@ -1,4 +1,5 @@
 import moment from 'moment';
+import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import { selectUser } from 'redux/auth/authSelectors';
 import {
@@ -26,7 +27,7 @@ import {
 
 export const LearnMore = ({ onToggleModal, data, onClickOnFavoriteBtn }) => {
   const { favorite } = useSelector(selectUser);
-
+  const { t } = useTranslation();
   const {
     breed,
     category,
@@ -87,33 +88,33 @@ export const LearnMore = ({ onToggleModal, data, onClickOnFavoriteBtn }) => {
               <Table>
                 <tbody>
                   <tr>
-                    <TableData>Name:</TableData>
+                    <TableData>{t('Name')}:</TableData>
                     <TableValue>{name}</TableValue>
                   </tr>
                   {date && (
                     <tr>
-                      <TableData>Birthday:</TableData>
+                      <TableData>{t('Birthday')}:</TableData>
                       <TableValue>{calcAge(date)}</TableValue>
                     </tr>
                   )}
                   <tr>
-                    <TableData>Breed:</TableData>
+                    <TableData>{t('Breed')}:</TableData>
                     <TableValue>{breed}</TableValue>
                   </tr>
                   <tr>
-                    <TableData>Location:</TableData>
+                    <TableData>{t('Location')}:</TableData>
                     <TableValue>{location}</TableValue>
                   </tr>
                   <tr>
-                    <TableData>The sex:</TableData>
+                    <TableData>{t('The_sex')}:</TableData>
                     <TableValue>{sex}</TableValue>
                   </tr>
                   <tr>
-                    <TableData>Owner:</TableData>
+                    <TableData>{t('Owner')}:</TableData>
                     <TableValue>{owner.name}</TableValue>
                   </tr>
                   <tr>
-                    <TableData>Email:</TableData>
+                    <TableData>{t('Email')}:</TableData>
                     <TableValue
                       style={{ cursor: 'pointer' }}
                       onClick={e => window.open(`mailto:userlala@gmail.com`)}
@@ -122,7 +123,7 @@ export const LearnMore = ({ onToggleModal, data, onClickOnFavoriteBtn }) => {
                     </TableValue>
                   </tr>
                   <tr>
-                    <TableData>Phone:</TableData>
+                    <TableData>{t('Phone')}:</TableData>
                     <TableValue
                       style={{ cursor: 'pointer' }}
                       onClick={e => window.open(`tel:+380931103908`)}
@@ -132,7 +133,7 @@ export const LearnMore = ({ onToggleModal, data, onClickOnFavoriteBtn }) => {
                   </tr>
                   {category === 'sell' && (
                     <tr>
-                      <TableData>Price:</TableData>
+                      <TableData>{t('Price')}:</TableData>
                       <TableValue>{price}</TableValue>
                     </tr>
                   )}
@@ -142,22 +143,22 @@ export const LearnMore = ({ onToggleModal, data, onClickOnFavoriteBtn }) => {
           </ModalContainer>
           <Comment>
             {' '}
-            <CommentBold>Comment: </CommentBold>
+            <CommentBold>{t('Comment')}: </CommentBold>
             {comments}
           </Comment>
           <BlockBtns>
             <Btn onClick={e => window.open(`tel:${owner.phone}`)}>Contact</Btn>
             {!favorite ? (
               <Btn onClick={e => onClickOnFavoriteBtn(_id)}>
-                Add to <FavoriteIcon />
+                {t('Add_to')} <FavoriteIcon />
               </Btn>
             ) : !favorite.includes(_id) ? (
               <Btn onClick={e => onClickOnFavoriteBtn(_id)}>
-                Add to <FavoriteIcon />
+                {t('Add_to')} <FavoriteIcon />
               </Btn>
             ) : (
               <Btn onClick={e => onClickOnFavoriteBtn(_id)}>
-                Delete from <FavoriteIcon />
+                {t('Delete_from')} <FavoriteIcon />
               </Btn>
             )}
           </BlockBtns>
