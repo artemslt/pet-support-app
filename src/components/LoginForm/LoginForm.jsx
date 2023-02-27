@@ -20,6 +20,7 @@ import {
   Link,
   IconButton,
   ButtonText,
+  StyledSpinner,
 } from './LoginForm.styled';
 import { Container } from 'components/Container/Container.styled';
 import { ReactComponent as EyeIcon } from '../../images/eye.svg';
@@ -31,6 +32,7 @@ import i18n from 'i18n';
 export const LoginForm = () => {
   const { t } = useTranslation();
   const [showPassword, setShowPassword] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const initialValues = {
     email: '',
@@ -45,6 +47,7 @@ export const LoginForm = () => {
       password: values.password,
     };
     try {
+      setIsLoading(true);
       const data = await dispatch(login(currentUser));
       if (data.type === 'auth/login/fulfilled') {
         resetForm();
@@ -52,6 +55,7 @@ export const LoginForm = () => {
     } catch (error) {
       toast.error(i18n.t('t_login_1'));
     }
+    setIsLoading(false);
   };
   const onSuccess = async response => {
     try {
@@ -113,9 +117,9 @@ export const LoginForm = () => {
                 </Label>
                 <Button
                   type="submit"
-                  disabled={!(formik.dirty && formik.isValid)}
+                  disabled={!(formik.dirty && formik.isValid) || isLoading}
                 >
-                  {t('Login')}
+                 {isLoading && <StyledSpinner />} {t('Login')}
                 </Button>
                 <Button type="button" onClick={googleLogin}>
                   <GoogleIcon />
