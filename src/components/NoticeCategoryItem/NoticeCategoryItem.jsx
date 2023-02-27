@@ -138,6 +138,21 @@ export const NoticeCategoryItem = ({ items, onListChange }) => {
     }
   };
 
+  const categorySelector = categ => {
+    switch (categ) {
+      case 'for-free': {
+        return 'in good hands';
+      }
+      case 'lost-found': {
+        return 'lost/found';
+      }
+
+      default: {
+        return 'sell';
+      }
+    }
+  };
+
   return (
     <>
       {filteredNotices.map(
@@ -156,7 +171,7 @@ export const NoticeCategoryItem = ({ items, onListChange }) => {
             <div style={{ position: 'relative' }}>
               <Image src={image} alt="pet" />
               <Badge>
-                <CategoryTitle>{category}</CategoryTitle>
+                <CategoryTitle>{categorySelector(category)}</CategoryTitle>
               </Badge>
               <AddToFavotiteBtn
                 type="submit"
