@@ -99,9 +99,7 @@ export const NoticeCategoryItem = ({ items, onListChange }) => {
   };
   const onClickOnFavoriteBtn = id => {
     if (!isLoggedIn) {
-      toast.error('that add pet, you need to login', {
-        position: toast.POSITION.TOP_RIGHT,
-      });
+      toast.error('that add pet to favorite, you need to login');
       navigate('/login');
       return;
     }
