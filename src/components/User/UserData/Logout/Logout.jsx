@@ -1,3 +1,9 @@
+import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { googleLogout } from '@react-oauth/google';
+import { logout } from 'redux/auth/authOperations';
+import { useTranslation } from 'react-i18next';
+import { ModalMenu } from 'components/Modal/Modal';
 import {
   LogoutWrapper,
   Button,
@@ -8,13 +14,7 @@ import {
   ModalToggleBtnWrapp,
   SvgWrapp,
 } from './Logout.styled';
-import { useDispatch } from 'react-redux';
-import { googleLogout } from '@react-oauth/google';
-import { logout } from 'redux/auth/authOperations';
-import LogoutIcon from './logout.svg';
-import { useTranslation } from 'react-i18next';
-import { useState } from 'react';
-import { ModalMenu } from 'components/Modal/Modal';
+import LogoutIcon from 'images/userPage/logout.svg';
 
 export const Logout = () => {
   const { t } = useTranslation();

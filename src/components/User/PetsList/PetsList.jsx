@@ -16,7 +16,7 @@ import {
 } from '../UserData/Logout/Logout.styled';
 import { ModalMenu } from 'components/Modal/Modal';
 
-import { ReactComponent as DeleteIcon } from './deleteIcon.svg';
+import { ReactComponent as DeleteIcon } from 'images/userPage/deleteIcon.svg';
 
 export const PetsList = ({ item, handleDeleteCard }) => {
   const [t] = useTranslation();
