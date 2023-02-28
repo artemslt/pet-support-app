@@ -2,7 +2,7 @@
 import styled, { createGlobalStyle } from 'styled-components';
 import { up } from 'styled-breakpoints';
 import { ReactComponent as Closes } from '../../images/ButtonCloses.svg';
-import { ReactComponent as Favorite } from '../NoticeCategoryItem/akar-icons_heart.svg';
+import { ReactComponent as Favorite } from 'images/noticePage/akar-icons_heart.svg';
 
 export const GlobalStyle = createGlobalStyle`
 button, ul {
@@ -46,7 +46,6 @@ export const ClosesIcon = styled(Closes)`
 
 export const ButtonCloses = styled.button`
   position: absolute;
-  // overflow: visible;
   z-index: 1;
   display: flex;
   justify-content: center;
@@ -78,7 +77,6 @@ export const ButtonCloses = styled.button`
   }
 `;
 
-
 export const ModalContainer = styled.div`
   ${up('tablet')} {
     display: flex;
@@ -87,9 +85,6 @@ export const ModalContainer = styled.div`
 `;
 
 export const ImageContainer = styled.div`
-// position: relative;
-// width: 240px;
-// height: 240px;
   ${up('tablet')} {
     margin-right: 20px;
   }

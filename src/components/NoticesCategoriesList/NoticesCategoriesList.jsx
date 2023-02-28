@@ -50,7 +50,6 @@ export const NoticesCategoriesList = () => {
   useEffect(() => {
     const getNoticesByCategory = async pathname => {
       if (status === Status.IDLE) {
-        console.log(page);
         try {
           if (pathname === '/notices/favorite') {
             const request = await axios.get('notices/favorite', {

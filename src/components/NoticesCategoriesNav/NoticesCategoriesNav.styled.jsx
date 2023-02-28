@@ -27,7 +27,6 @@ export const LinkWrapper = styled.div`
   display: flex;
   flex-wrap: wrap-reverse;
   flex-direction: row-reverse;
-  /* flex-grow: 1; */
   max-width: 490px;
   justify-content: flex-end;
 
