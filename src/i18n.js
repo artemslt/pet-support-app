@@ -11,11 +11,11 @@ i18n
   // init i18next
   // for all options read: https://www.i18next.com/overview/configuration-options
   .init({
-    debug: false,
+    debug: true,
     fallbackLng: 'en',
-    // interpolation: {
-    //   escapeValue: false, // not needed for react as it escapes by default
-    // },
+    interpolation: {
+      escapeValue: false, // not needed for react as it escapes by default
+    },
     resources: {
       en: {
         translation: {
@@ -105,8 +105,7 @@ i18n
           location_validate: 'Location must be in format City, Region',
           phone_max: 'Pnone number must contain 12 numbers',
           phone_match: 'Mobile phone must be in format +380xxxxxxxxx',
-          title_add_notice:
-            'Title can contain only letters, spaces and commas, but can not start with spaces or comma',
+          title_add_notice:'Title can contain only letters, spaces and commas, but can not start with spaces or comma',
           title_min: 'Title should be 4 characters minimum.',
           title_max: 'Title should be 48 characters maximum.',
           title_required: 'Title is required field',
@@ -158,7 +157,6 @@ i18n
           Delete_from: 'Delete from',
           Loading: 'Load more',
           no_more: `Yah, that's all notices!!`,
-          Owner: 'Owner',
         },
       },
       uk: {
@@ -248,8 +246,7 @@ i18n
           location_validate: 'Локація має бути в форматі Місто, Область.',
           phone_max: 'Номер телефону має містити 12 символів.',
           phone_match: 'Номер телефону має бути у форматі +380xxxxxxxxx',
-          title_add_notice:
-            'Заголовок може містити лише літери, пробіли та коми, але не починається з пробілів або коми.',
+          title_add_notice:'Заголовок може містити лише літери, пробіли та коми, але не починається з пробілів або коми.',
           title_min: 'Заголовок має містити мінімум 4 символи.',
           title_max: 'Заголовок може містити максимум 48 символів.',
           title_required: `Заголовок є обов'язковим.`,
@@ -302,7 +299,6 @@ i18n
           Delete_from: 'Видалити з',
           Loading: 'Завантажити ще',
           no_more: 'Так на жаль це всі оголошення!!',
-          Owner: 'Власник',
         },
       },
     },

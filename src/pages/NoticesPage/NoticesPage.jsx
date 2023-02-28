@@ -9,7 +9,7 @@ import { NoticeSearchList } from 'components/NoticesSearch/NoticeSearchList';
 const NoticesPage = () => {
   const { t } = useTranslation();
   const { pathname } = useLocation();
-
+  console.log(pathname);
   return (
     <Container style={{ textAlign: 'center', paddingBottom: 100 }}>
       <CommonTitle text={t('Main_title')} />
