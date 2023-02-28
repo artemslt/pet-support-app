@@ -30,7 +30,7 @@ export const UserDataItem = () => {
   const [isBirthdayDisabled, setIsBirthdayDisabled] = useState(true);
   const [isPhoneDisabled, setIsPhoneDisabled] = useState(true);
   const [isCityDisabled, setIsCityDisabled] = useState(true);
-  const [startDate, setStartDate] = useState();
+  const [startDate, setStartDate] = useState('');
 
   const iconColor = '#f59256';
   const iconColorDisabled = 'rgba(0,0,0,0.6)';
@@ -57,7 +57,6 @@ export const UserDataItem = () => {
   const onSubmitClick = useCallback(
     (event, field, errors) => {
       if (errors && Object.keys(errors).length) return;
-
       setTimeout(() => {
         if (field === 'name') setIsNameDisabled(!isNameDisabled);
         if (field === 'email') setIsEmailDisabled(!isEmailDisabled);
@@ -142,7 +141,9 @@ export const UserDataItem = () => {
                 {!isNameDisabled && (
                   <EditBtn
                     type="submit"
-                    onClick={e => onSubmitClick(e, 'name', errors)}
+                    onClick={e => {
+                      onSubmitClick(e, 'name', errors);
+                    }}
                   >
                     <EditSaveIcon width="20" height="20" />
                   </EditBtn>
