@@ -152,7 +152,7 @@ export const FirstPart = ({
         >
           {t('Next')}
         </Button>
-        <Button type="button" onClick={ResetValues}>
+        <Button type="button" onClick={ResetValues} >
           {t('Cancel')}
         </Button>
       </ButtonsSection>

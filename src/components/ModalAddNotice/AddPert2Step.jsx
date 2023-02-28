@@ -5,6 +5,7 @@ import {
   LabelTitle,
   Input,
   Error,
+  ErrorIMG,
   ButtonsSection,
   Button,
   SexSection,
@@ -110,7 +111,7 @@ export const SecondPart = ({
                 />
               )}
               <AddPhoto />
-              <Error name="img" component="div" />
+              <ErrorIMG name="img" component="div" />
             </AddImagelabel>
 
             {imgUrl && (
