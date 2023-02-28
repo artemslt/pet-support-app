@@ -2,17 +2,23 @@ import i18n from 'i18n';
 import * as yup from 'yup';
 
 // for exemple Brovary, Kyiv or Akhtyrka, Sumy
-const locationRegexp = /^([А-Яа-яЁёЇїІіЄєҐґ'),\s]+|[a-zA-Z\s]+){2,}$/;
+const locationRegexp = /^([А-Яа-яЇїІіЄєҐґ'),\s]+|[a-zA-Z\s]+){2,}$/;
+const title = /^[^\s][^,]+(?!.*[ыЫёЁэЭ])([a-zA-Zа-яА-ЯІіЇїЄєҐґ',\s']+)[^\s]$/;
 
 export const appPetSchemaStep1 = yup.object().shape({
   typeOfNotice: yup.string().required(),
   title: yup
     .string()
-    .min(2, i18n.t('title_min'))
+    .matches(title, i18n.t('title_add_notice'))
+    .min(4, i18n.t('title_min'))
     .max(48, i18n.t('pet_name_max'))
     .required(i18n.t('title_required')),
   name: yup
     .string()
+    .matches(
+      /^(?!.*[ЫыЁёЭэ])([a-zA-Zа-яА-ЯІіЇїЄєҐґ']+)$/,
+      i18n.t('pet_name_match')
+    )
     .min(2, i18n.t('pet_name_min'))
     .max(16, i18n.t('pet_name_max'))
     .required(i18n.t('pet_name_required')),
@@ -34,12 +40,12 @@ export const appPetSchemaStep2 = yup.object().shape({
     .required(i18n.t('location_required')),
   price: yup
     .string()
-    .matches(/^(?!0\d)(\d+|\d*\.\d*[1-9]\d*)$/g, i18n.t('price_match'))
+    .matches(/^[1-9]\d*$/g, i18n.t('price_match'))
     .required(i18n.t('price_required')),
   img: yup.string().required(),
   comment: yup
     .string()
-    .min(10, i18n.t('commet_min'))
-    .max(100, i18n.t('commet_max'))
+    .min(8, i18n.t('commet_min'))
+    .max(120, i18n.t('commet_max'))
     .required(i18n.t('commet_required')),
 });

@@ -150,7 +150,6 @@ export const AddPet = ({ onToggleModal }) => {
                 onToggleModal={onToggleModal}
                 startDate={startDate}
                 setStartDate={setStartDate}
-                handleChange={handleChange}
               />
             ) : (
               <SecondPart
@@ -161,6 +160,7 @@ export const AddPet = ({ onToggleModal }) => {
                 setFieldValue={setFieldValue}
                 imgUrl={imgUrl}
                 setImgUrl={setImgUrl}
+                setFile={setFile}
               />
             )}
           </NoticeForm>
