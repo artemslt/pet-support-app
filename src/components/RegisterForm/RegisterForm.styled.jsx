@@ -6,6 +6,7 @@ import {
   ErrorMessage as FormikErrorMessage,
 } from 'formik';
 import { Link as RouterLink } from 'react-router-dom';
+import MaskedInput from 'react-text-mask';
 import { ReactComponent as SpinnerIcon } from '../../images/spinner-white.svg';
 
 export const FlexBox = styled.div`
@@ -85,6 +86,47 @@ export const Label = styled.label`
 `;
 
 export const Input = styled(FormikField)`
+  font-family: ${prop => prop.theme.fonts[1]};
+  width: 280px;
+  height: 40px;
+  padding: 11px 14px 12px;
+  border: 1px solid rgba(245, 146, 86, 0.5);
+  border-radius: 40px;
+  background-color: ${prop => prop.theme.colors.background};
+  font-weight: ${prop => prop.theme.fontWeights[0]};
+  font-size: ${prop => prop.theme.fontSizes[1]}px;
+  line-height: 19px;
+  letter-spacing: 0.04em;
+  color: ${prop => prop.theme.colors.mainBlack};
+  ::placeholder {
+    font-weight: ${prop => prop.theme.fontWeights[0]};
+    font-size: ${prop => prop.theme.fontSizes[1]}px;
+    line-height: 19px;
+    letter-spacing: 0.04em;
+    color: ${prop => prop.theme.colors.greyText};
+  }
+  &:focus {
+    outline: none;
+    border: 1px solid ${prop => prop.theme.colors.activeAccent};
+    background-color: ${prop => prop.theme.colors.mainWhite};
+  }
+  ${up('tablet')} {
+    width: 448px;
+    height: 52px;
+    padding: 14px 32px 13px;
+    font-size: ${prop => prop.theme.fontSizes[3]}px;
+    line-height: 25px;
+    ::placeholder {
+      font-size: ${prop => prop.theme.fontSizes[3]}px;
+      line-height: 25px;
+    }
+    ${up('pc')} {
+      width: 458px;
+    }
+  }
+`;
+
+export const MaskedPhoneInput = styled(MaskedInput)`
   font-family: ${prop => prop.theme.fonts[1]};
   width: 280px;
   height: 40px;
