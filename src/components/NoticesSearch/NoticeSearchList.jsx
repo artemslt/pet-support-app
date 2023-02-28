@@ -18,7 +18,7 @@ export const NoticeSearchList = () => {
       try {
         setIsLoading(true);
         const notices = await axios.get(`notices/${filter}`);
-        console.log(notices.data.data.result);
+
         setItems(notices.data.data.result);
         setIsLoading(false);
       } catch (error) {}

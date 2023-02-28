@@ -1,6 +1,6 @@
 import { Friend } from 'components/Friend/Friend';
 import React, { useEffect, useState } from 'react';
-import sadDog from './sadDog.jpg';
+import sadDog from '../../images/sadDog.jpg';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchFriends } from 'redux/friends/friendsOperations';
 import { selectFriends } from 'redux/friends/friendsSelectors';

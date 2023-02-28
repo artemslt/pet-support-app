@@ -18,8 +18,8 @@ import {
 import { updateUser } from 'redux/auth/authOperations';
 import { selectUser } from 'redux/auth/authSelectors';
 
-import { ReactComponent as EditPenIcon } from './editPenIcon.svg';
-import { ReactComponent as EditSaveIcon } from './editSaveIcon.svg';
+import { ReactComponent as EditPenIcon } from 'images/userPage/editPenIcon.svg';
+import { ReactComponent as EditSaveIcon } from 'images/userPage/editSaveIcon.svg';
 import { useTranslation } from 'react-i18next';
 
 export const UserDataItem = () => {

@@ -10,8 +10,9 @@ import {
   CardWorkDays,
   CardTime,
   CardAddress,
+  Hoverable
 } from './Friend.styled';
-import notfound from './notfound.jpg';
+import notfound from '../../images/notfound.jpg';
 
 export const Friend = ({
   _id,
@@ -57,14 +58,14 @@ export const Friend = ({
                 onMouseEnter={handleTimeHover}
                 onMouseLeave={handleTimeLeave}
               >
-                <span>{t('Time')}</span>
+                <Hoverable>{t('Time')}</Hoverable>
               </CardTime>
               {hours ? (
                 <CardTime
                   onMouseEnter={handleTimeHover}
                   onMouseLeave={handleTimeLeave}
                 >
-                  {hours}
+                 <Hoverable> {hours}</Hoverable>
                 </CardTime>
               ) : (
                 <span>-----------------------------</span>
@@ -93,11 +94,11 @@ export const Friend = ({
               )}
             </CardDataItem>
             <CardDataItem>
-              <span>{t('Address')}:</span>
+              <Hoverable>{t('Address')}:</Hoverable>
               {address ? (
                 <CardAddress>
                   <a href={addressUrl ?? '#'} target="_blank" rel="noreferrer">
-                    {address}
+                  <Hoverable> {address}</Hoverable>
                   </a>
                 </CardAddress>
               ) : (
@@ -105,21 +106,21 @@ export const Friend = ({
               )}
             </CardDataItem>
             <CardDataItem>
-              <span>{t('Email')}:</span>
+              <Hoverable>{t('Email')}:</Hoverable>
               {email ? (
-                <span>
-                  <a href={`mailto:${email}`}>{email}</a>
-                </span>
+                <Hoverable>
+                  <a href={`mailto:${email}`}><Hoverable> {email}</Hoverable></a>
+                </Hoverable>
               ) : (
                 <span>-----------------------------</span>
               )}
             </CardDataItem>
             <CardDataItem>
-              <span>{t('Phone')}:</span>
+              <Hoverable>{t('Phone')}:</Hoverable>
               {phone ? (
-                <span>
-                  <a href={`tel:${phone}`}>{phone}</a>
-                </span>
+                <Hoverable>
+                  <a href={`tel:${phone}`}><Hoverable> {phone}</Hoverable></a>
+                </Hoverable>
               ) : (
                 <span>-----------------------------</span>
               )}

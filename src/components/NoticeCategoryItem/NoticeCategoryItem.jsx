@@ -27,7 +27,6 @@ import {
 import { useTranslation } from 'react-i18next';
 
 import { refreshUser } from 'redux/auth/authOperations';
-import { useNavigate } from 'react-router-dom';
 
 import { ModalDelete } from '../ModalNoticeDelete/ModalDelete';
 import { ErrorToastIcon } from 'components/ToastIcon/ToastIcon.styled';
@@ -42,7 +41,6 @@ export const NoticeCategoryItem = ({ items, onListChange, pathname }) => {
   const [openModalDelete, setOpenModalDelete] = useState(false);
 
   const dispatch = useDispatch();
-  const navigate = useNavigate();
   const isLoggedIn = useSelector(selectIsLoggedIn);
 
   const filter = useSelector(selectFilter);
@@ -79,7 +77,7 @@ export const NoticeCategoryItem = ({ items, onListChange, pathname }) => {
   const addToFavorite = async id => {
     try {
       await axios.post(`notices/favorite/${id}`);
-      dispatch(refreshUser());
+      // dispatch(refreshUser());
       setDeleteId(null);
     } catch (error) {
       console.log(error.message);
@@ -89,7 +87,7 @@ export const NoticeCategoryItem = ({ items, onListChange, pathname }) => {
   const delFromFavorite = async id => {
     try {
       await axios.delete(`notices/favorite/${id}`);
-      dispatch(refreshUser());
+      // dispatch(refreshUser());
       if (pathname === '/notices/favorite') {
         const newList = items.filter(item => item._id !== id);
         onListChange(newList);
@@ -108,10 +106,9 @@ export const NoticeCategoryItem = ({ items, onListChange, pathname }) => {
   };
   const onClickOnFavoriteBtn = id => {
     if (!isLoggedIn) {
-      toast.error(i18n.t('pet_add_notice_auth'), { icon: <ErrorToastIcon /> });
-
-      navigate('/login');
-      return;
+      return toast.error(i18n.t('pet_add_notice_auth'), {
+        icon: <ErrorToastIcon />,
+      });
     }
 
     addOrDell(id);

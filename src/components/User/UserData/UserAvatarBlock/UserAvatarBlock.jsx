@@ -12,8 +12,8 @@ import {
 import { updateAvatar, refreshUser } from 'redux/auth/authOperations';
 import { selectAvatarURL, selectUser } from 'redux/auth/authSelectors';
 
-import addIcon from './addIcon.svg';
-import cameraIcon from './cameraIcon.svg';
+import addIcon from 'images/userPage/addIcon.svg';
+import cameraIcon from 'images/userPage/cameraIcon.svg';
 import { useTranslation } from 'react-i18next';
 
 export const UserAvatarBlock = () => {

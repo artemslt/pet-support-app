@@ -134,7 +134,7 @@ export const LearnMore = ({ onToggleModal, data, onClickOnFavoriteBtn }) => {
                   {category === 'sell' && (
                     <tr>
                       <TableData>{t('Price')}:</TableData>
-                      <TableValue>{price}</TableValue>
+                      <TableValue>{price}$</TableValue>
                     </tr>
                   )}
                 </tbody>
@@ -143,7 +143,7 @@ export const LearnMore = ({ onToggleModal, data, onClickOnFavoriteBtn }) => {
           </ModalContainer>
           <Comment>
             {' '}
-            <CommentBold>{t('Comment')}: </CommentBold>
+            <CommentBold>{t('Comments')}: </CommentBold>
             {comments}
           </Comment>
           <BlockBtns>
