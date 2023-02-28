@@ -143,7 +143,7 @@ export const LearnMore = ({ onToggleModal, data, onClickOnFavoriteBtn }) => {
           </ModalContainer>
           <Comment>
             {' '}
-            <CommentBold>{t('Comment')}: </CommentBold>
+            <CommentBold>{t('Comments')}: </CommentBold>
             {comments}
           </Comment>
           <BlockBtns>

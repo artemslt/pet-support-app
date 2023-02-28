@@ -59,7 +59,6 @@ export const AddPet = ({ onToggleModal }) => {
       const size = file.size;
 
       if (Number(size) > 5000000) {
-        console.log(`ERROR`);
         return toast.error(
           i18n.t('t_photo')`Photo must be no larger than 2.8 megabytes`,
           { icon: <ErrorToastIcon /> }
