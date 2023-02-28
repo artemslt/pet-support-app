@@ -11,7 +11,7 @@ import {
   CardTime,
   CardAddress,
 } from './Friend.styled';
-import notfound from './notfound.jpg';
+import notfound from '../../images/notfound.jpg';
 
 export const Friend = ({
   _id,
