@@ -5,6 +5,7 @@ import { useLocation } from 'react-router-dom';
 import { NoticeCategoryItem } from 'components/NoticeCategoryItem/NoticeCategoryItem';
 import { ButtonMore, CategoriesList } from './NoticesCategoriesList.styled';
 import { useTranslation } from 'react-i18next';
+import { Spinner } from 'components/Spinner/Spinner.styled';
 
 axios.defaults.baseURL = 'https://pet-support-backend-v8vc.onrender.com/api/';
 
@@ -92,9 +93,10 @@ export const NoticesCategoriesList = () => {
 
   return (
     <CategoriesList>
-      {allNotices.length === 0 ? (
+      {allNotices.length === 0 && status === Status.RESOLVED && (
         <h2>{t('no_notice')}</h2>
-      ) : (
+      )}
+      {allNotices.length !== 0 && (
         <NoticeCategoryItem
           items={allNotices}
           onListChange={onListChange}
@@ -102,11 +104,13 @@ export const NoticesCategoriesList = () => {
         />
       )}
 
-      {more && (
+      {more && status === Status.RESOLVED && (
         <ButtonMore type="button" onClick={() => loadMore()}>
           {t('Loading')}
         </ButtonMore>
       )}
+
+      {status === Status.IDLE && <Spinner />}
     </CategoriesList>
   );
 };

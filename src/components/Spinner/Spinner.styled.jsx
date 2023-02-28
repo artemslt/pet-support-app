@@ -1,6 +1,8 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const Spinner = styled.div`
+  margin-left: auto;
+  margin-right: auto;
   margin-top: 60px;
   margin-bottom: 100px;
   border: 16px solid peachpuff;

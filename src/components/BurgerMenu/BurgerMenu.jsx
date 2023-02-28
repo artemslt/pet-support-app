@@ -1,5 +1,4 @@
 import { AuthNav } from 'components/AuthNav/AuthNav';
-// import { Logo } from 'components/Logo/Logo';
 import { Nav } from 'components/Nav/Nav';
 import { UserNav } from 'components/UserNav/UserNav';
 import { useAuth } from 'hooks';
@@ -12,7 +11,6 @@ export const Menu = ({ setOpen, open }) => {
 
   return (
     <StyledMenu open={open}>
-      {/* <Logo setOpen={setOpen} /> */}
       <StyledNav>
         {isMobile && isLoggedIn && <UserNav setOpen={setOpen} />}
         {isMobile && !isLoggedIn && <AuthNav setOpen={setOpen} />}

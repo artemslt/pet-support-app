@@ -21,7 +21,6 @@ export const AddButton = styled.button`
   }
   ${up('tablet')} {
     position: static;
-    /* max-width: 200px; */
   }
 `;
 
