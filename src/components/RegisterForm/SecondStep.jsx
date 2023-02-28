@@ -1,4 +1,5 @@
 import { useTranslation } from 'react-i18next';
+import { Field } from 'formik';
 import {
   Label,
   Input,
@@ -14,17 +15,12 @@ export const SecondStep = ({ isLoading }) => {
     '+',
     '3',
     '8',
-    '(',
     /[0-9]/,
     /\d/,
     /\d/,
-
-    ')',
-
     /\d/,
     /\d/,
     /\d/,
-
     /\d/,
     /\d/,
     /\d/,
@@ -52,13 +48,14 @@ export const SecondStep = ({ isLoading }) => {
         <Error name="location" component="p"></Error>
       </Label>
       <Label>
-        <MaskedPhoneInput
+        <Field
+          as={MaskedPhoneInput}
           mask={phoneNumberMask}
           autoComplete="on"
           type="text"
           name="phone"
           placeholder={t('Mobile_phone')}
-        ></MaskedPhoneInput>
+        ></Field>
         <Error name="phone" component="p"></Error>
       </Label>
       <Button type="submit" disabled={isLoading}>
