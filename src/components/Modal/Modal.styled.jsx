@@ -12,11 +12,10 @@ export const Overlay = styled.div`
   z-index: 1200;
   visibility: hidden;
   background: rgba(17, 17, 17, 0.6);
+  backdrop-filter: blur(10px);
+  transition: 0.5s;
   &.isHidden {
     opacity: 0;
-
-    backdrop-filter: blur(10px);
-    transition: 0.5s;
   }
 
   &.show_modal {
