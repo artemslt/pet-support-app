@@ -13,7 +13,7 @@ export const AvatarThumb = styled.div`
   align-items: center;
   margin-left: auto;
   margin-right: auto;
-  margin-bottom: 50px;
+  margin-bottom: 40px;
   background: ${prop => prop.theme.colors.background};
   object-fit: cover;
   border-radius: 50%;
@@ -48,6 +48,7 @@ export const Avatar = styled.img`
 export const Button = styled.button`
   position: absolute;
   display: flex;
+  width: 105px;
   top: 225px;
   right: -5px;
   border: none;
@@ -58,7 +59,7 @@ export const Button = styled.button`
   ${up('tablet')} {
     margin-bottom: 20px;
     top: 219px;
-    right: -7px;
+    right: -25px;
   }
   ${up('pc')} {
     margin-bottom: 0;

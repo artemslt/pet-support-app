@@ -35,7 +35,7 @@ export const appPetSchemaStep2 = yup.object().shape({
   price: yup
     .string()
     .matches(/^(?!0\d)(\d+|\d*\.\d*[1-9]\d*)$/g, i18n.t('price_match'))
-    .required(),
+    .required(i18n.t('price_required')),
   img: yup.string().required(),
   comment: yup
     .string()

@@ -1,4 +1,3 @@
-// import { NavLink } from 'react-router-dom';
 import { LogoStyled, LogoAccent, LogoContainer, LogoLink } from './logo.styled';
 
 export const Logo = ({ setOpen }) => {

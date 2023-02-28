@@ -3,6 +3,7 @@ import { up } from 'styled-breakpoints';
 
 export const AddButton = styled.button`
   display: flex;
+
   align-items: center;
   padding: 0;
   font-size: ${({ theme }) => theme.fontSizes[3]}px;
@@ -20,6 +21,7 @@ export const AddButton = styled.button`
   }
   ${up('tablet')} {
     position: static;
+    /* max-width: 200px; */
   }
 `;
 
@@ -32,4 +34,7 @@ export const Circle = styled.div`
   border-radius: 50%;
   margin-left: 12px;
   background-color: ${({ theme }) => theme.colors.mainAccent};
+  ${up('tablet')} {
+    margin-left: 0;
+  }
 `;

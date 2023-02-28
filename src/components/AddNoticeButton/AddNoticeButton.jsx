@@ -7,7 +7,7 @@ export const AddNoticeButton = ({ onClick }) => {
 
   return (
     <AddButton type="button" onClick={onClick}>
-      {t('Add_notice')}
+      <span style={{ width: '120px' }}>{t('Add_notice')}</span>
       {
         <Circle>
           <PlusIcon />
@@ -16,4 +16,3 @@ export const AddNoticeButton = ({ onClick }) => {
     </AddButton>
   );
 };
-

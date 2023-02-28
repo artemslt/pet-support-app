@@ -3,7 +3,7 @@ import { up } from 'styled-breakpoints';
 
 export const LogoutWrapper = styled.div`
   display: flex;
-  justify-content: end;
+  justify-content: start;
   font-size: 16px;
   margin-top: 15px;
   ${up('tablet')} {
@@ -27,6 +27,12 @@ export const Button = styled.div`
   }
 `;
 
+export const SvgWrapp = styled.div`
+  width: 18px;
+  height: 18px;
+  justify-content: flex-start;
+`;
+
 export const Text = styled.span`
   display: inline-block;
   font-family: 'Manrope';
@@ -38,7 +44,8 @@ export const Text = styled.span`
 `;
 
 export const ModalToggleBtn = styled.button`
-  background: ${({ theme }) => theme.colors.mainWhite};
+  background-color: rgba(245, 146, 86, 0.9);
+  color: ${({ theme }) => theme.colors.mainWhite};
   width: 240px;
   height: 40px;
   border-radius: 40px;
@@ -60,14 +67,11 @@ export const ModalToggleBtn = styled.button`
   cursor: pointer;
   &:hover {
     background: ${({ theme }) => theme.colors.mainAccent};
-    color: ${({ theme }) => theme.colors.mainWhite};
   }
   &.active {
     background: ${({ theme }) => theme.colors.mainAccent};
-    color: ${({ theme }) => theme.colors.mainWhite};
 
     &:hover {
-      color: ${({ theme }) => theme.colors.mainBlack};
       background: ${({ theme }) => theme.colors.mainWhite};
     }
   }
@@ -81,6 +85,7 @@ export const ModalMenuInner = styled.div`
 export const ModalLogoutText = styled.p`
   display: inline-block;
   font-size: 14px;
+  font-weight: 500;
   padding-bottom: 20px;
   text-align: center;
   ${up('tablet')} {

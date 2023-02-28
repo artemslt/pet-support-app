@@ -2,6 +2,7 @@ import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { toast } from 'react-toastify';
 import i18n from 'i18n';
+import { ErrorToastIcon } from 'components/ToastIcon/ToastIcon.styled';
 
 axios.defaults.baseURL = 'https://pet-support-backend-v8vc.onrender.com/api/';
 
@@ -20,7 +21,8 @@ export const register = createAsyncThunk(
       const response = await axios.post('auth/register', credentials);
       return response.data.data;
     } catch (error) {
-      toast.error(`Something wrong - ${error.response.data.message}`);
+      console.log(error.response.data.message);
+      toast.error(`Something wrong - ${error.response.data.message}`, {icon: <ErrorToastIcon />});
       return thunkAPI.rejectWithValue(error.response.data.message);
     }
   }
@@ -35,7 +37,7 @@ export const login = createAsyncThunk(
       return response.data.data;
     } catch (error) {
       toast.error(
-        i18n.t('t_samething_wrong') + ` - ${error.response.data.message}`
+        i18n.t('t_samething_wrong') + ` - ${error.response.data.message}`, {icon: <ErrorToastIcon />}
       );
       return thunkAPI.rejectWithValue(error.response.data.message);
     }
@@ -51,7 +53,7 @@ export const gLogin = createAsyncThunk(
       return response.data.data;
     } catch (error) {
       toast.error(
-        i18n.t('t_samething_wrong') + ` - ${error.response.data.message}`
+        i18n.t('t_samething_wrong') + ` - ${error.response.data.message}`, {icon: <ErrorToastIcon />}
       );
       return thunkAPI.rejectWithValue(error.response.data.message);
     }
@@ -66,7 +68,7 @@ export const resetPassword = createAsyncThunk(
       setAuthHeader(response.data.data.token);
       return response.data.data;
     } catch (error) {
-      toast.error(`Something wrong - ${error.response.data.message}`);
+      toast.error(`Something wrong - ${error.response.data.message}`, {icon: <ErrorToastIcon />});
       return thunkAPI.rejectWithValue(error.response.data.message);
     }
   }
@@ -78,7 +80,7 @@ export const logout = createAsyncThunk('users/logout', async (_, thunkAPI) => {
     clearAuthHeader();
   } catch (error) {
     toast.error(
-      i18n.t('t_samething_wrong') + ` - ${error.response.data.message}`
+      i18n.t('t_samething_wrong') + ` - ${error.response.data.message}`, {icon: <ErrorToastIcon />}
     );
     return thunkAPI.rejectWithValue(error.response.data.message);
   }
@@ -115,7 +117,7 @@ export const updateUser = createAsyncThunk(
       return response.data.data;
     } catch (error) {
       toast.error(
-        i18n.t('t_samething_wrong') + ` - ${error.response.data.message}`
+        i18n.t('t_samething_wrong') + ` - ${error.response.data.message}`, {icon: <ErrorToastIcon />}
       );
       return thunkAPI.rejectWithValue(error.response.data.message);
     }

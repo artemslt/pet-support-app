@@ -1,7 +1,8 @@
 import { useTranslation } from 'react-i18next';
-import { Label, Input, Error, Button } from './RegisterForm.styled';
+import { Label, Input, Error, Button, StyledSpinner } from './RegisterForm.styled';
 
-export const SecondStep = ({ page, setPage }) => {
+
+export const SecondStep = ({isLoading}) => {
   const { t } = useTranslation();
   return (
     <>
@@ -32,7 +33,7 @@ export const SecondStep = ({ page, setPage }) => {
         ></Input>
         <Error name="phone" component="p"></Error>
       </Label>
-      <Button type="submit">{t('Register')}</Button>
+      <Button type="submit" disabled={isLoading}>{isLoading && <StyledSpinner />}{t('Register')}</Button>
     </>
   );
 };

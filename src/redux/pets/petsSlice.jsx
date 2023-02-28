@@ -22,12 +22,10 @@ const petsSlice = createSlice({
       state.isRefreshing = false;
     },
     [fetchAllPets.rejected](state, _) {
-      console.log('2');
       state.isRefreshing = false;
     },
 
     [addPet.pending](state) {
-      console.log('state.list1', state.list);
       state.isAdding = true;
     },
     [addPet.fulfilled](state, action) {

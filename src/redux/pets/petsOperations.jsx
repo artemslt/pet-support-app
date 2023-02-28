@@ -1,6 +1,5 @@
 import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
-// import { toast } from 'react-toastify';
 
 axios.defaults.baseURL = 'https://pet-support-backend-v8vc.onrender.com/api/';
 
@@ -30,15 +29,12 @@ export const fetchAllPets = createAsyncThunk(
 export const addPet = createAsyncThunk(
   'users/addPet',
   async (newPet, thunkAPI) => {
-    console.log('newPet', newPet);
     try {
       const response = await axios.post('users/addpet', newPet, {
         headers: { 'Content-Type': 'multipart/form-data' },
       });
-      console.log('2');
       return response.data.data;
     } catch (error) {
-      console.log('3');
       console.log(error);
       return thunkAPI.rejectWithValue(error.message);
     }
@@ -51,17 +47,12 @@ export const deletePet = createAsyncThunk(
     const state = thunkAPI.getState();
     const persistedToken = state.auth.token;
     if (persistedToken === null) {
-      console.log('1');
       return thunkAPI.rejectWithValue('Unable to fetch user');
     }
-    console.log('2');
     try {
-      console.log('3');
       const response = await axios.delete(`users/${petId}`);
-      console.log('4');
       return response.data.data;
     } catch (error) {
-      console.log('5');
       return thunkAPI.rejectWithValue(error.message);
     }
   }

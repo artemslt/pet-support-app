@@ -30,6 +30,7 @@ import { refreshUser } from 'redux/auth/authOperations';
 import { useNavigate } from 'react-router-dom';
 
 import { ModalDelete } from '../ModalNoticeDelete/ModalDelete';
+import { ErrorToastIcon } from 'components/ToastIcon/ToastIcon.styled';
 
 import i18n from 'i18n';
 
@@ -46,6 +47,7 @@ export const NoticeCategoryItem = ({ items, onListChange, pathname }) => {
 
   const filter = useSelector(selectFilter);
   const normalizedFilter = filter.toLowerCase().trim();
+  console.log('items', items);
   const filteredNotices = items.filter(item =>
     item.title.toLowerCase().includes(normalizedFilter)
   );
@@ -106,9 +108,7 @@ export const NoticeCategoryItem = ({ items, onListChange, pathname }) => {
   };
   const onClickOnFavoriteBtn = id => {
     if (!isLoggedIn) {
-      toast.error(i18n.t('pet_add_notice_auth'), {
-        position: toast.POSITION.TOP_RIGHT,
-      });
+      toast.error(i18n.t('pet_add_notice_auth'), {icon: <ErrorToastIcon />});
 
       navigate('/login');
       return;
@@ -154,7 +154,6 @@ export const NoticeCategoryItem = ({ items, onListChange, pathname }) => {
       case 'lost-found': {
         return 'lost/found';
       }
-
       default: {
         return 'sell';
       }

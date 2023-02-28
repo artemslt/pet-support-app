@@ -16,6 +16,7 @@ import {
   Error,
   Link,
   IconButton,
+  StyledSpinner,
 } from './ResetPasswordForm.styled';
 import { resetPassword } from 'redux/auth/authOperations';
 import { resetPasswordSchema } from '../../schemas/authValidationSchemas';
@@ -24,12 +25,14 @@ import { ReactComponent as EyeIcon } from '../../images/eye.svg';
 import { ReactComponent as EyeClosedIcon } from '../../images/eye-slash.svg';
 import i18n from 'i18n';
 import { useTranslation } from 'react-i18next';
+import { ErrorToastIcon } from 'components/ToastIcon/ToastIcon.styled';
 
 export const ResetPasswordForm = () => {
   const { t } = useTranslation();
 
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const { resetToken } = useParams();
 
@@ -46,13 +49,15 @@ export const ResetPasswordForm = () => {
       resetToken,
     };
     try {
+      setIsLoading(true);
       const data = await dispatch(resetPassword(newPassword));
       if (data.type === 'auth/resetpassword/fulfilled') {
         resetForm();
       }
     } catch (error) {
-      toast.error(i18n.t('t_login_1'));
+      toast.error(i18n.t('t_login_1'), {icon: <ErrorToastIcon />});
     }
+    setIsLoading(false);
   };
 
   return (
@@ -103,9 +108,9 @@ export const ResetPasswordForm = () => {
                 </Label>
                 <Button
                   type="submit"
-                  disabled={!(formik.dirty && formik.isValid)}
+                  disabled={!(formik.dirty && formik.isValid) || isLoading}
                 >
-                  {t('Reset_Password')}
+                 {isLoading && <StyledSpinner />} {t('Reset_Password')}
                 </Button>
 
                 <Text>
@@ -119,3 +124,5 @@ export const ResetPasswordForm = () => {
     </Container>
   );
 };
+
+
