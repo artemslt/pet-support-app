@@ -41,50 +41,61 @@ export const App = () => {
 
   return (
     <>
-    {isRefreshing ? <SpinnerContainer><Spinner /></SpinnerContainer> :  
-    (<Routes>
-     <Route path="/" element={<SharedLayout />}>
-        <Route
-          index
-          element={
-            <PrivateRoute component={Home} redirectTo="/notices/sell/" />
-          }
-        />
-        <Route path="news" element={<NewsPage />} />
-        <Route path="notices" element={<NoticesPage />}>
-          <Route path="sell" element={<NoticesCategoriesList />} />
-          <Route path="lost-found" element={<NoticesCategoriesList />} />
-          <Route path="for-free" element={<NoticesCategoriesList />} />
-          <Route path="favorite" element={<NoticesCategoriesList />} />
-          <Route path="own" element={<NoticesCategoriesList />} />
-        </Route>
-        <Route path="friends" element={<OurFriendsPage />} />
-        <Route
-          path="register"
-          element={
-            <RestrictedRoute component={RegisterPage} redirectTo="/user" />
-          }
-        />
-        <Route
-          path="login"
-          element={<RestrictedRoute component={LoginPage} redirectTo="/user" />}
-        />
-        <Route
-          path="user"
-          element={<PrivateRoute component={UserPage} redirectTo="/login" />}
-        />
-        <Route path="requestreset" element={<RequestResetPasswordPage />} />
-        <Route
-          path="resetpassword/:resetToken"
-          element={
-            <RestrictedRoute component={ResetPasswordPage} redirectTo="/user" />
-          }
-        />
-        <Route path="*" element={<NotFound />} />
-      </Route>
-    </Routes>)
-  }
-  </>
+      {isRefreshing ? (
+        <SpinnerContainer>
+          <Spinner />
+        </SpinnerContainer>
+      ) : (
+        <Routes>
+          <Route path="/" element={<SharedLayout />}>
+            <Route
+              index
+              element={
+                <PrivateRoute component={Home} redirectTo="/notices/sell/" />
+              }
+            />
+            <Route path="news" element={<NewsPage />} />
+            <Route path="notices" element={<NoticesPage />}>
+              <Route path="sell" element={<NoticesCategoriesList />} />
+              <Route path="lost-found" element={<NoticesCategoriesList />} />
+              <Route path="for-free" element={<NoticesCategoriesList />} />
+              <Route path="favorite" element={<NoticesCategoriesList />} />
+              <Route path="own" element={<NoticesCategoriesList />} />
+            </Route>
+            <Route path="friends" element={<OurFriendsPage />} />
+            <Route
+              path="register"
+              element={
+                <RestrictedRoute component={RegisterPage} redirectTo="/user" />
+              }
+            />
+            <Route
+              path="login"
+              element={
+                <RestrictedRoute component={LoginPage} redirectTo="/user" />
+              }
+            />
+            <Route
+              path="user"
+              element={
+                <PrivateRoute component={UserPage} redirectTo="/login" />
+              }
+            />
+            <Route path="requestreset" element={<RequestResetPasswordPage />} />
+            <Route
+              path="resetpassword/:resetToken"
+              element={
+                <RestrictedRoute
+                  component={ResetPasswordPage}
+                  redirectTo="/user"
+                />
+              }
+            />
+            <Route path="*" element={<NotFound />} />
+          </Route>
+        </Routes>
+      )}
+    </>
   );
 };
 
