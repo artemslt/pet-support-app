@@ -16,7 +16,7 @@ import { PetsList } from '../PetsList/PetsList';
 import { ModalAddsPet } from 'components/ModalAddsPet/ModalAddsPet';
 import { ModalMenu } from 'components/Modal/Modal';
 
-import { ReactComponent as AddPhotoIcon } from './addPhoto.svg';
+import { ReactComponent as AddPhotoIcon } from 'images/userPage/addPhoto.svg';
 import { useTranslation } from 'react-i18next';
 
 export const PetsData = () => {
