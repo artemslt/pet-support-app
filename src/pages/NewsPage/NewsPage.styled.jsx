@@ -1,5 +1,5 @@
 import styled, { createGlobalStyle } from 'styled-components';
-
+import { up } from 'styled-breakpoints';
 export const GlobalStyle = createGlobalStyle`
 ul, button {
   margin: 0;
@@ -27,15 +27,17 @@ export const NewsContainer = styled.div`
   justify-content: center;
   padding-top: 42px;
   background-color: #fdf7f2;
-  // background-color: #F59256;
-  // padding-left: 20px;
-  // padding-right: 20px;
-  @media screen and (min-width: 768px) {
+
+  ${up('tablet')} {
     padding-top: 90px;
-  } ;
+  }
+  ${up('pc')} {
+    padding-top: 60px;
+  }
 `;
 
 export const Title = styled.h1`
+  font-family: ${({ theme }) => theme.fonts[1]};
   font-weight: 700;
   font-size: 24px;
   line-height: 33px;
@@ -98,4 +100,4 @@ export const ErrorText = styled.b`
 margin-top: 40px;
 @media screen and (min-width: 768px) {
   80px;
-}`
+}`;
