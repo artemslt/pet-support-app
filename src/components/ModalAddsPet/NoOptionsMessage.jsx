@@ -13,7 +13,7 @@ export const NoOptionsMessage = props => {
 
   return (
     <components.NoOptionsMessage {...props}>
-        <BreedInputWrapper style={{display:"flex", flexDirection:"column", gap:"4px"}}>
+        <BreedInputWrapper>
 
       <NoOptionsMessageSpan className="custom-css-class">
         {t('No_breed')}

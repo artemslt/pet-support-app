@@ -180,6 +180,7 @@ export const InputDatePicker = styled(DatePicker)`
 `;
 
 export const Button = styled.button`
+  color: ${({ theme }) => theme.colors.mainBlack};
   background: ${({ theme }) => theme.colors.mainWhite};
   width: 240px;
   height: 40px;
@@ -431,12 +432,12 @@ export const CustomSelect = styled(Select)`
 `;
 
 export const BreedInputWrapper = styled.div`
-display:flex;
-flex-direction: column;
-gap:5px;`
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+`;
 
 export const ButtonRemoveSelect = styled.button`
-
   border: none;
   border-radius: 50%;
   cursor: pointer;

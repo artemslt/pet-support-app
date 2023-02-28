@@ -148,12 +148,11 @@ export const FirstPart = ({
           name="next"
           disabled={!isValid || !dirty}
           onClick={() => setStep(false)}
-          //   onClick={Step}
           type="button"
         >
           {t('Next')}
         </Button>
-        <Button type="button" onClick={ResetValues}>
+        <Button type="button" onClick={ResetValues} >
           {t('Cancel')}
         </Button>
       </ButtonsSection>

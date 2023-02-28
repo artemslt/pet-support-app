@@ -164,6 +164,11 @@ export const Input = styled(Field)`
 export const Error = styled(ErrorMessage)`
   color: ${({ theme }) => theme.colors.activeAccent};
 `;
+export const ErrorIMG = styled(ErrorMessage)`
+  color: ${({ theme }) => theme.colors.activeAccent};
+  position: absolute;
+  bottom: 0;
+`;
 
 export const InputDatePicker = styled(DatePicker)`
   font-family: ${({ theme }) => theme.fonts[1]};
@@ -205,6 +210,8 @@ export const ButtonsSection = styled.div`
 `;
 
 export const Button = styled.button`
+  color: ${({ theme }) => theme.colors.mainBlack};
+
   background: ${({ theme }) => theme.colors.mainWhite};
   width: 240px;
   height: 40px;
