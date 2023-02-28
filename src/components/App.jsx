@@ -6,6 +6,9 @@ import { useEffect, lazy } from 'react';
 import { useDispatch } from 'react-redux';
 import { refreshUser } from 'redux/auth/authOperations';
 
+import { useAuth } from 'hooks';
+import { Spinner } from './Spinner/Spinner.styled';
+import { SpinnerContainer } from './FriendList/FriendList.styled';
 import { NoticesCategoriesList } from './NoticesCategoriesList/NoticesCategoriesList';
 
 import { RestrictedRoute } from './RestrictedRoute/RestrictedRoute';
@@ -30,14 +33,17 @@ const RequestResetPasswordPage = lazy(() =>
 
 export const App = () => {
   const dispatch = useDispatch();
+  const { isRefreshing } = useAuth();
 
   useEffect(() => {
     dispatch(refreshUser());
   }, [dispatch]);
 
   return (
-    <Routes>
-      <Route path="/" element={<SharedLayout />}>
+    <>
+    {isRefreshing ? <SpinnerContainer><Spinner /></SpinnerContainer> :  
+    (<Routes>
+     <Route path="/" element={<SharedLayout />}>
         <Route
           index
           element={
@@ -76,7 +82,9 @@ export const App = () => {
         />
         <Route path="*" element={<NotFound />} />
       </Route>
-    </Routes>
+    </Routes>)
+  }
+  </>
   );
 };
 
