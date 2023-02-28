@@ -20,7 +20,6 @@ export const fetchAllPets = createAsyncThunk(
       const response = await axios.get('users');
       return response.data.data.pets;
     } catch (error) {
-      console.log(`Something wrong - ${error.response.data.message}`);
       return thunkAPI.rejectWithValue(error.response.data.message);
     }
   }
@@ -30,12 +29,11 @@ export const addPet = createAsyncThunk(
   'users/addPet',
   async (newPet, thunkAPI) => {
     try {
-      const response = await axios.post('users/addpet', newPet, {
+      const response = await axios.post('pets/addpet', newPet, {
         headers: { 'Content-Type': 'multipart/form-data' },
       });
       return response.data.data;
     } catch (error) {
-      console.log(error);
       return thunkAPI.rejectWithValue(error.message);
     }
   }
@@ -50,7 +48,7 @@ export const deletePet = createAsyncThunk(
       return thunkAPI.rejectWithValue('Unable to fetch user');
     }
     try {
-      const response = await axios.delete(`users/${petId}`);
+      const response = await axios.delete(`pets/${petId}`);
       return response.data.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);

@@ -5,7 +5,6 @@ import { Switch } from './LanguageButton.styled';
 export const LanguageButton = () => {
   const { i18n } = useTranslation();
   const [language, setLanguage] = useState('s');
-  console.log('lng', language);
 
   const handleLanguageToggle = () => {
     const newLanguage = language === 'uk' ? 'en' : 'uk';
@@ -21,8 +20,6 @@ export const LanguageButton = () => {
       return setLanguage(current);
     }
     setLanguage('en');
-
-    console.log(language === 'uk');
   }, [i18n, language]);
 
   return (
