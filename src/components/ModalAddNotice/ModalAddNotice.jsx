@@ -59,7 +59,6 @@ export const AddPet = ({ onToggleModal }) => {
       const size = file.size;
 
       if (Number(size) > 5000000) {
-        console.log(`ERROR`);
         return toast.error(
           i18n.t('t_photo')`Photo must be no larger than 2.8 megabytes`,
           { icon: <ErrorToastIcon /> }
@@ -74,7 +73,7 @@ export const AddPet = ({ onToggleModal }) => {
 
   async function createNotice(newNotice) {
     try {
-      const responce = await axios.post(
+      await axios.post(
         'https://pet-support-backend-v8vc.onrender.com/api/notices/notice',
         newNotice,
         {
@@ -85,8 +84,6 @@ export const AddPet = ({ onToggleModal }) => {
       toast.success(i18n.t('new_notice_create'), {
         icon: <SuccessToastIcon />,
       });
-
-      console.log(`responce`, responce);
     } catch (error) {
       console.log(error);
     }
@@ -111,7 +108,6 @@ export const AddPet = ({ onToggleModal }) => {
     };
 
     createNotice(newNotice);
-    console.log(`AddPet`, values);
     setImgUrl('');
     resetForm();
     onToggleModal();
@@ -142,7 +138,6 @@ export const AddPet = ({ onToggleModal }) => {
           setFieldValue,
           errors,
           isSubmitting,
-          handleChange,
         }) => (
           <NoticeForm onChange={handleOnChange}>
             {step ? (
@@ -154,7 +149,6 @@ export const AddPet = ({ onToggleModal }) => {
                 values={values}
                 errors={errors}
                 setImgUrl={setImgUrl}
-                isSubmitting={isSubmitting}
                 setFieldValue={setFieldValue}
                 setFile={setFile}
                 onToggleModal={onToggleModal}
@@ -171,7 +165,6 @@ export const AddPet = ({ onToggleModal }) => {
                 imgUrl={imgUrl}
                 setImgUrl={setImgUrl}
                 setFile={setFile}
-                file={file}
               />
             )}
           </NoticeForm>
