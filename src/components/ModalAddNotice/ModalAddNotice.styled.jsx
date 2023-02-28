@@ -205,6 +205,8 @@ export const ButtonsSection = styled.div`
 `;
 
 export const Button = styled.button`
+  color: ${({ theme }) => theme.colors.mainBlack};
+
   background: ${({ theme }) => theme.colors.mainWhite};
   width: 240px;
   height: 40px;

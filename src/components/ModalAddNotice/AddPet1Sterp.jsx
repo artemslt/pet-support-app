@@ -148,7 +148,6 @@ export const FirstPart = ({
           name="next"
           disabled={!isValid || !dirty}
           onClick={() => setStep(false)}
-          //   onClick={Step}
           type="button"
         >
           {t('Next')}
