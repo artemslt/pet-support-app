@@ -5,7 +5,7 @@ export const MobBtn = styled.button`
   z-index: 1;
   opacity: 0.9;
   right: 20px;
-  top: 455px;
+  top: 420px;
   display: flex;
   justify-content: center;
   align-items: center;

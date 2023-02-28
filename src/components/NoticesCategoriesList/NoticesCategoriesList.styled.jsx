@@ -130,7 +130,7 @@ export const Content = styled.div`
 export const Button = styled.div`
   position: fixed;
   width: 100%;
-  left: 40%;
+  left: 30%;
   bottom: 220px;
   height: 20px;
   font-size: 3rem;
@@ -141,6 +141,6 @@ export const Button = styled.div`
   transition: ${({ theme }) => theme.btnAnimationTransition};
 
   ${up('tablet')} {
-    left: 17%;
+    left: 320px;
   }
 `;
