@@ -134,7 +134,7 @@ export const LearnMore = ({ onToggleModal, data, onClickOnFavoriteBtn }) => {
                   {category === 'sell' && (
                     <tr>
                       <TableData>{t('Price')}:</TableData>
-                      <TableValue>{price}</TableValue>
+                      <TableValue>{price}$</TableValue>
                     </tr>
                   )}
                 </tbody>
