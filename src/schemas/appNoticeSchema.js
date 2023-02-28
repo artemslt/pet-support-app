@@ -2,7 +2,7 @@ import i18n from 'i18n';
 import * as yup from 'yup';
 
 // for exemple Brovary, Kyiv or Akhtyrka, Sumy
-const locationRegexp = /^([А-Яа-яЇїІіЄєҐґ'),\s]+|[a-zA-Z\s]+){2,}$/;
+const locationRegexp = /^[^\s][^-]+([А-Яа-яЇїІіЄєҐґ'),-\s]+|[a-zA-Z\s]+){2,}$/;
 const title = /^[^\s][^,]+(?!.*[ыЫёЁэЭ])([a-zA-Zа-яА-ЯІіЇїЄєҐґ',\s']+)[^\s]$/;
 const breed =  /^[^\s]+(?!.*[ыЫёЁэЭ])([a-zA-Zа-яА-ЯІіЇїЄєҐґ',\s']+)[^\s]$/;
 
