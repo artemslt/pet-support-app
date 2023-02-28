@@ -21,8 +21,13 @@ export const Search = styled.input`
   outline: transparent;
   padding: 9px 12px;
   box-shadow: 7px 4px 14px rgba(49, 21, 4, 0.07);
-  border: transparent;
+  border: 1px solid transparent;
   border-radius: 20px;
+
+  :hover,
+  :focus {
+    border: 1px solid rgba(245, 146, 86, 0.5);
+  }
   ${up('tablet')} {
     width: 608px;
     height: 44px;
@@ -40,4 +45,11 @@ export const SearchBtn = styled.button`
   border: transparent;
   background: transparent;
   cursor: pointer;
+`;
+
+export const ErrorText = styled.b`
+  margin-top: 40px;
+  ${up('tablet')} {
+    margin-top: 80px;
+  }
 `;
