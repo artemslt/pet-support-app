@@ -9,6 +9,11 @@ export const Menu = ({ setOpen, open }) => {
   const { isMobile } = useMatchMedia();
   const { isLoggedIn } = useAuth();
 
+  if (open) {
+    document.body.style.overflow = 'hidden';
+  } else {
+    document.body.style.overflow = '';
+  }
   return (
     <StyledMenu open={open}>
       <StyledNav>
