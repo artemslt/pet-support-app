@@ -4,7 +4,7 @@ import * as yup from 'yup';
 // for exemple Brovary, Kyiv or Akhtyrka, Sumy
 const locationRegexp = /^[^\s][^-]+([А-Яа-яЇїІіЄєҐґ'),-\s]+|[a-zA-Z\s]+){2,}$/;
 const title = /^[^\s][^,]+(?!.*[ыЫёЁэЭ])([a-zA-Zа-яА-ЯІіЇїЄєҐґ',\s']+)[^\s]$/;
-const breed =  /^[^\s]+(?!.*[ыЫёЁэЭ])([a-zA-Zа-яА-ЯІіЇїЄєҐґ',\s']+)[^\s]$/;
+const breed = /^[^\s]+(?!.*[ыЫёЁэЭ])([a-zA-Zа-яА-ЯІіЇїЄєҐґ',\s']+)[^\s]$/;
 
 export const appPetSchemaStep1 = yup.object().shape({
   typeOfNotice: yup.string().required(),
@@ -44,7 +44,7 @@ export const appPetSchemaStep2 = yup.object().shape({
     .string()
     .matches(/^[1-9]\d*$/g, i18n.t('price_match'))
     .required(i18n.t('price_required')),
-  img: yup.string().required(),
+  img: yup.string().required(i18n.t('photo_required')),
   comment: yup
     .string()
     .min(8, i18n.t('commet_min'))

@@ -162,12 +162,26 @@ export const Input = styled(Field)`
 `;
 
 export const Error = styled(ErrorMessage)`
+  font-family: ${({ theme }) => theme.fonts[1]};
+  font-weight: ${({ theme }) => theme.fontWeights[1]};
+  font-size: 12px;
   color: ${({ theme }) => theme.colors.activeAccent};
+  ${up('tablet')} {
+    font-size: 16px;
+  }
 `;
 export const ErrorIMG = styled(ErrorMessage)`
-  color: ${({ theme }) => theme.colors.activeAccent};
   position: absolute;
   bottom: 0;
+
+  font-family: ${({ theme }) => theme.fonts[1]};
+  font-weight: ${({ theme }) => theme.fontWeights[1]};
+  font-size: 12px;
+  color: ${({ theme }) => theme.colors.activeAccent};
+
+  ${up('tablet')} {
+    font-size: 16px;
+  }
 `;
 
 export const InputDatePicker = styled(DatePicker)`
@@ -318,7 +332,6 @@ export const RadioBtn = styled(Field)`
   }
 `;
 
-// стилі react-select вино тут перебиваються складно в них норм розібратися, починаються із Select_Notice '__control' та тд те що треба перебити
 export const CustomSelect = styled(Select)`
   .Select_Notice__control {
     width: 240px;
@@ -376,7 +389,6 @@ export const CustomSelect = styled(Select)`
 // Styles for Step 2
 
 export const RadioBtnSex = styled(Field)`
-  /* Приховати чекбокс!! */
   appearance: none;
   -webkit-appearance: none;
   -moz-appearance: none;
