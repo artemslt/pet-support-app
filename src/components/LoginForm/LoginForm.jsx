@@ -20,17 +20,20 @@ import {
   Link,
   IconButton,
   ButtonText,
+  StyledSpinner,
 } from './LoginForm.styled';
 import { Container } from 'components/Container/Container.styled';
 import { ReactComponent as EyeIcon } from '../../images/eye.svg';
 import { ReactComponent as EyeClosedIcon } from '../../images/eye-slash.svg';
 import { ReactComponent as GoogleIcon } from '../../images/google-icon.svg';
+import { ErrorToastIcon } from 'components/ToastIcon/ToastIcon.styled';
 import { useTranslation } from 'react-i18next';
 import i18n from 'i18n';
 
 export const LoginForm = () => {
   const { t } = useTranslation();
   const [showPassword, setShowPassword] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const initialValues = {
     email: '',
@@ -45,13 +48,15 @@ export const LoginForm = () => {
       password: values.password,
     };
     try {
+      setIsLoading(true);
       const data = await dispatch(login(currentUser));
       if (data.type === 'auth/login/fulfilled') {
         resetForm();
       }
     } catch (error) {
-      toast.error(i18n.t('t_login_1'));
+      toast.error(i18n.t('t_login_1'), {icon: <ErrorToastIcon />});
     }
+    setIsLoading(false);
   };
   const onSuccess = async response => {
     try {
@@ -62,10 +67,9 @@ export const LoginForm = () => {
       const { email, name } = googleUser.data;
       const accessToken = response.access_token;
 
-      console.log({ email, name });
       await dispatch(gLogin({ email, name, accessToken }));
     } catch (error) {
-      toast.error(i18n.t('t_login_2')` - ${error}`);
+      toast.error(i18n.t('t_login_2')` - ${error}`, {icon: <ErrorToastIcon />});
     }
   };
 
@@ -114,9 +118,9 @@ export const LoginForm = () => {
                 </Label>
                 <Button
                   type="submit"
-                  disabled={!(formik.dirty && formik.isValid)}
+                  disabled={!(formik.dirty && formik.isValid) || isLoading}
                 >
-                  {t('Login')}
+                 {isLoading && <StyledSpinner />} {t('Login')}
                 </Button>
                 <Button type="button" onClick={googleLogin}>
                   <GoogleIcon />
@@ -126,7 +130,7 @@ export const LoginForm = () => {
                   {t('No_account')} <Link to="/register">{t('Register')}</Link>
                 </Text>
                 <Text>
-                  Forgot your password? <Link to="/requestreset">Reset</Link>
+                  {t('Forgot_password')} <Link to="/requestreset">{t('Reset')}</Link>
                 </Text>
               </Form>
             )}

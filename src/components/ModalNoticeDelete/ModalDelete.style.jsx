@@ -24,6 +24,17 @@ export const Title = styled.h2`
   }
 `;
 
+export const WrapperBtn = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  ${up('tablet')} {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+  }
+`;
+
 export const Button = styled.button`
   background: ${({ theme }) => theme.colors.mainWhite};
   width: 140px;
@@ -31,23 +42,23 @@ export const Button = styled.button`
   border-radius: 40px;
   border: 2px solid #f59256;
 
-  margin: 0 auto;
-  margin-right: 15px;
-  :last-child {
-    margin-right: 0;
-  }
-  /* ${up('tablet')} {
-    width: 180px;
-    height: 44px;
+  margin-bottom: 15px;
 
-    margin-right: 24px;
-    &:first-child {
-      margin-right: 0px;
-    } */
+  :last-child {
+    margin-bottom: 0;
+  }
 
   cursor: pointer;
   &:hover {
     background: ${({ theme }) => theme.colors.mainAccent};
     color: ${({ theme }) => theme.colors.mainWhite};
+  }
+
+  ${up('tablet')} {
+    margin-right: 15px;
+    :last-child {
+      margin-right: 0;
+    }
+    margin-bottom: 0;
   }
 `;

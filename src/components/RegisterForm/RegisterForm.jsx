@@ -15,12 +15,15 @@ import {
   Link,
   Button,
 } from './RegisterForm.styled';
+import { ErrorToastIcon } from 'components/ToastIcon/ToastIcon.styled';
+
 import { useTranslation } from 'react-i18next';
 import i18n from 'i18n';
 
 export const RegisterForm = () => {
   const { t } = useTranslation();
   const [page, setPage] = useState('0');
+  const [isLoading, setIsLoading] = useState(false);
 
   const dispatch = useDispatch();
 
@@ -41,10 +44,9 @@ export const RegisterForm = () => {
       location: values.location,
       phone: values.phone,
     };
-    console.log(newUser);
     try {
+      setIsLoading(true);
       const data = await dispatch(register(newUser));
-      console.log(data);
       if (data.type === 'auth/register/fulfilled') {
         await dispatch(
           login({ email: values.email, password: values.password })
@@ -54,9 +56,10 @@ export const RegisterForm = () => {
       }
     } catch (error) {
       toast.error(
-        i18n.t('t_samething_wrong') + ` - ${error.response.data.message}`
+        i18n.t('t_samething_wrong') + ` - ${error.response.data.message}`, {icon: <ErrorToastIcon />}
       );
     }
+    setIsLoading(false);
   };
 
   return (
@@ -70,7 +73,7 @@ export const RegisterForm = () => {
         >
           {formik => (
             <Form>
-              {<StepSwitcher page={page} setPage={setPage} />}
+              {<StepSwitcher page={page} isLoading={isLoading} />}
               {page === '0' && (
                 <Button
                   type="button"
@@ -83,7 +86,7 @@ export const RegisterForm = () => {
               {page === '1' && (
                 <Button
                   type="button"
-                  disabled={!(formik.dirty && formik.isValid)}
+                  disabled={!(formik.dirty && formik.isValid) || isLoading}
                   onClick={() => setPage('0')}
                 >
                   {t('Back')}

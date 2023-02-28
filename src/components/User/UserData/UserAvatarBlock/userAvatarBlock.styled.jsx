@@ -2,17 +2,18 @@ import styled from 'styled-components';
 import { up } from 'styled-breakpoints';
 
 export const Form = styled.form`
-  position: relative;
+  /* position: relative; */
 `;
 
 export const AvatarThumb = styled.div`
   display: flex;
+  position: relative;
   width: 233px;
   height: 233px;
   align-items: center;
   margin-left: auto;
   margin-right: auto;
-  margin-bottom: 50px;
+  margin-bottom: 40px;
   background: ${prop => prop.theme.colors.background};
   object-fit: cover;
   border-radius: 50%;
@@ -47,9 +48,9 @@ export const Avatar = styled.img`
 export const Button = styled.button`
   position: absolute;
   display: flex;
-  align-items: center;
+  width: 105px;
   top: 225px;
-  right: 15px;
+  right: -5px;
   border: none;
 
   background: none;
@@ -58,12 +59,12 @@ export const Button = styled.button`
   ${up('tablet')} {
     margin-bottom: 20px;
     top: 219px;
-    right: -7px;
+    right: -25px;
   }
   ${up('pc')} {
     margin-bottom: 0;
-    top: 205px;
-    right: 0;
+    top: 210px;
+    right: -50px;
   }
 `;
 

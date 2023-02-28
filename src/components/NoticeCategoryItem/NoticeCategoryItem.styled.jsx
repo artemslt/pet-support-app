@@ -6,13 +6,27 @@ export const Card = styled.li`
   border-radius: 0px 0px 40px 40px;
   background-color: ${({ theme }) => theme.colors.mainWhite};
   width: 280px;
+
   margin-bottom: 32px;
+  &:last-child {
+    margin-bottom: 0;
+  }
   margin-left: auto;
   margin-right: auto;
   ${up('tablet')} {
     width: 336px;
-    margin-bottom: 0;
+    margin: 0;
   }
+  ${up('pcSizeS')} {
+    width: calc(100% / 3 - 22px);
+    margin: 0;
+  }
+
+  ${up('pcSizeM')} {
+    width: calc(100% / 3 - 32px);
+    margin: 0;
+  }
+
   ${up('pc')} {
     width: 288px;
   }
@@ -85,6 +99,7 @@ export const NoticeTitle = styled.h2`
 `;
 export const Table = styled.table`
   table-layout: fixed;
+  height: 150px;
 `;
 
 export const TableData = styled.td`
@@ -92,6 +107,9 @@ export const TableData = styled.td`
   font-family: ${({ theme }) => theme.fonts[1]};
   font-weight: 500;
   padding-right: 40px;
+  :nth-child(2) {
+    padding-right: 0;
+  }
   padding-bottom: 8px;
 `;
 

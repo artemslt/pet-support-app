@@ -6,6 +6,7 @@ import {
   ErrorMessage as FormikErrorMessage,
 } from 'formik';
 import { Link as RouterLink } from 'react-router-dom';
+import { ReactComponent as SpinnerIcon } from '../../images/spinner-white.svg';
 
 export const FlexBox = styled.div`
   display: flex;
@@ -127,6 +128,7 @@ export const Error = styled(FormikErrorMessage)`
 `;
 
 export const Button = styled.button`
+  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -181,11 +183,51 @@ export const Text = styled.p`
 `;
 
 export const Link = styled(RouterLink)`
+  margin-left: 2px;
   text-decoration: none;
   color: ${prop => prop.theme.colors.blue};
   transition: ${({ theme }) => theme.btnAnimationTransition};
   &:hover,
   &:focus {
     color: ${prop => prop.theme.colors.activeAccent};
+  }
+`;
+
+export const StyledSpinner = styled(SpinnerIcon)`
+  position: absolute;
+  left: 30px;
+  ${up('tablet')} {
+    left: 115px;
+  }
+   fill: white;
+  animation: rotate 2s linear infinite;
+
+  width: 20px;
+  height: 20px;
+
+  & .path {
+    stroke: #5652bf;
+    stroke-linecap: round;
+    animation: dash 1.5s ease-in-out infinite;
+  }
+
+  @keyframes rotate {
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+  @keyframes dash {
+    0% {
+      stroke-dasharray: 1, 150;
+      stroke-dashoffset: 0;
+    }
+    50% {
+      stroke-dasharray: 90, 150;
+      stroke-dashoffset: -35;
+    }
+    100% {
+      stroke-dasharray: 90, 150;
+      stroke-dashoffset: -124;
+    }
   }
 `;

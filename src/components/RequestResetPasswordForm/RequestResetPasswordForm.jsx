@@ -1,6 +1,7 @@
 import { Formik } from 'formik';
 import { toast } from 'react-toastify';
 import axios from 'axios';
+import { useState } from 'react';
 
 import {
   FlexBox,
@@ -14,13 +15,19 @@ import {
   Error,
   Link,
   InfoText,
+  StyledSpinner,
 } from './RequestResetPasswordForm.styled';
 import { requestResetSchema } from '../../schemas/authValidationSchemas';
 import { Container } from 'components/Container/Container.styled';
+import { ErrorToastIcon, SuccessToastIcon } from 'components/ToastIcon/ToastIcon.styled';
+import { useTranslation } from 'react-i18next';
+import i18n from 'i18n';
 
 axios.defaults.baseURL = 'https://pet-support-backend-v8vc.onrender.com/api/';
 
 export const RequestResetPasswordForm = () => {
+  const { t } = useTranslation();
+  const [isLoading, setIsLoading] = useState(false);
   const initialValues = {
     email: '',
   };
@@ -30,23 +37,21 @@ export const RequestResetPasswordForm = () => {
       email: values.email,
     };
     try {
-      const data = await axios.patch('auth/resetpassword', email);
-      toast.success(
-        'Received your request, please check your email and follow the link to reset password'
-      );
-      if (data.type === 'auth/resetpassword/fulfilled') {
-        resetForm();
-      }
+      setIsLoading(true);
+      await axios.patch('auth/resetpassword', email);
+      toast.success(i18n.t('Reset_Password_notification_check'), {icon: <SuccessToastIcon />});
+      resetForm();
     } catch (error) {
-      toast.error(error.response.data.message);
+      toast.error(error.response.data.message, {icon: <ErrorToastIcon />} );
     }
+    setIsLoading(false);
   };
 
   return (
     <Container>
       <FlexBox>
         <FormWrapper>
-          <Heading>Reset Password</Heading>
+          <Heading>{t('Reset_Password')}</Heading>
           <Formik
             initialValues={initialValues}
             validationSchema={requestResetSchema}
@@ -54,29 +59,27 @@ export const RequestResetPasswordForm = () => {
           >
             {formik => (
               <Form>
-                <InfoText>
-                  Please enter your email address and we will send you an email
-                  to reset your password.
-                </InfoText>
+                <InfoText>{t('Reset_Password_notification')}</InfoText>
                 <Label>
                   <Input
                     autoComplete="on"
                     type="email"
                     name="email"
-                    placeholder="Email"
+                    placeholder={t('Email')}
                   ></Input>
                   <Error name="email" component="p"></Error>
                 </Label>
 
                 <Button
                   type="submit"
-                  disabled={!(formik.dirty && formik.isValid)}
+                  disabled={!(formik.dirty && formik.isValid) || isLoading}
                 >
-                  Request reset password
+                  {isLoading && <StyledSpinner />} {t('Reset_Password')}
                 </Button>
 
                 <Text>
-                  Back to <Link to="/login">Login</Link>
+                  {t('Back_to')}
+                  <Link to="/login">{t('Login')}</Link>
                 </Text>
               </Form>
             )}

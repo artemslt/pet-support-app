@@ -14,7 +14,6 @@ import {
   InputWrapper,
   EditBtn,
   ErrorMessage,
-  // NotAuthorized,
 } from './UserDataItem.styled';
 import { updateUser } from 'redux/auth/authOperations';
 import { selectUser } from 'redux/auth/authSelectors';
