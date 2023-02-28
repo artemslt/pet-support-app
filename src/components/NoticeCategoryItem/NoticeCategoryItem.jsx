@@ -1,6 +1,6 @@
-import { ReactComponent as FavoriteIcon } from './akar-icons_heart.svg';
-import { ReactComponent as InFavoriteIcon } from './icon-heart-filled.svg';
-import { ReactComponent as DeleteIcon } from './fluent_delete-16-filled.svg';
+import { ReactComponent as FavoriteIcon } from 'images/noticePage/akar-icons_heart.svg';
+import { ReactComponent as InFavoriteIcon } from 'images/noticePage/icon-heart-filled.svg';
+import { ReactComponent as DeleteIcon } from 'images/noticePage/fluent_delete-16-filled.svg';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectIsLoggedIn, selectUser } from 'redux/auth/authSelectors';
 import { selectFilter } from 'redux/notices/noticesSelectors';
@@ -47,7 +47,7 @@ export const NoticeCategoryItem = ({ items, onListChange, pathname }) => {
 
   const filter = useSelector(selectFilter);
   const normalizedFilter = filter.toLowerCase().trim();
-  console.log('items', items);
+
   const filteredNotices = items.filter(item =>
     item.title.toLowerCase().includes(normalizedFilter)
   );

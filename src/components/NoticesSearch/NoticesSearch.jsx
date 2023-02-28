@@ -1,6 +1,6 @@
 import { Search, SearchBtn, Form } from './NoticesSearch.styled';
-import { ReactComponent as SearchIcon } from './search-24px 1.svg';
-import { ReactComponent as DelIcon } from './x-circle.svg';
+import { ReactComponent as SearchIcon } from 'images/noticePage/search-24px 1.svg';
+import { ReactComponent as DelIcon } from 'images/noticePage/x-circle.svg';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { addFilter } from 'redux/notices/noticesSlice';
@@ -9,7 +9,6 @@ import { useSearchParams } from 'react-router-dom';
 import { selectFilter } from 'redux/notices/noticesSelectors';
 export const NoticesSearch = () => {
   const { t } = useTranslation();
-  // const [filter, setFilter] = useState('');
   const dispatch = useDispatch();
 
   const filter = useSelector(selectFilter);
@@ -20,12 +19,9 @@ export const NoticesSearch = () => {
   const onChangeFilter = e => {
     setSearchParams({ post: e.target.value });
     dispatch(addFilter(e.target.value));
-    // setFilter(e.target.value);
-    // dispatch(addFilter(e.target.value));
   };
   const onClickBtn = e => {
     e.preventDefault();
-    // setFilter('');
     setSearchParams({ post: '' });
     dispatch(addFilter(''));
   };

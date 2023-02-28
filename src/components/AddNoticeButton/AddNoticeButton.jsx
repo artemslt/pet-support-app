@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next';
 import { AddButton, Circle } from './AddNoticeButton.styled';
-import { ReactComponent as PlusIcon } from './akar-icons_plus.svg';
+import { ReactComponent as PlusIcon } from 'images/noticePage/akar-icons_plus.svg';
 
 export const AddNoticeButton = ({ onClick }) => {
   const { t } = useTranslation();
