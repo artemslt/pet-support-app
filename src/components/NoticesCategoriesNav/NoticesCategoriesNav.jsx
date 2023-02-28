@@ -15,7 +15,6 @@ import { useState } from 'react';
 import { AddPet } from 'components/ModalAddNotice/ModalAddNotice';
 import { ModalMenu } from 'components/Modal/Modal';
 import { useTranslation } from 'react-i18next';
-import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import i18n from 'i18n';
 import { ErrorToastIcon } from 'components/ToastIcon/ToastIcon.styled';
@@ -25,7 +24,6 @@ export const NoticesCategoriesNav = () => {
   const mob = useBreakpoint(down('tablet'));
   const tablet = useBreakpoint(up('tablet'));
 
-  const navigate = useNavigate();
   let isLoggin = useSelector(selectIsLoggedIn);
   const [modalToggle, setModalToggle] = useState(false);
   const onToggleModal = e => {
@@ -34,9 +32,7 @@ export const NoticesCategoriesNav = () => {
 
   const addPet = () => {
     if (!isLoggin) {
-      toast.error(i18n.t('pet_add_notice_auth'), {icon: <ErrorToastIcon />});
-      navigate('/login');
-      return;
+      return toast.error(i18n.t('pet_add_notice_auth'), {icon: <ErrorToastIcon />});
     }
     setModalToggle(true);
   };
