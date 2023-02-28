@@ -25,6 +25,7 @@ import { ReactComponent as EyeIcon } from '../../images/eye.svg';
 import { ReactComponent as EyeClosedIcon } from '../../images/eye-slash.svg';
 import i18n from 'i18n';
 import { useTranslation } from 'react-i18next';
+import { ErrorToastIcon } from 'components/ToastIcon/ToastIcon.styled';
 
 export const ResetPasswordForm = () => {
   const { t } = useTranslation();
@@ -54,7 +55,7 @@ export const ResetPasswordForm = () => {
         resetForm();
       }
     } catch (error) {
-      toast.error(i18n.t('t_login_1'));
+      toast.error(i18n.t('t_login_1'), {icon: <ErrorToastIcon />});
     }
     setIsLoading(false);
   };

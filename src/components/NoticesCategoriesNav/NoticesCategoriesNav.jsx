@@ -1,5 +1,4 @@
 import { useSelector } from 'react-redux';
-import 'react-toastify/dist/ReactToastify.css';
 
 import { AddNoticeButton } from 'components/AddNoticeButton/AddNoticeButton';
 import {
@@ -19,6 +18,7 @@ import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import i18n from 'i18n';
+import { ErrorToastIcon } from 'components/ToastIcon/ToastIcon.styled';
 
 export const NoticesCategoriesNav = () => {
   const { t } = useTranslation();
@@ -34,7 +34,7 @@ export const NoticesCategoriesNav = () => {
 
   const addPet = () => {
     if (!isLoggin) {
-      toast.error(i18n.t('pet_add_notice_auth'));
+      toast.error(i18n.t('pet_add_notice_auth'), {icon: <ErrorToastIcon />});
       navigate('/login');
       return;
     }
