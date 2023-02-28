@@ -16,6 +16,13 @@ font-family: ${fonts[1]};
     border-radius: 20px;
   }
 `;
+export const Hoverable = styled.span`
+  &:hover {
+    cursor: pointer;
+    color: #e37a3c;
+    transition: 0.2s;
+  }
+`;
 
 export const CardTitle = styled.a`
   font-weight: ${fontWeights[2]};
