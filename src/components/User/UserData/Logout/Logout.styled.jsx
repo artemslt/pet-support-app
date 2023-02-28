@@ -43,6 +43,14 @@ export const Text = styled.span`
   margin-left: 8px;
 `;
 
+export const ModalToggleBtnWrapp = styled.div`
+  display: flex;
+  flex-direction: column;
+  ${up('tablet')} {
+    display: block;
+  }
+`;
+
 export const ModalToggleBtn = styled.button`
   background-color: rgba(245, 146, 86, 0.9);
   color: ${({ theme }) => theme.colors.mainWhite};
@@ -52,7 +60,6 @@ export const ModalToggleBtn = styled.button`
   border: 2px solid #f59256;
   &:first-child {
     margin-bottom: 12px;
-    margin-right: 12px;
   }
 
   ${up('tablet')} {

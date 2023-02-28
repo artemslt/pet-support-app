@@ -22,7 +22,7 @@ export const Label = styled.label`
     font-size: 18px;
   }
   ${up('pc')} {
-    width: 90px;
+    width: 96px;
   }
 `;
 
@@ -40,7 +40,7 @@ export const LabelDatePicker = styled.label`
     font-size: 18px;
   }
   ${up('pc')} {
-    width: 90px;
+    width: 96px;
   }
 `;
 
@@ -149,7 +149,7 @@ export const EditBtn = styled.button`
     height: 32px;
   }
   ${up('pc')} {
-    margin-left: ${prop => (prop.isDateEdit ? '10px' : 0)};
+    margin-left: ${prop => (prop.isDateEdit ? '8px' : 0)};
   }
 `;
 
