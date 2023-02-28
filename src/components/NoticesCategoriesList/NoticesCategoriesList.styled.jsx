@@ -102,5 +102,6 @@ export const Button = styled.div`
 
   ${down('mobileSizeM')} {
     bottom: 15%;
+    bottom: 15%;
   }
 `;
