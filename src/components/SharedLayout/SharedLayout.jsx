@@ -6,6 +6,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { Header } from 'components/Header/Header';
 import { WrapperSharedLayout } from './SharedLayout.styled';
 import { useTranslation } from 'react-i18next';
+
 export const SharedLayout = () => {
   const { t } = useTranslation();
 

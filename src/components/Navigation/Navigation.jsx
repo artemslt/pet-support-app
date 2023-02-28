@@ -8,7 +8,6 @@ import { LanguageButton } from 'components/LanguageButton/LanguageButton';
 
 export const Navigation = ({ setOpen }) => {
   const { isTablet, isDesktop } = useMatchMedia();
-
   const { isLoggedIn } = useAuth();
 
   return (

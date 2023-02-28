@@ -131,6 +131,7 @@ export const AddPet = ({ onToggleModal }) => {
           setFieldValue,
           errors,
           isSubmitting,
+          handleChange
         }) => (
           <NoticeForm onChange={handleOnChange}>
             {step ? (
@@ -148,6 +149,7 @@ export const AddPet = ({ onToggleModal }) => {
                 onToggleModal={onToggleModal}
                 startDate={startDate}
                 setStartDate={setStartDate}
+                handleChange={handleChange}
               />
             ) : (
               <SecondPart
