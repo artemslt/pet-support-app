@@ -88,9 +88,10 @@ export const Content = styled.div`
 
 export const Button = styled.div`
   position: fixed;
-  width: 100%;
-  left: 30%;
-  bottom: 220px;
+  display: flex;
+  right: 20%;
+  bottom: 37%;
+
   height: 20px;
   font-size: 3rem;
   z-index: 1;
@@ -98,8 +99,4 @@ export const Button = styled.div`
   cursor: pointer;
   color: ${prop => prop.theme.colors.mainAccent};
   transition: ${({ theme }) => theme.btnAnimationTransition};
-
-  ${up('tablet')} {
-    left: 320px;
-  }
 `;
