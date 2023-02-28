@@ -257,19 +257,18 @@ export const NoticeCategoryItem = ({ items, onListChange, pathname }) => {
           />
         </ModalMenu>
       )}
-      {openModalDelete && (
-        <ModalMenu
-          onClose={() => setOpenModalDelete(false)}
-          open={openModalDelete}
-          openModalDelete={openModalDelete}
-        >
-          <ModalDelete
-            onToggleModal={onToggleModal}
-            deletePet={deletePet}
-            deleteId={deleteId}
-          />
-        </ModalMenu>
-      )}
+
+      <ModalMenu
+        onClose={() => setOpenModalDelete(false)}
+        open={openModalDelete}
+        openModalDelete={openModalDelete}
+      >
+        <ModalDelete
+          onToggleModal={onToggleModal}
+          deletePet={deletePet}
+          deleteId={deleteId}
+        />
+      </ModalMenu>
     </>
   );
 };
