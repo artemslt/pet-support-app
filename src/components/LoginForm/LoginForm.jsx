@@ -26,6 +26,7 @@ import { Container } from 'components/Container/Container.styled';
 import { ReactComponent as EyeIcon } from '../../images/eye.svg';
 import { ReactComponent as EyeClosedIcon } from '../../images/eye-slash.svg';
 import { ReactComponent as GoogleIcon } from '../../images/google-icon.svg';
+import { ErrorToastIcon } from 'components/ToastIcon/ToastIcon.styled';
 import { useTranslation } from 'react-i18next';
 import i18n from 'i18n';
 
@@ -53,7 +54,7 @@ export const LoginForm = () => {
         resetForm();
       }
     } catch (error) {
-      toast.error(i18n.t('t_login_1'));
+      toast.error(i18n.t('t_login_1'), {icon: <ErrorToastIcon />});
     }
     setIsLoading(false);
   };
@@ -68,7 +69,7 @@ export const LoginForm = () => {
 
       await dispatch(gLogin({ email, name, accessToken }));
     } catch (error) {
-      toast.error(i18n.t('t_login_2')` - ${error}`);
+      toast.error(i18n.t('t_login_2')` - ${error}`, {icon: <ErrorToastIcon />});
     }
   };
 

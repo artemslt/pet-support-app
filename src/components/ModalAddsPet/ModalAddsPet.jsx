@@ -16,6 +16,7 @@ import { onSelector } from 'redux/InputPets/inputPetsSlice';
 import { addPet } from 'redux/pets/petsOperations';
 import i18n from 'i18n';
 import { useTranslation } from 'react-i18next';
+import { ErrorToastIcon } from 'components/ToastIcon/ToastIcon.styled';
 
 const initialValues = {
   name: '',
@@ -42,7 +43,7 @@ export const ModalAddsPet = ({ onToggleModal }) => {
     const { name, birthday, breed, comment } = values;
 
     if (!name || !birthday || !breed || !comment || !file) {
-      return toast.error(i18n.t('all_field'));
+      return toast.error(i18n.t('all_field'), {icon: <ErrorToastIcon />});
     }
 
     const userPet = {
@@ -66,7 +67,7 @@ export const ModalAddsPet = ({ onToggleModal }) => {
       const file = event.target.files[0];
       const size = file.size;
       if (Number(size) > 5000000) {
-        return toast.error(i18n.t('t_photo'));
+        return toast.error(i18n.t('t_photo'), {icon: <ErrorToastIcon />});
       }
 
       setFile(file);

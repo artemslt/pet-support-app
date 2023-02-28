@@ -19,6 +19,7 @@ import {
 } from './RequestResetPasswordForm.styled';
 import { requestResetSchema } from '../../schemas/authValidationSchemas';
 import { Container } from 'components/Container/Container.styled';
+import { ErrorToastIcon, SuccessToastIcon } from 'components/ToastIcon/ToastIcon.styled';
 import { useTranslation } from 'react-i18next';
 import i18n from 'i18n';
 
@@ -38,10 +39,10 @@ export const RequestResetPasswordForm = () => {
     try {
       setIsLoading(true);
       await axios.patch('auth/resetpassword', email);
-      toast.success(i18n.t('Reset_Password_notification_check'));
+      toast.success(i18n.t('Reset_Password_notification_check'), {icon: <SuccessToastIcon />});
       resetForm();
     } catch (error) {
-      toast.error(error.response.data.message);
+      toast.error(error.response.data.message, {icon: <ErrorToastIcon />} );
     }
     setIsLoading(false);
   };

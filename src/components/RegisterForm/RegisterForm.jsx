@@ -15,6 +15,7 @@ import {
   Link,
   Button,
 } from './RegisterForm.styled';
+import { ErrorToastIcon } from 'components/ToastIcon/ToastIcon.styled';
 
 import { useTranslation } from 'react-i18next';
 import i18n from 'i18n';
@@ -55,7 +56,7 @@ export const RegisterForm = () => {
       }
     } catch (error) {
       toast.error(
-        i18n.t('t_samething_wrong') + ` - ${error.response.data.message}`
+        i18n.t('t_samething_wrong') + ` - ${error.response.data.message}`, {icon: <ErrorToastIcon />}
       );
     }
     setIsLoading(false);

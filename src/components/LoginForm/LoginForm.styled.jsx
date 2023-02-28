@@ -8,6 +8,7 @@ import {
 import { Link as RouterLink } from 'react-router-dom';
 import { ReactComponent as SpinnerIcon } from '../../images/spinner-white.svg';
 
+
 export const FlexBox = styled.div`
   display: flex;
   justify-content: center;
@@ -214,7 +215,7 @@ export const StyledSpinner = styled(SpinnerIcon)`
   ${up('tablet')} {
     left: 165px;
   }
-   fill: white;
+  fill: white;
   animation: rotate 2s linear infinite;
 
   width: 20px;
@@ -246,3 +247,4 @@ export const StyledSpinner = styled(SpinnerIcon)`
     }
   }
 `;
+
