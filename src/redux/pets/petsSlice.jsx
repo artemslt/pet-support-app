@@ -43,7 +43,7 @@ const petsSlice = createSlice({
     [deletePet.fulfilled](state, action) {
       state.isDeleting = false;
       state.error = null;
-      state.list = [...state.list].filter(
+      state.list = state.list.filter(
         pet => pet._id !== action.payload.result._id
       );
     },
