@@ -13,8 +13,6 @@ button, ul {
 
 export const Wrapper = styled.div`
   position: relative;
-  z-index: 13000;
-  overflow: hidden;
   object-fit: cover;
   border-radius: 20px;
   background-color: #ffffff;
