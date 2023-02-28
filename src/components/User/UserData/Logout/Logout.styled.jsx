@@ -46,6 +46,7 @@ export const Text = styled.span`
 export const ModalToggleBtnWrapp = styled.div`
   display: flex;
   flex-direction: column;
+  justify-content: center;
   ${up('tablet')} {
     display: block;
   }

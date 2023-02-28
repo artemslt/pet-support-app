@@ -4,6 +4,7 @@ import * as yup from 'yup';
 // for exemple Brovary, Kyiv or Akhtyrka, Sumy
 const locationRegexp = /^([А-Яа-яЇїІіЄєҐґ'),\s]+|[a-zA-Z\s]+){2,}$/;
 const title = /^[^\s][^,]+(?!.*[ыЫёЁэЭ])([a-zA-Zа-яА-ЯІіЇїЄєҐґ',\s']+)[^\s]$/;
+const breed =  /^[^\s]+(?!.*[ыЫёЁэЭ])([a-zA-Zа-яА-ЯІіЇїЄєҐґ',\s']+)[^\s]$/;
 
 export const appPetSchemaStep1 = yup.object().shape({
   typeOfNotice: yup.string().required(),
@@ -11,7 +12,7 @@ export const appPetSchemaStep1 = yup.object().shape({
     .string()
     .matches(title, i18n.t('title_add_notice'))
     .min(4, i18n.t('title_min'))
-    .max(48, i18n.t('pet_name_max'))
+    .max(48, i18n.t('title_max'))
     .required(i18n.t('title_required')),
   name: yup
     .string()
@@ -27,6 +28,7 @@ export const appPetSchemaStep1 = yup.object().shape({
     .required(i18n.t('date_pet_required')),
   breed: yup
     .string()
+    .matches(breed, i18n.t('breed_match'))
     .min(2, i18n.t('breed_min'))
     .max(40, i18n.t('breed_max'))
     .required(i18n.t('breed_required')),
