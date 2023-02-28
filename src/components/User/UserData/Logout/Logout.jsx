@@ -5,6 +5,7 @@ import {
   ModalToggleBtn,
   ModalMenuInner,
   ModalLogoutText,
+  ModalToggleBtnWrapp,
   SvgWrapp,
 } from './Logout.styled';
 import { useDispatch } from 'react-redux';
@@ -40,14 +41,14 @@ export const Logout = () => {
       <ModalMenu onClose={() => setModalOpen(false)} open={modalOpen}>
         <ModalMenuInner>
           <ModalLogoutText>{t('logout_info_text')}</ModalLogoutText>
-          <div>
+          <ModalToggleBtnWrapp>
             <ModalToggleBtn type="submit" onClick={logoutHandler}>
               {t('Yes')}
             </ModalToggleBtn>
             <ModalToggleBtn type="button" onClick={() => setModalOpen(false)}>
               {t('No')}
             </ModalToggleBtn>
-          </div>
+          </ModalToggleBtnWrapp>
         </ModalMenuInner>
       </ModalMenu>
     </>

@@ -56,7 +56,8 @@ export const RegisterForm = () => {
       }
     } catch (error) {
       toast.error(
-        i18n.t('t_samething_wrong') + ` - ${error.response.data.message}`, {icon: <ErrorToastIcon />}
+        i18n.t('t_samething_wrong') + ` - ${error.response.data.message}`,
+        { icon: <ErrorToastIcon /> }
       );
     }
     setIsLoading(false);

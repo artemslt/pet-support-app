@@ -72,28 +72,47 @@ export const CategoriesList = styled.ul`
   margin-right: auto; */
 `;
 
-export const WraperMore = styled.button`
-  width: 100%;
-  min-height: 658px;
+export const ButtonMore = styled.button`
+  margin: 0 auto;
   display: flex;
-  align-items: center;
   justify-content: center;
+  align-items: center;
+  width: 280px;
+  height: 44px;
+  margin-bottom: 16px;
   cursor: pointer;
-  border-color: ${({ theme }) => theme.colors.mainAccent};
-  box-shadow: 7px 4px 14px rgb(49 21 4 / 7%);
-  border-radius: 0px 0px 40px 40px;
-  background-color: #ffffff;
-`;
-
-export const MoreText = styled.p`
-  font-size: ${({ theme }) => theme.fontSizes[5]}px;
-
-  font-weight: 700;
-  font-family: ${({ theme }) => theme.fonts[2]};
-  color: ${({ theme }) => theme.colors.mainAccent};
-  letter-spacing: 2px;
-
+  border-radius: 40px;
+  background-color: ${prop => prop.theme.colors.background};
+  border: 2px solid ${prop => prop.theme.colors.mainAccent};
+  font-family: ${prop => prop.theme.fonts[1]};
+  font-weight: ${prop => prop.theme.fontWeights[1]};
+  font-size: ${prop => prop.theme.fontSizes[4]}px;
+  line-height: 27px;
+  letter-spacing: 0.04em;
+  color: ${prop => prop.theme.colors.mainAccent};
+  transition: ${({ theme }) => theme.btnAnimationTransition};
+  &:hover,
+  &:focus {
+    background-color: ${prop => prop.theme.colors.mainAccent};
+    color: ${prop => prop.theme.colors.mainWhite};
+  }
+  &[type='submit']:disabled {
+    background-color: ${({ theme }) => theme.colors.mainAccent};
+    color: ${({ theme }) => theme.colors.mainWhite};
+    opacity: 0.5;
+  }
   ${up('tablet')} {
-    font-size: ${({ theme }) => theme.fontSizes[6]}px;
+    background-color: ${prop => prop.theme.colors.mainWhite};
+    &:hover,
+    &:focus {
+      background-color: ${prop => prop.theme.colors.mainAccent};
+    }
+    outline: none;
+    width: 448px;
+    height: 44px;
+  }
+  ${up('pc')} {
+    width: 458px;
+    height: 48px;
   }
 `;

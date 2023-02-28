@@ -5,10 +5,10 @@ const emailRegexp =
 const passwordRegexp =
   /^(?!.* )(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&()<>,.;:/=-])[A-Za-z0-9\d@$!%*?&]/;
 const passwordLoginRegexp = /^\S*$/;
-const nameRegexp = /^([a-zA-Zа-яА-ЯІіЇїЄє\s]+)$/;
+const nameRegexp = /^[^\s].+(?!.*[ЫыЭэЪъ])([a-zA-Zа-яА-ЯІіЇїЄє\s']+)[^\s]$/;
 const phoneRegexp = /^\+380\d{3}\d{2}\d{2}\d{2}$/;
 const locationRegexp =
-  /^([a-zA-Zа-яА-ЯІіЇїЄє]+){2}, ([a-zA-Zа-яА-ЯІіЇїЄє]+){2}$/;
+  /^(?!.*[ЫыЭэЪъ])([a-zA-Zа-яА-ЯІіЇїЄє']+){2}, ([a-zA-Zа-яА-ЯІіЇїЄє']+){2}$/;
 
 export const registerSchema = yup.object().shape({
   email: yup

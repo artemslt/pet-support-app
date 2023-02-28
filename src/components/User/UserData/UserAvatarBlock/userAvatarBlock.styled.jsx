@@ -48,9 +48,9 @@ export const Avatar = styled.img`
 export const Button = styled.button`
   position: absolute;
   display: flex;
-  width: 105px;
+  width: 116px;
   top: 225px;
-  right: -5px;
+  right: -17px;
   border: none;
 
   background: none;

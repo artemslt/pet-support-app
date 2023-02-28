@@ -11,7 +11,10 @@ import {
 } from '../../schemas/appNoticeSchema';
 import { FirstPart } from './AddPet1Sterp';
 import { SecondPart } from './AddPert2Step';
-import { ErrorToastIcon, SuccessToastIcon } from 'components/ToastIcon/ToastIcon.styled';
+import {
+  ErrorToastIcon,
+  SuccessToastIcon,
+} from 'components/ToastIcon/ToastIcon.styled';
 
 import {
   Wrapper,
@@ -58,7 +61,8 @@ export const AddPet = ({ onToggleModal }) => {
       if (Number(size) > 5000000) {
         console.log(`ERROR`);
         return toast.error(
-          i18n.t('t_photo')`Photo must be no larger than 2.8 megabytes`, {icon: <ErrorToastIcon />}
+          i18n.t('t_photo')`Photo must be no larger than 2.8 megabytes`,
+          { icon: <ErrorToastIcon /> }
         );
       }
 
@@ -78,7 +82,9 @@ export const AddPet = ({ onToggleModal }) => {
         }
       );
 
-      toast.success(i18n.t('new_notice_create'), {icon: <SuccessToastIcon />});
+      toast.success(i18n.t('new_notice_create'), {
+        icon: <SuccessToastIcon />,
+      });
 
       console.log(`responce`, responce);
     } catch (error) {
@@ -87,6 +93,10 @@ export const AddPet = ({ onToggleModal }) => {
   }
 
   const handleSubmit = (values, { resetForm }) => {
+    if (file === null) {
+      return toast.error(i18n.t('all_field'), { icon: <ErrorToastIcon /> });
+    }
+
     const newNotice = {
       category: values.typeOfNotice,
       title: values.title,
@@ -132,6 +142,7 @@ export const AddPet = ({ onToggleModal }) => {
           setFieldValue,
           errors,
           isSubmitting,
+          handleChange,
         }) => (
           <NoticeForm onChange={handleOnChange}>
             {step ? (
@@ -159,6 +170,8 @@ export const AddPet = ({ onToggleModal }) => {
                 setFieldValue={setFieldValue}
                 imgUrl={imgUrl}
                 setImgUrl={setImgUrl}
+                setFile={setFile}
+                file={file}
               />
             )}
           </NoticeForm>

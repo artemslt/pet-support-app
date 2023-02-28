@@ -32,6 +32,7 @@ export const SecondPart = ({
   setFieldValue,
   imgUrl,
   setImgUrl,
+  setFile,
 }) => {
   const { t } = useTranslation();
   const { typeOfNotice } = values;
@@ -115,7 +116,12 @@ export const SecondPart = ({
             {imgUrl && (
               <ImageThumb>
                 <Image src={imgUrl} alt="" width="60" />
-                <ImageDel onClick={() => setImgUrl(null)}>
+                <ImageDel
+                  onClick={() => {
+                    setImgUrl(null);
+                    setFile(null);
+                  }}
+                >
                   <CancelIcon />
                 </ImageDel>
               </ImageThumb>
@@ -123,11 +129,10 @@ export const SecondPart = ({
           </ImgBox>
         </div>
       </div>
-      
 
       <label>
         <LabelTitle>
-            {t('Comments')} <span>*</span>
+          {t('Comments')} <span>*</span>
         </LabelTitle>
         <CommentInput
           component="textarea"

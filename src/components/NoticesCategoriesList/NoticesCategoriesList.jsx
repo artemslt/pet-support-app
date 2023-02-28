@@ -3,14 +3,8 @@ import axios from 'axios';
 import { useLocation } from 'react-router-dom';
 
 import { NoticeCategoryItem } from 'components/NoticeCategoryItem/NoticeCategoryItem';
-import {
-  CategoriesList,
-  MoreText,
-  WraperMore,
-} from './NoticesCategoriesList.styled';
-// import { Spinner } from 'components/Spinner/Spinner.styled';
+import { ButtonMore, CategoriesList } from './NoticesCategoriesList.styled';
 import { useTranslation } from 'react-i18next';
-import { Card } from 'components/NoticeCategoryItem/NoticeCategoryItem.styled';
 
 axios.defaults.baseURL = 'https://pet-support-backend-v8vc.onrender.com/api/';
 
@@ -24,7 +18,6 @@ const Status = {
 export const NoticesCategoriesList = () => {
   const { t } = useTranslation();
   const [allNotices, setAllNotices] = useState([]);
-  // const [isLoading, setIsLoading] = useState(false);
   const [page, setPage] = useState(1);
   const [status, setStatus] = useState(Status.IDLE);
   const [more, setMore] = useState(true);
@@ -57,41 +50,37 @@ export const NoticesCategoriesList = () => {
       if (status === Status.IDLE) {
         console.log(page);
         try {
-          // setIsLoading(true);
           if (pathname === '/notices/favorite') {
             const request = await axios.get('notices/favorite', {
-              params: { page },
+              params: { page, limit: '12' },
             });
             if (request.data.data.result.length < 10) {
               setMore(false);
             }
             setAllNotices([...allNotices, ...request.data.data.result]);
-            // setIsLoading(false);
+
             return;
           }
           if (pathname === '/notices/own') {
             const myNotices = await axios.get('notices', {
-              params: { page },
+              params: { page, limit: '12' },
             });
             if (myNotices.data.data.result.length < 10) {
               setMore(false);
             }
             setAllNotices([...allNotices, ...myNotices.data.data.result]);
-            // setIsLoading(false);
+
             return;
           }
           const notices = await axios.get(`notices${pathname}`, {
-            params: { page },
+            params: { page, limit: '12' },
           });
           if (notices.data.data.result.length < 10) {
             setMore(false);
           }
           setAllNotices([...allNotices, ...notices.data.data.result]);
-          // setIsLoading(false);
         } catch (error) {
-          // setAllNotices([]);s
           setMore(false);
-          // setIsLoading(false);
           setStatus(Status.REJECTED);
         } finally {
           setStatus(Status.RESOLVED);
@@ -114,11 +103,9 @@ export const NoticesCategoriesList = () => {
       )}
 
       {more && (
-        <Card type="button" onClick={() => loadMore()}>
-          <WraperMore>
-            <MoreText>{t('Loading')}...</MoreText>
-          </WraperMore>
-        </Card>
+        <ButtonMore type="button" onClick={() => loadMore()}>
+          {t('Loading')}
+        </ButtonMore>
       )}
     </CategoriesList>
   );

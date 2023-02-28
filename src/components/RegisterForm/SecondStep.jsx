@@ -1,9 +1,32 @@
 import { useTranslation } from 'react-i18next';
-import { Label, Input, Error, Button, StyledSpinner } from './RegisterForm.styled';
+import { Field } from 'formik';
+import {
+  Label,
+  Input,
+  Error,
+  Button,
+  StyledSpinner,
+  MaskedPhoneInput,
+} from './RegisterForm.styled';
 
-
-export const SecondStep = ({isLoading}) => {
+export const SecondStep = ({ isLoading }) => {
   const { t } = useTranslation();
+  const phoneNumberMask = [
+    '+',
+    '3',
+    '8',
+    /[0-9]/,
+    /\d/,
+    /\d/,
+    /\d/,
+    /\d/,
+    /\d/,
+    /\d/,
+    /\d/,
+    /\d/,
+    /\d/,
+  ];
+
   return (
     <>
       <Label>
@@ -25,15 +48,20 @@ export const SecondStep = ({isLoading}) => {
         <Error name="location" component="p"></Error>
       </Label>
       <Label>
-        <Input
+        <Field
+          as={MaskedPhoneInput}
+          mask={phoneNumberMask}
           autoComplete="on"
           type="text"
           name="phone"
           placeholder={t('Mobile_phone')}
-        ></Input>
+        ></Field>
         <Error name="phone" component="p"></Error>
       </Label>
-      <Button type="submit" disabled={isLoading}>{isLoading && <StyledSpinner />}{t('Register')}</Button>
+      <Button type="submit" disabled={isLoading}>
+        {isLoading && <StyledSpinner />}
+        {t('Register')}
+      </Button>
     </>
   );
 };
