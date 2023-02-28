@@ -32,8 +32,6 @@ export const UserDataItem = () => {
   const [isCityDisabled, setIsCityDisabled] = useState(true);
   const [startDate, setStartDate] = useState();
 
-  console.log('date', startDate);
-
   const iconColor = '#f59256';
   const iconColorDisabled = 'rgba(0,0,0,0.6)';
 
@@ -41,7 +39,6 @@ export const UserDataItem = () => {
   const currentUser = useSelector(selectUser);
 
   useEffect(() => {
-    console.log('first', currentUser.birthday);
     if (currentUser.birthday) {
       const parts = currentUser.birthday.split('.');
 
