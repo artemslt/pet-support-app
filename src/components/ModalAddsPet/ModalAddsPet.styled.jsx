@@ -180,6 +180,7 @@ export const InputDatePicker = styled(DatePicker)`
 `;
 
 export const Button = styled.button`
+  color: ${({ theme }) => theme.colors.mainBlack};
   background: ${({ theme }) => theme.colors.mainWhite};
   width: 240px;
   height: 40px;
@@ -430,17 +431,20 @@ export const CustomSelect = styled(Select)`
   }
 `;
 
+export const BreedInputWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+`;
+
 export const ButtonRemoveSelect = styled.button`
-  position: absolute;
-  right: 20px;
-  top: 13px;
   border: none;
   border-radius: 50%;
   cursor: pointer;
   color: ${({ theme }) => theme.colors.activeAccent};
   background-color: transparent;
 `;
-export const NoOptionsMessageSpan = styled.span`
+export const NoOptionsMessageSpan = styled.p`
   font-family: ${({ theme }) => theme.fonts[1]};
   font-weight: ${({ theme }) => theme.fontWeights[0]};
   font-size: 14px;
