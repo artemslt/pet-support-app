@@ -43,7 +43,7 @@ export const ModalMenu = ({ children, open, onClose }) => {
       className={open ? 'show_modal' : 'isHidden'}
     >
       <Modal className={open ? 'show ' : 'hidden'}>
-        <>{children}</>
+        {open && <>{children}</>}
       </Modal>
     </Overlay>
   );
