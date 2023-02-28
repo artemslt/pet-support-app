@@ -28,7 +28,7 @@ export const FirstPart = ({
   setFile,
   startDate,
   setStartDate,
-  onToggleModal,
+  onToggleModal
 }) => {
   const { t } = useTranslation();
   const [focus, setFocus] = useState(false);
@@ -95,31 +95,28 @@ export const FirstPart = ({
         <Error name="name" component="div" />
       </label>
 
-      <label>
-        <LabelTitle>
-          {t('Date_of_birth')} <span>*</span>
-        </LabelTitle>
-        <InputDatePicker
-          selected={startDate}
-          dateFormat="dd.MM.yyyy"
-          name="date"
-          placeholderText="00.00.0000"
-          onChange={date => {
-            setStartDate(date);
-            if (!date) {
-              return setFieldValue('date', '');
-            }
-            setFieldValue(
-              'date',
-              date.toLocaleString('az-Cyrl-AZ').slice(0, 10)
-            );
-          }}
-          minDate={new Date('December 17, 1900 03:24:00')}
-          maxDate={new Date()}
-          showDisabledMonthNavigation
-          shouldCloseOnSelect={true}
-        />
+      <LabelTitle>
+        {t('Date_of_birth')} <span>*</span>
+      </LabelTitle>
+      <InputDatePicker
+        selected={startDate}
+        dateFormat="dd.MM.yyyy"
+        name="date"
+        placeholderText="00.00.0000"
+        onChange={date => {
+          setStartDate(date);
+          if (!date) {
+            return setFieldValue('date', '');
+          }
+          setFieldValue('date', date.toLocaleString('az-Cyrl-AZ').slice(0, 10));
+        }}
+        minDate={new Date('December 17, 1900 03:24:00')}
+        maxDate={new Date()}
+        showDisabledMonthNavigation
+        shouldCloseOnSelect={true}
+      />
 
+      <label htmlFor="InputDatePicker">
         <Error name="date" component="div" />
       </label>
 

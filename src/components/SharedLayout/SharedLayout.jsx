@@ -6,6 +6,7 @@ import { Header } from 'components/Header/Header';
 import { WrapperSharedLayout } from './SharedLayout.styled';
 import { useTranslation } from 'react-i18next';
 import { StyledContainer } from './SharedLayout.styled';
+
 export const SharedLayout = () => {
   const { t } = useTranslation();
 
