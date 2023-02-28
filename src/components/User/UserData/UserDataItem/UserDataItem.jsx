@@ -30,7 +30,9 @@ export const UserDataItem = () => {
   const [isBirthdayDisabled, setIsBirthdayDisabled] = useState(true);
   const [isPhoneDisabled, setIsPhoneDisabled] = useState(true);
   const [isCityDisabled, setIsCityDisabled] = useState(true);
-  const [startDate, setStartDate] = useState('');
+  const [startDate, setStartDate] = useState();
+
+  console.log('date', startDate);
 
   const iconColor = '#f59256';
   const iconColorDisabled = 'rgba(0,0,0,0.6)';
@@ -39,11 +41,18 @@ export const UserDataItem = () => {
   const currentUser = useSelector(selectUser);
 
   useEffect(() => {
+    console.log('first', currentUser.birthday);
     if (currentUser.birthday) {
       const parts = currentUser.birthday.split('.');
 
-      if (parts.length === 3)
-        setStartDate(new Date(parts[2], parts[1] - 1, parts[0]));
+      if (parts.length === 3) {
+        const year = parseInt(parts[2]);
+        const month = parseInt(parts[1] - 1);
+        const day = parseInt(parts[0]);
+
+        if (year === 0) setStartDate();
+        else setStartDate(new Date(year, month, day));
+      }
     }
   }, [currentUser.birthday]);
 
@@ -208,6 +217,7 @@ export const UserDataItem = () => {
                 <InputDatePickerWrapp>
                   <InputDatePicker
                     selected={startDate}
+                    openToDate={new Date(2000, 0, 1)}
                     active={!isBirthdayDisabled}
                     dateFormat="dd.MM.yyyy"
                     name="birthday"
