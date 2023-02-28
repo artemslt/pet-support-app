@@ -154,6 +154,8 @@ i18n
           pet_add_notice_auth: 'To add pet, you need to login',
           Add_to: 'Add to',
           Delete_from: 'Delete from',
+          Loading: 'Loading',
+          no_more: `Yah, that's all notices!!`,
         },
       },
       uk: {
@@ -293,6 +295,8 @@ i18n
           pet_add_notice_auth: 'Увійдіть для додавання оголошення',
           Add_to: 'Додати до',
           Delete_from: 'Видалити з',
+          Loading: 'Завантажується',
+          no_more: 'Так на жаль це всі оголошення!!',
         },
       },
     },
