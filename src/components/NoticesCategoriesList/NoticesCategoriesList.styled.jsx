@@ -89,7 +89,7 @@ export const Content = styled.div`
 export const Button = styled.div`
   position: fixed;
   display: flex;
-  right: 20%;
+  right: 10%;
   bottom: 37%;
 
   height: 20px;
