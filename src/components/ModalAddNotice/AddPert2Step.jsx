@@ -119,9 +119,7 @@ export const SecondPart = ({
                 <ImageDel
                   onClick={() => {
                     setImgUrl(null);
-                    console.log(imgUrl);
                     setFile(null);
-                    setFieldValue(null);
                   }}
                 >
                   <CancelIcon />
