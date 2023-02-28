@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { up } from 'styled-breakpoints';
+import { down, up } from 'styled-breakpoints';
 
 export const CategoriesList = styled.ul`
   padding: 0;
@@ -99,4 +99,8 @@ export const Button = styled.div`
   cursor: pointer;
   color: ${prop => prop.theme.colors.mainAccent};
   transition: ${({ theme }) => theme.btnAnimationTransition};
+
+  ${down('mobileSizeM')} {
+    bottom: 15%;
+  }
 `;
