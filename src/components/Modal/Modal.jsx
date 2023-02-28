@@ -40,10 +40,10 @@ export const ModalMenu = ({ children, open, onClose }) => {
     <Overlay
       onKeyDown={onCloseOverlay}
       onClick={e => onCloseOverlay(e)}
-      className={!open ? 'isHidden' : 'show'}
+      className={open ? 'show_modal' : 'isHidden'}
     >
-      <Modal className={open ? 'show ' : null}>
-        {open ? <>{children}</> : null}
+      <Modal className={open ? 'show ' : 'hidden'}>
+        <>{children}</>
       </Modal>
     </Overlay>
   );
