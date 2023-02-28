@@ -105,7 +105,7 @@ i18n
           location_validate: 'Location must be in format City, Region',
           phone_max: 'Pnone number must contain 12 numbers',
           phone_match: 'Mobile phone must be in format +380xxxxxxxxx',
-          title_add_notice:'Title can contain only letters, spaces and commas, but cunt start with spaces or comma',
+          title_add_notice:'Title can contain only letters, spaces and commas, but can not start with spaces or comma',
           title_min: 'Title should be 4 characters minimum.',
           title_max: 'Title should be 48 characters maximum.',
           title_required: 'Title is required field',
