@@ -47,6 +47,7 @@ export const NoticeCategoryItem = ({ items, onListChange, pathname }) => {
 
   const filter = useSelector(selectFilter);
   const normalizedFilter = filter.toLowerCase().trim();
+  console.log('items', items);
   const filteredNotices = items.filter(item =>
     item.title.toLowerCase().includes(normalizedFilter)
   );
@@ -153,7 +154,6 @@ export const NoticeCategoryItem = ({ items, onListChange, pathname }) => {
       case 'lost-found': {
         return 'lost/found';
       }
-
       default: {
         return 'sell';
       }

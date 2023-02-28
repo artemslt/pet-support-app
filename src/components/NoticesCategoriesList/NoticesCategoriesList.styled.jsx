@@ -71,3 +71,29 @@ export const CategoriesList = styled.ul`
   /* margin-left: auto;
   margin-right: auto; */
 `;
+
+export const WraperMore = styled.button`
+  width: 100%;
+  min-height: 658px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border-color: ${({ theme }) => theme.colors.mainAccent};
+  box-shadow: 7px 4px 14px rgb(49 21 4 / 7%);
+  border-radius: 0px 0px 40px 40px;
+  background-color: #ffffff;
+`;
+
+export const MoreText = styled.p`
+  font-size: ${({ theme }) => theme.fontSizes[5]}px;
+
+  font-weight: 700;
+  font-family: ${({ theme }) => theme.fonts[2]};
+  color: ${({ theme }) => theme.colors.mainAccent};
+  letter-spacing: 2px;
+
+  ${up('tablet')} {
+    font-size: ${({ theme }) => theme.fontSizes[6]}px;
+  }
+`;
