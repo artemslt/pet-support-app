@@ -37,6 +37,9 @@ export const LinkWrapper = styled.div`
 `;
 
 export const StyledLink = styled(NavLink)`
+  display: flex;
+  align-items: center;
+  justify-content: center;
   height: 35px;
   padding: 8px 28px;
   border-radius: 40px;
@@ -58,5 +61,12 @@ export const StyledLink = styled(NavLink)`
   }
   ${up('pc')} {
     margin-bottom: 0;
+  }
+
+  transition: ${({ theme }) => theme.btnAnimationTransition};
+  &:hover,
+  &:focus {
+    color: ${({ theme }) => theme.colors.mainWhite};
+    background-color: ${({ theme }) => theme.colors.mainAccent};
   }
 `;
