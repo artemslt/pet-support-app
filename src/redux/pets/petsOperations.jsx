@@ -20,7 +20,6 @@ export const fetchAllPets = createAsyncThunk(
       const response = await axios.get('users');
       return response.data.data.pets;
     } catch (error) {
-      console.log(`Something wrong - ${error.response.data.message}`);
       return thunkAPI.rejectWithValue(error.response.data.message);
     }
   }
@@ -35,7 +34,6 @@ export const addPet = createAsyncThunk(
       });
       return response.data.data;
     } catch (error) {
-      console.log(error);
       return thunkAPI.rejectWithValue(error.message);
     }
   }
