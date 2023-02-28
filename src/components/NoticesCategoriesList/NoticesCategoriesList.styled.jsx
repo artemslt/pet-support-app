@@ -101,7 +101,6 @@ export const Button = styled.div`
   transition: ${({ theme }) => theme.btnAnimationTransition};
 
   ${down('mobileSizeM')} {
-    bottom: 15%;
-    bottom: 15%;
+    bottom: 50px;
   }
 `;
