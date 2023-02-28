@@ -116,3 +116,31 @@ export const ButtonMore = styled.button`
     height: 48px;
   }
 `;
+
+export const Heading = styled.h1`
+  text-align: center;
+  color: green;
+`;
+
+export const Content = styled.div`
+  overflow-y: scroll;
+  height: 2500px;
+`;
+
+export const Button = styled.div`
+  position: fixed;
+  width: 100%;
+  left: 40%;
+  bottom: 220px;
+  height: 20px;
+  font-size: 3rem;
+  z-index: 1;
+  opacity: 0.8;
+  cursor: pointer;
+  color: ${prop => prop.theme.colors.mainAccent};
+  transition: ${({ theme }) => theme.btnAnimationTransition};
+
+  ${up('tablet')} {
+    left: 17%;
+  }
+`;

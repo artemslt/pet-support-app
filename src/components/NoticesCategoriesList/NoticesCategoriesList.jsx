@@ -6,6 +6,7 @@ import { NoticeCategoryItem } from 'components/NoticeCategoryItem/NoticeCategory
 import { ButtonMore, CategoriesList } from './NoticesCategoriesList.styled';
 import { useTranslation } from 'react-i18next';
 import { Spinner } from 'components/Spinner/Spinner.styled';
+import ScrollButton from './ScrollToTop';
 
 axios.defaults.baseURL = 'https://pet-support-backend-v8vc.onrender.com/api/';
 
@@ -92,25 +93,28 @@ export const NoticesCategoriesList = () => {
   }, [allNotices, page, pathname, status]);
 
   return (
-    <CategoriesList>
-      {allNotices.length === 0 && status === Status.RESOLVED && (
-        <h2>{t('no_notice')}</h2>
-      )}
-      {allNotices.length !== 0 && (
-        <NoticeCategoryItem
-          items={allNotices}
-          onListChange={onListChange}
-          pathname={pathname}
-        />
-      )}
+    <>
+      <CategoriesList>
+        {allNotices.length === 0 && status === Status.RESOLVED && (
+          <h2>{t('no_notice')}</h2>
+        )}
+        {allNotices.length !== 0 && (
+          <NoticeCategoryItem
+            items={allNotices}
+            onListChange={onListChange}
+            pathname={pathname}
+          />
+        )}
 
-      {more && status === Status.RESOLVED && (
-        <ButtonMore type="button" onClick={() => loadMore()}>
-          {t('Loading')}
-        </ButtonMore>
-      )}
+        {more && status === Status.RESOLVED && (
+          <ButtonMore type="button" onClick={() => loadMore()}>
+            {t('Loading')}
+          </ButtonMore>
+        )}
 
-      {status === Status.IDLE && <Spinner />}
-    </CategoriesList>
+        {status === Status.IDLE && <Spinner />}
+        <ScrollButton />
+      </CategoriesList>
+    </>
   );
 };
