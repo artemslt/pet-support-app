@@ -13,10 +13,11 @@ button, ul {
 
 export const Wrapper = styled.div`
   position: relative;
+  z-index: 13000;
+  overflow: hidden;
   object-fit: cover;
   border-radius: 20px;
   background-color: #ffffff;
-  // overflow: hidden;
   width: 280px;
   padding: 60px 20px 40px;
   ${up('tablet')} {
@@ -47,6 +48,8 @@ export const ClosesIcon = styled(Closes)`
 
 export const ButtonCloses = styled.button`
   position: absolute;
+  // overflow: visible;
+  z-index: 1;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -86,6 +89,9 @@ export const ModalContainer = styled.div`
 `;
 
 export const ImageContainer = styled.div`
+// position: relative;
+// width: 240px;
+// height: 240px;
   ${up('tablet')} {
     margin-right: 20px;
   }
@@ -110,7 +116,7 @@ export const Badge = styled.div`
   padding-left: 20px;
   width: 158px;
   height: 28px;
-  left: 20px;
+  left: 20;
   top: 80px;
   background: rgba(255, 255, 255, 0.6);
   backdrop-filter: blur(2px);
@@ -127,7 +133,6 @@ export const PetCategory = styled.p`
   font-size: ${({ theme }) => theme.fontSizes[0]}px;
   font-weight: ${({ theme }) => theme.fontWeights[1]};
   letter-spacing: 0.04em;
-
   ${up('pc')} {
     font-family: ${({ theme }) => theme.fonts[1]};
   }

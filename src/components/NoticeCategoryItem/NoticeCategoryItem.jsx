@@ -108,7 +108,7 @@ export const NoticeCategoryItem = ({ items, onListChange, pathname }) => {
   };
   const onClickOnFavoriteBtn = id => {
     if (!isLoggedIn) {
-      toast.error(i18n.t('pet_add_notice_auth'), {icon: <ErrorToastIcon />});
+      toast.error(i18n.t('pet_add_notice_auth'), { icon: <ErrorToastIcon /> });
 
       navigate('/login');
       return;
@@ -232,18 +232,6 @@ export const NoticeCategoryItem = ({ items, onListChange, pathname }) => {
                 >
                   {t('Learn_more')}
                 </NoticeBtn>
-                {!isLoading && (
-                  <ModalMenu
-                    onClose={() => setModalToggle(false)}
-                    open={modalToggle}
-                  >
-                    <LearnMore
-                      onToggleModal={onToggleModal}
-                      data={notice}
-                      onClickOnFavoriteBtn={onClickOnFavoriteBtn}
-                    />
-                  </ModalMenu>
-                )}
                 {userId === owner && (
                   <NoticeBtn
                     onClick={e => {
@@ -255,21 +243,32 @@ export const NoticeCategoryItem = ({ items, onListChange, pathname }) => {
                     <DeleteIcon style={{ fill: 'currentcolor' }} />
                   </NoticeBtn>
                 )}
-                <ModalMenu
-                  onClose={() => setOpenModalDelete(false)}
-                  open={openModalDelete}
-                  openModalDelete={openModalDelete}
-                >
-                  <ModalDelete
-                    onToggleModal={onToggleModal}
-                    deletePet={deletePet}
-                    deleteId={deleteId}
-                  />
-                </ModalMenu>
               </BlockBtns>
             </Thumb>
           </Card>
         )
+      )}
+      {modalToggle && !isLoading && (
+        <ModalMenu onClose={() => setModalToggle(false)} open={modalToggle}>
+          <LearnMore
+            onToggleModal={onToggleModal}
+            data={notice}
+            onClickOnFavoriteBtn={onClickOnFavoriteBtn}
+          />
+        </ModalMenu>
+      )}
+      {openModalDelete && (
+        <ModalMenu
+          onClose={() => setOpenModalDelete(false)}
+          open={openModalDelete}
+          openModalDelete={openModalDelete}
+        >
+          <ModalDelete
+            onToggleModal={onToggleModal}
+            deletePet={deletePet}
+            deleteId={deleteId}
+          />
+        </ModalMenu>
       )}
     </>
   );
