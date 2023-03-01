@@ -3,10 +3,10 @@ import { ReactComponent as InFavoriteIcon } from 'images/noticePage/icon-heart-f
 import { ReactComponent as DeleteIcon } from 'images/noticePage/fluent_delete-16-filled.svg';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectIsLoggedIn, selectUser } from 'redux/auth/authSelectors';
-import { selectFilter } from 'redux/notices/noticesSelectors';
+import { selectFavorite, selectFilter } from 'redux/notices/noticesSelectors';
 import { ModalMenu } from 'components/Modal/Modal';
 import { LearnMore } from 'components/NoticesModalLearnMore/NoticesModalLearnMore';
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import axios from 'axios';
 import moment from 'moment/moment';
 import { toast } from 'react-toastify';
@@ -32,13 +32,19 @@ import { ModalDelete } from '../ModalNoticeDelete/ModalDelete';
 import { ErrorToastIcon } from 'components/ToastIcon/ToastIcon.styled';
 
 import i18n from 'i18n';
+import {
+  addFavorite,
+  deleteFavorite,
+  fetchAllFavorite,
+} from 'redux/notices/noticeOPerations';
 
 axios.defaults.baseURL = 'https://pet-support-backend-v8vc.onrender.com/api/';
 
 export const NoticeCategoryItem = ({ items, onListChange, pathname }) => {
   const { t } = useTranslation();
-  const { _id: userId, favorite } = useSelector(selectUser);
+  const { _id: userId } = useSelector(selectUser);
   const [openModalDelete, setOpenModalDelete] = useState(false);
+  const favorite = useSelector(selectFavorite) ?? [];
 
   const dispatch = useDispatch();
   const isLoggedIn = useSelector(selectIsLoggedIn);
@@ -74,33 +80,27 @@ export const NoticeCategoryItem = ({ items, onListChange, pathname }) => {
     setModalToggle(true);
   };
 
-  const addToFavorite = async id => {
-    try {
-      await axios.post(`notices/favorite/${id}`);
-      dispatch(refreshUser());
-    } catch (error) {
-      console.log(error.message);
-    }
+  useEffect(() => {
+    dispatch(fetchAllFavorite());
+  }, [dispatch]);
+
+  const addToFavorite = id => {
+    dispatch(addFavorite(id));
   };
 
-  const delFromFavorite = async id => {
-    try {
-      await axios.delete(`notices/favorite/${id}`);
-      dispatch(refreshUser());
-      if (pathname === '/notices/favorite') {
-        const newList = items.filter(item => item._id !== id);
-        onListChange(newList);
-      }
-    } catch (error) {
-      console.log(error.message);
+  const delFromFavorite = id => {
+    dispatch(deleteFavorite(id));
+    if (pathname === '/notices/favorite') {
+      const newList = items.filter(item => item._id !== id);
+      onListChange(newList);
     }
   };
 
   const addOrDell = id => {
-    if (favorite && favorite.includes(id)) {
-      delFromFavorite(id);
+    if (favorite && favorite.find(item => item._id === id)) {
+      return delFromFavorite(id);
     } else {
-      addToFavorite(id);
+      return addToFavorite(id);
     }
   };
   const onClickOnFavoriteBtn = id => {
@@ -182,7 +182,7 @@ export const NoticeCategoryItem = ({ items, onListChange, pathname }) => {
                 type="submit"
                 onClick={() => onClickOnFavoriteBtn(_id)}
               >
-                {favorite && favorite.includes(_id) ? (
+                {favorite && favorite.find(item => item._id === _id) ? (
                   <InFavoriteIcon />
                 ) : (
                   <FavoriteIcon />

@@ -1,1 +1,2 @@
-export const selectFilter = state => state.filter.filterValue;
+export const selectFilter = state => state.notices.filterValue;
+export const selectFavorite = state => state.notices.list;
