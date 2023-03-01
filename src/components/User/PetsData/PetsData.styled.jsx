@@ -64,6 +64,13 @@ export const AddBtnWrapper = styled.div`
   display: flex;
   align-items: center;
   padding-right: 16px;
+
+  transition: ${({ theme }) => theme.btnAnimationTransition};
+  &:hover ${AddBtn}, &:hover ${BtnName}, &:focus${AddBtn}, &:focus${BtnName} {
+    cursor: pointer;
+    scale: ${({ theme }) => theme.btnHoverFocusScale};
+  }
+
   ${up('tablet')} {
     padding-right: 33px;
   }

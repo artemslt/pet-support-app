@@ -19,14 +19,16 @@ export const AddButton = styled.button`
   right: 0;
   bottom: -100px;
   background-color: transparent;
+
   transition: ${({ theme }) => theme.btnAnimationTransition};
-  
+
+  ${up('tablet')} {
+    position: static;
+  }
+
   &:hover {
     cursor: pointer;
     scale: ${({ theme }) => theme.btnHoverFocusScale};
-  }
-  ${up('tablet')} {
-    position: static;
   }
 `;
 
