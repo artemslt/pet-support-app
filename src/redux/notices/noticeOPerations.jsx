@@ -19,7 +19,7 @@ export const fetchAllFavorite = createAsyncThunk(
       setAuthHeader(persistedToken);
       const response = await axios.get('notices/favorite');
 
-      return response.data.data.result;
+      return response.data.data.notices;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.response.data.message);
     }
@@ -31,7 +31,7 @@ export const addFavorite = createAsyncThunk(
     try {
       await axios.post(`notices/favorite/${id}`);
       const response = await axios.get('notices/favorite');
-      return response.data.data.result;
+      return response.data.data.notices;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }
