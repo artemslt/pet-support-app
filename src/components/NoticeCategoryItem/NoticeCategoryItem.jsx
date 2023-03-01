@@ -77,7 +77,7 @@ export const NoticeCategoryItem = ({ items, onListChange, pathname }) => {
   const addToFavorite = async id => {
     try {
       await axios.post(`notices/favorite/${id}`);
-      // dispatch(refreshUser());
+      dispatch(refreshUser());
       setDeleteId(null);
     } catch (error) {
       console.log(error.message);
@@ -87,7 +87,7 @@ export const NoticeCategoryItem = ({ items, onListChange, pathname }) => {
   const delFromFavorite = async id => {
     try {
       await axios.delete(`notices/favorite/${id}`);
-      // dispatch(refreshUser());
+      dispatch(refreshUser());
       if (pathname === '/notices/favorite') {
         const newList = items.filter(item => item._id !== id);
         onListChange(newList);

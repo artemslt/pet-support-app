@@ -5,6 +5,7 @@ import { CategoriesList } from 'components/NoticesCategoriesList/NoticesCategori
 import { useSelector } from 'react-redux';
 import { selectFilter } from 'redux/notices/noticesSelectors';
 import { NoticeCategoryItem } from 'components/NoticeCategoryItem/NoticeCategoryItem.jsx';
+import { ErrorText } from './NoticesSearch.styled';
 export const NoticeSearchList = () => {
   const [items, setItems] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -33,7 +34,7 @@ export const NoticeSearchList = () => {
       ) : (
         <CategoriesList>
           {items.length === 0 ? (
-            <h2>You haven't notices yet</h2>
+            <ErrorText>You haven't notices yet</ErrorText>
           ) : (
             <NoticeCategoryItem items={items} onListChange={onListChange} />
           )}

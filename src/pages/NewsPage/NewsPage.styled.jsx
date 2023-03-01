@@ -44,7 +44,7 @@ export const Title = styled.h1`
   text-align: center;
   color: #111111;
   margin-bottom: 28px;
-  @media screen and (min-width: 768px) {
+  ${up('tablet')} {
     font-size: 48px;
     line-height: 66px;
     margin-bottom: 40px;
@@ -52,52 +52,61 @@ export const Title = styled.h1`
 `;
 export const Label = styled.label`
   position: relative;
-  width: 100%;
-  max-width: 608px;
-  background: #ffffff;
-  box-shadow: 7px 4px 14px rgba(49, 21, 4, 0.07);
-  border-radius: 20px;
-  font-weight: 500;
-  font-size: 16px;
-  line-height: 22px;
-  display: flex;
-  align-items: center;
-  letter-spacing: 0.04em;
+  display: inline-flex;
+  text-align: center;
+  margin-bottom: 40px;
+  ${up('tablet')} {
+    margin-bottom: 60px;
+  }
+`;
+export const Input = styled.input`
+  height: 40px;
+  width: 280px;
+  font-family: ${({ theme }) => theme.fonts[0]};
+  font-size: ${({ theme }) => theme.fontSizes[2]}px;
+  font-weight: ${({ theme }) => theme.fontWeights[1]};
+  color: ${({ theme }) => theme.colors.inputText};
+  outline: transparent;
   padding: 9px 12px;
-  color: #535353;
+  box-shadow: 7px 4px 14px rgba(49, 21, 4, 0.07);
+  border: 1px solid transparent;
+  border-radius: 20px;
+
   :hover,
   :focus {
     border: 1px solid rgba(245, 146, 86, 0.5);
   }
-`;
-export const Input = styled.input`
-  width: 95%;
+  ${up('tablet')} {
+    width: 608px;
+    height: 44px;
+    padding: 10px 20px;
+    font-size: ${({ theme }) => theme.fontSizes[4]}px;
+    border-radius: 40px;
+  }
 `;
 
 export const SearchNewsButton = styled.div`
   position: absolute;
-  top: 8px;
-  right: 10px;
+  padding: 0;
+  right: 12px;
+  top: 10px;
+  border: transparent;
+  background: transparent;
   cursor: pointer;
 `;
 
 export const DeleteButton = styled.button`
   position: absolute;
-  top: 8px;
-  right: 10px;
-  // border-radius: 32px;
+  top: 10px;
+  right: 12px;
   border: none;
-  // outline: none;
   background-color: transparent;
   cursor: pointer;
-  // fill: black;
-  // :hover {
-  //   fill: orange;
-  // }
 `;
 
 export const ErrorText = styled.b`
-margin-top: 40px;
-@media screen and (min-width: 768px) {
-  80px;
-}`;
+  margin-top: 40px;
+  ${up('tablet')} {
+    margin-top: 80px;
+  }
+`;
