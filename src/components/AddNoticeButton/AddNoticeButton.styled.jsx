@@ -1,5 +1,8 @@
 import styled from 'styled-components';
 import { up } from 'styled-breakpoints';
+import { ReactComponent as Plus } from 'images/noticePage/akar-icons_plus.svg';
+
+export const PlusIcon = styled(Plus)``;
 
 export const AddButton = styled.button`
   display: flex;
@@ -16,11 +19,16 @@ export const AddButton = styled.button`
   right: 0;
   bottom: -100px;
   background-color: transparent;
-  &:hover {
-    cursor: pointer;
-  }
+
+  transition: ${({ theme }) => theme.btnAnimationTransition};
+
   ${up('tablet')} {
     position: static;
+  }
+
+  &:hover {
+    cursor: pointer;
+    scale: ${({ theme }) => theme.btnHoverFocusScale};
   }
 `;
 
