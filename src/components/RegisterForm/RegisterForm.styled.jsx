@@ -271,9 +271,9 @@ export const Link = styled(RouterLink)`
 
 export const StyledSpinner = styled(SpinnerIcon)`
   position: absolute;
-  left: 65px;
+  left: 55px;
   ${up('tablet')} {
-    left: 155px;
+    left: 140px;
   }
   fill: white;
   animation: rotate 2s linear infinite;
