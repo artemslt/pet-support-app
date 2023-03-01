@@ -78,7 +78,6 @@ export const NoticeCategoryItem = ({ items, onListChange, pathname }) => {
     try {
       await axios.post(`notices/favorite/${id}`);
       dispatch(refreshUser());
-      setDeleteId(null);
     } catch (error) {
       console.log(error.message);
     }
@@ -117,6 +116,8 @@ export const NoticeCategoryItem = ({ items, onListChange, pathname }) => {
   const deletePet = async id => {
     try {
       await axios.delete(`notices/notice/${id}`);
+      dispatch(refreshUser());
+      setDeleteId(null);
     } catch (error) {
       console.log(error);
     }
