@@ -55,10 +55,10 @@ export const NoticesCategoriesList = () => {
             const request = await axios.get('notices/favorite', {
               params: { page, limit: '12' },
             });
-            if (request.data.data.result.length < 10) {
+            if (request.data.data.notices.length < 10) {
               setMore(false);
             }
-            setAllNotices([...allNotices, ...request.data.data.result]);
+            setAllNotices([...allNotices, ...request.data.data.notices]);
 
             return;
           }
@@ -66,20 +66,20 @@ export const NoticesCategoriesList = () => {
             const myNotices = await axios.get('notices', {
               params: { page, limit: '12' },
             });
-            if (myNotices.data.data.result.length < 10) {
+            if (myNotices.data.data.notices.length < 10) {
               setMore(false);
             }
-            setAllNotices([...allNotices, ...myNotices.data.data.result]);
+            setAllNotices([...allNotices, ...myNotices.data.data.notices]);
 
             return;
           }
           const notices = await axios.get(`notices${pathname}`, {
             params: { page, limit: '12' },
           });
-          if (notices.data.data.result.length < 10) {
+          if (notices.data.data.notices.length < 10) {
             setMore(false);
           }
-          setAllNotices([...allNotices, ...notices.data.data.result]);
+          setAllNotices([...allNotices, ...notices.data.data.notices]);
         } catch (error) {
           setMore(false);
           setStatus(Status.REJECTED);

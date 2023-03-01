@@ -159,7 +159,6 @@ export const NoticeCategoryItem = ({ items, onListChange, pathname }) => {
       }
     }
   };
-
   return (
     <>
       {filteredNotices.map(
