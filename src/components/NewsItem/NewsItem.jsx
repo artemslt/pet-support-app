@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types';
+import { useTranslation } from 'react-i18next';
 
 import {
   Item,
@@ -11,6 +12,7 @@ import {
 } from './NewsItem.styled';
 
 export const NewsItem = ({ title, url, description, date }) => {
+  const { t } = useTranslation();
   return (
     <Item>
       <ItemBorder></ItemBorder>
@@ -18,7 +20,9 @@ export const NewsItem = ({ title, url, description, date }) => {
       <ItemText>{description}</ItemText>
       <ItemContainer>
         <ItemDate>{date}</ItemDate>
-        <ItemLink href={url} target="_blank">Read more</ItemLink>
+        <ItemLink href={url} target="_blank">
+          {t('Read_more')}
+        </ItemLink>
       </ItemContainer>
     </Item>
   );

@@ -147,7 +147,9 @@ export const LearnMore = ({ onToggleModal, data, onClickOnFavoriteBtn }) => {
             {comments}
           </Comment>
           <BlockBtns>
-            <Btn onClick={e => window.open(`tel:${owner.phone}`)}>Contact</Btn>
+            <Btn onClick={e => window.open(`tel:${owner.phone}`)}>
+              {t('Contact')}
+            </Btn>
             {!favorite ? (
               <Btn onClick={e => onClickOnFavoriteBtn(_id)}>
                 {t('Add_to')} <FavoriteIcon />

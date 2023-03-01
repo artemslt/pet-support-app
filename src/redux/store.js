@@ -31,7 +31,7 @@ export const store = configureStore({
     auth: persistReducer(authPersistConfig, authReducer),
     news: newsReducer,
     pets: petsSlice,
-    filter: noticesSlice,
+    notices: noticesSlice,
   },
   middleware(getDefaultMiddleware) {
     return getDefaultMiddleware({
