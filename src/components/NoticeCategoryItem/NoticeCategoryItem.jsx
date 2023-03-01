@@ -80,12 +80,14 @@ export const NoticeCategoryItem = ({ items, onListChange, pathname }) => {
     setModalToggle(true);
   };
 
+
   useEffect(() => {
     dispatch(fetchAllFavorite());
   }, [dispatch]);
 
   const addToFavorite = id => {
     dispatch(addFavorite(id));
+
   };
 
   const delFromFavorite = id => {
@@ -230,7 +232,7 @@ export const NoticeCategoryItem = ({ items, onListChange, pathname }) => {
                 >
                   {t('Learn_more')}
                 </NoticeBtn>
-                {userId === owner && (
+                {userId === owner._id && (
                   <NoticeBtn
                     onClick={e => {
                       setOpenModalDelete(true);
