@@ -58,7 +58,14 @@ export const Friend = ({
                 onMouseEnter={handleTimeHover}
                 onMouseLeave={handleTimeLeave}
               >
-                <Hoverable>{t('Time')}</Hoverable>
+                 {hours ? (
+                <CardTime
+                  onMouseEnter={handleTimeHover}
+                  onMouseLeave={handleTimeLeave}
+                >
+                 <Hoverable>{t('Time')}</Hoverable>
+                </CardTime>
+              ) : (<span>{t('Time')}</span>)}
               </CardTime>
               {hours ? (
                 <CardTime
@@ -94,7 +101,8 @@ export const Friend = ({
               )}
             </CardDataItem>
             <CardDataItem>
-              <Hoverable>{t('Address')}:</Hoverable>
+              {address ? (<Hoverable>{t('Address')}:</Hoverable>)
+               : (<span>{t('Address')}</span>)}
               {address ? (
                 <CardAddress>
                   <a href={addressUrl ?? '#'} target="_blank" rel="noreferrer">
@@ -106,7 +114,8 @@ export const Friend = ({
               )}
             </CardDataItem>
             <CardDataItem>
-              <Hoverable>{t('Email')}:</Hoverable>
+            {email ? (<Hoverable>{t('Email')}:</Hoverable>)
+            : (<span>{t('Email')}</span>)}
               {email ? (
                 <Hoverable>
                   <a href={`mailto:${email}`}><Hoverable> {email}</Hoverable></a>
@@ -116,7 +125,8 @@ export const Friend = ({
               )}
             </CardDataItem>
             <CardDataItem>
-              <Hoverable>{t('Phone')}:</Hoverable>
+            {email ? (<Hoverable>{t('Phone')}:</Hoverable>)
+            : (<span>{t('Phone')}</span>)}
               {phone ? (
                 <Hoverable>
                   <a href={`tel:${phone}`}><Hoverable> {phone}</Hoverable></a>

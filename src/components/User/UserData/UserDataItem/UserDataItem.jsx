@@ -98,7 +98,13 @@ export const UserDataItem = () => {
     <div>
       <DataInputWrapp>
         <Formik
-          initialValues={currentUser}
+          initialValues={{
+            name: currentUser.name || 'New User',
+            email: currentUser.email,
+            birthday: currentUser.birthday || '00.00.0000',
+            phone: currentUser.phone || '+380000000000',
+            location: currentUser.location || 'City, Region',
+          }}
           validationSchema={yup.object().shape({
             name: registerSchema.fields.name,
             email: registerSchema.fields.email,
