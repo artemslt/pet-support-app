@@ -20,6 +20,7 @@ export const AddButton = styled.button`
   bottom: -100px;
   background-color: transparent;
   transition: ${({ theme }) => theme.btnAnimationTransition};
+  
   &:hover {
     cursor: pointer;
     scale: ${({ theme }) => theme.btnHoverFocusScale};
