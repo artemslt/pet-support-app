@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 import { up } from 'styled-breakpoints';
+import { MdLogout } from 'react-icons/md';
+// import { ReactComponent as Logout } from 'images/userPage/Logout.svg';
 
 export const LogoutWrapper = styled.div`
   display: flex;
@@ -10,17 +12,36 @@ export const LogoutWrapper = styled.div`
     justify-content: start;
   }
 `;
+export const IconLogout = styled(MdLogout)`
+  width: 18px;
+  height: 18px;
+  fill: ${props => props.theme.colors.mainAccent};
 
-export const Button = styled.div`
+  /* &:hover {
+    fill: ${prop => prop.theme.colors.activeAccent};
+  } */
+`;
+
+export const Button = styled.button`
   display: flex;
   border: none;
   background: transparent;
   cursor: pointer;
+  padding: 0;
+  fill: red;
+
   ${up('tablet')} {
     position: absolute;
     flex-direction: row;
     bottom: 24px;
     left: 32px;
+    &:hover {
+      transition: ease-in-out 0.05s;
+      scale: ${prop => prop.theme.btnHoverFocusScale};
+    }
+    /* &:hover ${MdLogout} {
+      fill: ${prop => prop.theme.colors.activeAccent};
+    } */
   }
   ${up('pc')} {
     position: unset;
@@ -31,6 +52,7 @@ export const SvgWrapp = styled.div`
   width: 18px;
   height: 18px;
   justify-content: flex-start;
+  fill: red;
 `;
 
 export const Text = styled.span`

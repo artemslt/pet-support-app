@@ -14,11 +14,11 @@ import {
   InputWrapper,
   EditBtn,
   ErrorMessage,
+  IconPen,
 } from './UserDataItem.styled';
 import { updateUser } from 'redux/auth/authOperations';
 import { selectUser } from 'redux/auth/authSelectors';
 
-import { ReactComponent as EditPenIcon } from 'images/userPage/editPenIcon.svg';
 import { ReactComponent as EditSaveIcon } from 'images/userPage/editSaveIcon.svg';
 import { useTranslation } from 'react-i18next';
 
@@ -32,7 +32,6 @@ export const UserDataItem = () => {
   const [isCityDisabled, setIsCityDisabled] = useState(true);
   const [startDate, setStartDate] = useState();
 
-  const iconColor = '#f59256';
   const iconColorDisabled = 'rgba(0,0,0,0.6)';
 
   const dispatch = useDispatch();
@@ -141,10 +140,11 @@ export const UserDataItem = () => {
                   <EditBtn
                     type="submit"
                     disabled={isAnyEditing}
+                    className={isAnyEditing ? '' : 'btn-active'}
                     onClick={() => setIsNameDisabled(!isNameDisabled)}
                   >
-                    <EditPenIcon
-                      fill={isAnyEditing ? iconColorDisabled : iconColor}
+                    <IconPen
+                      fill={isAnyEditing && iconColorDisabled}
                       width="20"
                       height="20"
                     />
@@ -153,6 +153,7 @@ export const UserDataItem = () => {
                 {!isNameDisabled && (
                   <EditBtn
                     type="submit"
+                    className="btn-active"
                     onClick={e => {
                       onSubmitClick(e, 'name', errors);
                     }}
@@ -192,9 +193,10 @@ export const UserDataItem = () => {
                     type="submit"
                     disabled={isAnyEditing}
                     onClick={() => setIsEmailDisabled(!isEmailDisabled)}
+                    className={isAnyEditing ? '' : 'btn-active'}
                   >
-                    <EditPenIcon
-                      fill={isAnyEditing ? iconColorDisabled : iconColor}
+                    <IconPen
+                      fill={isAnyEditing && iconColorDisabled}
                       width="20"
                       height="20"
                     />
@@ -203,6 +205,7 @@ export const UserDataItem = () => {
                 {!isEmailDisabled && (
                   <EditBtn
                     type="submit"
+                    className="btn-active"
                     onClick={e => onSubmitClick(e, 'email', errors)}
                   >
                     <EditSaveIcon width="20" height="20" />
@@ -239,10 +242,11 @@ export const UserDataItem = () => {
                     name="birthday"
                     onClick={() => setIsBirthdayDisabled(!isBirthdayDisabled)}
                     disabled={isAnyEditing}
+                    className={isAnyEditing ? '' : 'btn-active'}
                     isDateEdit={true}
                   >
-                    <EditPenIcon
-                      fill={isAnyEditing ? iconColorDisabled : iconColor}
+                    <IconPen
+                      fill={isAnyEditing && iconColorDisabled}
                       width="20"
                       height="20"
                     />
@@ -251,6 +255,7 @@ export const UserDataItem = () => {
                 {!isBirthdayDisabled && (
                   <EditBtn
                     type="submit"
+                    className="btn-active"
                     onClick={e => onSubmitClick(e, 'birthday', errors)}
                     isDateEdit={true}
                   >
@@ -285,10 +290,11 @@ export const UserDataItem = () => {
                   <EditBtn
                     type="submit"
                     disabled={isAnyEditing}
+                    className={isAnyEditing ? '' : 'btn-active'}
                     onClick={() => setIsPhoneDisabled(!isPhoneDisabled)}
                   >
-                    <EditPenIcon
-                      fill={isAnyEditing ? iconColorDisabled : iconColor}
+                    <IconPen
+                      fill={isAnyEditing && iconColorDisabled}
                       width="20"
                       height="20"
                     />
@@ -297,6 +303,7 @@ export const UserDataItem = () => {
                 {!isPhoneDisabled && (
                   <EditBtn
                     type="submit"
+                    className="btn-active"
                     onClick={e => onSubmitClick(e, 'phone', errors)}
                   >
                     <EditSaveIcon width="20" height="20" />
@@ -333,10 +340,11 @@ export const UserDataItem = () => {
                   <EditBtn
                     type="submit"
                     disabled={isAnyEditing}
+                    className={isAnyEditing ? '' : 'btn-active'}
                     onClick={() => setIsCityDisabled(!isCityDisabled)}
                   >
-                    <EditPenIcon
-                      fill={isAnyEditing ? iconColorDisabled : iconColor}
+                    <IconPen
+                      fill={isAnyEditing && iconColorDisabled}
                       width="20"
                       height="20"
                     />
@@ -345,6 +353,7 @@ export const UserDataItem = () => {
                 {!isCityDisabled && (
                   <EditBtn
                     type="submit"
+                    className="btn-active"
                     onClick={e => onSubmitClick(e, 'location', errors)}
                   >
                     <EditSaveIcon width="20" height="20" />
