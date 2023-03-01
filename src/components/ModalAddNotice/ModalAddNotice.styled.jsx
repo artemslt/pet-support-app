@@ -65,7 +65,7 @@ export const ButtonClose = styled.button`
     transition: cubic-bezier(0.075, 0.82, 0.165, 1);
     background-color: ${({ theme }) => theme.colors.mainAccent};
   }
-  &:hover ${ClosesIcon} {
+  &:hover${ClosesIcon} {
     transition: cubic-bezier(0.075, 0.82, 0.165, 1);
     fill: ${({ theme }) => theme.colors.mainWhite};
   }
