@@ -7,6 +7,7 @@ import {
   Button,
   EditWrapp,
   Text,
+  CameraIcon,
 } from './userAvatarBlock.styled';
 
 import { updateAvatar, refreshUser } from 'redux/auth/authOperations';
@@ -55,7 +56,7 @@ export const UserAvatarBlock = () => {
               onChange={onChangeAvatar}
             />
             <EditWrapp>
-              <img src={cameraIcon} alt="" />
+              <CameraIcon />
               <Text>{t('Edit_photo')}</Text>
             </EditWrapp>
           </label>
