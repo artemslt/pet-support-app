@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { up } from 'styled-breakpoints';
+import { ReactComponent as IconCamera } from 'images/userPage/CameraIcon.svg';
 
 export const Form = styled.form`
   /* position: relative; */
@@ -45,6 +46,10 @@ export const Avatar = styled.img`
   box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.11);
 `;
 
+export const CameraIcon = styled(IconCamera)`
+  fill: ${prop => prop.theme.colors.mainAccent};
+`;
+
 export const Button = styled.button`
   position: absolute;
   display: flex;
@@ -54,12 +59,19 @@ export const Button = styled.button`
   border: none;
 
   background: none;
-  fill: ${prop => prop.theme.colors.mainAccent};
 
   ${up('tablet')} {
     margin-bottom: 20px;
     top: 219px;
     right: -25px;
+
+    &:hover {
+      transition: ease-in-out 0.05s;
+      scale: ${prop => prop.theme.btnHoverFocusScale};
+    }
+    &:hover ${CameraIcon} {
+      fill: ${prop => prop.theme.colors.activeAccent};
+    }
   }
   ${up('pc')} {
     margin-bottom: 0;

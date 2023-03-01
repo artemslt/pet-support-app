@@ -7,13 +7,14 @@ import {
   Button,
   EditWrapp,
   Text,
+  CameraIcon,
 } from './userAvatarBlock.styled';
 
 import { updateAvatar, refreshUser } from 'redux/auth/authOperations';
 import { selectAvatarURL, selectUser } from 'redux/auth/authSelectors';
 
 import addIcon from 'images/userPage/addIcon.svg';
-import cameraIcon from 'images/userPage/cameraIcon.svg';
+
 import { useTranslation } from 'react-i18next';
 
 export const UserAvatarBlock = () => {
@@ -55,7 +56,7 @@ export const UserAvatarBlock = () => {
               onChange={onChangeAvatar}
             />
             <EditWrapp>
-              <img src={cameraIcon} alt="" />
+              <CameraIcon />
               <Text>{t('Edit_photo')}</Text>
             </EditWrapp>
           </label>

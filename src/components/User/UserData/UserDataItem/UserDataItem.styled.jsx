@@ -3,11 +3,14 @@ import { up } from 'styled-breakpoints';
 import { Field } from 'formik';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
+import { ReactComponent as EditPenIcon } from 'images/userPage/editPenIcon.svg';
 
 export const DataInputWrapp = styled.div`
   display: flex;
   flex-direction: column;
 `;
+
+export const IconPen = styled(EditPenIcon)``;
 
 export const Label = styled.label`
   display: inline-block;
@@ -144,6 +147,13 @@ export const EditBtn = styled.button`
   border: none;
   border-radius: 50%;
   cursor: pointer;
+  fill: ${prop => prop.theme.colors.mainAccent};
+
+  &.btn-active:hover {
+    scale: 1.1;
+    fill: ${prop => prop.theme.colors.activeAccent};
+  }
+
   ${up('tablet')} {
     width: 32px;
     height: 32px;

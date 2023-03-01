@@ -13,8 +13,8 @@ import {
   ModalLogoutText,
   ModalToggleBtnWrapp,
   SvgWrapp,
+  IconLogout,
 } from './Logout.styled';
-import LogoutIcon from 'images/userPage/logout.svg';
 
 export const Logout = () => {
   const { t } = useTranslation();
@@ -29,11 +29,12 @@ export const Logout = () => {
     <>
       <LogoutWrapper>
         <Button
+          type="button"
           onClick={() => setModalOpen(true)}
           style={{ border: 'none', background: 'transparent', display: 'flex' }}
         >
           <SvgWrapp>
-            <img src={LogoutIcon} alt="" width={18} height={18} />
+            <IconLogout />
           </SvgWrapp>
           <Text>{t('Log_out')}</Text>
         </Button>
