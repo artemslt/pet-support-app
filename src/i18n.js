@@ -170,7 +170,7 @@ i18n
       uk: {
         translation: {
           News: 'Новини',
-          Find_pet: 'Знайти улюбленця',
+          Find_pet: 'Оголошення',
           Our_friends: 'Наші друзі',
           Login: 'Логін',
           Registration: 'Реєстрація',
