@@ -159,8 +159,12 @@ i18n
           Loading: 'Load more',
           no_more: `Yah, that's all notices!!`,
           Owner: 'Owner',
+
           Contact: 'Contact',
           Read_more: 'Read more',
+
+          add_pet_notice_create: 'Your pet has been added',
+
         },
       },
       uk: {
@@ -305,8 +309,12 @@ i18n
           Loading: 'Завантажити ще',
           no_more: 'Так на жаль це всі оголошення!!',
           Owner: 'Власник',
+
           Contact: `Зв'язатись`,
           Read_more: 'Більше...',
+
+          add_pet_notice_create: 'Ваша тваринка доданна',
+
         },
       },
     },

@@ -362,8 +362,13 @@ export const Comment = styled(Field)`
   resize: none;
   cursor: pointer;
   ${up('tablet')} {
+    padding: 16px;
     width: 394px;
     height: 116px;
+  }
+
+  &::placeholder {
+    color: ${({ theme }) => theme.colors.mainBlack};
   }
 `;
 
