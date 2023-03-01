@@ -432,6 +432,10 @@ export const LabelSex = styled.label`
   justify-content: space-between;
 
   margin-bottom: 32px;
+
+  &:hover{
+    cursor: pointer;
+  }
 `;
 
 export const CommentInput = styled(Field)`
