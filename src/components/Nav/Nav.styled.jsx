@@ -3,23 +3,19 @@ import { down, up } from 'styled-breakpoints';
 import { NavLink } from 'react-router-dom';
 
 export const NavContainer = styled.nav`
+  width: 100%;
   display: flex;
   flex-direction: row;
-  ${up('pcSizeS')} {
+  justify-content: space-around;
+  ${up('pcSizeL')} {
     margin-left: 80px;
+    width: 500px;
+    justify-content: space-between;
   }
-
   ${down('pcSizeS')} {
     flex-direction: column;
     align-items: center;
     margin-top: 88px;
-    @media (orientation: landscape) {
-      & {
-        width: 100%;
-        flex-direction: row;
-        justify-content: space-between;
-      }
-    }
   }
   ${down('tablet')} {
     margin-top: 60px;
@@ -28,7 +24,6 @@ export const NavContainer = styled.nav`
 
 export const Link = styled(NavLink)`
   text-decoration: none;
-  margin-right: 65px;
   padding: 10px 0;
 
   font-family: ${({ theme }) => theme.fonts[1]};
@@ -70,14 +65,4 @@ export const Link = styled(NavLink)`
     text-decoration: underline 1px;
     scale: 1;
   }
-  &:last-child {
-    margin-right: 0px;
-  }
-  /* 
-  @media (orientation: landscape) {
-    & {
-      font-size: 28px;
-      margin-bottom: 0;
-    }
-  } */
 `;
