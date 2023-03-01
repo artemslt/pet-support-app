@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { up } from 'styled-breakpoints';
-import { ReactComponent as IconCamera } from 'images/userPage/CameraIcon.svg';
+import { ReactComponent as IconCamera } from 'images/userPage/cameraIcon.svg';
 
 export const Form = styled.form`
   /* position: relative; */
