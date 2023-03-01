@@ -230,7 +230,7 @@ export const NoticeCategoryItem = ({ items, onListChange, pathname }) => {
                 >
                   {t('Learn_more')}
                 </NoticeBtn>
-                {userId === owner && (
+                {userId === owner._id && (
                   <NoticeBtn
                     onClick={e => {
                       setOpenModalDelete(true);
