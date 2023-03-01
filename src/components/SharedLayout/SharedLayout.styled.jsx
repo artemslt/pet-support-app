@@ -7,18 +7,16 @@ export const WrapperSharedLayout = styled.div`
 `;
 
 export const StyledContainer = styled(ToastContainer)`
-.Toastify__toast--success {
-  height: 80px;
-  border-radius: 40px;
-  border: 2px solid #55AE3A;
-}
-.Toastify__toast--error {
-  height: 80px;
-  border-radius: 40px;
-  border: 2px solid ${prop => prop.theme.colors.mainAccent};
-}
-.Toastify__close-button {
-  margin-top: 10px;
-  margin-right: 10px;
-}
+  .Toastify__toast--success {
+    border-radius: 40px;
+    border: 2px solid #55ae3a;
+  }
+  .Toastify__toast--error {
+    border-radius: 40px;
+    border: 2px solid ${prop => prop.theme.colors.mainAccent};
+  }
+  .Toastify__close-button {
+    margin-top: 10px;
+    margin-right: 10px;
+  }
 `;
