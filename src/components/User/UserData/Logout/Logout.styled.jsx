@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 import { up } from 'styled-breakpoints';
-import { MdLogout } from 'react-icons/md';
-// import { ReactComponent as Logout } from 'images/userPage/Logout.svg';
+import { ReactComponent as LogoutIcon } from 'images/userPage/logout.svg';
 
 export const LogoutWrapper = styled.div`
   display: flex;
@@ -12,36 +11,29 @@ export const LogoutWrapper = styled.div`
     justify-content: start;
   }
 `;
-export const IconLogout = styled(MdLogout)`
+export const IconLogout = styled(LogoutIcon)`
   width: 18px;
   height: 18px;
-  fill: ${props => props.theme.colors.mainAccent};
-
-  /* &:hover {
-    fill: ${prop => prop.theme.colors.activeAccent};
-  } */
 `;
 
 export const Button = styled.button`
-  display: flex;
   border: none;
   background: transparent;
   cursor: pointer;
   padding: 0;
-  fill: red;
+  fill: ${({ theme }) => theme.colors.mainAccent};
 
   ${up('tablet')} {
     position: absolute;
     flex-direction: row;
     bottom: 24px;
     left: 32px;
+
     &:hover {
       transition: ease-in-out 0.05s;
       scale: ${prop => prop.theme.btnHoverFocusScale};
+      fill: ${({ theme }) => theme.colors.activeAccent};
     }
-    /* &:hover ${MdLogout} {
-      fill: ${prop => prop.theme.colors.activeAccent};
-    } */
   }
   ${up('pc')} {
     position: unset;
@@ -49,10 +41,11 @@ export const Button = styled.button`
 `;
 
 export const SvgWrapp = styled.div`
-  width: 18px;
-  height: 18px;
+  display: flex;
+  align-items: center;
   justify-content: flex-start;
-  fill: red;
+  width: 100%;
+  height: 18px;
 `;
 
 export const Text = styled.span`

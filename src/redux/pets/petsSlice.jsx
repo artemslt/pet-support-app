@@ -31,7 +31,7 @@ const petsSlice = createSlice({
     [addPet.fulfilled](state, action) {
       state.isAdding = false;
       state.error = null;
-      state.list.push(action.payload.notices);
+      state.list.push(action.payload.result);
     },
     [addPet.rejected](state) {
       state.isAdding = false;
@@ -44,7 +44,7 @@ const petsSlice = createSlice({
       state.isDeleting = false;
       state.error = null;
       state.list = state.list.filter(
-        pet => pet._id !== action.payload.notices._id
+        pet => pet._id !== action.payload.result._id
       );
     },
     [deletePet.rejected](state) {

@@ -14,6 +14,7 @@ import { updateAvatar, refreshUser } from 'redux/auth/authOperations';
 import { selectAvatarURL, selectUser } from 'redux/auth/authSelectors';
 
 import addIcon from 'images/userPage/addIcon.svg';
+
 import { useTranslation } from 'react-i18next';
 
 export const UserAvatarBlock = () => {
