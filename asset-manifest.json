@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/pet-support-app/static/css/main.d6ec9267.css",
-    "main.js": "/pet-support-app/static/js/main.82a75a0b.js",
+    "main.js": "/pet-support-app/static/js/main.8e7c2d65.js",
     "static/js/704.ff14a775.chunk.js": "/pet-support-app/static/js/704.ff14a775.chunk.js",
     "static/js/252.9a588292.chunk.js": "/pet-support-app/static/js/252.9a588292.chunk.js",
     "static/js/967.7e3bed5f.chunk.js": "/pet-support-app/static/js/967.7e3bed5f.chunk.js",
     "static/js/557.20d75249.chunk.js": "/pet-support-app/static/js/557.20d75249.chunk.js",
     "static/js/18.7ea7febc.chunk.js": "/pet-support-app/static/js/18.7ea7febc.chunk.js",
     "static/js/949.8f208c4c.chunk.js": "/pet-support-app/static/js/949.8f208c4c.chunk.js",
-    "static/js/457.7b098ea4.chunk.js": "/pet-support-app/static/js/457.7b098ea4.chunk.js",
+    "static/js/779.d0aac058.chunk.js": "/pet-support-app/static/js/779.d0aac058.chunk.js",
     "static/js/72.5a386181.chunk.js": "/pet-support-app/static/js/72.5a386181.chunk.js",
     "static/js/833.1f647d78.chunk.js": "/pet-support-app/static/js/833.1f647d78.chunk.js",
     "static/js/632.d76ba6cf.chunk.js": "/pet-support-app/static/js/632.d76ba6cf.chunk.js",
@@ -16,7 +16,6 @@
     "static/css/499.03346bba.chunk.css": "/pet-support-app/static/css/499.03346bba.chunk.css",
     "static/js/499.593bee54.chunk.js": "/pet-support-app/static/js/499.593bee54.chunk.js",
     "static/js/587.57f5e561.chunk.js": "/pet-support-app/static/js/587.57f5e561.chunk.js",
-    "static/js/856.f76e1e30.chunk.js": "/pet-support-app/static/js/856.f76e1e30.chunk.js",
     "static/js/916.f225a444.chunk.js": "/pet-support-app/static/js/916.f225a444.chunk.js",
     "static/media/home-photo-bg-tablet2x.png": "/pet-support-app/static/media/home-photo-bg-tablet2x.f377d644ead1f8f8bc26.png",
     "static/media/home-photo-bg-desktop2x.png": "/pet-support-app/static/media/home-photo-bg-desktop2x.92db63717878325f7f5d.png",
@@ -41,7 +40,8 @@
     "static/media/akar-icons_heart.svg": "/pet-support-app/static/media/akar-icons_heart.0257ac29af8e4bb6a979942ceeca2b2f.svg",
     "static/media/fluent_delete-16-filled.svg": "/pet-support-app/static/media/fluent_delete-16-filled.583b4ab7cf0346330cbe7a144f4bf7a0.svg",
     "static/media/icon-heart-filled.svg": "/pet-support-app/static/media/icon-heart-filled.dc0e6d070ebd7446a3765b6eaf4b8efd.svg",
-    "static/media/deleteIcon.svg": "/pet-support-app/static/media/deleteIcon.40686f5beb877e9aaaaf79bbaacbdb08.svg",
+    "static/media/deleteIcon.svg": "/pet-support-app/static/media/deleteIcon.2345c3addd72fda4220b291cdcf0265e.svg",
+    "static/media/logout.svg": "/pet-support-app/static/media/logout.7f1f0f475b04181ff5be23d7e142babc.svg",
     "static/media/spinner-white.svg": "/pet-support-app/static/media/spinner-white.7f27ce6002469e15e9749fdb5b9c70fa.svg",
     "index.html": "/pet-support-app/index.html",
     "static/media/paw-icon.svg": "/pet-support-app/static/media/paw-icon.518b84aeb3c26f1beec4b85d4f164032.svg",
@@ -61,14 +61,14 @@
     "static/media/addPhoto.svg": "/pet-support-app/static/media/addPhoto.74842807e3433f5616a0d5cf5d556d2b.svg",
     "static/media/akar-icons_plus.svg": "/pet-support-app/static/media/akar-icons_plus.40b2205dc2516cb92de4e8f4f8627464.svg",
     "main.d6ec9267.css.map": "/pet-support-app/static/css/main.d6ec9267.css.map",
-    "main.82a75a0b.js.map": "/pet-support-app/static/js/main.82a75a0b.js.map",
+    "main.8e7c2d65.js.map": "/pet-support-app/static/js/main.8e7c2d65.js.map",
     "704.ff14a775.chunk.js.map": "/pet-support-app/static/js/704.ff14a775.chunk.js.map",
     "252.9a588292.chunk.js.map": "/pet-support-app/static/js/252.9a588292.chunk.js.map",
     "967.7e3bed5f.chunk.js.map": "/pet-support-app/static/js/967.7e3bed5f.chunk.js.map",
     "557.20d75249.chunk.js.map": "/pet-support-app/static/js/557.20d75249.chunk.js.map",
     "18.7ea7febc.chunk.js.map": "/pet-support-app/static/js/18.7ea7febc.chunk.js.map",
     "949.8f208c4c.chunk.js.map": "/pet-support-app/static/js/949.8f208c4c.chunk.js.map",
-    "457.7b098ea4.chunk.js.map": "/pet-support-app/static/js/457.7b098ea4.chunk.js.map",
+    "779.d0aac058.chunk.js.map": "/pet-support-app/static/js/779.d0aac058.chunk.js.map",
     "72.5a386181.chunk.js.map": "/pet-support-app/static/js/72.5a386181.chunk.js.map",
     "833.1f647d78.chunk.js.map": "/pet-support-app/static/js/833.1f647d78.chunk.js.map",
     "632.d76ba6cf.chunk.js.map": "/pet-support-app/static/js/632.d76ba6cf.chunk.js.map",
@@ -76,11 +76,10 @@
     "499.03346bba.chunk.css.map": "/pet-support-app/static/css/499.03346bba.chunk.css.map",
     "499.593bee54.chunk.js.map": "/pet-support-app/static/js/499.593bee54.chunk.js.map",
     "587.57f5e561.chunk.js.map": "/pet-support-app/static/js/587.57f5e561.chunk.js.map",
-    "856.f76e1e30.chunk.js.map": "/pet-support-app/static/js/856.f76e1e30.chunk.js.map",
     "916.f225a444.chunk.js.map": "/pet-support-app/static/js/916.f225a444.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.d6ec9267.css",
-    "static/js/main.82a75a0b.js"
+    "static/js/main.8e7c2d65.js"
   ]
 }
