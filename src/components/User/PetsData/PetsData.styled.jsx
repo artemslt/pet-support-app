@@ -58,18 +58,20 @@ export const AddBtn = styled.button`
   background: ${prop => prop.theme.colors.mainAccent};
   border: none;
   cursor: pointer;
+  ${up('tablet')} {
+    &:hover,
+    &:focus {
+      transition: ${({ theme }) => theme.btnAnimationTransition};
+      scale: ${({ theme }) => theme.btnHoverFocusScale};
+      background: ${prop => prop.theme.colors.activeAccent};
+    }
+  }
 `;
 
 export const AddBtnWrapper = styled.div`
   display: flex;
   align-items: center;
   padding-right: 16px;
-
-  transition: ${({ theme }) => theme.btnAnimationTransition};
-  &:hover ${AddBtn}, &:hover ${BtnName}, &:focus${AddBtn}, &:focus${BtnName} {
-    cursor: pointer;
-    scale: ${({ theme }) => theme.btnHoverFocusScale};
-  }
 
   ${up('tablet')} {
     padding-right: 33px;
@@ -170,6 +172,7 @@ export const PetDeleteBtn = styled.button`
   right: 0;
   background-color: transparent;
   border: none;
+  fill: rgba(0, 0, 0, 0.6);
   ${up('tablet')} {
     background-color: ${prop => prop.theme.colors.background};
     height: 44px;
@@ -179,6 +182,10 @@ export const PetDeleteBtn = styled.button`
     background-position: center;
     border-radius: 50%;
     cursor: pointer;
+    &:hover {
+      scale: ${({ theme }) => theme.btnHoverFocusScale};
+      fill: ${({ theme }) => theme.colors.activeAccent};
+    }
   }
   ${up('pc')} {
   }

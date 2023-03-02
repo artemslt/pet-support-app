@@ -12,44 +12,45 @@ const initialState = {
 const petsSlice = createSlice({
   name: 'pets',
   initialState,
-  extraReducers: {
-    [fetchAllPets.pending](state, _) {
-      state.isRefreshing = true;
-    },
-    [fetchAllPets.fulfilled](state, action) {
-      state.list = action.payload;
-      state.isLoggedIn = true;
-      state.isRefreshing = false;
-    },
-    [fetchAllPets.rejected](state, _) {
-      state.isRefreshing = false;
-    },
+  extraReducers: builder => {
+    builder
+      .addCase(fetchAllPets.pending, (state, _) => {
+        state.isRefreshing = true;
+      })
+      .addCase(fetchAllPets.fulfilled, (state, action) => {
+        state.list = action.payload;
+        state.isLoggedIn = true;
+        state.isRefreshing = false;
+      })
+      .addCase(fetchAllPets.rejected, (state, _) => {
+        state.isRefreshing = false;
+      })
 
-    [addPet.pending](state) {
-      state.isAdding = true;
-    },
-    [addPet.fulfilled](state, action) {
-      state.isAdding = false;
-      state.error = null;
-      state.list.push(action.payload.result);
-    },
-    [addPet.rejected](state) {
-      state.isAdding = false;
-    },
+      .addCase(addPet.pending, state => {
+        state.isAdding = true;
+      })
+      .addCase(addPet.fulfilled, (state, action) => {
+        state.isAdding = false;
+        state.error = null;
+        state.list.push(action.payload.result);
+      })
+      .addCase(addPet.rejected, state => {
+        state.isAdding = false;
+      })
 
-    [deletePet.pending](state) {
-      state.isDeleting = true;
-    },
-    [deletePet.fulfilled](state, action) {
-      state.isDeleting = false;
-      state.error = null;
-      state.list = state.list.filter(
-        pet => pet._id !== action.payload.result._id
-      );
-    },
-    [deletePet.rejected](state) {
-      state.isDeleting = false;
-    },
+      .addCase(deletePet.pending, state => {
+        state.isDeleting = true;
+      })
+      .addCase(deletePet.fulfilled, (state, action) => {
+        state.isDeleting = false;
+        state.error = null;
+        state.list = state.list.filter(
+          pet => pet._id !== action.payload.result._id
+        );
+      })
+      .addCase(deletePet.rejected, state => {
+        state.isDeleting = false;
+      });
   },
 });
 export default petsSlice.reducer;

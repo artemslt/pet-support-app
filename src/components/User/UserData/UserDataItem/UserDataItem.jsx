@@ -91,6 +91,13 @@ export const UserDataItem = () => {
         location: event.location,
       })
     );
+    console.log('onSubmit', {
+      name: event.name,
+      email: event.email,
+      birthday: startDate.toLocaleString().slice(0, 10),
+      phone: event.phone,
+      location: event.location,
+    });
   };
 
   return (
@@ -144,7 +151,7 @@ export const UserDataItem = () => {
                     onClick={() => setIsNameDisabled(!isNameDisabled)}
                   >
                     <IconPen
-                      fill={isAnyEditing && iconColorDisabled}
+                      fill={isAnyEditing ? iconColorDisabled : undefined}
                       width="20"
                       height="20"
                     />
@@ -196,7 +203,7 @@ export const UserDataItem = () => {
                     className={isAnyEditing ? '' : 'btn-active'}
                   >
                     <IconPen
-                      fill={isAnyEditing && iconColorDisabled}
+                      fill={isAnyEditing ? iconColorDisabled : undefined}
                       width="20"
                       height="20"
                     />
@@ -246,7 +253,7 @@ export const UserDataItem = () => {
                     isDateEdit={true}
                   >
                     <IconPen
-                      fill={isAnyEditing && iconColorDisabled}
+                      fill={isAnyEditing ? iconColorDisabled : undefined}
                       width="20"
                       height="20"
                     />
@@ -294,7 +301,7 @@ export const UserDataItem = () => {
                     onClick={() => setIsPhoneDisabled(!isPhoneDisabled)}
                   >
                     <IconPen
-                      fill={isAnyEditing && iconColorDisabled}
+                      fill={isAnyEditing ? iconColorDisabled : undefined}
                       width="20"
                       height="20"
                     />
@@ -344,7 +351,7 @@ export const UserDataItem = () => {
                     onClick={() => setIsCityDisabled(!isCityDisabled)}
                   >
                     <IconPen
-                      fill={isAnyEditing && iconColorDisabled}
+                      fill={isAnyEditing ? iconColorDisabled : undefined}
                       width="20"
                       height="20"
                     />

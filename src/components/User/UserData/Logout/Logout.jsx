@@ -35,8 +35,8 @@ export const Logout = () => {
         >
           <SvgWrapp>
             <IconLogout />
+            <Text>{t('Log_out')}</Text>
           </SvgWrapp>
-          <Text>{t('Log_out')}</Text>
         </Button>
       </LogoutWrapper>
       <ModalMenu onClose={() => setModalOpen(false)} open={modalOpen}>
