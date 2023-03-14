@@ -11,7 +11,7 @@ import { Chat } from 'components/Chat/Chat';
 import { useAuth } from 'hooks';
 import io from 'socket.io-client';
 
-const socket = io.connect('https://pet-support-backend-v8vc.onrender.com/api/');
+const socket = io.connect('https://pet-support-backend-v8vc.onrender.com/');
 
 export const SharedLayout = () => {
   const { t } = useTranslation();
