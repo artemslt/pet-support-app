@@ -14,21 +14,17 @@ export const FlexBox = styled.div`
   right: 16px;
   display: flex;
   justify-content: center;
-
-  ${up('tablet')} {
-  }
-  ${up('pc')} {
-  }
 `;
 
 export const ChatWrapper = styled.div`
   width: 308px;
-  height: 613px;
+  height: 523px;
   background-color: ${prop => prop.theme.colors.mainWhite};
   box-shadow: 7px 4px 14px rgba(0, 0, 0, 0.11);
   border-radius: 40px;
   ${up('tablet')} {
     width: 338px;
+    height: 613px;
   }
   ${up('pc')} {
   }
@@ -60,7 +56,7 @@ export const Heading = styled.h3`
 `;
 
 export const MessageList = styled.div`
-  height: 435px;
+  height: 345px;
   border-radius: 10px;
   margin: 16px;
   padding: 16px;
