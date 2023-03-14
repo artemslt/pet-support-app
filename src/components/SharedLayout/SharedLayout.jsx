@@ -1,18 +1,40 @@
 import { Outlet } from 'react-router-dom';
-import { Suspense } from 'react';
+import { Suspense, useState } from 'react';
 import { Zoom } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { Header } from 'components/Header/Header';
-import { WrapperSharedLayout } from './SharedLayout.styled';
+import { WrapperSharedLayout, IconButton } from './SharedLayout.styled';
 import { useTranslation } from 'react-i18next';
-import { StyledContainer } from './SharedLayout.styled';
+import { StyledContainer, StyledChatOpenIcon, StyledChatCloseIcon } from './SharedLayout.styled';
+
+import { Chat } from 'components/Chat/Chat';
+import { useAuth } from 'hooks';
+import io from 'socket.io-client';
+
+const socket = io.connect('https://pet-support-backend-v8vc.onrender.com/api/');
 
 export const SharedLayout = () => {
   const { t } = useTranslation();
+  const { isLoggedIn, user } = useAuth();
+  const [isChatOpened, setIsChatOpened] = useState(false);
+
+  const handleChatClick = () => {
+    if (!isChatOpened) {
+      socket.emit('addUser', { name: user.name, id: user._id });
+    }
+    setIsChatOpened(prevState => !prevState);
+  };
 
   return (
     <WrapperSharedLayout>
       <Header t={t} />
+      {isChatOpened && <Chat socket={socket} />}
+      {isLoggedIn && (
+        <IconButton type="button" onClick={handleChatClick}>
+          {isChatOpened ? <StyledChatCloseIcon /> : <StyledChatOpenIcon />}
+        </IconButton>
+      )}
+
       <Suspense>
         <Outlet t={t} />
       </Suspense>
