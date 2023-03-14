@@ -48,8 +48,8 @@ export const StyledContainer = styled(ToastContainer)`
 export const IconButton = styled.button`
   position: fixed;
   z-index: 1;
-  right: 3px;
-  bottom: 3px;
+  right: 0px;
+  bottom: 0px;
   display: block;
   cursor: pointer;
   border: none;
