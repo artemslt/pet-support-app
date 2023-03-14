@@ -61,6 +61,9 @@ export const MessageList = styled.div`
   margin: 16px;
   padding: 16px;
   overflow-y: scroll;
+  ${up('tablet')} {
+    height: 435px;
+  }
 `;
 
 export const Form = styled(FormikForm)`
